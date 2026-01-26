@@ -1,0 +1,93 @@
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+
+const navItems = [
+  { label: 'Home', href: '#home' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Journey', href: '#journey' },
+  { label: 'About', href: '#about' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const Navigation = () => {
+  const [activeSection, setActiveSection] = useState('home');
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+
+      // Update active section based on scroll position
+      const sections = navItems.map(item => item.href.substring(1));
+      for (const section of sections.reverse()) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 150) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'glass-nav py-3' : 'py-5'
+      }`}
+    >
+      <div className="container mx-auto px-6 flex items-center justify-between">
+        {/* Logo */}
+        <a 
+          href="#home" 
+          onClick={(e) => handleClick(e, '#home')}
+          className="flex items-center gap-2 text-foreground font-display text-xl tracking-tight"
+        >
+          <span className="text-primary">&lt;/&gt;</span>
+          <span className="hidden sm:inline">vivek<span className="text-muted-foreground">.dev</span></span>
+        </a>
+
+        {/* Navigation */}
+        <nav className="hidden md:flex items-center">
+          <div className="flex items-center gap-1 px-4 py-2 rounded-full bg-card/50 backdrop-blur-sm border border-border/30">
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={(e) => handleClick(e, item.href)}
+                className={`nav-link ${activeSection === item.href.substring(1) ? 'active' : ''}`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </nav>
+
+        {/* Status badge */}
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/30">
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          <span className="text-xs font-medium text-primary">Open to work</span>
+        </div>
+      </div>
+    </motion.header>
+  );
+};
+
+export default Navigation;
