@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Instagram, Code2 } from 'lucide-react';
+import { Github, Linkedin, Instagram, Code2, Mail } from 'lucide-react';
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com/VivekChaurasiya95', label: 'GitHub' },
@@ -15,6 +15,7 @@ const socialLinks = [
   },
   { icon: Code2, href: 'https://leetcode.com/u/Vivek-Chaurasiya/', label: 'LeetCode' },
   { icon: Instagram, href: 'https://www.instagram.com/v.i.v.e.k_chaurasiya/', label: 'Instagram' },
+  { icon: Mail, href: 'mailto:vivekchaurasiya@gmail.com', label: 'Email' },
 ];
 
 const SocialSidebar = () => {
@@ -25,18 +26,7 @@ const SocialSidebar = () => {
       transition={{ duration: 0.6, delay: 0.4 }}
       className="fixed left-0 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-center gap-1 px-4"
     >
-      {/* Email rotated - readable from right side */}
-      <div className="mb-6">
-        <a 
-          href="mailto:vivekchaurasiya@gmail.com"
-          className="text-xs text-muted-foreground tracking-widest font-light hover:text-primary transition-colors"
-          style={{ writingMode: 'vertical-rl' }}
-        >
-          vivekchaurasiya@gmail.com
-        </a>
-      </div>
-
-      {/* Vertical line */}
+      {/* Vertical line at top */}
       <div className="w-px h-12 bg-border mb-4" />
 
       {/* Social icons */}
@@ -45,8 +35,8 @@ const SocialSidebar = () => {
           <motion.a
             key={link.label}
             href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            target={link.href.startsWith('mailto') ? undefined : '_blank'}
+            rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
             className="social-link"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -57,6 +47,9 @@ const SocialSidebar = () => {
           </motion.a>
         ))}
       </div>
+
+      {/* Vertical line at bottom */}
+      <div className="w-px h-12 bg-border mt-4" />
     </motion.aside>
   );
 };
