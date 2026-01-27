@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -9,6 +9,29 @@ const navItems = [
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
+
+// Cute mascot component
+const NavMascot = () => (
+  <motion.div
+    layoutId="nav-mascot"
+    className="absolute -top-8 left-1/2 -translate-x-1/2 z-10"
+    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+  >
+    {/* Body */}
+    <div className="relative">
+      {/* Face circle */}
+      <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-lg">
+        {/* Eyes */}
+        <div className="flex gap-1.5 -mt-0.5">
+          <div className="w-1.5 h-1.5 rounded-full bg-primary-foreground" />
+          <div className="w-1.5 h-1.5 rounded-full bg-primary-foreground" />
+        </div>
+      </div>
+      {/* Diamond body below */}
+      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-primary rotate-45" />
+    </div>
+  </motion.div>
+);
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -66,17 +89,21 @@ const Navigation = () => {
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center">
-          <div className="flex items-center gap-1 px-4 py-2 rounded-full bg-card/50 backdrop-blur-sm border border-border/30">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => handleClick(e, item.href)}
-                className={`nav-link ${activeSection === item.href.substring(1) ? 'active' : ''}`}
-              >
-                {item.label}
-              </a>
-            ))}
+          <div className="flex items-center gap-1 px-4 py-2 rounded-full bg-card/80 backdrop-blur-sm border border-border/30 relative">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.substring(1);
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleClick(e, item.href)}
+                  className={`nav-link relative ${isActive ? 'active' : ''}`}
+                >
+                  {isActive && <NavMascot />}
+                  {item.label}
+                </a>
+              );
+            })}
           </div>
         </nav>
 
