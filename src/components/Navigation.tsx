@@ -10,26 +10,61 @@ const navItems = [
   { label: 'Contact', href: '#contact' },
 ];
 
-// Cute mascot component
+// Animated mascot component - cute space alien
 const NavMascot = () => (
   <motion.div
     layoutId="nav-mascot"
-    className="absolute -top-8 left-1/2 -translate-x-1/2 z-10"
-    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+    className="absolute -top-10 left-1/2 -translate-x-1/2 z-10"
+    transition={{ 
+      type: "spring", 
+      stiffness: 500, 
+      damping: 25,
+      mass: 0.8
+    }}
   >
-    {/* Body */}
-    <div className="relative">
-      {/* Face circle */}
-      <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-lg">
-        {/* Eyes */}
-        <div className="flex gap-1.5 -mt-0.5">
-          <div className="w-1.5 h-1.5 rounded-full bg-primary-foreground" />
-          <div className="w-1.5 h-1.5 rounded-full bg-primary-foreground" />
+    <motion.div 
+      className="relative"
+      animate={{ y: [0, -3, 0] }}
+      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+    >
+      {/* Glow effect */}
+      <div className="absolute inset-0 w-10 h-10 rounded-full bg-primary/30 blur-md" />
+      
+      {/* Main body - rounded alien head */}
+      <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-primary via-primary to-accent flex items-center justify-center shadow-lg border-2 border-primary/50">
+        {/* Eyes container */}
+        <div className="flex gap-2 -mt-0.5">
+          {/* Left eye */}
+          <motion.div 
+            className="w-2.5 h-3 rounded-full bg-background flex items-center justify-center"
+            animate={{ scaleY: [1, 0.1, 1] }}
+            transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+          >
+            <div className="w-1.5 h-1.5 rounded-full bg-foreground mt-0.5" />
+          </motion.div>
+          {/* Right eye */}
+          <motion.div 
+            className="w-2.5 h-3 rounded-full bg-background flex items-center justify-center"
+            animate={{ scaleY: [1, 0.1, 1] }}
+            transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+          >
+            <div className="w-1.5 h-1.5 rounded-full bg-foreground mt-0.5" />
+          </motion.div>
         </div>
       </div>
-      {/* Diamond body below */}
-      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-primary rotate-45" />
-    </div>
+      
+      {/* Antenna */}
+      <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-0.5 h-3 bg-primary/70 rounded-full">
+        <motion.div 
+          className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-secondary"
+          animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 1, repeat: Infinity }}
+        />
+      </div>
+      
+      {/* Pointer/connector to nav */}
+      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-l-transparent border-r-transparent border-t-primary" />
+    </motion.div>
   </motion.div>
 );
 
