@@ -147,6 +147,40 @@
     }
   }
 
+  @keyframes shooting-star-enhanced {
+    0% {
+      transform: translateX(0) translateY(0) rotate(45deg);
+      opacity: 0;
+    }
+    5% {
+      opacity: 1;
+    }
+    60% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(400px) translateY(400px) rotate(45deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes comet {
+    0% {
+      transform: translateX(0) translateY(0) rotate(45deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(600px) translateY(600px) rotate(45deg);
+      opacity: 0;
+    }
+  }
+
   .shooting-star {
     position: absolute;
     width: 2px;
@@ -164,6 +198,62 @@
     height: 1px;
     background: linear-gradient(90deg, hsl(var(--foreground) / 0.6), transparent);
     transform: rotate(-45deg) translateX(-80px);
+  }
+
+  .shooting-star-enhanced {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: hsl(var(--primary));
+    border-radius: 50%;
+    box-shadow: 0 0 6px 2px hsl(var(--primary) / 0.6);
+    animation: shooting-star-enhanced var(--duration, 2s) ease-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+
+  .shooting-star-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    width: var(--length, 80px);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.8), hsl(var(--foreground)));
+    transform: translateY(-50%);
+    border-radius: 2px;
+  }
+
+  .comet {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: hsl(var(--secondary));
+    border-radius: 50%;
+    box-shadow: 0 0 10px 4px hsl(var(--secondary) / 0.5), 0 0 20px 8px hsl(var(--secondary) / 0.3);
+    animation: comet 4s ease-out infinite;
+  }
+
+  .comet::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, hsl(var(--secondary) / 0.6), hsl(var(--secondary)));
+    transform: translateY(-50%);
+    border-radius: 3px;
+  }
+
+  .comet::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    width: 180px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 50%, hsl(var(--secondary) / 0.3));
+    transform: translateY(-50%);
   }
 
   /* Timeline styles */
