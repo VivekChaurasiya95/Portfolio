@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -47,8 +47,8 @@
                        radial-gradient(ellipse at 70% 80%, hsla(350, 30%, 30%, 0.1) 0%, transparent 50%);
 
     /* Typography */
-    --font-display: 'Playfair Display', Georgia, serif;
-    --font-body: 'Inter', system-ui, sans-serif;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Space Grotesk', system-ui, sans-serif;
 
     /* Shadows */
     --shadow-subtle: 0 4px 20px -4px hsla(220, 25%, 0%, 0.4);

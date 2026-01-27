@@ -16,7 +16,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-muted-foreground text-sm md:text-base mb-6 tracking-wider uppercase font-light"
+            className="text-muted-foreground text-xs md:text-sm mb-8 tracking-[0.3em] uppercase font-light"
           >
             Developer • Data Science Enthusiast • AI/ML Engineer
           </motion.p>
@@ -26,15 +26,15 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-medium leading-[1.1] tracking-tight mb-8"
+            className="font-display text-5xl md:text-7xl lg:text-[5.5rem] font-semibold leading-[1.05] tracking-[-0.02em] mb-10"
           >
-            <span className="block">I Build</span>
-            <span className="block text-gradient">
+            <span className="block italic font-normal text-foreground/90">I Build</span>
+            <span className="block text-gradient font-bold">
               Between
             </span>
             <span className="block">
-              <span className="text-secondary">Creativity</span>
-              <span className="text-muted-foreground"> & </span>
+              <span className="text-secondary italic">Creativity</span>
+              <span className="text-muted-foreground/60 font-light"> & </span>
               <span className="text-primary">Logic.</span>
             </span>
           </motion.h1>
@@ -42,9 +42,9 @@ const HeroSection = () => {
           {/* Accent line */}
           <motion.div
             initial={{ width: 0 }}
-            animate={{ width: '80px' }}
+            animate={{ width: '100px' }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="h-1 bg-primary mb-8"
+            className="h-0.5 bg-gradient-to-r from-primary to-secondary mb-10"
           />
 
           {/* Description */}
@@ -52,12 +52,12 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed"
+            className="text-base md:text-lg text-muted-foreground max-w-xl mb-12 leading-relaxed font-light tracking-wide"
           >
             I'm <span className="text-foreground font-medium">Vivek Chaurasiya</span>, a{' '}
-            <span className="text-primary">Computer Science</span> student passionate about 
+            <span className="text-primary font-medium">Computer Science</span> student passionate about 
             building intelligent systems that bridge{' '}
-            <span className="text-secondary">machine learning</span> with elegant user experiences.
+            <span className="text-secondary font-medium">machine learning</span> with elegant user experiences.
           </motion.p>
 
           {/* CTAs */}

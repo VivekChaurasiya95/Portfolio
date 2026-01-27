@@ -1,58 +1,72 @@
-import { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { useRef, useMemo } from 'react';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { Sphere, Stars } from '@react-three/drei';
 import * as THREE from 'three';
+import { TextureLoader } from 'three';
 
 const Earth = () => {
   const earthRef = useRef<THREE.Mesh>(null);
   const cloudsRef = useRef<THREE.Mesh>(null);
+  const atmosphereRef = useRef<THREE.Mesh>(null);
+
+  // Load Earth textures from NASA/public sources
+  const [earthTexture, bumpMap, specularMap, cloudsTexture] = useLoader(TextureLoader, [
+    'https://unpkg.com/three-globe@2.31.1/example/img/earth-blue-marble.jpg',
+    'https://unpkg.com/three-globe@2.31.1/example/img/earth-topology.png',
+    'https://unpkg.com/three-globe@2.31.1/example/img/earth-water.png',
+    'https://unpkg.com/three-globe@2.31.1/example/img/earth-clouds.png'
+  ]);
 
   useFrame(({ clock }) => {
+    const elapsed = clock.getElapsedTime();
     if (earthRef.current) {
-      earthRef.current.rotation.y = clock.getElapsedTime() * 0.15;
+      earthRef.current.rotation.y = elapsed * 0.08;
     }
     if (cloudsRef.current) {
-      cloudsRef.current.rotation.y = clock.getElapsedTime() * 0.18;
+      cloudsRef.current.rotation.y = elapsed * 0.1;
     }
   });
 
   return (
-    <group position={[3, -1, -2]}>
-      {/* Earth sphere */}
-      <Sphere ref={earthRef} args={[2, 64, 64]}>
-        <meshStandardMaterial
-          color="#1a4a6e"
-          roughness={0.8}
-          metalness={0.2}
+    <group position={[4, 2, -3]} rotation={[0.1, 0, 0.15]}>
+      {/* Main Earth */}
+      <Sphere ref={earthRef} args={[2.2, 128, 128]}>
+        <meshPhongMaterial
+          map={earthTexture}
+          bumpMap={bumpMap}
+          bumpScale={0.03}
+          specularMap={specularMap}
+          specular={new THREE.Color('#333333')}
+          shininess={5}
         />
       </Sphere>
       
-      {/* Continents layer */}
-      <Sphere ref={cloudsRef} args={[2.02, 64, 64]}>
-        <meshStandardMaterial
-          color="#2d7a5e"
+      {/* Clouds layer */}
+      <Sphere ref={cloudsRef} args={[2.24, 64, 64]}>
+        <meshPhongMaterial
+          map={cloudsTexture}
           transparent
-          opacity={0.6}
-          roughness={0.9}
+          opacity={0.35}
+          depthWrite={false}
         />
       </Sphere>
       
-      {/* Atmosphere glow */}
-      <Sphere args={[2.15, 32, 32]}>
+      {/* Inner atmosphere glow */}
+      <Sphere args={[2.28, 64, 64]}>
         <meshBasicMaterial
-          color="#4ecdc4"
+          color="#88ccff"
           transparent
-          opacity={0.08}
+          opacity={0.06}
           side={THREE.BackSide}
         />
       </Sphere>
       
-      {/* Outer glow */}
-      <Sphere args={[2.3, 32, 32]}>
+      {/* Outer atmosphere glow */}
+      <Sphere ref={atmosphereRef} args={[2.5, 64, 64]}>
         <meshBasicMaterial
-          color="#5fb8b0"
+          color="#4da6ff"
           transparent
-          opacity={0.04}
+          opacity={0.03}
           side={THREE.BackSide}
         />
       </Sphere>
@@ -64,23 +78,23 @@ const RotatingEarth = () => {
   return (
     <div className="fixed inset-0 pointer-events-none z-[1]">
       <Canvas
-        camera={{ position: [0, 0, 8], fov: 45 }}
+        camera={{ position: [0, 0, 10], fov: 50 }}
         gl={{ antialias: true, alpha: true }}
         style={{ background: 'transparent' }}
       >
-        <ambientLight intensity={0.3} />
-        <directionalLight position={[5, 3, 5]} intensity={1.2} color="#ffffff" />
-        <directionalLight position={[-3, -2, -5]} intensity={0.4} color="#5fb8b0" />
-        <pointLight position={[10, 0, 0]} intensity={0.5} color="#ff7b7b" />
+        <ambientLight intensity={0.15} />
+        <directionalLight position={[8, 5, 5]} intensity={1.8} color="#ffffff" />
+        <directionalLight position={[-5, -3, -5]} intensity={0.3} color="#6699cc" />
+        <pointLight position={[15, 5, 5]} intensity={0.6} color="#ffffff" />
         
         <Stars 
-          radius={100} 
-          depth={50} 
-          count={3000} 
-          factor={4} 
-          saturation={0} 
+          radius={150} 
+          depth={80} 
+          count={5000} 
+          factor={5} 
+          saturation={0.1} 
           fade 
-          speed={0.5}
+          speed={0.3}
         />
         
         <Earth />
