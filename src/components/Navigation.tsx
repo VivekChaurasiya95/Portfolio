@@ -16,10 +16,9 @@ const NavMascot = () => (
     layoutId="nav-mascot"
     className="absolute -top-10 left-1/2 -translate-x-1/2 z-10"
     transition={{ 
-      type: "spring", 
-      stiffness: 500, 
-      damping: 25,
-      mass: 0.8
+      type: "tween",
+      duration: 0.15,
+      ease: "easeOut"
     }}
   >
     <motion.div 

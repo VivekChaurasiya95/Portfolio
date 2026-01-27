@@ -1,4 +1,5 @@
 import StarField from '@/components/StarField';
+import RotatingEarth from '@/components/RotatingEarth';
 import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import HeroSection from '@/components/HeroSection';
@@ -14,6 +15,9 @@ const Index = () => {
     <div className="relative min-h-screen bg-background text-foreground">
       {/* Background star field */}
       <StarField />
+      
+      {/* Rotating 3D Earth */}
+      <RotatingEarth />
       
       {/* Navigation */}
       <Navigation />
