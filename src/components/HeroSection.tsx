@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, ExternalLink } from 'lucide-react';
+import { ArrowDown, ArrowRight } from 'lucide-react';
+import { Github } from 'lucide-react';
+import IsometricButton from './IsometricButton';
 
 const HeroSection = () => {
   return (
@@ -63,29 +65,26 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-wrap gap-4"
+            className="flex flex-wrap gap-6"
           >
-            <a
-              href="#projects"
-              className="btn-primary inline-flex items-center gap-2"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+            <IsometricButton
+              href="https://github.com/yourusername"
+              variant="primary"
             >
-              View Projects
-              <ExternalLink className="w-4 h-4" />
-            </a>
-            <a
+              <Github className="w-4 h-4" />
+              GitHub
+            </IsometricButton>
+            <IsometricButton
               href="#contact"
-              className="btn-outline inline-flex items-center gap-2"
+              variant="secondary"
               onClick={(e) => {
                 e.preventDefault();
                 document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              Get in Touch
-            </a>
+              Check Resume
+              <ArrowRight className="w-4 h-4" />
+            </IsometricButton>
           </motion.div>
         </div>
       </div>
