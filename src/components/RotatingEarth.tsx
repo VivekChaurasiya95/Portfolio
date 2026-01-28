@@ -1,4 +1,4 @@
-import { useRef, useMemo } from 'react';
+import { useRef, Suspense } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { Sphere, Stars } from '@react-three/drei';
 import * as THREE from 'three';
@@ -7,15 +7,12 @@ import { TextureLoader } from 'three';
 const Earth = () => {
   const earthRef = useRef<THREE.Mesh>(null);
   const cloudsRef = useRef<THREE.Mesh>(null);
-  const atmosphereRef = useRef<THREE.Mesh>(null);
 
-  // Load Earth textures from NASA/public sources
-  const [earthTexture, bumpMap, specularMap, cloudsTexture] = useLoader(TextureLoader, [
-    'https://unpkg.com/three-globe@2.31.1/example/img/earth-blue-marble.jpg',
-    'https://unpkg.com/three-globe@2.31.1/example/img/earth-topology.png',
-    'https://unpkg.com/three-globe@2.31.1/example/img/earth-water.png',
-    'https://unpkg.com/three-globe@2.31.1/example/img/earth-clouds.png'
-  ]);
+  // Load Earth textures from reliable Three.js examples CDN
+  const earthTexture = useLoader(TextureLoader, 'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_atmos_2048.jpg');
+  const bumpMap = useLoader(TextureLoader, 'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_normal_2048.jpg');
+  const specularMap = useLoader(TextureLoader, 'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_specular_2048.jpg');
+  const cloudsTexture = useLoader(TextureLoader, 'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_clouds_1024.png');
 
   useFrame(({ clock }) => {
     const elapsed = clock.getElapsedTime();
@@ -62,7 +59,7 @@ const Earth = () => {
       </Sphere>
       
       {/* Outer atmosphere glow */}
-      <Sphere ref={atmosphereRef} args={[2.5, 64, 64]}>
+      <Sphere args={[2.5, 64, 64]}>
         <meshBasicMaterial
           color="#4da6ff"
           transparent
@@ -97,7 +94,9 @@ const RotatingEarth = () => {
           speed={0.3}
         />
         
-        <Earth />
+        <Suspense fallback={null}>
+          <Earth />
+        </Suspense>
       </Canvas>
     </div>
   );
