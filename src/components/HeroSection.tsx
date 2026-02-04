@@ -89,20 +89,27 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - Mouse icon */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
       >
-        <span className="text-xs text-muted-foreground tracking-wider uppercase">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+        <div className="relative w-6 h-10 rounded-full border-2 border-muted-foreground/50 flex justify-center">
+          <motion.div
+            animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+            className="w-1.5 h-3 bg-primary rounded-full mt-2"
+          />
+        </div>
+        <motion.span 
+          className="text-xs text-muted-foreground tracking-wider uppercase"
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <ArrowDown className="w-4 h-4 text-muted-foreground" />
-        </motion.div>
+          Scroll
+        </motion.span>
       </motion.div>
     </section>
   );
