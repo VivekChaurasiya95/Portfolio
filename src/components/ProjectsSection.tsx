@@ -433,27 +433,33 @@ const ProjectsSection = () => {
       </div>
 
       <div className="container mx-auto px-6 lg:px-20 relative">
-        {/* Header */}
+        {/* Header - Enhanced */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="text-center mb-20"
         >
-          <motion.span 
-            className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
-            initial={{ opacity: 0, scale: 0.8 }}
+          {/* Section label */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6"
           >
-            Featured Work
-          </motion.span>
-          <h2 className="section-heading mb-4">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium text-primary uppercase tracking-wider">Featured Work</span>
+          </motion.div>
+          
+          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium mb-6">
             <span className="text-foreground">Project</span>{' '}
             <span className="text-gradient">Showcase</span>
           </h2>
           <p className="section-subheading max-w-2xl mx-auto">
             Scroll through my roller coaster of projects — each one a unique adventure in problem-solving and creativity.
+            <br />
+            <span className="text-primary font-medium">Switch perspectives to explore each project differently.</span>
           </p>
         </motion.div>
 

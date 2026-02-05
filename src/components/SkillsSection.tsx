@@ -338,20 +338,33 @@ const SkillsSection = () => {
   return (
     <section id="skills" className="py-32 relative">
       <div className="container mx-auto px-6 lg:px-20">
-        {/* Header */}
+        {/* Header - Enhanced */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="section-heading mb-4">
+          {/* Section label */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6"
+          >
+            <Code2 className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium text-primary uppercase tracking-wider">My Skills</span>
+          </motion.div>
+          
+          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium mb-6">
             <span className="text-foreground">My Tech</span>{' '}
             <span className="text-gradient">Stack</span>
           </h2>
-          <p className="section-subheading">
-            ~ Technologies I have worked with
+          <p className="section-subheading max-w-2xl mx-auto">
+            A curated collection of technologies I've mastered.
+            <br />
+            <span className="text-primary font-medium">Each skill represents countless hours of practice and real-world application.</span>
           </p>
         </motion.div>
 
