@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import { Rocket } from 'lucide-react';
 
 const milestones = [
@@ -41,81 +41,102 @@ const milestones = [
 ];
 
 // Animated spaceship component
-const Spaceship = ({ progress }: { progress: any }) => {
-  const y = useTransform(progress, [0, 1], ['0%', '100%']);
-  const rotate = useTransform(progress, [0, 0.2, 0.4, 0.6, 0.8, 1], [0, 5, -5, 5, -5, 0]);
-  const scale = useTransform(progress, [0, 0.5, 1], [0.8, 1.2, 1]);
+const Spaceship = ({ progress }: { progress: MotionValue<number> }) => {
+  const yPercent = useTransform(progress, [0, 1], [0, 100]);
   
-  const springY = useSpring(y, { stiffness: 50, damping: 20 });
-  const springRotate = useSpring(rotate, { stiffness: 100, damping: 15 });
-  const springScale = useSpring(scale, { stiffness: 100, damping: 15 });
-
   return (
     <motion.div
-      style={{ 
-        top: springY,
-        rotate: springRotate,
-        scale: springScale,
-      }}
       className="absolute left-1/2 -translate-x-1/2 z-20 pointer-events-none"
+      style={{ 
+        top: useTransform(yPercent, (v) => `calc(${v}% - 24px)`),
+      }}
     >
       {/* Spaceship glow effect */}
-      <div className="absolute inset-0 w-16 h-16 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/40 blur-xl animate-pulse" />
+      <motion.div 
+        className="absolute inset-0 w-20 h-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/50 blur-2xl"
+        animate={{ 
+          scale: [1, 1.3, 1],
+          opacity: [0.5, 0.8, 0.5],
+        }}
+        transition={{ duration: 1.5, repeat: Infinity }}
+      />
       
       {/* Main spaceship */}
       <motion.div 
         className="relative"
         animate={{ 
-          y: [0, -5, 0, 5, 0],
+          y: [0, -8, 0, 8, 0],
+          rotate: [0, 5, 0, -5, 0],
         }}
         transition={{ 
-          duration: 2, 
+          duration: 3, 
           repeat: Infinity, 
           ease: "easeInOut" 
         }}
       >
         {/* Rocket body */}
-        <div className="relative w-12 h-12 flex items-center justify-center">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary to-secondary rounded-full shadow-lg shadow-primary/50" />
-          <Rocket className="w-6 h-6 text-primary-foreground relative z-10 rotate-180" />
+        <div className="relative w-14 h-14 flex items-center justify-center">
+          <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary to-secondary rounded-full shadow-lg shadow-primary/60" />
+          <Rocket className="w-7 h-7 text-primary-foreground relative z-10 rotate-180" />
           
-          {/* Engine flame */}
+          {/* Engine flame - pointing up since rocket is inverted */}
           <motion.div 
-            className="absolute -top-4 left-1/2 -translate-x-1/2 w-4"
+            className="absolute -top-6 left-1/2 -translate-x-1/2 w-6"
             animate={{ 
-              scaleY: [1, 1.5, 1],
-              opacity: [0.8, 1, 0.8],
+              scaleY: [1, 1.8, 1],
+              opacity: [0.9, 1, 0.9],
             }}
             transition={{ 
-              duration: 0.3, 
+              duration: 0.2, 
               repeat: Infinity,
               ease: "easeInOut" 
             }}
           >
-            <div className="w-full h-6 bg-gradient-to-t from-transparent via-orange-400 to-yellow-300 rounded-full blur-sm" />
-            <div className="absolute inset-0 w-2 mx-auto h-8 bg-gradient-to-t from-transparent via-yellow-200 to-white rounded-full blur-[2px]" />
+            <div className="w-full h-10 bg-gradient-to-t from-transparent via-orange-500 to-yellow-300 rounded-full blur-sm" />
+            <div className="absolute inset-0 w-3 mx-auto h-12 bg-gradient-to-t from-transparent via-yellow-300 to-white rounded-full blur-[2px]" />
           </motion.div>
         </div>
         
-        {/* Particle trail */}
-        {[...Array(5)].map((_, i) => (
+        {/* Particle trail going upward */}
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute left-1/2 -translate-x-1/2"
-            style={{ top: -20 - i * 15 }}
+            style={{ top: -30 - i * 12 }}
             animate={{
-              opacity: [0, 0.6, 0],
-              scale: [0.5, 1, 0.3],
-              y: [0, -20],
+              opacity: [0, 0.8, 0],
+              scale: [0.3, 1.2, 0.2],
+              y: [0, -30],
             }}
             transition={{
-              duration: 1,
+              duration: 0.8,
               repeat: Infinity,
-              delay: i * 0.15,
+              delay: i * 0.1,
               ease: "easeOut",
             }}
           >
-            <div className="w-2 h-2 rounded-full bg-orange-400/60" />
+            <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-t from-orange-500 to-yellow-400" />
+          </motion.div>
+        ))}
+        
+        {/* Side sparkles */}
+        {[-1, 1].map((dir) => (
+          <motion.div
+            key={dir}
+            className="absolute top-1/2 -translate-y-1/2"
+            style={{ [dir === -1 ? 'right' : 'left']: -20 }}
+            animate={{
+              opacity: [0, 1, 0],
+              scale: [0.5, 1, 0.5],
+              x: [0, dir * 10, 0],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              delay: dir === -1 ? 0 : 0.75,
+            }}
+          >
+            <div className="w-3 h-3 rounded-full bg-secondary/80 blur-[1px]" />
           </motion.div>
         ))}
       </motion.div>
