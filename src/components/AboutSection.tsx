@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { User } from 'lucide-react';
 import profileImage from '@/assets/vivek-profile.jpeg';
 
 const AboutSection = () => {
@@ -13,11 +14,22 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
+            {/* Section label */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/30 mb-6"
+            >
+              <User className="w-4 h-4 text-secondary" />
+              <span className="text-sm font-medium text-secondary uppercase tracking-wider">About Me</span>
+            </motion.div>
+            
             <h2 className="section-heading mb-8">
               <span className="text-secondary italic">Who is</span>{' '}
               <span className="text-foreground">behind the</span>
               <br />
-              <span className="text-foreground">terminal?</span>
+              <span className="text-gradient">terminal?</span>
             </h2>
 
             <p className="text-muted-foreground mb-6 leading-relaxed">
