@@ -16,12 +16,12 @@ const XIcon = ({ className }: { className?: string }) => (
 );
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com/VivekChaurasiya95', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://www.linkedin.com/in/vivek-chaurasiya-722037315', label: 'LinkedIn' },
-  { icon: XIcon, href: 'https://x.com/Vivek9589', label: 'X' },
-  { icon: LeetCodeIcon, href: 'https://leetcode.com/u/Vivek-Chaurasiya/', label: 'LeetCode' },
-  { icon: Instagram, href: 'https://www.instagram.com/v.i.v.e.k_chaurasiya/', label: 'Instagram' },
-  { icon: Mail, href: 'mailto:vivekchaurasiya@gmail.com', label: 'Email' },
+  { icon: Github, href: 'https://github.com/VivekChaurasiya95', label: 'GitHub', hoverColor: '#ffffff' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/vivek-chaurasiya-722037315', label: 'LinkedIn', hoverColor: '#0A66C2' },
+  { icon: XIcon, href: 'https://x.com/Vivek9589', label: 'X', hoverColor: '#ffffff' },
+  { icon: LeetCodeIcon, href: 'https://leetcode.com/u/Vivek-Chaurasiya/', label: 'LeetCode', hoverColor: '#FFA116' },
+  { icon: Instagram, href: 'https://www.instagram.com/v.i.v.e.k_chaurasiya/', label: 'Instagram', hoverColor: '#E4405F' },
+  { icon: Mail, href: 'mailto:vivekchaurasiya@gmail.com', label: 'Email', hoverColor: '#EA4335' },
 ];
 
 const SocialSidebar = () => {
@@ -43,10 +43,14 @@ const SocialSidebar = () => {
             href={link.href}
             target={link.href.startsWith('mailto') ? undefined : '_blank'}
             rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-            className="social-link"
+            className="w-10 h-10 flex items-center justify-center rounded-full text-muted-foreground transition-all duration-300 hover:scale-110"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 + index * 0.1 }}
+            whileHover={{ 
+              color: link.hoverColor,
+              backgroundColor: `${link.hoverColor}15`
+            }}
             aria-label={link.label}
           >
             <link.icon className="w-5 h-5" />
