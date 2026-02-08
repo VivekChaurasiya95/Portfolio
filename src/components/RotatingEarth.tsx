@@ -213,7 +213,7 @@ const Scene = () => {
 
 const RotatingEarth = () => {
   return (
-    <div className="fixed inset-y-0 right-0 h-screen w-full md:w-[60vw] lg:w-[50vw] xl:w-[45vw] max-w-[900px] pointer-events-auto z-[1]">
+    <div className="fixed inset-y-0 right-0 h-screen w-full md:w-[60vw] lg:w-[50vw] xl:w-[45vw] max-w-[900px] pointer-events-auto z-0">
       <Canvas
         camera={{ position: [0, 0, 14], fov: 50 }}
         gl={{ antialias: true, alpha: true }}

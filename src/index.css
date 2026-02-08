@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -46,8 +46,8 @@
     --nebula-gradient: radial-gradient(ellipse at 30% 20%, hsla(185, 40%, 30%, 0.15) 0%, transparent 50%),
                        radial-gradient(ellipse at 70% 80%, hsla(350, 30%, 30%, 0.1) 0%, transparent 50%);
 
-    /* Typography - Professional Modern Fonts */
-    --font-display: 'Sora', system-ui, sans-serif;
+    /* Typography - Elegant Cursive + Modern Fonts */
+    --font-display: 'Cormorant Garamond', Georgia, serif;
     --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
 
     /* Shadows */
