@@ -31,7 +31,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-32 relative">
+    <section id="contact" className="py-32 relative z-10 bg-background/95 backdrop-blur-sm">
       <div className="container mx-auto px-6 lg:px-20">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Left side - Info */}
