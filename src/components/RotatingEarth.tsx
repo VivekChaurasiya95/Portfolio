@@ -75,7 +75,7 @@ const Earth = ({ onPointerOver, onPointerOut }: { onPointerOver: () => void; onP
     }
   });
 
-  const earthPosition: [number, number, number] = [6, 0, -3];
+  const earthPosition: [number, number, number] = [2.25, 0, -3];
 
   return (
     <>
@@ -205,7 +205,7 @@ const Scene = () => {
         rotateSpeed={0.4}
         minDistance={5}
         maxDistance={20}
-        target={[6, 0, -3]}
+        target={[2.25, 0, -3]}
       />
     </>
   );
@@ -213,7 +213,7 @@ const Scene = () => {
 
 const RotatingEarth = () => {
   return (
-    <div className="fixed inset-0 pointer-events-auto z-[1]">
+    <div className="fixed inset-y-0 right-0 h-screen w-full md:w-[60vw] lg:w-[50vw] xl:w-[45vw] max-w-[900px] pointer-events-auto z-[1]">
       <Canvas
         camera={{ position: [0, 0, 14], fov: 50 }}
         gl={{ antialias: true, alpha: true }}
