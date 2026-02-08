@@ -54,15 +54,21 @@ const AboutSection = () => {
               production-ready applications.
             </p>
 
-            {/* Quick facts */}
-            <div className="mt-10 grid grid-cols-2 gap-4">
-              <div className="glass-card rounded-lg p-4">
-                <span className="text-3xl font-display text-primary">B.Tech</span>
-                <p className="text-sm text-muted-foreground mt-1">Computer Science</p>
+            {/* Quick facts - Cuboid style */}
+            <div className="mt-10 grid grid-cols-2 gap-6">
+              <div className="relative">
+                <div className="absolute inset-0 bg-primary/30 rounded-xl transform translate-x-1.5 translate-y-1.5" />
+                <div className="relative glass-card rounded-xl p-5 border-2 border-primary/40 bg-gradient-to-br from-primary/10 to-transparent">
+                  <span className="text-3xl font-display font-bold text-primary">B.Tech</span>
+                  <p className="text-sm text-muted-foreground mt-1">Computer Science</p>
+                </div>
               </div>
-              <div className="glass-card rounded-lg p-4">
-                <span className="text-3xl font-display text-secondary">2027</span>
-                <p className="text-sm text-muted-foreground mt-1">Expected Graduation</p>
+              <div className="relative">
+                <div className="absolute inset-0 bg-secondary/30 rounded-xl transform translate-x-1.5 translate-y-1.5" />
+                <div className="relative glass-card rounded-xl p-5 border-2 border-secondary/40 bg-gradient-to-br from-secondary/10 to-transparent">
+                  <span className="text-3xl font-display font-bold text-secondary">2028</span>
+                  <p className="text-sm text-muted-foreground mt-1">Expected Graduation</p>
+                </div>
               </div>
             </div>
           </motion.div>
