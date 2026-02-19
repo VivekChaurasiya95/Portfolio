@@ -150,23 +150,14 @@ const Footer = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row items-center justify-between gap-4"
+          className="flex flex-col items-center justify-center gap-3 text-center"
         >
-          {/* Copyright */}
-          <div className="flex items-center gap-2 text-muted-foreground text-sm">
-            <span>© {currentYear} Vivek Chaurasiya.</span>
-            <span className="hidden md:inline">•</span>
-            <span className="flex items-center gap-1.5 font-display">
-              <span className="text-primary font-bold">&lt;/&gt;</span> Developed by <span className="font-semibold text-foreground">Vivek Chaurasiya</span>
-            </span>
+          <div className="flex items-center gap-2 font-display text-lg tracking-wide">
+            <span className="text-primary font-bold text-xl">&lt;/&gt;</span>
+            <span className="text-muted-foreground">Developed by</span>
+            <span className="font-semibold text-foreground italic">Vivek Chaurasiya</span>
           </div>
-
-          {/* Quick Links */}
-          <div className="flex items-center gap-6 text-sm">
-            <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">About</a>
-            <a href="#projects" className="text-muted-foreground hover:text-primary transition-colors">Projects</a>
-            <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</a>
-          </div>
+          <span className="text-muted-foreground text-xs tracking-widest uppercase">© {currentYear} All Rights Reserved</span>
         </motion.div>
       </div>
     </footer>
