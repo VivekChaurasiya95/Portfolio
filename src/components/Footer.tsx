@@ -156,8 +156,8 @@ const Footer = () => {
           <div className="flex items-center gap-2 text-muted-foreground text-sm">
             <span>© {currentYear} Vivek Chaurasiya.</span>
             <span className="hidden md:inline">•</span>
-            <span className="flex items-center gap-1">
-              Built with <Heart className="w-3.5 h-3.5 text-secondary fill-current" /> and lots of coffee.
+            <span className="flex items-center gap-1.5 font-display">
+              <span className="text-primary font-bold">&lt;/&gt;</span> Developed by <span className="font-semibold text-foreground">Vivek Chaurasiya</span>
             </span>
           </div>
 
