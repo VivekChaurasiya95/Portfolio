@@ -1,12 +1,9 @@
 import { motion } from 'framer-motion';
-import { Heart, Github, Linkedin, Instagram, Briefcase, Mail, ArrowUpRight } from 'lucide-react';
-
-// Custom X (Twitter) icon
-const XIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-  </svg>
-);
+import { Briefcase, ArrowUpRight } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faLinkedinIn, faXTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 // Custom LeetCode icon
 const LeetCodeIcon = ({ className }: { className?: string }) => (
@@ -15,37 +12,26 @@ const LeetCodeIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const socialLinks = [
-  { 
-    href: 'https://github.com/VivekChaurasiya95', 
-    icon: Github, 
-    label: 'GitHub',
-    color: '#ffffff'
-  },
-  { 
-    href: 'https://www.linkedin.com/in/vivek-chaurasiya-722037315', 
-    icon: Linkedin, 
-    label: 'LinkedIn',
-    color: '#0A66C2'
-  },
-  { 
-    href: 'https://x.com/Vivek9589', 
-    icon: XIcon, 
-    label: 'X',
-    color: '#ffffff'
-  },
-  { 
-    href: 'https://leetcode.com/u/Vivek-Chaurasiya/', 
-    icon: LeetCodeIcon, 
-    label: 'LeetCode',
-    color: '#FFA116'
-  },
-  { 
-    href: 'https://www.instagram.com/v.i.v.e.k_chaurasiya/', 
-    icon: Instagram, 
-    label: 'Instagram',
-    color: '#E4405F'
-  },
+type SocialLink = {
+  type: 'fa';
+  icon: IconDefinition;
+  href: string;
+  label: string;
+  color: string;
+} | {
+  type: 'custom';
+  icon: typeof LeetCodeIcon;
+  href: string;
+  label: string;
+  color: string;
+};
+
+const socialLinks: SocialLink[] = [
+  { type: 'fa', icon: faGithub, href: 'https://github.com/VivekChaurasiya95', label: 'GitHub', color: '#ffffff' },
+  { type: 'fa', icon: faLinkedinIn, href: 'https://www.linkedin.com/in/vivek-chaurasiya-722037315', label: 'LinkedIn', color: '#0A66C2' },
+  { type: 'fa', icon: faXTwitter, href: 'https://x.com/Vivek9589', label: 'X', color: '#ffffff' },
+  { type: 'custom', icon: LeetCodeIcon, href: 'https://leetcode.com/u/Vivek-Chaurasiya/', label: 'LeetCode', color: '#FFA116' },
+  { type: 'fa', icon: faInstagram, href: 'https://www.instagram.com/v.i.v.e.k_chaurasiya/', label: 'Instagram', color: '#E4405F' },
 ];
 
 const Footer = () => {
@@ -85,29 +71,33 @@ const Footer = () => {
               Connect
             </h3>
             <div className="flex items-center gap-4">
-              {socialLinks.map((link) => {
-                const Icon = link.icon;
-                return (
-                  <motion.a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative w-12 h-12 flex items-center justify-center rounded-xl bg-muted/30 border border-border/50 text-muted-foreground transition-all duration-300 hover:border-primary/50"
-                    whileHover={{ 
-                      scale: 1.1,
-                      backgroundColor: `${link.color}15`,
-                    }}
-                    aria-label={link.label}
-                  >
-                    <Icon className="w-5 h-5 transition-colors duration-300 group-hover:text-foreground" />
-                    {/* Tooltip */}
-                    <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 text-xs font-medium bg-foreground text-background rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                      {link.label}
-                    </span>
-                  </motion.a>
-                );
-              })}
+              {socialLinks.map((link) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative w-12 h-12 flex items-center justify-center rounded-xl bg-muted/30 border border-border/50 text-muted-foreground transition-all duration-300 hover:border-primary/50"
+                  whileHover={{ 
+                    scale: 1.2,
+                    backgroundColor: `${link.color}15`,
+                  }}
+                  aria-label={link.label}
+                >
+                  {link.type === 'fa' ? (
+                    <FontAwesomeIcon 
+                      icon={link.icon} 
+                      className="w-5 h-5 transition-colors duration-300 group-hover:text-foreground" 
+                    />
+                  ) : (
+                    <link.icon className="w-5 h-5 transition-colors duration-300 group-hover:text-foreground" />
+                  )}
+                  {/* Tooltip */}
+                  <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 text-xs font-medium bg-foreground text-background rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    {link.label}
+                  </span>
+                </motion.a>
+              ))}
             </div>
           </motion.div>
 
@@ -135,7 +125,7 @@ const Footer = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Mail className="w-4 h-4" />
+              <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4" />
               Hire Me
               <ArrowUpRight className="w-4 h-4" />
             </motion.a>
