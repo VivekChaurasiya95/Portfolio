@@ -61,7 +61,7 @@ const Footer = () => {
                   whileHover={{ scale: 1.3 }}
                   aria-label={link.label}
                 >
-                  <img src={link.icon} alt={link.label} className="w-9 h-9 rounded-lg object-cover" />
+                  <img src={link.icon} alt={link.label} className="w-9 h-9 rounded-lg object-cover" style={link.label === 'GitHub' ? { filter: 'invert(1)' } : undefined} />
                   <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 text-xs font-medium bg-foreground text-background rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                     {link.label}
                   </span>

@@ -40,7 +40,7 @@ const SocialSidebar = () => {
             whileHover={{ scale: 1.35 }}
             aria-label={link.label}
           >
-            <img src={link.icon} alt={link.label} className="w-8 h-8 rounded-full object-cover" />
+            <img src={link.icon} alt={link.label} className={`w-8 h-8 rounded-full object-cover ${link.label === 'GitHub' ? 'invert brightness-0 invert' : ''}`} style={link.label === 'GitHub' ? { filter: 'invert(1)' } : undefined} />
           </motion.a>
         ))}
       </div>
