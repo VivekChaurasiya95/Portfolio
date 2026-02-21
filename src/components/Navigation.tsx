@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -10,63 +10,6 @@ const navItems = [
   { label: 'Contact', href: '#contact' },
 ];
 
-// Animated mascot component - cute space alien
-const NavMascot = () => (
-  <motion.div
-    layoutId="nav-mascot"
-    className="absolute -top-10 left-1/2 -translate-x-1/2 z-10"
-    transition={{ 
-      type: "tween",
-      duration: 0.15,
-      ease: "easeOut"
-    }}
-  >
-    <motion.div 
-      className="relative"
-      animate={{ y: [0, -3, 0] }}
-      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-    >
-      {/* Glow effect */}
-      <div className="absolute inset-0 w-10 h-10 rounded-full bg-primary/30 blur-md" />
-      
-      {/* Main body - rounded alien head */}
-      <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-primary via-primary to-accent flex items-center justify-center shadow-lg border-2 border-primary/50">
-        {/* Eyes container */}
-        <div className="flex gap-2 -mt-0.5">
-          {/* Left eye */}
-          <motion.div 
-            className="w-2.5 h-3 rounded-full bg-background flex items-center justify-center"
-            animate={{ scaleY: [1, 0.1, 1] }}
-            transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
-          >
-            <div className="w-1.5 h-1.5 rounded-full bg-foreground mt-0.5" />
-          </motion.div>
-          {/* Right eye */}
-          <motion.div 
-            className="w-2.5 h-3 rounded-full bg-background flex items-center justify-center"
-            animate={{ scaleY: [1, 0.1, 1] }}
-            transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
-          >
-            <div className="w-1.5 h-1.5 rounded-full bg-foreground mt-0.5" />
-          </motion.div>
-        </div>
-      </div>
-      
-      {/* Antenna */}
-      <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-0.5 h-3 bg-primary/70 rounded-full">
-        <motion.div 
-          className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-secondary"
-          animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
-          transition={{ duration: 1, repeat: Infinity }}
-        />
-      </div>
-      
-      {/* Pointer/connector to nav */}
-      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-l-transparent border-r-transparent border-t-primary" />
-    </motion.div>
-  </motion.div>
-);
-
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
@@ -75,7 +18,6 @@ const Navigation = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      // Update active section based on scroll position
       const sections = navItems.map(item => item.href.substring(1));
       for (const section of sections.reverse()) {
         const element = document.getElementById(section);
@@ -106,45 +48,68 @@ const Navigation = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass-nav py-3' : 'py-5'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? 'py-2' : 'py-4'
       }`}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
-        <a 
-          href="#home" 
-          onClick={(e) => handleClick(e, '#home')}
-          className="flex items-center gap-2 text-foreground font-display text-xl tracking-tight"
+      <div className="container mx-auto px-6">
+        <div
+          className={`flex items-center justify-between rounded-2xl px-6 py-3 transition-all duration-500 ${
+            isScrolled
+              ? 'bg-card/70 backdrop-blur-xl border border-border/40 shadow-lg'
+              : 'bg-transparent'
+          }`}
         >
-          <span className="text-primary">&lt;/&gt;</span>
-          <span className="hidden sm:inline">vivek<span className="text-muted-foreground">.dev</span></span>
-        </a>
+          {/* Logo */}
+          <a
+            href="#home"
+            onClick={(e) => handleClick(e, '#home')}
+            className="flex items-center gap-2 text-foreground font-display text-xl tracking-tight group"
+          >
+            <span className="text-primary font-bold text-2xl transition-transform duration-300 group-hover:scale-110">&lt;/&gt;</span>
+            <span className="hidden sm:inline font-semibold">
+              vivek<span className="text-muted-foreground">.dev</span>
+            </span>
+          </a>
 
-        {/* Navigation */}
-        <nav className="hidden md:flex items-center">
-          <div className="flex items-center gap-1 px-4 py-2 rounded-full bg-card/80 backdrop-blur-sm border border-border/30 relative">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.href.substring(1);
-              return (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => handleClick(e, item.href)}
-                  className={`nav-link relative ${isActive ? 'active' : ''}`}
-                >
-                  {isActive && <NavMascot />}
-                  {item.label}
-                </a>
-              );
-            })}
+          {/* Navigation pills */}
+          <nav className="hidden md:flex items-center">
+            <div className="flex items-center gap-0.5 p-1 rounded-xl bg-muted/40 backdrop-blur-sm border border-border/20">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.href.substring(1);
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={(e) => handleClick(e, item.href)}
+                    className={`relative px-4 py-1.5 text-sm font-medium rounded-lg transition-all duration-300 ${
+                      isActive
+                        ? 'text-primary-foreground'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="active-pill"
+                        className="absolute inset-0 bg-primary rounded-lg"
+                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{item.label}</span>
+                  </a>
+                );
+              })}
+            </div>
+          </nav>
+
+          {/* Status badge */}
+          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 backdrop-blur-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+            </span>
+            <span className="text-xs font-semibold text-primary tracking-wide">Open to work</span>
           </div>
-        </nav>
-
-        {/* Status badge */}
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/30">
-          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-          <span className="text-xs font-medium text-primary">Open to work</span>
         </div>
       </div>
     </motion.header>
