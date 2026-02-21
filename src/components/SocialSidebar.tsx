@@ -22,7 +22,7 @@ const SocialSidebar = () => {
       initial={{ x: -50, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.6, delay: 0.4 }}
-      className="fixed left-0 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-center gap-1 px-4"
+      className="fixed left-0 top-[42%] -translate-y-1/2 z-40 hidden lg:flex flex-col items-center gap-1 px-4"
     >
       <div className="w-px h-12 bg-border mb-4" />
 
