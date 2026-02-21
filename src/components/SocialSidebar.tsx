@@ -8,12 +8,12 @@ import instagramIcon from '@/assets/icons/instagram.png';
 import emailIcon from '@/assets/icons/email.png';
 
 const socialLinks = [
+  { icon: emailIcon, href: 'mailto:vivekchaurasiya@gmail.com', label: 'Email' },
   { icon: githubIcon, href: 'https://github.com/VivekChaurasiya95', label: 'GitHub' },
   { icon: linkedinIcon, href: 'https://www.linkedin.com/in/vivek-chaurasiya-722037315', label: 'LinkedIn' },
   { icon: xTwitterIcon, href: 'https://x.com/Vivek9589', label: 'X' },
   { icon: leetcodeIcon, href: 'https://leetcode.com/u/Vivek-Chaurasiya/', label: 'LeetCode' },
   { icon: instagramIcon, href: 'https://www.instagram.com/v.i.v.e.k_chaurasiya/', label: 'Instagram' },
-  { icon: emailIcon, href: 'mailto:vivekchaurasiya@gmail.com', label: 'Email' },
 ];
 
 const SocialSidebar = () => {
