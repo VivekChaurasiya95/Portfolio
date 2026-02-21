@@ -1,43 +1,22 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedinIn, faXTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
-// Custom LeetCode icon component (no FA icon available)
-const LeetCodeIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
-  <svg className={className} style={style} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z" />
-  </svg>
-);
+import githubIcon from '@/assets/icons/github.png';
+import linkedinIcon from '@/assets/icons/linkedin.png';
+import xTwitterIcon from '@/assets/icons/x-twitter.png';
+import leetcodeIcon from '@/assets/icons/leetcode.png';
+import instagramIcon from '@/assets/icons/instagram.png';
+import emailIcon from '@/assets/icons/email.png';
 
-type SocialLink = {
-  type: 'fa';
-  icon: IconDefinition;
-  href: string;
-  label: string;
-  hoverColor: string;
-} | {
-  type: 'custom';
-  icon: typeof LeetCodeIcon;
-  href: string;
-  label: string;
-  hoverColor: string;
-};
-
-const socialLinks: SocialLink[] = [
-  { type: 'fa', icon: faGithub, href: 'https://github.com/VivekChaurasiya95', label: 'GitHub', hoverColor: '#ffffff' },
-  { type: 'fa', icon: faLinkedinIn, href: 'https://www.linkedin.com/in/vivek-chaurasiya-722037315', label: 'LinkedIn', hoverColor: '#0A66C2' },
-  { type: 'fa', icon: faXTwitter, href: 'https://x.com/Vivek9589', label: 'X', hoverColor: '#ffffff' },
-  { type: 'custom', icon: LeetCodeIcon, href: 'https://leetcode.com/u/Vivek-Chaurasiya/', label: 'LeetCode', hoverColor: '#FFA116' },
-  { type: 'fa', icon: faInstagram, href: 'https://www.instagram.com/v.i.v.e.k_chaurasiya/', label: 'Instagram', hoverColor: '#E4405F' },
-  { type: 'fa', icon: faEnvelope, href: 'mailto:vivekchaurasiya@gmail.com', label: 'Email', hoverColor: '#EA4335' },
+const socialLinks = [
+  { icon: githubIcon, href: 'https://github.com/VivekChaurasiya95', label: 'GitHub' },
+  { icon: linkedinIcon, href: 'https://www.linkedin.com/in/vivek-chaurasiya-722037315', label: 'LinkedIn' },
+  { icon: xTwitterIcon, href: 'https://x.com/Vivek9589', label: 'X' },
+  { icon: leetcodeIcon, href: 'https://leetcode.com/u/Vivek-Chaurasiya/', label: 'LeetCode' },
+  { icon: instagramIcon, href: 'https://www.instagram.com/v.i.v.e.k_chaurasiya/', label: 'Instagram' },
+  { icon: emailIcon, href: 'mailto:vivekchaurasiya@gmail.com', label: 'Email' },
 ];
 
 const SocialSidebar = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
     <motion.aside
       initial={{ x: -50, opacity: 0 }}
@@ -45,54 +24,27 @@ const SocialSidebar = () => {
       transition={{ duration: 0.6, delay: 0.4 }}
       className="fixed left-0 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-center gap-1 px-4"
     >
-      {/* Vertical line at top */}
       <div className="w-px h-12 bg-border mb-4" />
 
-      {/* Social icons */}
-      <div className="flex flex-col items-center gap-2">
-        {socialLinks.map((link, index) => {
-          const isHovered = hoveredIndex === index;
-          
-          return (
-            <motion.a
-              key={link.label}
-              href={link.href}
-              target={link.href.startsWith('mailto') ? undefined : '_blank'}
-              rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-              className="w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300"
-              style={{
-                backgroundColor: isHovered ? `${link.hoverColor}20` : 'transparent',
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 + index * 0.1 }}
-              whileHover={{ scale: 1.25 }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              aria-label={link.label}
-            >
-              {link.type === 'fa' ? (
-                <FontAwesomeIcon 
-                  icon={link.icon} 
-                  className="w-5 h-5 transition-colors duration-300"
-                  style={{ 
-                    color: isHovered ? link.hoverColor : 'hsl(var(--muted-foreground))'
-                  }}
-                />
-              ) : (
-                <link.icon 
-                  className="w-5 h-5 transition-colors duration-300" 
-                  style={{ 
-                    color: isHovered ? link.hoverColor : 'hsl(var(--muted-foreground))'
-                  }}
-                />
-              )}
-            </motion.a>
-          );
-        })}
+      <div className="flex flex-col items-center gap-3">
+        {socialLinks.map((link, index) => (
+          <motion.a
+            key={link.label}
+            href={link.href}
+            target={link.href.startsWith('mailto') ? undefined : '_blank'}
+            rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+            className="w-10 h-10 flex items-center justify-center rounded-full overflow-hidden transition-all duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 + index * 0.1 }}
+            whileHover={{ scale: 1.35 }}
+            aria-label={link.label}
+          >
+            <img src={link.icon} alt={link.label} className="w-8 h-8 rounded-full object-cover" />
+          </motion.a>
+        ))}
       </div>
 
-      {/* Vertical line at bottom */}
       <div className="w-px h-12 bg-border mt-4" />
     </motion.aside>
   );
