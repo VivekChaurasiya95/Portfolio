@@ -84,7 +84,7 @@ const Footer = () => {
               transition={{ duration: 2, repeat: Infinity }}
             >
               <Sparkles className="w-3.5 h-3.5 text-primary" />
-              <span className="text-xs font-bold text-primary uppercase tracking-[0.2em] font-display">Available for Work</span>
+              <span className="text-sm font-extrabold text-primary uppercase tracking-[0.2em] font-display">Available for Work</span>
             </motion.div>
             <h3 className="text-xl font-bold text-foreground mb-2 font-display tracking-wide">
               Freelance Services
