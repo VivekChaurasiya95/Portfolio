@@ -78,25 +78,27 @@ const Navigation = () => {
               {navItems.map((item) => {
                 const isActive = activeSection === item.href.substring(1);
                 return (
-                  <a
+                  <motion.a
                     key={item.label}
                     href={item.href}
                     onClick={(e) => handleClick(e, item.href)}
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.95 }}
                     className={`relative px-4 py-1.5 text-sm font-medium rounded-lg transition-all duration-300 ${
                       isActive
-                        ? 'text-primary-foreground'
-                        : 'text-muted-foreground hover:text-foreground'
+                        ? 'text-primary drop-shadow-[0_0_8px_hsl(var(--primary)/0.8)]'
+                        : 'text-muted-foreground hover:text-primary hover:drop-shadow-[0_0_6px_hsl(var(--primary)/0.5)]'
                     }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="active-pill"
-                        className="absolute inset-0 bg-primary rounded-lg"
+                        className="absolute inset-0 rounded-lg bg-primary/10 border border-primary/40 shadow-[0_0_15px_hsl(var(--primary)/0.3)]"
                         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                       />
                     )}
                     <span className="relative z-10">{item.label}</span>
-                  </a>
+                  </motion.a>
                 );
               })}
             </div>
