@@ -75,11 +75,11 @@ const HeroSection = () => {
               GitHub
             </IsometricButton>
             <IsometricButton
-              href="/Vivek_Chaurasiya_Resume.pdf"
+              href="/vc-profile.pdf"
               variant="secondary"
               onClick={(e) => {
                 e.preventDefault();
-                window.open('/Vivek_Chaurasiya_Resume.pdf', '_blank');
+                window.open('/vc-profile.pdf', '_blank');
               }}
             >
               Check Resume
