@@ -1,5 +1,5 @@
 import StarField from '@/components/StarField';
-import RotatingEarth from '@/components/RotatingEarth';
+import CharacterAvatar from '@/components/CharacterAvatar';
 import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import HeroSection from '@/components/HeroSection';
@@ -16,8 +16,8 @@ const Index = () => {
       {/* Background star field */}
       <StarField />
       
-      {/* Rotating 3D Earth */}
-      <RotatingEarth />
+      {/* 3D Character Avatar */}
+      <CharacterAvatar />
       
       {/* Navigation */}
       <Navigation />
