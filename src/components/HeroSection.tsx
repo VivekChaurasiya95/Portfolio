@@ -12,14 +12,32 @@ const HeroSection = () => {
       <div className="container mx-auto px-6 lg:px-20">
         <div className="max-w-5xl">
           {/* Overline */}
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-muted-foreground text-xs md:text-sm mb-8 tracking-[0.3em] uppercase font-light"
+            className="flex items-center gap-3 mb-8"
           >
-            Developer • Data Science Enthusiast • AI/ML Engineer
-          </motion.p>
+            {['Developer', 'Data Science Enthusiast', 'AI/ML Engineer'].map((role, i) => (
+              <motion.span
+                key={role}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 * i }}
+                className="relative"
+              >
+                <span className={`
+                  text-[10px] md:text-xs tracking-[0.25em] uppercase font-semibold
+                  ${i === 0 ? 'text-primary' : i === 1 ? 'text-secondary' : 'text-accent-foreground'}
+                `}>
+                  {role}
+                </span>
+                {i < 2 && (
+                  <span className="ml-3 text-muted-foreground/40 text-xs font-light">✦</span>
+                )}
+              </motion.span>
+            ))}
+          </motion.div>
 
           {/* Main headline */}
           <motion.h1
