@@ -16,8 +16,8 @@ const Index = () => {
       {/* Background star field */}
       <StarField />
       
-      {/* Rotating 3D Earth */}
-      <RotatingEarth />
+      {/* 3D Character Avatar */}
+      <CharacterAvatar />
       
       {/* Navigation */}
       <Navigation />
