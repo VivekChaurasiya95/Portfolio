@@ -162,7 +162,7 @@ const JourneySection = () => {
             <span className="text-gradient">Timeline</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A chronological voyage through my coding odyssey — <span className="text-primary font-medium">B.Tech CSE (2024-2028)</span>
+            A chronological voyage through my coding odyssey — <span className="text-primary font-medium">B.Tech CS&D (2024-2028)</span>
           </p>
         </motion.div>
 
