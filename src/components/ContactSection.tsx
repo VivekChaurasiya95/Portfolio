@@ -1,37 +1,90 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Send, MapPin, Mail, Clock } from 'lucide-react';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Send, MapPin, Mail, Clock } from "lucide-react";
+import { EMAIL_ADDRESS } from "@/data/siteLinks";
+
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") || "";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = (await response.json().catch(() => null)) as {
+        ok: boolean;
+        error?: string;
+        message?: string;
+      } | null;
+
+      if (!data) {
+        throw new Error("Unexpected server response. Please try again.");
+      }
+
+      const parsedData = data as {
+        ok: boolean;
+        error?: string;
+        message?: string;
+      };
+
+      if (!response.ok || !parsedData.ok) {
+        throw new Error(
+          parsedData.error || "Unable to send your message right now.",
+        );
+      }
+
+      setSubmitStatus({
+        type: "success",
+        text: "Thank you for your message! I will get back to you soon.",
+      });
       setIsSubmitting(false);
-      setFormData({ name: '', email: '', message: '' });
-      // In a real app, you'd handle the form submission here
-      alert('Thank you for your message! I will get back to you soon.');
-    }, 1000);
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      setIsSubmitting(false);
+      setSubmitStatus({
+        type: "error",
+        text:
+          error instanceof Error
+            ? error.message
+            : "Failed to send message. Please try again.",
+      });
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
 
   return (
-    <section id="contact" className="py-32 relative z-10 bg-background/95 backdrop-blur-sm">
+    <section
+      id="contact"
+      className="py-32 relative z-10 bg-background/95 backdrop-blur-sm"
+    >
       <div className="container mx-auto px-6 lg:px-20">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Left side - Info */}
@@ -49,16 +102,19 @@ const ContactSection = () => {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6"
             >
               <Mail className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary uppercase tracking-wider">Get In Touch</span>
+              <span className="text-sm font-medium text-primary uppercase tracking-wider">
+                Get In Touch
+              </span>
             </motion.div>
-            
+
             <h2 className="section-heading mb-6">
-              <span className="text-foreground">Let's</span>{' '}
+              <span className="text-foreground">Let's</span>{" "}
               <span className="text-gradient">Connect</span>
             </h2>
 
             <p className="section-subheading mb-10 max-w-md">
-              Have a project in mind or just want to say hello? I'd love to hear from you.
+              Have a project in mind or just want to say hello? I'd love to hear
+              from you.
             </p>
 
             {/* Contact info cards */}
@@ -74,9 +130,14 @@ const ContactSection = () => {
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">Email</p>
-                  <a href="mailto:vivekchaurasiya943@gmail.com" className="text-foreground hover:text-primary transition-colors">
-                    vivekchaurasiya943@gmail.com
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                    Email
+                  </p>
+                  <a
+                    href={`mailto:${EMAIL_ADDRESS}`}
+                    className="text-foreground hover:text-primary transition-colors"
+                  >
+                    {EMAIL_ADDRESS}
                   </a>
                 </div>
               </motion.div>
@@ -92,8 +153,12 @@ const ContactSection = () => {
                   <MapPin className="w-5 h-5 text-secondary" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">Location</p>
-                  <p className="text-foreground">Gwalior, Madhya Pradesh, India</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                    Location
+                  </p>
+                  <p className="text-foreground">
+                    Gwalior, Madhya Pradesh, India
+                  </p>
                 </div>
               </motion.div>
 
@@ -108,7 +173,9 @@ const ContactSection = () => {
                   <Clock className="w-5 h-5 text-accent-foreground" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">Response Time</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                    Response Time
+                  </p>
                   <p className="text-foreground">Usually within 24 hours</p>
                 </div>
               </motion.div>
@@ -122,11 +189,17 @@ const ContactSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <form onSubmit={handleSubmit} className="glass-card rounded-2xl p-8">
+            <form
+              onSubmit={handleSubmit}
+              className="glass-card rounded-2xl p-8"
+            >
               <div className="space-y-6">
                 {/* Name field */}
                 <div>
-                  <label htmlFor="name" className="block text-sm text-muted-foreground mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm text-muted-foreground mb-2"
+                  >
                     Name
                   </label>
                   <input
@@ -143,7 +216,10 @@ const ContactSection = () => {
 
                 {/* Email field */}
                 <div>
-                  <label htmlFor="email" className="block text-sm text-muted-foreground mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm text-muted-foreground mb-2"
+                  >
                     Email
                   </label>
                   <input
@@ -160,7 +236,10 @@ const ContactSection = () => {
 
                 {/* Message field */}
                 <div>
-                  <label htmlFor="message" className="block text-sm text-muted-foreground mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm text-muted-foreground mb-2"
+                  >
                     Message
                   </label>
                   <textarea
@@ -190,6 +269,18 @@ const ContactSection = () => {
                     </>
                   )}
                 </button>
+
+                {submitStatus && (
+                  <p
+                    className={`text-sm ${
+                      submitStatus.type === "success"
+                        ? "text-green-400"
+                        : "text-red-400"
+                    }`}
+                  >
+                    {submitStatus.text}
+                  </p>
+                )}
               </div>
             </form>
           </motion.div>

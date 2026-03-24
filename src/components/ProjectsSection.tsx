@@ -1,114 +1,223 @@
-import { useState, useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
-import { Github, ExternalLink, Briefcase, Code2, Sparkles, ChevronDown, Check, ArrowRight, Zap, Target, Lightbulb } from 'lucide-react';
+import { useState, useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  AnimatePresence,
+} from "framer-motion";
+import {
+  Github,
+  ExternalLink,
+  Briefcase,
+  Code2,
+  Sparkles,
+  ChevronDown,
+  Check,
+  ArrowRight,
+  Zap,
+  Target,
+  Lightbulb,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from "@/components/ui/dropdown-menu";
 
-type ViewMode = 'recruiter' | 'developer' | 'explorer';
+type ViewMode = "recruiter" | "developer" | "explorer";
 
 const projects = [
   {
-    title: 'HSER – Human Skill Extinction Radar',
-    category: 'Full-Stack',
-    color: 'from-cyan-500 to-blue-600',
-    accentColor: 'cyan',
-    problem: 'No tool existed to predict which software/IT skills are at risk of extinction due to AI and automation.',
-    solution: 'Built a predictive intelligence platform with a risk analysis engine calculating Extinction Risk %, Replacement Force, and Skill Half-Life.',
-    impact: 'Interactive web dashboard deployed on Vercel enabling users to explore, compare, and analyze extinction risk across multiple software skills.',
-    tech: ['Python', 'React.js', 'FastAPI', 'Data Analysis'],
-    architecture: 'Full-stack application with Python backend (FastAPI) serving risk analysis engine. React.js frontend with interactive data visualizations.',
-    challenges: 'Designing a meaningful risk calculation model using skill attributes like automation level and tool growth rate.',
-    codeHighlights: ['Risk Analysis Engine', 'Interactive Dashboard', 'Skill Comparison Tool'],
-    story: 'Inspired by the rapid pace of AI replacing traditional skills, I wanted to quantify which skills are most at risk.',
-    funFact: 'The extinction risk formula went through 12 iterations before producing meaningful results!',
-    lessonsLearned: 'Data-driven insights are only as good as the model behind them.',
-    github: 'https://github.com/VivekChaurasiya95',
-    demo: 'https://hser-project.vercel.app/',
-    stats: { skills: '50+', metrics: '3 Key', status: 'Live' },
+    title: "HSER – Human Skill Extinction Radar",
+    category: "Full-Stack",
+    color: "from-cyan-500 to-blue-600",
+    accentColor: "cyan",
+    problem:
+      "No tool existed to predict which software/IT skills are at risk of extinction due to AI and automation.",
+    solution:
+      "Built a predictive intelligence platform with a risk analysis engine calculating Extinction Risk %, Replacement Force, and Skill Half-Life.",
+    impact:
+      "Interactive web dashboard deployed on Vercel enabling users to explore, compare, and analyze extinction risk across multiple software skills.",
+    tech: ["Python", "React.js", "FastAPI", "Data Analysis"],
+    architecture:
+      "Full-stack application with Python backend (FastAPI) serving risk analysis engine. React.js frontend with interactive data visualizations.",
+    challenges:
+      "Designing a meaningful risk calculation model using skill attributes like automation level and tool growth rate.",
+    codeHighlights: [
+      "Risk Analysis Engine",
+      "Interactive Dashboard",
+      "Skill Comparison Tool",
+    ],
+    story:
+      "Inspired by the rapid pace of AI replacing traditional skills, I wanted to quantify which skills are most at risk.",
+    funFact:
+      "The extinction risk formula went through 12 iterations before producing meaningful results!",
+    lessonsLearned:
+      "Data-driven insights are only as good as the model behind them.",
+    github: "https://github.com/VivekChaurasiya95",
+    demo: "https://hser-project.vercel.app/",
+    stats: { skills: "50+", metrics: "3 Key", status: "Live" },
   },
   {
-    title: 'Student Saarthi – AI Scholarship Portal',
-    category: 'Full-Stack',
-    color: 'from-violet-500 to-purple-600',
-    accentColor: 'violet',
-    problem: 'Students struggle to find relevant scholarships matching their profile across multiple criteria.',
-    solution: 'Developed a web portal with AI-based scholarship recommendations using OpenAI API, with filters for GPA, degree, income, category, and skills.',
-    impact: 'Integrated admin dashboard, external scholarship redirection, and notification system with Email/SMS alerts and Google Calendar tracking.',
-    tech: ['React.js', 'HTML', 'CSS', 'JavaScript', 'Python (Flask)', 'MySQL'],
-    architecture: 'Flask backend with MySQL database. React.js frontend with OpenAI API integration for intelligent recommendations.',
-    challenges: 'Integrating AI recommendations with multiple filter criteria while maintaining fast response times.',
-    codeHighlights: ['AI Recommendation System', 'Admin Dashboard', 'Notification System'],
-    story: 'Many students miss out on scholarships simply because they don\'t know about them. This portal bridges that gap.',
-    funFact: 'The first prototype was built during a 36-hour hackathon sprint!',
-    lessonsLearned: 'A good recommendation system needs both AI intelligence and human-curated data.',
-    github: 'https://github.com/VivekChaurasiya95',
-    demo: '#',
-    stats: { filters: '5+', features: 'AI-Powered', alerts: 'Email/SMS' },
+    title: "Student Saarthi – AI Scholarship Portal",
+    category: "Full-Stack",
+    color: "from-violet-500 to-purple-600",
+    accentColor: "violet",
+    problem:
+      "Students struggle to find relevant scholarships matching their profile across multiple criteria.",
+    solution:
+      "Developed a web portal with AI-based scholarship recommendations using OpenAI API, with filters for GPA, degree, income, category, and skills.",
+    impact:
+      "Integrated admin dashboard, external scholarship redirection, and notification system with Email/SMS alerts and Google Calendar tracking.",
+    tech: ["React.js", "HTML", "CSS", "JavaScript", "Python (Flask)", "MySQL"],
+    architecture:
+      "Flask backend with MySQL database. React.js frontend with OpenAI API integration for intelligent recommendations.",
+    challenges:
+      "Integrating AI recommendations with multiple filter criteria while maintaining fast response times.",
+    codeHighlights: [
+      "AI Recommendation System",
+      "Admin Dashboard",
+      "Notification System",
+    ],
+    story:
+      "Many students miss out on scholarships simply because they don't know about them. This portal bridges that gap.",
+    funFact: "The first prototype was built during a 36-hour hackathon sprint!",
+    lessonsLearned:
+      "A good recommendation system needs both AI intelligence and human-curated data.",
+    github: "https://github.com/VivekChaurasiya95",
+    demo: "#",
+    stats: { filters: "5+", features: "AI-Powered", alerts: "Email/SMS" },
+  },
+  {
+    title: "SkillFlare – Student Talent Marketplace",
+    category: "Full-Stack",
+    color: "from-emerald-500 to-teal-600",
+    accentColor: "emerald",
+    problem:
+      "Students, mentors, and teachers lacked a unified platform for task collaboration, mentorship discovery, portfolio growth, and guided communication.",
+    solution:
+      "Built a role-based full-stack platform where teachers post tasks, students complete them for credits, mentors guide learners, and Buddy AI (Ollama-powered) assists users contextually.",
+    impact:
+      "Enabled a campus-ready ecosystem with real-time chat, leaderboard gamification, mentorship workflows, and safer AI-guided navigation for student growth.",
+    tech: [
+      "React 18",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Socket.IO",
+      "JWT",
+      "Ollama",
+      "Axios",
+    ],
+    architecture:
+      "Two-part architecture: Vite + React frontend with Socket.IO client and role-based routes, Express + MongoDB backend with modular controllers/services, JWT auth, and AI service integration via Ollama endpoints.",
+    challenges:
+      "Designing secure role-based flows, handling real-time messaging state, and building a moderated AI assistant that remains useful while staying educational and safe.",
+    codeHighlights: [
+      "JWT + RBAC Auth Layer",
+      "Socket.IO Real-Time Messaging",
+      "Buddy AI (Ollama) Integration",
+      "Task Lifecycle APIs",
+    ],
+    story:
+      "SkillFlare was built as a students-for-students initiative to make talent development measurable through real tasks, mentorship, and collaborative learning.",
+    funFact:
+      "The platform includes a dedicated Developer Hub to showcase the student team behind the product.",
+    lessonsLearned:
+      "Role clarity, real-time feedback loops, and transparent progression mechanics dramatically improve learner engagement.",
+    github: "",
+    demo: "#",
+    stats: { roles: "3 Core", realtime: "Socket.IO", ai: "Buddy AI" },
   },
 ];
 
-const categories = ['All Projects', 'Full-Stack'];
+const categories = ["All Projects", "Full-Stack"];
 
-const viewModes: { id: ViewMode; label: string; icon: React.ComponentType<{ className?: string }>; description: string }[] = [
-  { id: 'recruiter', label: 'Recruiter View', icon: Briefcase, description: 'Business impact & results' },
-  { id: 'developer', label: 'Developer View', icon: Code2, description: 'Technical deep-dive' },
-  { id: 'explorer', label: 'Explorer View', icon: Sparkles, description: 'Stories & insights' },
+const viewModes: {
+  id: ViewMode;
+  label: string;
+  icon: React.ComponentType<{ className?: string }>;
+  description: string;
+}[] = [
+  {
+    id: "recruiter",
+    label: "Recruiter View",
+    icon: Briefcase,
+    description: "Business impact & results",
+  },
+  {
+    id: "developer",
+    label: "Developer View",
+    icon: Code2,
+    description: "Technical deep-dive",
+  },
+  {
+    id: "explorer",
+    label: "Explorer View",
+    icon: Sparkles,
+    description: "Stories & insights",
+  },
 ];
 
-const RollerCoasterCard = ({ 
-  project, 
-  viewMode, 
-  index, 
-  totalProjects 
-}: { 
-  project: typeof projects[0]; 
-  viewMode: ViewMode; 
+const RollerCoasterCard = ({
+  project,
+  viewMode,
+  index,
+  totalProjects,
+}: {
+  project: (typeof projects)[0];
+  viewMode: ViewMode;
   index: number;
   totalProjects: number;
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  
+
   const { scrollYProgress } = useScroll({
     target: cardRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   // Roller coaster wave effect - different phase for each card
   const phase = (index / totalProjects) * Math.PI * 2;
-  
+
   const y = useTransform(
     scrollYProgress,
     [0, 0.3, 0.5, 0.7, 1],
-    [100, -20, 0, -20, -100]
+    [100, -20, 0, -20, -100],
   );
-  
+
   const x = useTransform(
     scrollYProgress,
     [0, 0.25, 0.5, 0.75, 1],
-    [index % 2 === 0 ? -50 : 50, 0, index % 2 === 0 ? 30 : -30, 0, index % 2 === 0 ? -30 : 30]
+    [
+      index % 2 === 0 ? -50 : 50,
+      0,
+      index % 2 === 0 ? 30 : -30,
+      0,
+      index % 2 === 0 ? -30 : 30,
+    ],
   );
-  
+
   const rotate = useTransform(
     scrollYProgress,
     [0, 0.3, 0.5, 0.7, 1],
-    [index % 2 === 0 ? -5 : 5, -2, 0, 2, index % 2 === 0 ? 5 : -5]
+    [index % 2 === 0 ? -5 : 5, -2, 0, 2, index % 2 === 0 ? 5 : -5],
   );
-  
+
   const scale = useTransform(
     scrollYProgress,
     [0, 0.3, 0.5, 0.7, 1],
-    [0.85, 0.95, 1, 0.95, 0.85]
+    [0.85, 0.95, 1, 0.95, 0.85],
   );
 
   const opacity = useTransform(
     scrollYProgress,
     [0, 0.2, 0.5, 0.8, 1],
-    [0.3, 1, 1, 1, 0.3]
+    [0.3, 1, 1, 1, 0.3],
   );
 
   // Smooth springs for natural movement
@@ -133,26 +242,29 @@ const RollerCoasterCard = ({
         className="relative overflow-hidden rounded-2xl border border-border/30 bg-card/40 backdrop-blur-xl"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        whileHover={{ 
-          boxShadow: '0 25px 80px -20px rgba(0,0,0,0.5), 0 0 60px -15px hsl(var(--primary) / 0.3)',
-          borderColor: 'hsl(var(--primary) / 0.5)',
+        whileHover={{
+          boxShadow:
+            "0 25px 80px -20px rgba(0,0,0,0.5), 0 0 60px -15px hsl(var(--primary) / 0.3)",
+          borderColor: "hsl(var(--primary) / 0.5)",
         }}
         transition={{ duration: 0.4 }}
       >
         {/* Gradient overlay background */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-5`} />
-        
+        <div
+          className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-5`}
+        />
+
         {/* Animated mesh gradient background */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0 opacity-30"
           animate={{
-            background: isHovered 
+            background: isHovered
               ? [
                   `radial-gradient(circle at 0% 0%, hsl(var(--primary) / 0.3) 0%, transparent 50%)`,
                   `radial-gradient(circle at 100% 100%, hsl(var(--primary) / 0.3) 0%, transparent 50%)`,
                   `radial-gradient(circle at 0% 0%, hsl(var(--primary) / 0.3) 0%, transparent 50%)`,
                 ]
-              : `radial-gradient(circle at 50% 50%, transparent 0%, transparent 100%)`
+              : `radial-gradient(circle at 50% 50%, transparent 0%, transparent 100%)`,
           }}
           transition={{ duration: 3, repeat: Infinity }}
         />
@@ -173,14 +285,14 @@ const RollerCoasterCard = ({
 
             {/* Title and stats */}
             <div className="mt-auto">
-              <motion.h3 
+              <motion.h3
                 className="font-display text-3xl lg:text-4xl font-semibold text-foreground mb-4 leading-tight"
                 animate={{ x: isHovered ? 10 : 0 }}
                 transition={{ duration: 0.3 }}
               >
                 {project.title}
               </motion.h3>
-              
+
               {/* Stats row */}
               <div className="flex flex-wrap gap-4">
                 {Object.entries(project.stats).map(([key, value], i) => (
@@ -191,19 +303,23 @@ const RollerCoasterCard = ({
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
                   >
-                    <div className={`text-xl font-bold bg-gradient-to-r ${project.color} bg-clip-text text-transparent`}>
+                    <div
+                      className={`text-xl font-bold bg-gradient-to-r ${project.color} bg-clip-text text-transparent`}
+                    >
                       {value}
                     </div>
-                    <div className="text-xs text-muted-foreground capitalize">{key}</div>
+                    <div className="text-xs text-muted-foreground capitalize">
+                      {key}
+                    </div>
                   </motion.div>
                 ))}
               </div>
             </div>
 
             {/* Decorative elements */}
-            <motion.div 
+            <motion.div
               className={`absolute top-1/2 right-0 w-32 h-32 bg-gradient-to-r ${project.color} rounded-full blur-[80px] opacity-20`}
-              animate={{ 
+              animate={{
                 scale: isHovered ? [1, 1.2, 1] : 1,
                 opacity: isHovered ? 0.4 : 0.2,
               }}
@@ -214,7 +330,7 @@ const RollerCoasterCard = ({
           {/* Right side - Content */}
           <div className="relative p-8 border-l border-border/30 bg-background/20">
             <AnimatePresence mode="wait">
-              {viewMode === 'recruiter' && (
+              {viewMode === "recruiter" && (
                 <motion.div
                   key="recruiter"
                   initial={{ opacity: 0, x: 20 }}
@@ -224,43 +340,64 @@ const RollerCoasterCard = ({
                   className="space-y-6"
                 >
                   <div className="grid gap-4">
-                    <motion.div 
+                    <motion.div
                       className="p-4 rounded-xl bg-secondary/10 border border-secondary/20"
-                      whileHover={{ scale: 1.02, borderColor: 'hsl(var(--secondary) / 0.5)' }}
+                      whileHover={{
+                        scale: 1.02,
+                        borderColor: "hsl(var(--secondary) / 0.5)",
+                      }}
                     >
                       <div className="flex items-center gap-2 mb-2">
                         <Target className="w-4 h-4 text-secondary" />
-                        <span className="text-xs uppercase tracking-wider text-secondary font-semibold">Problem</span>
+                        <span className="text-xs uppercase tracking-wider text-secondary font-semibold">
+                          Problem
+                        </span>
                       </div>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{project.problem}</p>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {project.problem}
+                      </p>
                     </motion.div>
-                    
-                    <motion.div 
+
+                    <motion.div
                       className="p-4 rounded-xl bg-primary/10 border border-primary/20"
-                      whileHover={{ scale: 1.02, borderColor: 'hsl(var(--primary) / 0.5)' }}
+                      whileHover={{
+                        scale: 1.02,
+                        borderColor: "hsl(var(--primary) / 0.5)",
+                      }}
                     >
                       <div className="flex items-center gap-2 mb-2">
                         <Lightbulb className="w-4 h-4 text-primary" />
-                        <span className="text-xs uppercase tracking-wider text-primary font-semibold">Solution</span>
+                        <span className="text-xs uppercase tracking-wider text-primary font-semibold">
+                          Solution
+                        </span>
                       </div>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{project.solution}</p>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {project.solution}
+                      </p>
                     </motion.div>
-                    
-                    <motion.div 
+
+                    <motion.div
                       className="p-4 rounded-xl bg-green-500/10 border border-green-500/20"
-                      whileHover={{ scale: 1.02, borderColor: 'rgba(34, 197, 94, 0.5)' }}
+                      whileHover={{
+                        scale: 1.02,
+                        borderColor: "rgba(34, 197, 94, 0.5)",
+                      }}
                     >
                       <div className="flex items-center gap-2 mb-2">
                         <Zap className="w-4 h-4 text-green-500" />
-                        <span className="text-xs uppercase tracking-wider text-green-500 font-semibold">Impact</span>
+                        <span className="text-xs uppercase tracking-wider text-green-500 font-semibold">
+                          Impact
+                        </span>
                       </div>
-                      <p className="text-foreground text-sm leading-relaxed font-medium">{project.impact}</p>
+                      <p className="text-foreground text-sm leading-relaxed font-medium">
+                        {project.impact}
+                      </p>
                     </motion.div>
                   </div>
                 </motion.div>
               )}
 
-              {viewMode === 'developer' && (
+              {viewMode === "developer" && (
                 <motion.div
                   key="developer"
                   initial={{ opacity: 0, x: 20 }}
@@ -279,11 +416,17 @@ const RollerCoasterCard = ({
                     </p>
                   </div>
                   <div>
-                    <h4 className="text-sm uppercase tracking-wider text-secondary mb-3 font-semibold">Technical Challenges</h4>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{project.challenges}</p>
+                    <h4 className="text-sm uppercase tracking-wider text-secondary mb-3 font-semibold">
+                      Technical Challenges
+                    </h4>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {project.challenges}
+                    </p>
                   </div>
                   <div>
-                    <h4 className="text-sm uppercase tracking-wider text-accent-foreground mb-3 font-semibold">Code Highlights</h4>
+                    <h4 className="text-sm uppercase tracking-wider text-accent-foreground mb-3 font-semibold">
+                      Code Highlights
+                    </h4>
                     <div className="flex flex-wrap gap-2">
                       {project.codeHighlights.map((highlight, i) => (
                         <motion.span
@@ -301,7 +444,7 @@ const RollerCoasterCard = ({
                 </motion.div>
               )}
 
-              {viewMode === 'explorer' && (
+              {viewMode === "explorer" && (
                 <motion.div
                   key="explorer"
                   initial={{ opacity: 0, x: 20 }}
@@ -312,23 +455,35 @@ const RollerCoasterCard = ({
                 >
                   <div className="relative pl-4 border-l-2 border-primary/40">
                     <Sparkles className="w-4 h-4 text-primary absolute -left-2 top-0 bg-card" />
-                    <h4 className="text-sm uppercase tracking-wider text-primary mb-2 font-semibold">The Story</h4>
-                    <p className="text-muted-foreground text-sm leading-relaxed italic">{project.story}</p>
+                    <h4 className="text-sm uppercase tracking-wider text-primary mb-2 font-semibold">
+                      The Story
+                    </h4>
+                    <p className="text-muted-foreground text-sm leading-relaxed italic">
+                      {project.story}
+                    </p>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <motion.div 
+                    <motion.div
                       className="p-4 rounded-xl bg-gradient-to-br from-violet-500/10 to-purple-500/10 border border-violet-500/20"
                       whileHover={{ scale: 1.03, rotate: 1 }}
                     >
-                      <h4 className="text-xs uppercase tracking-wider text-violet-400 mb-2 font-semibold">Fun Fact ✨</h4>
-                      <p className="text-muted-foreground text-sm">{project.funFact}</p>
+                      <h4 className="text-xs uppercase tracking-wider text-violet-400 mb-2 font-semibold">
+                        Fun Fact ✨
+                      </h4>
+                      <p className="text-muted-foreground text-sm">
+                        {project.funFact}
+                      </p>
                     </motion.div>
-                    <motion.div 
+                    <motion.div
                       className="p-4 rounded-xl bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/20"
                       whileHover={{ scale: 1.03, rotate: -1 }}
                     >
-                      <h4 className="text-xs uppercase tracking-wider text-amber-400 mb-2 font-semibold">Lesson Learned 💡</h4>
-                      <p className="text-muted-foreground text-sm">{project.lessonsLearned}</p>
+                      <h4 className="text-xs uppercase tracking-wider text-amber-400 mb-2 font-semibold">
+                        Lesson Learned 💡
+                      </h4>
+                      <p className="text-muted-foreground text-sm">
+                        {project.lessonsLearned}
+                      </p>
                     </motion.div>
                   </div>
                 </motion.div>
@@ -340,7 +495,7 @@ const RollerCoasterCard = ({
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, i) => (
-                    <motion.span 
+                    <motion.span
                       key={tech}
                       className="px-2.5 py-1 text-xs bg-muted/40 text-muted-foreground rounded-md border border-border/50 hover:border-primary/50 hover:text-primary transition-colors"
                       initial={{ opacity: 0, y: 10 }}
@@ -353,17 +508,19 @@ const RollerCoasterCard = ({
                   ))}
                 </div>
                 <div className="flex items-center gap-2">
-                  <motion.a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/30 text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all text-sm font-medium"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Github className="w-4 h-4" />
-                    Code
-                  </motion.a>
+                  {project.github && (
+                    <motion.a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/30 text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all text-sm font-medium"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Github className="w-4 h-4" />
+                      Code
+                    </motion.a>
+                  )}
                   <motion.a
                     href={project.demo}
                     target="_blank"
@@ -383,10 +540,10 @@ const RollerCoasterCard = ({
         </div>
 
         {/* Progress indicator line */}
-        <motion.div 
+        <motion.div
           className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${project.color}`}
-          style={{ 
-            width: useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
+          style={{
+            width: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]),
           }}
         />
       </motion.article>
@@ -395,18 +552,23 @@ const RollerCoasterCard = ({
 };
 
 const ProjectsSection = () => {
-  const [activeCategory, setActiveCategory] = useState('All Projects');
-  const [viewMode, setViewMode] = useState<ViewMode>('recruiter');
+  const [activeCategory, setActiveCategory] = useState("All Projects");
+  const [viewMode, setViewMode] = useState<ViewMode>("recruiter");
   const sectionRef = useRef<HTMLElement>(null);
 
-  const filteredProjects = activeCategory === 'All Projects'
-    ? projects
-    : projects.filter(p => p.category === activeCategory);
+  const filteredProjects =
+    activeCategory === "All Projects"
+      ? projects
+      : projects.filter((p) => p.category === activeCategory);
 
-  const currentViewMode = viewModes.find(m => m.id === viewMode);
+  const currentViewMode = viewModes.find((m) => m.id === viewMode);
 
   return (
-    <section id="projects" ref={sectionRef} className="py-32 relative overflow-hidden">
+    <section
+      id="projects"
+      ref={sectionRef}
+      className="py-32 relative overflow-hidden"
+    >
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
@@ -430,17 +592,22 @@ const ProjectsSection = () => {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6"
           >
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary uppercase tracking-wider">Featured Work</span>
+            <span className="text-sm font-medium text-primary uppercase tracking-wider">
+              Featured Work
+            </span>
           </motion.div>
-          
+
           <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium mb-6">
-            <span className="text-foreground">Project</span>{' '}
+            <span className="text-foreground">Project</span>{" "}
             <span className="text-gradient">Showcase</span>
           </h2>
           <p className="section-subheading max-w-2xl mx-auto">
-            Scroll through my roller coaster of projects — each one a unique adventure in problem-solving and creativity.
+            Scroll through my roller coaster of projects — each one a unique
+            adventure in problem-solving and creativity.
             <br />
-            <span className="text-primary font-medium">Switch perspectives to explore each project differently.</span>
+            <span className="text-primary font-medium">
+              Switch perspectives to explore each project differently.
+            </span>
           </p>
         </motion.div>
 
@@ -460,8 +627,8 @@ const ProjectsSection = () => {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeCategory === cat
-                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
-                    : 'bg-muted/30 text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+                    : "bg-muted/30 text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -483,16 +650,20 @@ const ProjectsSection = () => {
                   <>
                     <currentViewMode.icon className="w-4 h-4 text-primary" />
                     <div className="text-left">
-                      <span className="text-sm font-medium text-foreground block">{currentViewMode.label}</span>
-                      <span className="text-xs text-muted-foreground">{currentViewMode.description}</span>
+                      <span className="text-sm font-medium text-foreground block">
+                        {currentViewMode.label}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        {currentViewMode.description}
+                      </span>
                     </div>
                   </>
                 )}
                 <ChevronDown className="w-4 h-4 text-muted-foreground ml-2" />
               </motion.button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent 
-              align="end" 
+            <DropdownMenuContent
+              align="end"
               className="w-64 bg-card border border-border/50 backdrop-blur-xl"
             >
               {viewModes.map((mode) => (
@@ -501,12 +672,18 @@ const ProjectsSection = () => {
                   onClick={() => setViewMode(mode.id)}
                   className="flex items-center gap-3 px-3 py-3 cursor-pointer hover:bg-muted/50 transition-colors"
                 >
-                  <mode.icon className={`w-5 h-5 ${viewMode === mode.id ? 'text-primary' : 'text-muted-foreground'}`} />
+                  <mode.icon
+                    className={`w-5 h-5 ${viewMode === mode.id ? "text-primary" : "text-muted-foreground"}`}
+                  />
                   <div className="flex-1">
-                    <span className={`text-sm font-medium block ${viewMode === mode.id ? 'text-primary' : 'text-foreground'}`}>
+                    <span
+                      className={`text-sm font-medium block ${viewMode === mode.id ? "text-primary" : "text-foreground"}`}
+                    >
                       {mode.label}
                     </span>
-                    <span className="text-xs text-muted-foreground">{mode.description}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {mode.description}
+                    </span>
                   </div>
                   {viewMode === mode.id && (
                     <Check className="w-4 h-4 text-primary" />
@@ -520,9 +697,9 @@ const ProjectsSection = () => {
         {/* Projects with roller coaster effect */}
         <div className="space-y-24">
           {filteredProjects.map((project, index) => (
-            <RollerCoasterCard 
-              key={project.title} 
-              project={project} 
+            <RollerCoasterCard
+              key={project.title}
+              project={project}
               viewMode={viewMode}
               index={index}
               totalProjects={filteredProjects.length}
