@@ -86,7 +86,7 @@ const HeroSection = () => {
             className="flex flex-wrap gap-6"
           >
             <IsometricButton
-              href="https://github.com/yourusername"
+              href="https://github.com/VivekChaurasiya95"
               variant="primary"
             >
               <Github className="w-4 h-4" />

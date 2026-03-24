@@ -59,7 +59,7 @@ const AboutSection = () => {
                 <div className="absolute inset-0 bg-primary/30 rounded-xl transform translate-x-1.5 translate-y-1.5" />
                 <div className="relative glass-card rounded-xl p-5 border-2 border-primary/40 bg-gradient-to-br from-primary/10 to-transparent">
                   <span className="text-3xl font-display font-bold text-primary">B.Tech</span>
-                  <p className="text-sm text-muted-foreground mt-1">Computer Science</p>
+                  <p className="text-sm text-muted-foreground mt-1">CS & Design</p>
                 </div>
               </div>
               <div className="relative">

@@ -93,7 +93,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground uppercase tracking-wider">Location</p>
-                  <p className="text-foreground">Gwalior, India</p>
+                  <p className="text-foreground">Gwalior, Madhya Pradesh, India</p>
                 </div>
               </motion.div>
 
