@@ -93,7 +93,7 @@ const Footer = () => {
               Open for freelance projects in web development, ML solutions, and full-stack applications.
             </p>
             <motion.a
-              href="mailto:vivekchaurasiya@example.com"
+              href="mailto:vivekchaurasiya943@gmail.com"
               className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-bold text-sm tracking-wider uppercase transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 font-display"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.97 }}

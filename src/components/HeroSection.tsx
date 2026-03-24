@@ -73,9 +73,9 @@ const HeroSection = () => {
             className="text-base md:text-lg text-muted-foreground max-w-xl mb-12 leading-relaxed font-light tracking-wide"
           >
             I'm <span className="text-foreground font-medium">Vivek Chaurasiya</span>, a{' '}
-            <span className="text-primary font-medium">Computer Science</span> student passionate about 
-            building intelligent systems that bridge{' '}
-            <span className="text-secondary font-medium">machine learning</span> with elegant user experiences.
+            <span className="text-primary font-medium">Computer Science & Design</span> undergraduate at MITS-DU, Gwalior. 
+            Passionate about building scalable applications and exploring{' '}
+            <span className="text-secondary font-medium">AI & data-driven systems</span> to solve real-world problems.
           </motion.p>
 
           {/* CTAs */}
@@ -86,7 +86,7 @@ const HeroSection = () => {
             className="flex flex-wrap gap-6"
           >
             <IsometricButton
-              href="https://github.com/yourusername"
+              href="https://github.com/VivekChaurasiya95"
               variant="primary"
             >
               <Github className="w-4 h-4" />

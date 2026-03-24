@@ -75,8 +75,8 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground uppercase tracking-wider">Email</p>
-                  <a href="mailto:vivekchaurasiya@gmail.com" className="text-foreground hover:text-primary transition-colors">
-                    vivekchaurasiya@gmail.com
+                  <a href="mailto:vivekchaurasiya943@gmail.com" className="text-foreground hover:text-primary transition-colors">
+                    vivekchaurasiya943@gmail.com
                   </a>
                 </div>
               </motion.div>
@@ -93,7 +93,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground uppercase tracking-wider">Location</p>
-                  <p className="text-foreground">Gwalior, India</p>
+                  <p className="text-foreground">Gwalior, Madhya Pradesh, India</p>
                 </div>
               </motion.div>
 
