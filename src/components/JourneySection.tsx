@@ -15,7 +15,7 @@ const milestones = [
   {
     year: '2025',
     title: 'Full-Stack & AI Projects',
-    description: 'Built HSER – Human Skill Extinction Radar and Student Saarthi – AI Based Scholarship Portal. Earned certifications from IBM, Google Cloud, and Udemy.',
+    description: 'Built HSER – Human Skill Extinction Radar and Student Saarthi – AI Based Scholarship Portal. Earned certifications from IBM, Google Cloud, and Udemy. CGPA: 8.38/10.',
     tags: ['React', 'FastAPI', 'Flask', 'OpenAI'],
     type: 'Current',
     icon: Sparkles,
