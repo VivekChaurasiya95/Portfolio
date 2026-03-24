@@ -5,6 +5,14 @@ import { Rocket, GraduationCap, Code, Brain, Briefcase, Sparkles } from 'lucide-
 // Milestones in chronological order (will be displayed reversed - current at top)
 const milestones = [
   {
+    year: '2026',
+    title: 'Data Science & Web Development',
+    description: 'Expanding into data science with Python libraries and advancing JavaScript skills for modern web applications.',
+    tags: ['JavaScript', 'NumPy', 'Pandas', 'Matplotlib', 'Seaborn'],
+    type: 'Upcoming',
+    icon: Sparkles,
+  },
+  {
     year: '2025',
     title: 'Full-Stack & AI Projects',
     description: 'Built HSER – Human Skill Extinction Radar and Student Saarthi – AI Based Scholarship Portal. Earned certifications from IBM, Google Cloud, and Udemy.',
