@@ -7,7 +7,7 @@ const milestones = [
   {
     year: '2026',
     title: 'Data Science & Web Development',
-    description: 'Expanding into data science with Python libraries and advancing JavaScript skills for modern web applications.',
+    description: 'Expanding into data science with Python libraries and advancing JavaScript skills for modern web applications. CGPA: 8.38/10.',
     tags: ['JavaScript', 'NumPy', 'Pandas', 'Matplotlib', 'Seaborn'],
     type: 'Upcoming',
     icon: Sparkles,
