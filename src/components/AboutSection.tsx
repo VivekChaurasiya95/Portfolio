@@ -34,24 +34,23 @@ const AboutSection = () => {
 
             <p className="text-muted-foreground mb-6 leading-relaxed">
               Hi, I'm <span className="text-foreground font-medium">Vivek Chaurasiya</span> — a Computer 
-              Science student at Madhav Institute of Technology and Science (Deemed University), Gwalior.
+              Science and Design undergraduate at Madhav Institute of Technology and Science (MITS-DU), Gwalior.
             </p>
 
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              My journey into tech started with curiosity about how things work. Fast forward, and I'm 
-              genuinely in love with building intelligent systems — from machine learning models that 
-              find patterns in data to web applications that provide seamless user experiences.
+              I have strong foundations in programming and problem solving. Proficient in{' '}
+              <span className="text-primary">C++, Python, and JavaScript</span> with growing experience in 
+              full-stack web development and software engineering principles.
             </p>
 
             <p className="text-muted-foreground mb-6 leading-relaxed">
               I believe in the intersection of <span className="text-primary">creativity</span> and{' '}
-              <span className="text-secondary">logic</span>. Every line of code I write aims to solve 
-              real problems while maintaining elegance and efficiency.
+              <span className="text-secondary">logic</span>. Passionate about building scalable applications 
+              and exploring artificial intelligence and data-driven systems to solve real-world problems.
             </p>
 
             <p className="text-foreground italic">
-              Currently focused on expanding my expertise in AI/ML engineering while building 
-              production-ready applications.
+              Currently pursuing B.Tech in CS&D (2024–2028) with a CGPA of 8.38/10.
             </p>
 
             {/* Quick facts - Cuboid style */}
