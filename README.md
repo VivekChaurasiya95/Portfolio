@@ -74,7 +74,7 @@ Make sure you have [Node.js](https://nodejs.org/) & `npm` installed.
    ```bash
    npm run dev
    ```
-   Open `http://localhost:5173` (or the provided port) in your browser.
+   Open `http://localhost:5173` (or the provided port) in your browser
 
 ---
 
