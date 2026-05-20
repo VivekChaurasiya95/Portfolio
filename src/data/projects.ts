@@ -147,7 +147,12 @@ export const projects = [
     github: "https://github.com/VivekChaurasiya95",
     demo: "#",
     stats: { filters: "5+", features: "AI-Powered", alerts: "Email/SMS" },
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    image: "/student-saarthi-1.png",
+    gallery: [
+      "/student-saarthi-2.png",
+      "/student-saarthi-3.png",
+      "/student-saarthi-4.png",
+      "/student-saarthi-5.png"
+    ],
   }
 ];
