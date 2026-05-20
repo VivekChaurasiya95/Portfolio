@@ -23,34 +23,47 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/contact`, {
+      const web3FormsKey = import.meta.env.VITE_WEB3FORMS_KEY;
+
+      if (!web3FormsKey) {
+        // Fallback natively to mailto: if no API key is provided
+        const subject = `Portfolio Contact from ${formData.name}`;
+        const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+        window.location.href = `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(
+          subject
+        )}&body=${encodeURIComponent(body)}`;
+
+        setSubmitStatus({
+          type: "success",
+          text: "Opening your email client... Thank you!",
+        });
+        setIsSubmitting(false);
+        setFormData({ name: "", email: "", message: "" });
+        
+        // Hide success message automatically after 5s
+        setTimeout(() => setSubmitStatus(null), 5000);
+        return;
+      }
+
+      // Seamless background submission using Web3Forms
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          access_key: web3FormsKey,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
       });
 
-      const data = (await response.json().catch(() => null)) as {
-        ok: boolean;
-        error?: string;
-        message?: string;
-      } | null;
+      const data = await response.json();
 
-      if (!data) {
-        throw new Error("Unexpected server response. Please try again.");
-      }
-
-      const parsedData = data as {
-        ok: boolean;
-        error?: string;
-        message?: string;
-      };
-
-      if (!response.ok || !parsedData.ok) {
-        throw new Error(
-          parsedData.error || "Unable to send your message right now.",
-        );
+      if (!data.success) {
+        throw new Error(data.message || "Unable to send your message right now.");
       }
 
       setSubmitStatus({
@@ -59,6 +72,9 @@ const ContactSection = () => {
       });
       setIsSubmitting(false);
       setFormData({ name: "", email: "", message: "" });
+      
+      // Hide success message automatically after 5s
+      setTimeout(() => setSubmitStatus(null), 5000);
     } catch (error) {
       setIsSubmitting(false);
       setSubmitStatus({

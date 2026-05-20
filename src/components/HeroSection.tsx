@@ -10,8 +10,8 @@ const HeroSection = () => {
       id="home"
       className="relative min-h-screen flex items-center justify-center pt-20"
     >
-      <div className="container mx-auto px-6 lg:px-20">
-        <div className="max-w-5xl">
+      <div className="container mx-auto px-6 lg:px-20 pointer-events-none relative z-10">
+        <div className="max-w-5xl pointer-events-auto">
           {/* Overline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -126,7 +126,7 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 pointer-events-auto z-10"
       >
         <div className="relative w-6 h-10 rounded-full border-2 border-muted-foreground/50 flex justify-center">
           <motion.div

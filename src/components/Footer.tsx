@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
 import { Briefcase, ArrowUpRight, Sparkles } from "lucide-react";
+import Spline from "@splinetool/react-spline";
+import StatusWidget from "./StatusWidget";
+import FreelanceWidget from "./FreelanceWidget";
 
 import githubIcon from "@/assets/icons/github.png";
 import linkedinIcon from "@/assets/icons/linkedin.png";
@@ -30,15 +33,7 @@ const Footer = () => {
             viewport={{ once: true }}
             className="text-center md:text-left"
           >
-            <div className="font-display text-2xl font-bold mb-4">
-              <span className="text-primary">&lt;/&gt;</span>{" "}
-              <span className="text-foreground">vivek</span>
-              <span className="text-muted-foreground">.dev</span>
-            </div>
-            <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto md:mx-0 font-body">
-              Full-Stack Developer & ML Enthusiast crafting digital experiences
-              with code and creativity.
-            </p>
+            <StatusWidget />
           </motion.div>
 
           {/* Center - Social Links */}
@@ -47,9 +42,18 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="flex flex-col items-center"
+            className="flex flex-col items-center relative"
           >
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-[0.3em] mb-6 font-display">
+            <div 
+              className="w-72 h-72 md:w-[350px] md:h-[350px] z-10 mt-[-20px] mb-8 relative overflow-hidden" 
+              style={{ filter: "hue-rotate(-100deg) saturate(1.2)" }}
+            >
+              {/* Scale and translate to push the bottom-right watermark out of bounds */}
+              <div className="absolute inset-0 scale-[1.2] translate-y-4 md:translate-y-6">
+                <Spline scene="https://prod.spline.design/GgRpDTredFwgbV5A/scene.splinecode" className="w-full h-full" />
+              </div>
+            </div>
+            <h3 className="text-sm font-semibold text-foreground uppercase tracking-[0.3em] mb-6 font-display relative z-20">
               Connect
             </h3>
             <div className="flex items-center gap-4">
@@ -81,47 +85,15 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Right - Freelancing (Stylish) */}
+          {/* Right - Freelancing */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-center md:text-right"
+            className="flex flex-col items-center md:items-end w-full"
           >
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/40 mb-4"
-              animate={{
-                boxShadow: [
-                  "0 0 10px hsl(var(--primary)/0.2)",
-                  "0 0 20px hsl(var(--primary)/0.4)",
-                  "0 0 10px hsl(var(--primary)/0.2)",
-                ],
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <Sparkles className="w-3.5 h-3.5 text-primary" />
-              <span className="text-sm font-extrabold text-primary uppercase tracking-[0.2em] font-display">
-                Available for Work
-              </span>
-            </motion.div>
-            <h3 className="text-xl font-bold text-foreground mb-2 font-display tracking-wide">
-              Freelance Services
-            </h3>
-            <p className="text-muted-foreground text-sm mb-5 max-w-xs mx-auto md:ml-auto md:mr-0 font-body leading-relaxed">
-              Open for freelance projects in web development, ML solutions, and
-              full-stack applications.
-            </p>
-            <motion.a
-              href={`mailto:${EMAIL_ADDRESS}`}
-              className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-bold text-sm tracking-wider uppercase transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 font-display"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <Briefcase className="w-4 h-4" />
-              Hire Me
-              <ArrowUpRight className="w-4 h-4" />
-            </motion.a>
+            <FreelanceWidget />
           </motion.div>
         </div>
 

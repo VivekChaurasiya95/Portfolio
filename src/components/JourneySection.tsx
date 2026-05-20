@@ -5,17 +5,49 @@ import { Rocket, GraduationCap, Code, Brain, Briefcase, Sparkles } from 'lucide-
 // Milestones in chronological order (will be displayed reversed - current at top)
 const milestones = [
   {
+    year: 'May 2026',
+    title: 'GirlScript Summer of Code',
+    description: 'Selected as an Open Source and AI/Agents Contributor for GSSoC starting mid-May.',
+    tags: ['Open Source', 'AI', 'Agents'],
+    type: 'Current',
+    icon: Sparkles,
+  },
+  {
+    year: 'Apr 2026',
+    title: 'Nexus Spring of Code',
+    description: 'Active contributor in the Nexus Spring of Code open source program.',
+    tags: ['Open Source', 'Development'],
+    type: 'Current',
+    icon: Code,
+  },
+  {
+    year: 'Apr 2026',
+    title: 'McKinsey Forward Program',
+    description: 'Enrolled in the McKinsey Forward Program to develop advanced business, leadership, and professional skills.',
+    tags: ['Leadership', 'Professional Skills'],
+    type: 'Current',
+    icon: Brain,
+  },
+  {
+    year: 'Feb 2026',
+    title: 'Software Developer Intern',
+    description: 'Working at ByteEdu as a Software Developer Intern (Feb - June 2026).',
+    tags: ['Software Engineering', 'Internship'],
+    type: 'Current',
+    icon: Briefcase,
+  },
+  {
     year: '2026',
     title: 'Data Science & Web Development',
-    description: 'Expanding into data science with Python libraries and advancing JavaScript skills for modern web applications. CGPA: 8.38/10.',
+    description: 'Expanding into data science with Python libraries and advancing JavaScript skills for modern web applications.',
     tags: ['JavaScript', 'NumPy', 'Pandas', 'Matplotlib', 'Seaborn'],
-    type: 'Upcoming',
+    type: 'Continuing',
     icon: Sparkles,
   },
   {
     year: '2025',
     title: 'Full-Stack & AI Projects',
-    description: 'Built HSER – Human Skill Extinction Radar and Student Saarthi – AI Based Scholarship Portal. Earned certifications from IBM, Google Cloud, and Udemy. CGPA: 8.38/10.',
+    description: 'Built HSER – Human Skill Extinction Radar and Student Saarthi – AI Based Scholarship Portal. Earned certifications from IBM, Google Cloud, and Udemy.',
     tags: ['React', 'FastAPI', 'Flask', 'OpenAI'],
     type: 'Current',
     icon: Sparkles,
@@ -23,7 +55,7 @@ const milestones = [
   {
     year: '2024',
     title: 'B.Tech Begins at MITS-DU',
-    description: 'Started B.Tech in Computer Science and Design at Madhav Institute of Technology and Science (Deemed University), Gwalior. CGPA: 8.38/10.',
+    description: 'Started B.Tech in Computer Science and Design at Madhav Institute of Technology and Science (Deemed University), Gwalior.',
     tags: ['DSA', 'OOPS', 'System Design', 'DBMS', 'OS'],
     type: 'Education',
     icon: GraduationCap,
@@ -170,7 +202,7 @@ const JourneySection = () => {
             <span className="text-gradient">Timeline</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A chronological voyage through my coding odyssey — <span className="text-primary font-medium">B.Tech CS&D (2024-2028)</span>
+            A chronological voyage through my coding odyssey — <span className="text-primary font-medium">B.Tech Computer Science & Design (2024-2028)</span>
           </p>
         </motion.div>
 
@@ -241,7 +273,7 @@ const JourneySection = () => {
                     {/* Type badge */}
                     <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs uppercase tracking-wider font-semibold ${
                       milestone.type === 'Education' ? 'bg-secondary/20 text-secondary border border-secondary/30' : 
-                      milestone.type === 'Current' ? 'bg-primary/20 text-primary border border-primary/30' : 
+                      (milestone.type === 'Current' || milestone.type === 'Continuing') ? 'bg-primary/20 text-primary border border-primary/30' : 
                       'bg-accent/50 text-accent-foreground border border-accent-foreground/20'
                     }`}>
                       <Icon className="w-3 h-3" />
@@ -272,6 +304,27 @@ const JourneySection = () => {
                     </div>
                   </motion.div>
                 </div>
+
+                {/* Connecting Line with animation */}
+                <motion.div
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  whileInView={{ scaleX: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 + 0.3, ease: "easeOut" }}
+                  className={`absolute top-1/2 -translate-y-1/2 h-[2px] z-0 ${
+                    index % 2 === 0 
+                      ? 'right-1/2 origin-right bg-gradient-to-l from-primary via-primary/50 to-transparent w-[calc(8.333333%+4rem)]' 
+                      : 'left-1/2 origin-left bg-gradient-to-r from-primary via-primary/50 to-transparent w-[calc(8.333333%+4rem)]'
+                  }`}
+                >
+                  <div className="absolute inset-0 bg-primary blur-[2px] animate-pulse opacity-60" />
+                  {/* Glowing dot moving along the line */}
+                  <motion.div 
+                    className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_2px_hsl(var(--primary))]"
+                    animate={index % 2 === 0 ? { left: ["100%", "0%"] } : { left: ["0%", "100%"] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: index * 0.1 }}
+                  />
+                </motion.div>
 
                 {/* Center connector node with enhanced glow */}
                 <div className="absolute left-1/2 transform -translate-x-1/2 z-10">

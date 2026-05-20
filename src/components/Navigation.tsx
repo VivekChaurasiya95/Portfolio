@@ -1,30 +1,40 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 const navItems = [
   { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Journey", href: "#journey" },
   { label: "Certifications", href: "#certifications" },
-  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
+  const isClickScrolling = useRef(false);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      if (isClickScrolling.current) {
+        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+        scrollTimeout.current = setTimeout(() => {
+          isClickScrolling.current = false;
+        }, 150);
+        return;
+      }
 
       const sections = navItems.map((item) => item.href.substring(1));
       for (const section of sections.reverse()) {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          if (rect.top <= 150) {
+          if (rect.top <= 250) {
             setActiveSection(section);
             break;
           }
@@ -32,8 +42,11 @@ const Navigation = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    };
   }, []);
 
   const handleClick = (
@@ -41,7 +54,21 @@ const Navigation = () => {
     href: string,
   ) => {
     e.preventDefault();
-    const element = document.querySelector(href);
+    const sectionId = href.substring(1);
+    
+    // Immediately set active state for snappy animation
+    setActiveSection(sectionId);
+    
+    // Disable scroll spy temporarily while smooth scrolling
+    isClickScrolling.current = true;
+    if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    
+    // Fallback in case scroll event doesn't fire
+    scrollTimeout.current = setTimeout(() => {
+      isClickScrolling.current = false;
+    }, 2000);
+    
+    const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -68,13 +95,24 @@ const Navigation = () => {
           <a
             href="#home"
             onClick={(e) => handleClick(e, "#home")}
-            className="flex items-center gap-2 text-foreground font-display text-xl tracking-tight group"
+            className="flex items-center gap-3 text-foreground font-body text-xl tracking-tight group"
           >
-            <span className="text-primary font-bold text-2xl transition-transform duration-300 group-hover:scale-110">
-              &lt;/&gt;
-            </span>
-            <span className="hidden sm:inline font-semibold">
-              vivek<span className="text-muted-foreground">.dev</span>
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <img
+                src="/favicon.png"
+                alt="VC Logo"
+                className="w-10 h-10 md:w-12 md:h-12 object-contain relative z-10 transition-transform duration-300 group-hover:scale-110"
+              />
+            </div>
+            <span className="hidden sm:inline font-extrabold text-2xl tracking-tighter">
+              vivek
+              <span className="text-primary transition-colors duration-300 group-hover:text-cyan-400">
+                .
+              </span>
+              <span className="font-light text-muted-foreground/80 group-hover:text-foreground transition-colors duration-300">
+                dev
+              </span>
             </span>
           </a>
 
@@ -101,9 +139,9 @@ const Navigation = () => {
                         layoutId="active-pill"
                         className="absolute inset-0 rounded-lg bg-primary/10 border border-primary/40 shadow-[0_0_15px_hsl(var(--primary)/0.3)]"
                         transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 30,
+                          type: "tween",
+                          ease: "circOut",
+                          duration: 0.35,
                         }}
                       />
                     )}
@@ -115,12 +153,12 @@ const Navigation = () => {
           </nav>
 
           {/* Status badge */}
-          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 backdrop-blur-sm">
+          <div className="group flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 backdrop-blur-sm transition-all duration-300 hover:bg-primary/20 hover:border-primary/50 hover:shadow-[0_0_15px_hsl(var(--primary)/0.4)] cursor-pointer">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
             </span>
-            <span className="text-xs font-semibold text-primary tracking-wide">
+            <span className="text-xs font-semibold text-gradient tracking-wide">
               Open to work
             </span>
           </div>

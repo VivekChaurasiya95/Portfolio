@@ -1,8 +1,35 @@
-import { motion } from 'framer-motion';
+import React from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { User } from 'lucide-react';
 import profileImage from '@/assets/vivek-profile.jpeg';
 
 const AboutSection = () => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 20, stiffness: 100 };
+  const springX = useSpring(mouseX, springConfig);
+  const springY = useSpring(mouseY, springConfig);
+
+  const rotateX = useTransform(springY, [-0.5, 0.5], [15, -15]);
+  const rotateY = useTransform(springX, [-0.5, 0.5], [-15, 15]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const xPos = e.clientX - rect.left;
+    const yPos = e.clientY - rect.top;
+    
+    mouseX.set(xPos / width - 0.5);
+    mouseY.set(yPos / height - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   return (
     <section id="about" className="py-32 relative">
       <div className="container mx-auto px-6 lg:px-20">
@@ -54,21 +81,83 @@ const AboutSection = () => {
             </p>
 
             {/* Quick facts - Cuboid style */}
-            <div className="mt-10 grid grid-cols-2 gap-6">
-              <div className="relative">
-                <div className="absolute inset-0 bg-primary/30 rounded-xl transform translate-x-1.5 translate-y-1.5" />
-                <div className="relative glass-card rounded-xl p-5 border-2 border-primary/40 bg-gradient-to-br from-primary/10 to-transparent">
-                  <span className="text-3xl font-display font-bold text-primary">B.Tech</span>
-                  <p className="text-sm text-muted-foreground mt-1">CS & Design</p>
-                </div>
-              </div>
-              <div className="relative">
-                <div className="absolute inset-0 bg-secondary/30 rounded-xl transform translate-x-1.5 translate-y-1.5" />
-                <div className="relative glass-card rounded-xl p-5 border-2 border-secondary/40 bg-gradient-to-br from-secondary/10 to-transparent">
-                  <span className="text-3xl font-display font-bold text-secondary tracking-wide" style={{ fontVariantNumeric: 'tabular-nums' }}>2028</span>
-                  <p className="text-sm text-muted-foreground mt-1">Expected Graduation</p>
-                </div>
-              </div>
+            {/* Quick facts - Cuboid style */}
+            <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-5">
+              <motion.div 
+                className="relative group cursor-pointer h-full"
+                whileHover="hover"
+                initial="initial"
+              >
+                <motion.div 
+                  className="absolute inset-0 bg-primary/30 rounded-xl" 
+                  variants={{
+                    initial: { x: 4, y: 4 },
+                    hover: { x: 6, y: 6 }
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                />
+                <motion.div 
+                  className="relative h-full flex flex-col justify-center glass-card rounded-xl px-4 py-3 lg:px-5 lg:py-3.5 border-2 border-primary/40 bg-gradient-to-br from-primary/10 to-transparent"
+                  variants={{
+                    initial: { x: 0, y: 0 },
+                    hover: { x: -2, y: -2 }
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <span className="text-2xl lg:text-3xl font-display font-bold text-primary leading-none">B.Tech</span>
+                  <p className="text-xs lg:text-sm text-muted-foreground mt-1 transition-colors group-hover:text-foreground leading-tight">Computer Science & Design</p>
+                </motion.div>
+              </motion.div>
+              <motion.div 
+                className="relative group cursor-pointer h-full"
+                whileHover="hover"
+                initial="initial"
+              >
+                <motion.div 
+                  className="absolute inset-0 bg-secondary/30 rounded-xl" 
+                  variants={{
+                    initial: { x: 4, y: 4 },
+                    hover: { x: 6, y: 6 }
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                />
+                <motion.div 
+                  className="relative h-full flex flex-col justify-center glass-card rounded-xl px-4 py-3 lg:px-5 lg:py-3.5 border-2 border-secondary/40 bg-gradient-to-br from-secondary/10 to-transparent"
+                  variants={{
+                    initial: { x: 0, y: 0 },
+                    hover: { x: -2, y: -2 }
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <span className="text-2xl lg:text-3xl font-display font-bold text-secondary tracking-wide transition-colors leading-none" style={{ fontVariantNumeric: 'tabular-nums' }}>2024-2028</span>
+                  <p className="text-xs lg:text-sm text-muted-foreground mt-1 transition-colors group-hover:text-foreground leading-tight">Expected Graduation</p>
+                </motion.div>
+              </motion.div>
+              <motion.div 
+                className="relative group cursor-pointer col-span-2 sm:col-span-1 h-full"
+                whileHover="hover"
+                initial="initial"
+              >
+                <motion.div 
+                  className="absolute inset-0 bg-foreground/20 rounded-xl" 
+                  variants={{
+                    initial: { x: 4, y: 4 },
+                    hover: { x: 6, y: 6 }
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                />
+                <motion.div 
+                  className="relative h-full flex flex-col justify-center glass-card rounded-xl px-4 py-3 lg:px-5 lg:py-3.5 border-2 border-foreground/30 bg-gradient-to-br from-foreground/5 to-transparent"
+                  variants={{
+                    initial: { x: 0, y: 0 },
+                    hover: { x: -2, y: -2 }
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <span className="text-2xl lg:text-3xl font-display font-bold text-foreground tracking-wide transition-colors leading-none" style={{ fontVariantNumeric: 'tabular-nums' }}>8.38</span>
+                  <p className="text-xs lg:text-sm text-muted-foreground mt-1 transition-colors group-hover:text-foreground leading-tight">Current CGPA</p>
+                </motion.div>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -79,27 +168,48 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative flex justify-center lg:justify-end"
+            style={{ perspective: "1000px" }}
           >
-            <div className="relative">
+            <motion.div 
+              className="relative cursor-pointer"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{
+                rotateX,
+                rotateY,
+                transformStyle: "preserve-3d",
+              }}
+            >
               {/* Photo frame */}
-              <div className="relative w-72 md:w-80 aspect-[3/4] rounded-2xl overflow-hidden border-2 border-primary/30">
-                <img
-                  src={profileImage}
-                  alt="Vivek Chaurasiya"
-                  className="w-full h-full object-cover"
-                />
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-              </div>
+              <motion.div 
+                className="relative w-72 md:w-80 aspect-[3/4] rounded-2xl glass-card p-3 border-2 border-primary/40 bg-gradient-to-br from-primary/10 to-transparent shadow-2xl"
+                style={{ transform: "translateZ(30px)" }}
+              >
+                <div className="relative w-full h-full rounded-xl overflow-hidden">
+                  <img
+                    src={profileImage}
+                    alt="Vivek Chaurasiya"
+                    className="w-full h-full object-cover pointer-events-none"
+                  />
+                  {/* Overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
+                </div>
+              </motion.div>
 
               {/* Decorative element */}
-              <div className="absolute -bottom-4 -left-4 w-full h-full border-2 border-secondary/30 rounded-2xl -z-10" />
+              <motion.div 
+                className="absolute -bottom-4 -left-4 w-full h-full border-2 border-secondary/30 rounded-2xl -z-10" 
+                style={{ transform: "translateZ(-20px)" }}
+              />
 
               {/* Pronoun badge */}
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full bg-secondary/80 backdrop-blur-sm">
-                <span className="font-display text-lg italic text-secondary-foreground">He/Him</span>
-              </div>
-            </div>
+              <motion.div 
+                className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full bg-secondary/80 backdrop-blur-sm shadow-xl"
+                style={{ transform: "translateZ(60px) translateX(-50%)", left: "50%" }}
+              >
+                <span className="font-display text-lg italic text-secondary-foreground pointer-events-none">He/Him</span>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

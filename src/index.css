@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -40,15 +40,29 @@
     --radius: 0.5rem;
 
     /* Custom semantic tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(185 50% 45%) 0%, hsl(220 40% 60%) 50%, hsl(350 25% 55%) 100%);
+    --hero-gradient: linear-gradient(
+      135deg,
+      hsl(185 50% 45%) 0%,
+      hsl(220 40% 60%) 50%,
+      hsl(350 25% 55%) 100%
+    );
     --space-glow: 0 0 80px 20px hsla(185, 50%, 45%, 0.08);
     --star-color: 210 20% 85%;
-    --nebula-gradient: radial-gradient(ellipse at 30% 20%, hsla(185, 40%, 30%, 0.15) 0%, transparent 50%),
-                       radial-gradient(ellipse at 70% 80%, hsla(350, 30%, 30%, 0.1) 0%, transparent 50%);
+    --nebula-gradient:
+      radial-gradient(
+        ellipse at 30% 20%,
+        hsla(185, 40%, 30%, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 70% 80%,
+        hsla(350, 30%, 30%, 0.1) 0%,
+        transparent 50%
+      );
 
     /* Typography - Elegant Cursive + Modern Fonts */
-    --font-display: 'Cormorant Garamond', Georgia, serif;
-    --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-display: "Cormorant Garamond", Georgia, serif;
+    --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
 
     /* Shadows */
     --shadow-subtle: 0 4px 20px -4px hsla(220, 25%, 0%, 0.4);
@@ -80,7 +94,16 @@
     font-family: var(--font-body);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  .spline-watermark {
+    display: none !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
   }
 
@@ -99,7 +122,11 @@
   }
 
   .text-gradient-subtle {
-    background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--muted-foreground)) 100%);
+    background: linear-gradient(
+      135deg,
+      hsl(var(--foreground)) 0%,
+      hsl(var(--muted-foreground)) 100%
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -124,13 +151,23 @@
 
   /* Star field animation */
   .star {
-    @apply absolute rounded-full bg-foreground/60;
-    animation: twinkle 4s ease-in-out infinite;
+    @apply absolute rounded-full bg-foreground;
+    animation: twinkle 4s ease-in-out infinite alternate;
   }
 
   @keyframes twinkle {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.8; }
+    0%,
+    100% {
+      opacity: 0.1;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+      box-shadow:
+        0 0 10px 2px hsl(var(--primary) / 0.6),
+        0 0 4px 1px hsl(var(--foreground));
+    }
   }
 
   @keyframes shooting-star {
@@ -190,13 +227,17 @@
   }
 
   .shooting-star::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 80px;
     height: 1px;
-    background: linear-gradient(90deg, hsl(var(--foreground) / 0.6), transparent);
+    background: linear-gradient(
+      90deg,
+      hsl(var(--foreground) / 0.6),
+      transparent
+    );
     transform: rotate(-45deg) translateX(-80px);
   }
 
@@ -212,13 +253,18 @@
   }
 
   .shooting-star-enhanced::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     right: 100%;
     width: var(--length, 80px);
     height: 2px;
-    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.8), hsl(var(--foreground)));
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary) / 0.8),
+      hsl(var(--foreground))
+    );
     transform: translateY(-50%);
     border-radius: 2px;
   }
@@ -229,30 +275,41 @@
     height: 5px;
     background: hsl(var(--secondary));
     border-radius: 50%;
-    box-shadow: 0 0 10px 4px hsl(var(--secondary) / 0.5), 0 0 20px 8px hsl(var(--secondary) / 0.3);
+    box-shadow:
+      0 0 10px 4px hsl(var(--secondary) / 0.5),
+      0 0 20px 8px hsl(var(--secondary) / 0.3);
     animation: comet 4s ease-out infinite;
   }
 
   .comet::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     right: 100%;
     width: 120px;
     height: 3px;
-    background: linear-gradient(90deg, transparent, hsl(var(--secondary) / 0.6), hsl(var(--secondary)));
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--secondary) / 0.6),
+      hsl(var(--secondary))
+    );
     transform: translateY(-50%);
     border-radius: 3px;
   }
 
   .comet::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     right: 100%;
     width: 180px;
     height: 1px;
-    background: linear-gradient(90deg, transparent 50%, hsl(var(--secondary) / 0.3));
+    background: linear-gradient(
+      90deg,
+      transparent 50%,
+      hsl(var(--secondary) / 0.3)
+    );
     transform: translateY(-50%);
   }
 
@@ -324,7 +381,7 @@
   }
 
   .nav-link::after {
-    content: '';
+    content: "";
     @apply absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary;
     @apply transition-all duration-300;
   }
