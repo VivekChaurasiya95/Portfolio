@@ -677,10 +677,13 @@ const SkillBadge = ({
         scale: 1.05,
         transition: { duration: 0.2 },
       }}
-      className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-[#111318] border border-white/5 hover:border-white/10 hover:bg-[#1a1d24] transition-all cursor-default"
+      className="flex items-center gap-2.5 px-[18px] py-[9.5px] rounded-xl bg-[#111318] border border-white/5 hover:border-white/10 hover:bg-[#1a1d24] transition-all cursor-default"
     >
       {/* Icon container */}
-      <div className="flex items-center justify-center w-5 h-5">
+      <div
+        className="flex items-center justify-center w-5 h-5 shrink-0"
+        style={{ width: 22, height: 22, minWidth: 22, minHeight: 22 }}
+      >
         {IconComponent ? (
           <IconComponent className="w-full h-full object-contain drop-shadow-sm" />
         ) : (
@@ -689,7 +692,7 @@ const SkillBadge = ({
       </div>
 
       {/* Skill name */}
-      <span className="text-[13px] sm:text-sm font-semibold tracking-wide text-foreground/90 font-['Space_Grotesk'] leading-none pt-0.5">
+      <span className="text-[14px] sm:text-[15px] font-semibold tracking-wide text-foreground/90 font-['Space_Grotesk'] leading-none pt-0.5">
         {skill}
       </span>
     </motion.div>
@@ -725,7 +728,7 @@ const SkillsSection = () => {
             <span className="text-foreground">My Tech</span>{" "}
             <span className="text-gradient">Stack</span>
           </h2>
-          <p className="section-subheading max-w-2xl mx-auto">
+          <p className="section-subheading text-[1.06rem] md:text-[1.13rem] max-w-[46rem] mx-auto">
             A curated collection of technologies I've mastered.
             <br />
             <span className="text-primary font-medium">

@@ -3,11 +3,12 @@ import Navigation from "@/components/Navigation";
 import SocialSidebar from "@/components/SocialSidebar";
 import HeroSection from "@/components/HeroSection";
 import TechnologiesSection from "@/components/TechnologiesSection";
+import AboutSection from "@/components/AboutSection";
+import ExperienceSection from "@/components/ExperienceSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
-import JourneySection from "@/components/JourneySection";
-import AboutSection from "@/components/AboutSection";
 import CertificationsSection from "@/components/CertificationsSection";
+import JourneySection from "@/components/JourneySection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import SplineBackground from "@/components/SplineBackground";
@@ -35,10 +36,11 @@ const Index = () => {
         <div className="pointer-events-auto">
           <TechnologiesSection />
           <AboutSection />
+          <ExperienceSection />
           <ProjectsSection />
           <SkillsSection />
-          <JourneySection />
           <CertificationsSection />
+          <JourneySection />
           <ContactSection />
         </div>
       </main>

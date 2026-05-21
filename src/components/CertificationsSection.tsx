@@ -4,11 +4,13 @@ import { useState } from "react";
 import { SOCIAL_LINKS } from "@/data/siteLinks";
 
 const certifications = [
+  // Point all credentials to the LinkedIn Licenses & Certifications section.
+  // Individual cert deep-links can be added later if needed.
   {
     title: "Certificate of Participation - From Idea to App in 60 Minutes",
     issuer: "Product Space",
     period: "16 March, 2026",
-    credentialUrl: "https://example.com/certificate1",
+    credentialUrl: `${SOCIAL_LINKS.linkedin}/details/certifications/`,
     image: "/certificates/product-space.png",
     skills: ["No-Code Tools", "Rapid Prototyping"],
     description: "In Recognition of their participation for demonstrating exceptional commitment during the 'From Idea to App in 60 Minutes using No-Code Tools'."
@@ -17,7 +19,7 @@ const certifications = [
     title: "Certificate of Appreciation - Finalist",
     issuer: "HACKSAGON 2026 (ABV-IIITM Gwalior)",
     period: "3-5 April 2026",
-    credentialUrl: "https://example.com/certificate2",
+    credentialUrl: `${SOCIAL_LINKS.linkedin}/details/certifications/`,
     image: "/certificates/hacksagon.png",
     skills: ["Hackathon", "Innovation", "Technical Excellence"],
     description: "For successfully emerging as a Finalist among over 2100+ registered teams at HACKSAGON 2026 a National Level Software & Hardware Hackathon held from 3rd to 5th April 2026 at ABV-IIITM, Gwalior."
@@ -26,7 +28,7 @@ const certifications = [
     title: "Generative AI Unleashing",
     issuer: "Infosys Springboard",
     period: "27 April 2026",
-    credentialUrl: "https://verify.onwingspan.com",
+    credentialUrl: `${SOCIAL_LINKS.linkedin}/details/certifications/`,
     image: "/certificates/infosys-genai.png",
     skills: ["Generative AI", "AI Concepts"],
     description: "Successfully completing the Generative AI Unleashing course on April 27, 2026."
@@ -35,7 +37,7 @@ const certifications = [
     title: "Computer Vision 101",
     issuer: "Infosys Springboard",
     period: "25 April 2026",
-    credentialUrl: "https://verify.onwingspan.com",
+    credentialUrl: `${SOCIAL_LINKS.linkedin}/details/certifications/`,
     image: "/certificates/infosys-cv.png",
     skills: ["Computer Vision", "AI Applications"],
     description: "Successfully completing the Computer Vision 101 course on April 25, 2026."
@@ -44,7 +46,7 @@ const certifications = [
     title: "Deep Learning for Developers",
     issuer: "Infosys Springboard",
     period: "27 April 2026",
-    credentialUrl: "https://verify.onwingspan.com",
+    credentialUrl: `${SOCIAL_LINKS.linkedin}/details/certifications/`,
     image: "/certificates/infosys-dl.png",
     skills: ["Deep Learning", "Neural Networks"],
     description: "Successfully completing the Deep Learning for Developers course on April 27, 2026."
@@ -53,7 +55,7 @@ const certifications = [
     title: "Introduction to Data Science",
     issuer: "Infosys Springboard",
     period: "13 April 2026",
-    credentialUrl: "https://verify.onwingspan.com",
+    credentialUrl: `${SOCIAL_LINKS.linkedin}/details/certifications/`,
     image: "/certificates/infosys-data-science.jpg",
     skills: ["Data Science", "Analytics"],
     description: "Successfully completed the Introduction to Data Science course on April 13, 2026."
@@ -62,7 +64,7 @@ const certifications = [
     title: "Certificate of Participation - DevSprint",
     issuer: "Google Developer Groups on Campus (MITS)",
     period: "8 Dec 2025 - 24 Jan 2026",
-    credentialUrl: "#",
+    credentialUrl: `${SOCIAL_LINKS.linkedin}/details/certifications/`,
     image: "/certificates/devsprint.jpg",
     skills: ["AI Prototyping", "Hackathon", "Collaboration"],
     description: "Successfully participated and submitted a prototype with team 'Antevenio' at 'DevSprint: Leveraging the Power of AI', a national-level hackathon conducted by Google Developer Groups on Campus - MITS Gwalior."
@@ -71,7 +73,7 @@ const certifications = [
     title: "Introduction to Artificial Intelligence",
     issuer: "Infosys Springboard",
     period: "23 April 2026",
-    credentialUrl: "https://verify.onwingspan.com",
+    credentialUrl: `${SOCIAL_LINKS.linkedin}/details/certifications/`,
     image: "/certificates/infosys-ai.jpg",
     skills: ["Artificial Intelligence", "AI Concepts"],
     description: "Successfully completed the Introduction to Artificial Intelligence course on April 23, 2026."

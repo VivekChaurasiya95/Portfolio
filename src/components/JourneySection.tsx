@@ -176,7 +176,7 @@ const JourneySection = () => {
   const spacecraftProgress = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
   return (
-    <section id="journey" className="py-32 relative overflow-hidden" ref={containerRef}>
+    <section id="journey" className="py-32 relative overflow-hidden" style={{ position: 'relative' }} ref={containerRef}>
       <div className="container mx-auto px-6 lg:px-20">
         {/* Header */}
         <motion.div
@@ -242,7 +242,7 @@ const JourneySection = () => {
             const Icon = milestone.icon;
             return (
               <motion.div
-                key={milestone.year}
+                key={`${milestone.year}-${index}`}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-100px' }}

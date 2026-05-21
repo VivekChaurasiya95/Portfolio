@@ -108,7 +108,11 @@ const Footer = () => {
           className="flex flex-col items-center justify-center gap-3 text-center"
         >
           <div className="flex items-center gap-2 font-display text-lg tracking-wide">
-            <span className="text-primary font-bold text-xl">&lt;/&gt;</span>
+            <img
+              src="/favicon.jpg"
+              alt="Vivek portfolio logo"
+              className="w-6 h-6 rounded-sm object-cover"
+            />
             <span className="text-muted-foreground">Developed by</span>
             <span className="font-semibold text-foreground italic">
               Vivek Chaurasiya
