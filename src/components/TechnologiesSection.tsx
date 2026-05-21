@@ -110,6 +110,7 @@ const TechnologiesSection = () => {
                 <img
                   src={tech.icon}
                   alt={tech.name}
+                  loading="lazy"
                   className="max-w-full max-h-full object-contain"
                 />
               </div>

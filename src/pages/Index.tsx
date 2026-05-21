@@ -1,4 +1,3 @@
-import StarField from "@/components/StarField";
 import Navigation from "@/components/Navigation";
 import SocialSidebar from "@/components/SocialSidebar";
 import HeroSection from "@/components/HeroSection";
@@ -11,17 +10,22 @@ import CertificationsSection from "@/components/CertificationsSection";
 import JourneySection from "@/components/JourneySection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import SplineBackground from "@/components/SplineBackground";
+import { lazy, Suspense } from "react";
+
+const SplineBackground = lazy(() => import("@/components/SplineBackground"));
+const StarField = lazy(() => import("@/components/StarField"));
 
 const Index = () => {
   return (
     <div className="relative min-h-screen bg-transparent text-foreground">
       {/* Background Star Field and Spline Scene tied to the entire page */}
       <div className="fixed inset-0 z-0 bg-background">
-        <SplineBackground />
-        <div className="absolute inset-0 pointer-events-none mix-blend-screen z-10">
-          <StarField />
-        </div>
+        <Suspense fallback={<div className="w-full h-full bg-background" />}>
+          <SplineBackground />
+          <div className="absolute inset-0 pointer-events-none mix-blend-screen z-10">
+            <StarField />
+          </div>
+        </Suspense>
       </div>
 
       {/* Navigation */}

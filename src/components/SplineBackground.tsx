@@ -7,7 +7,7 @@ export default function SplineBackground() {
       {/* Wrapper to push the Spline canvas down to cut off the watermark */}
       <div className="absolute inset-x-0 top-0 bottom-[-80px] md:translate-x-[0%] lg:translate-x-[0%] scale-[1.2] md:scale-[1.4] lg:scale-[1.5] transition-transform duration-700">
         <Spline
-          scene="https://prod.spline.design/9f3RAIU6aeChpYAP/scene.splinecode"
+          scene="/scene.splinecode"
           className="w-full h-full cursor-none"
         />
       </div>

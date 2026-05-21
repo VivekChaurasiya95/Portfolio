@@ -138,6 +138,7 @@ const CertificationsSection = () => {
                   <img 
                     src={cert.image} 
                     alt={cert.title} 
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = 'https://via.placeholder.com/800x600?text=Image+Missing';
@@ -206,6 +207,7 @@ const CertificationsSection = () => {
             >
               <button 
                 onClick={() => setSelectedCert(null)}
+                aria-label="Close modal"
                 className="absolute top-4 right-4 z-10 p-2 rounded-full bg-background/50 hover:bg-background text-foreground backdrop-blur-md transition-colors border border-border"
               >
                 <X className="w-5 h-5" />

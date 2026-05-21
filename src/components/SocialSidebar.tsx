@@ -46,6 +46,9 @@ const SocialSidebar = () => {
             <img
               src={link.icon}
               alt={link.label}
+              width="32"
+              height="32"
+              loading="lazy"
               className={`w-8 h-8 rounded-full object-cover ${link.label === "GitHub" ? "invert brightness-0 invert" : ""}`}
               style={
                 link.label === "GitHub" ? { filter: "invert(1)" } : undefined

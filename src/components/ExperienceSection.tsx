@@ -270,6 +270,7 @@ const ExperienceSection = () => {
             {/* Close Button */}
             <button
               onClick={() => setSelectedExperience(null)}
+              aria-label="Close modal"
               className="absolute right-4 top-4 md:right-6 md:top-6 z-50 rounded-full bg-background/80 p-2.5 text-muted-foreground hover:text-foreground hover:bg-background transition-all backdrop-blur-md border border-border/50 shadow-lg"
             >
               <X className="w-5 h-5" />
@@ -300,6 +301,7 @@ const ExperienceSection = () => {
                         e.stopPropagation();
                         setSelectedProofIndex((prev) => (prev === 0 ? selectedProofs.length - 1 : prev - 1));
                       }}
+                      aria-label="Previous image"
                       className="absolute left-2 md:left-6 z-20 p-2 rounded-full bg-background/60 backdrop-blur-md text-foreground hover:bg-primary hover:text-primary-foreground transition-colors border border-border/50 shadow-lg"
                     >
                       <ChevronLeft className="w-6 h-6" />
@@ -309,6 +311,7 @@ const ExperienceSection = () => {
                         e.stopPropagation();
                         setSelectedProofIndex((prev) => (prev + 1) % selectedProofs.length);
                       }}
+                      aria-label="Next image"
                       className="absolute right-2 md:right-6 z-20 p-2 rounded-full bg-background/60 backdrop-blur-md text-foreground hover:bg-primary hover:text-primary-foreground transition-colors border border-border/50 shadow-lg"
                     >
                       <ChevronRight className="w-6 h-6" />
@@ -335,6 +338,7 @@ const ExperienceSection = () => {
                     <button
                       key={idx}
                       onClick={() => setSelectedProofIndex(idx)}
+                      aria-label={`View ${proof.title}`}
                       className={`relative shrink-0 h-full aspect-[4/3] rounded-xl overflow-hidden transition-all duration-300 border ${
                         selectedProofIndex === idx
                           ? 'border-primary shadow-[0_0_15px_rgba(var(--primary),0.3)] scale-100 opacity-100'
@@ -366,6 +370,7 @@ const ExperienceSection = () => {
                     <img
                       src={selectedExperience.logo[0]}
                       alt="logo"
+                      loading="lazy"
                       className="w-full h-full object-contain"
                       onError={(e) => { (e.currentTarget as HTMLImageElement).src = defaultProofPreview; }}
                     />
@@ -537,6 +542,7 @@ const ExperienceSection = () => {
                             <img
                               src={exp.logo[0]}
                               alt={`${exp.company} logo`}
+                              loading="lazy"
                               className="w-full h-full object-cover object-center scale-[1.06]"
                               onError={(e) => {
                                 const target = e.currentTarget;
@@ -641,6 +647,7 @@ const ExperienceSection = () => {
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-8 z-20">
             <button
               onClick={prevSlide}
+              aria-label="Previous experience"
               className="w-14 h-14 rounded-full glass-card flex items-center justify-center hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)] group"
             >
               <ChevronLeft className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
@@ -650,12 +657,14 @@ const ExperienceSection = () => {
                 <button
                   key={idx}
                   onClick={() => setActiveIndex(idx)}
+                  aria-label={`Go to experience ${idx + 1}`}
                   className={`w-3 h-3 rounded-full transition-all duration-500 ${activeIndex === idx ? 'bg-primary scale-125 shadow-[0_0_10px_rgba(var(--primary),0.8)]' : 'bg-white/20 hover:bg-white/40'}`}
                 />
               ))}
             </div>
             <button
               onClick={nextSlide}
+              aria-label="Next experience"
               className="w-14 h-14 rounded-full glass-card flex items-center justify-center hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)] group"
             >
               <ChevronRight className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />

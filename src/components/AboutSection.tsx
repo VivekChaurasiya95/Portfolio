@@ -189,6 +189,7 @@ const AboutSection = () => {
                   <img
                     src={profileImage}
                     alt="Vivek Chaurasiya"
+                    loading="lazy"
                     className="w-full h-full object-cover pointer-events-none"
                   />
                   {/* Overlay gradient */}

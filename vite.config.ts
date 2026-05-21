@@ -2,6 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
@@ -21,7 +23,16 @@ export default defineConfig(({ mode }) => ({
     // Work around malformed source map in three-stdlib package during Vite dep optimization.
     exclude: ["three-stdlib"],
   },
-  plugins: [react()],
+  plugins: [
+    react(),
+    ViteImageOptimizer({
+      png: { quality: 80 },
+      jpeg: { quality: 80 },
+      jpg: { quality: 80 },
+      webp: { lossless: true },
+      avif: { lossless: true },
+    })
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
