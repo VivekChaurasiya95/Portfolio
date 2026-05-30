@@ -1,79 +1,113 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
-import { Rocket, GraduationCap, Code, Brain, Briefcase, Sparkles } from 'lucide-react';
+import { useRef } from "react";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import {
+  Rocket,
+  GraduationCap,
+  Code,
+  Brain,
+  Briefcase,
+  Sparkles,
+} from "lucide-react";
 
 // Milestones in chronological order (will be displayed reversed - current at top)
 const milestones = [
   {
-    year: 'May 2026',
-    title: 'GirlScript Summer of Code',
-    description: 'Selected as an Open Source and AI/Agents Contributor for GSSoC starting mid-May.',
-    tags: ['Open Source', 'AI', 'Agents'],
-    type: 'Current',
-    icon: Sparkles,
+    year: "May 2026",
+    title: "Google Student Ambassador",
+    description:
+      "Representing Gemini and Google on campus, building a community of student leaders and innovators.",
+    tags: ["Leadership", "Gemini", "Community", "Campus Engagement"],
+    type: "Current",
+    icon: Rocket,
   },
   {
-    year: 'Apr 2026',
-    title: 'Nexus Spring of Code',
-    description: 'Active contributor in the Nexus Spring of Code open source program.',
-    tags: ['Open Source', 'Development'],
-    type: 'Current',
-    icon: Code,
-  },
-  {
-    year: 'Apr 2026',
-    title: 'McKinsey Forward Program',
-    description: 'Enrolled in the McKinsey Forward Program to develop advanced business, leadership, and professional skills.',
-    tags: ['Leadership', 'Professional Skills'],
-    type: 'Current',
-    icon: Brain,
-  },
-  {
-    year: 'Feb 2026',
-    title: 'Software Developer Intern',
-    description: 'Working at ByteEdu as a Software Developer Intern (Feb - June 2026).',
-    tags: ['Software Engineering', 'Internship'],
-    type: 'Current',
+    year: "May 2026",
+    title: "Infosys Virtual Intern",
+    description:
+      "Shortlisted for the Infosys Springboard Virtual Internship 7.0 focusing on software engineering skills.",
+    tags: ["Artificial Intelligence", "Software Engineering", "Internship"],
+    type: "Current",
     icon: Briefcase,
   },
   {
-    year: '2026',
-    title: 'Data Science & Web Development',
-    description: 'Expanding into data science with Python libraries and advancing JavaScript skills for modern web applications.',
-    tags: ['JavaScript', 'NumPy', 'Pandas', 'Matplotlib', 'Seaborn'],
-    type: 'Continuing',
+    year: "May 2026",
+    title: "GirlScript Summer of Code",
+    description:
+      "Selected as an Open Source and AI/Agents Contributor for GSSoC starting mid-May.",
+    tags: ["Open Source", "AI", "Agents"],
+    type: "Current",
     icon: Sparkles,
   },
   {
-    year: '2025',
-    title: 'Full-Stack & AI Projects',
-    description: 'Built HSER – Human Skill Extinction Radar and Student Saarthi – AI Based Scholarship Portal. Earned certifications from IBM, Google Cloud, and Udemy.',
-    tags: ['React', 'FastAPI', 'Flask', 'OpenAI'],
-    type: 'Current',
-    icon: Sparkles,
+    year: "Apr 2026",
+    title: "Nexus Spring of Code",
+    description:
+      "Active contributor in the Nexus Spring of Code open source program.",
+    tags: ["Open Source", "Development"],
+    type: "Current",
+    icon: Code,
   },
   {
-    year: '2024',
-    title: 'B.Tech Begins at MITS-DU',
-    description: 'Started B.Tech in Computer Science and Design at Madhav Institute of Technology and Science (Deemed University), Gwalior.',
-    tags: ['DSA', 'OOPS', 'System Design', 'DBMS', 'OS'],
-    type: 'Education',
-    icon: GraduationCap,
-  },
-  {
-    year: '2023',
-    title: 'Deep Dive into Programming',
-    description: 'Strengthened problem-solving skills and started learning core programming languages. Explored fundamentals of software development.',
-    tags: ['Python', 'C'],
-    type: 'Achievement',
+    year: "Apr 2026",
+    title: "McKinsey Forward Program",
+    description:
+      "Enrolled in the McKinsey Forward Program to develop advanced business, leadership, and professional skills.",
+    tags: ["Leadership", "Professional Skills"],
+    type: "Current",
     icon: Brain,
   },
   {
-    year: '2022',
-    title: 'The Beginning',
-    description: 'Started coding journey with web fundamentals. Built simple static websites and discovered the passion for software development.',
-    tags: ['HTML', 'CSS'],
-    type: 'Education',
+    year: "Feb 2026",
+    title: "Software Developer Intern",
+    description:
+      "Worked at ByteEdu as a Software Developer Intern (Feb - May 2026).",
+    tags: ["Software Engineering", "Internship"],
+    type: "Completed",
+    icon: Briefcase,
+  },
+  {
+    year: "2026",
+    title: "Data Science & Web Development",
+    description:
+      "Expanding into data science with Python libraries and advancing JavaScript skills for modern web applications.",
+    tags: ["JavaScript", "NumPy", "Pandas", "Matplotlib", "Seaborn"],
+    type: "Continuing",
+    icon: Sparkles,
+  },
+  {
+    year: "2025",
+    title: "Full-Stack & AI Projects",
+    description:
+      "Built HSER – Human Skill Extinction Radar and Student Saarthi – AI Based Scholarship Portal. Earned certifications from IBM, Google Cloud, and Udemy.",
+    tags: ["React", "FastAPI", "Flask", "OpenAI"],
+    type: "Current",
+    icon: Sparkles,
+  },
+  {
+    year: "2024",
+    title: "B.Tech Begins at MITS-DU",
+    description:
+      "Started B.Tech in Computer Science and Design at Madhav Institute of Technology and Science (Deemed University), Gwalior.",
+    tags: ["DSA", "OOPS", "System Design", "DBMS", "OS"],
+    type: "Education",
+    icon: GraduationCap,
+  },
+  {
+    year: "2023",
+    title: "Deep Dive into Programming",
+    description:
+      "Strengthened problem-solving skills and started learning core programming languages. Explored fundamentals of software development.",
+    tags: ["Python", "C"],
+    type: "Achievement",
+    icon: Brain,
+  },
+  {
+    year: "2022",
+    title: "The Beginning",
+    description:
+      "Started coding journey with web fundamentals. Built simple static websites and discovered the passion for software development.",
+    tags: ["HTML", "CSS"],
+    type: "Education",
     icon: Code,
   },
 ];
@@ -81,64 +115,64 @@ const milestones = [
 // Professional spacecraft component
 const Spacecraft = ({ progress }: { progress: MotionValue<number> }) => {
   const yPercent = useTransform(progress, [0, 1], [0, 100]);
-  
+
   return (
     <motion.div
       className="absolute left-1/2 -translate-x-1/2 z-20 pointer-events-none"
-      style={{ 
+      style={{
         top: useTransform(yPercent, (v) => `calc(${v}% - 28px)`),
       }}
     >
       {/* Outer glow */}
-      <motion.div 
+      <motion.div
         className="absolute -inset-8 rounded-full bg-primary/20 blur-2xl"
-        animate={{ 
+        animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.5, 0.3],
         }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       />
-      
+
       {/* Main spacecraft */}
-      <motion.div 
+      <motion.div
         className="relative"
-        animate={{ 
+        animate={{
           y: [0, -4, 0, 4, 0],
         }}
-        transition={{ 
-          duration: 2.5, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
+        transition={{
+          duration: 2.5,
+          repeat: Infinity,
+          ease: "easeInOut",
         }}
       >
         {/* Spacecraft body - sleek diamond shape */}
         <div className="relative w-12 h-12 flex items-center justify-center">
           {/* Diamond shape container */}
           <div className="absolute inset-0 rotate-45 rounded-lg bg-gradient-to-br from-primary via-primary/80 to-secondary shadow-lg border border-primary/50" />
-          
+
           {/* Inner glow */}
           <div className="absolute inset-1 rotate-45 rounded-md bg-gradient-to-br from-primary/60 to-transparent" />
-          
+
           {/* Center icon */}
           <Rocket className="w-5 h-5 text-primary-foreground relative z-10" />
-          
+
           {/* Trailing particles - going downward */}
-          <motion.div 
+          <motion.div
             className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-1"
-            animate={{ 
+            animate={{
               scaleY: [1, 1.5, 1],
               opacity: [0.6, 0.9, 0.6],
             }}
-            transition={{ 
-              duration: 0.3, 
+            transition={{
+              duration: 0.3,
               repeat: Infinity,
-              ease: "easeInOut" 
+              ease: "easeInOut",
             }}
           >
             <div className="w-1 h-8 bg-gradient-to-b from-primary/80 to-transparent rounded-full" />
           </motion.div>
         </div>
-        
+
         {/* Energy particles */}
         {[...Array(4)].map((_, i) => (
           <motion.div
@@ -169,14 +203,19 @@ const JourneySection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   // Progress for spacecraft - constrained to timeline area
   const spacecraftProgress = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
   return (
-    <section id="journey" className="py-32 relative overflow-hidden" style={{ position: 'relative' }} ref={containerRef}>
+    <section
+      id="journey"
+      className="py-32 relative overflow-hidden"
+      style={{ position: "relative" }}
+      ref={containerRef}
+    >
       <div className="container mx-auto px-6 lg:px-20">
         {/* Header */}
         <motion.div
@@ -194,15 +233,20 @@ const JourneySection = () => {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 border border-primary/30 mb-6"
           >
             <Rocket className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-primary uppercase tracking-widest">My Journey</span>
+            <span className="text-sm font-semibold text-primary uppercase tracking-widest">
+              My Journey
+            </span>
           </motion.div>
-          
+
           <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
-            <span className="text-foreground">Development</span>{' '}
+            <span className="text-foreground">Development</span>{" "}
             <span className="text-gradient">Timeline</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A chronological voyage through my coding odyssey — <span className="text-primary font-medium">B.Tech Computer Science & Design (2024-2028)</span>
+            A chronological voyage through my coding odyssey —{" "}
+            <span className="text-primary font-medium">
+              B.Tech Computer Science & Design (2024-2028)
+            </span>
           </p>
         </motion.div>
 
@@ -218,18 +262,18 @@ const JourneySection = () => {
             <div className="absolute -inset-2 bg-gradient-to-b from-primary/30 via-primary/50 to-primary/20 rounded-full blur-md" />
             {/* Intense glow layer */}
             <div className="absolute -inset-4 bg-gradient-to-b from-primary/20 via-primary/30 to-transparent rounded-full blur-xl" />
-            
+
             {/* Animated pulse effect */}
-            <motion.div 
+            <motion.div
               className="absolute -inset-6 bg-gradient-to-b from-primary/30 via-primary/40 to-primary/20 rounded-full blur-2xl"
-              animate={{ 
+              animate={{
                 opacity: [0.4, 0.7, 0.4],
                 scale: [1, 1.15, 1],
               }}
-              transition={{ 
-                duration: 3, 
+              transition={{
+                duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut" 
+                ease: "easeInOut",
               }}
             />
           </div>
@@ -245,23 +289,30 @@ const JourneySection = () => {
                 key={`${milestone.year}-${index}`}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className={`relative flex items-center mb-20 last:mb-0 ${
-                  index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
+                  index % 2 === 0 ? "flex-row" : "flex-row-reverse"
                 }`}
               >
                 {/* Content card */}
-                <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-16' : 'text-left pl-16'}`}>
+                <div
+                  className={`w-5/12 ${index % 2 === 0 ? "text-right pr-16" : "text-left pl-16"}`}
+                >
                   <motion.div
-                    whileHover={{ scale: 1.02, boxShadow: '0 20px 60px -20px hsl(var(--primary) / 0.4)' }}
+                    whileHover={{
+                      scale: 1.02,
+                      boxShadow: "0 20px 60px -20px hsl(var(--primary) / 0.4)",
+                    }}
                     className="glass-card rounded-xl p-6 inline-block border-primary/30 hover:border-primary/50 transition-all duration-300"
                   >
                     {/* Year badge - cuboid style */}
-                    <div className={`flex items-center gap-2 mb-3 ${index % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
+                    <div
+                      className={`flex items-center gap-2 mb-3 ${index % 2 === 0 ? "justify-end" : "justify-start"}`}
+                    >
                       <div className="relative">
                         <div className="absolute inset-0 bg-primary/30 rounded-lg transform translate-x-1 translate-y-1" />
-                        <motion.span 
+                        <motion.span
                           className="relative block px-4 py-1 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-bold text-2xl rounded-lg shadow-lg"
                           whileHover={{ scale: 1.05 }}
                         >
@@ -271,11 +322,16 @@ const JourneySection = () => {
                     </div>
 
                     {/* Type badge */}
-                    <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs uppercase tracking-wider font-semibold ${
-                      milestone.type === 'Education' ? 'bg-secondary/20 text-secondary border border-secondary/30' : 
-                      (milestone.type === 'Current' || milestone.type === 'Continuing') ? 'bg-primary/20 text-primary border border-primary/30' : 
-                      'bg-accent/50 text-accent-foreground border border-accent-foreground/20'
-                    }`}>
+                    <span
+                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs uppercase tracking-wider font-semibold ${
+                        milestone.type === "Education"
+                          ? "bg-secondary/20 text-secondary border border-secondary/30"
+                          : milestone.type === "Current" ||
+                              milestone.type === "Continuing"
+                            ? "bg-primary/20 text-primary border border-primary/30"
+                            : "bg-accent/50 text-accent-foreground border border-accent-foreground/20"
+                      }`}
+                    >
                       <Icon className="w-3 h-3" />
                       {milestone.type}
                     </span>
@@ -291,12 +347,17 @@ const JourneySection = () => {
                     </p>
 
                     {/* Tags */}
-                    <div className={`flex flex-wrap gap-2 ${index % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
+                    <div
+                      className={`flex flex-wrap gap-2 ${index % 2 === 0 ? "justify-end" : "justify-start"}`}
+                    >
                       {milestone.tags.map((tag) => (
-                        <motion.span 
-                          key={tag} 
+                        <motion.span
+                          key={tag}
                           className="skill-badge text-xs font-medium"
-                          whileHover={{ scale: 1.05, borderColor: 'hsl(var(--primary))' }}
+                          whileHover={{
+                            scale: 1.05,
+                            borderColor: "hsl(var(--primary))",
+                          }}
                         >
                           {tag}
                         </motion.span>
@@ -310,19 +371,32 @@ const JourneySection = () => {
                   initial={{ scaleX: 0, opacity: 0 }}
                   whileInView={{ scaleX: 1, opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 + 0.3, ease: "easeOut" }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.1 + 0.3,
+                    ease: "easeOut",
+                  }}
                   className={`absolute top-1/2 -translate-y-1/2 h-[2px] z-0 ${
-                    index % 2 === 0 
-                      ? 'right-1/2 origin-right bg-gradient-to-l from-primary via-primary/50 to-transparent w-[calc(8.333333%+4rem)]' 
-                      : 'left-1/2 origin-left bg-gradient-to-r from-primary via-primary/50 to-transparent w-[calc(8.333333%+4rem)]'
+                    index % 2 === 0
+                      ? "right-1/2 origin-right bg-gradient-to-l from-primary via-primary/50 to-transparent w-[calc(8.333333%+4rem)]"
+                      : "left-1/2 origin-left bg-gradient-to-r from-primary via-primary/50 to-transparent w-[calc(8.333333%+4rem)]"
                   }`}
                 >
                   <div className="absolute inset-0 bg-primary blur-[2px] animate-pulse opacity-60" />
                   {/* Glowing dot moving along the line */}
-                  <motion.div 
+                  <motion.div
                     className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_2px_hsl(var(--primary))]"
-                    animate={index % 2 === 0 ? { left: ["100%", "0%"] } : { left: ["0%", "100%"] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: index * 0.1 }}
+                    animate={
+                      index % 2 === 0
+                        ? { left: ["100%", "0%"] }
+                        : { left: ["0%", "100%"] }
+                    }
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "linear",
+                      delay: index * 0.1,
+                    }}
                   />
                 </motion.div>
 
@@ -339,7 +413,7 @@ const JourneySection = () => {
                     <div className="absolute -inset-6 rounded-full bg-primary/20 blur-xl animate-pulse" />
                     <div className="absolute -inset-4 rounded-full bg-primary/30 blur-lg" />
                     <div className="absolute -inset-2 rounded-full bg-primary/40 blur-md" />
-                    
+
                     {/* Main connector - cuboid style */}
                     <div className="relative">
                       <div className="absolute inset-0 bg-primary/50 rounded-lg transform translate-x-0.5 translate-y-0.5" />

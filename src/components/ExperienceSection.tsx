@@ -154,12 +154,13 @@ const experiences = [
       {
         title: "Shortlisted Email",
         type: "Offer Letter",
-        image: "",
+        image: "/experience-proofs/springboard.png",
         description:
           "Official selection email from Infosys Springboard for Virtual Internship 7.0.",
       },
     ],
     logo: resolveLogoCandidates("infosys"),
+    logoStyle: "object-contain object-center p-2",
     icon: Terminal,
     color: "from-blue-600/80 to-indigo-500/80",
     glow: "shadow-[0_0_50px_-12px_rgba(37,99,235,0.6)]",
@@ -528,7 +529,7 @@ const ExperienceSection = () => {
                       loading="lazy"
                       width={64}
                       height={64}
-                      className="w-full h-full object-contain"
+                      className={"w-full h-full object-contain "}
                       onError={(e) => {
                         (e.currentTarget as HTMLImageElement).src =
                           defaultProofPreview;
