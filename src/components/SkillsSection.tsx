@@ -4,35 +4,35 @@ import { Code2 } from "lucide-react";
 // Official tech logo SVG components
 const TechIcons: Record<string, React.FC<{ className?: string }>> = {
   Python: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
       className={className}
       alt="Python"
     />
   ),
   JavaScript: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
       className={className}
       alt="JavaScript"
     />
   ),
   C: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg"
       className={className}
       alt="C"
     />
   ),
   "C++": ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg"
       className={className}
       alt="C++"
     />
   ),
   TypeScript: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg"
       className={className}
       alt="TypeScript"
@@ -73,42 +73,42 @@ const TechIcons: Record<string, React.FC<{ className?: string }>> = {
     </svg>
   ),
   HTML: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
       className={className}
       alt="HTML"
     />
   ),
   CSS: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
       className={className}
       alt="CSS"
     />
   ),
   React: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
       className={className}
       alt="React"
     />
   ),
   "Next.Js": ({ className }) => (
-    <img
-      src="https://cdn.simpleicons.org/nextdotjs/white"
+    <img width={40} height={40} loading="lazy"
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg"
       className={className}
       alt="Next.js"
     />
   ),
   "Tailwind Css": ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"
       className={className}
       alt="Tailwind CSS"
     />
   ),
   "Mermaid.Js": ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.simpleicons.org/mermaid/FF3670"
       className={className}
       alt="Mermaid.Js"
@@ -128,39 +128,37 @@ const TechIcons: Record<string, React.FC<{ className?: string }>> = {
     </svg>
   ),
   "Three.js": ({ className }) => (
-    <img
-      src="https://cdn.simpleicons.org/three.js/white"
+    <img width={40} height={40} loading="lazy"
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/threejs/threejs-original.svg"
       className={className}
       alt="Three.js"
     />
   ),
   "Framer Motion": ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.simpleicons.org/framer/0055FF"
       className={className}
       alt="Framer Motion"
     />
   ),
   Figma: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg"
       className={className}
       alt="Figma"
     />
   ),
   Canva: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/canva/canva-original.svg"
       className={className}
       alt="Canva"
     />
   ),
   Shadcn: ({ className }) => (
-    <img
-      src="https://cdn.simpleicons.org/shadcnui/white"
-      className={className}
-      alt="Shadcn"
-    />
+    <svg className={className} viewBox="0 0 256 256" fill="none">
+      <path d="M208 128l-80 80M192 40L40 192" stroke="currentColor" strokeWidth="32" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   ),
   Spline: ({ className }) => (
     <svg className={className} viewBox="0 0 100 100" fill="none">
@@ -178,133 +176,132 @@ const TechIcons: Record<string, React.FC<{ className?: string }>> = {
     </svg>
   ),
   "Node.Js": ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"
       className={className}
       alt="Node.js"
     />
   ),
   "Express.Js": ({ className }) => (
-    <img
-      src="https://cdn.simpleicons.org/express/white"
+    <img width={40} height={40} loading="lazy"
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg"
       className={className}
       alt="Express.js"
     />
   ),
   Flask: ({ className }) => (
-    <img
-      src="https://cdn.simpleicons.org/flask/white"
+    <img width={40} height={40} loading="lazy"
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg"
       className={className}
       alt="Flask"
     />
   ),
   MySQL: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"
       className={className}
       alt="MySQL"
     />
   ),
   MongoDB: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"
       className={className}
       alt="MongoDB"
     />
   ),
   PostgreSQL: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"
       className={className}
       alt="PostgreSQL"
     />
   ),
   SupaBase: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg"
       className={className}
       alt="Supabase"
     />
   ),
   Git: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"
       className={className}
       alt="Git"
     />
   ),
   Github: ({ className }) => (
-    <img
-      src="https://cdn.simpleicons.org/github/white"
+    <img width={40} height={40} loading="lazy"
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
       className={className}
       alt="GitHub"
     />
   ),
   Firebase: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg"
       className={className}
       alt="Firebase"
     />
   ),
   Vercel: ({ className }) => (
-    <img
-      src="https://cdn.simpleicons.org/vercel/white"
+    <img width={40} height={40} loading="lazy"
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg"
       className={className}
       alt="Vercel"
     />
   ),
   Netlify: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/netlify/netlify-original.svg"
       className={className}
       alt="Netlify"
     />
   ),
   Render: ({ className }) => (
-    <img
-      src="https://cdn.simpleicons.org/render/white"
-      className={className}
-      alt="Render"
-    />
+    <svg className={className} viewBox="0 0 100 100" fill="none">
+      <rect width="100" height="100" rx="20" fill="#000" />
+      <path d="M40 30h20a10 10 0 010 20H40V30zM40 50h10l10 20H40V50z" fill="#fff" />
+    </svg>
   ),
   Numpy: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg"
       className={className}
       alt="NumPy"
     />
   ),
   Pandas: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg"
       className={className}
       alt="Pandas"
     />
   ),
   MatplotLib: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg"
       className={className}
       alt="Matplotlib"
     />
   ),
   Seaborn: ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://seaborn.pydata.org/_static/logo-mark-lightbg.svg"
       className={className}
       alt="Seaborn"
     />
   ),
   "Scikit-Learn": ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg"
       className={className}
       alt="Scikit-Learn"
     />
   ),
   "Google Colab": ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.simpleicons.org/googlecolab/F9AB00"
       className={className}
       alt="Google Colab"
@@ -507,7 +504,7 @@ const TechIcons: Record<string, React.FC<{ className?: string }>> = {
     </svg>
   ),
   "Gemini AI": ({ className }) => (
-    <img src="/gemini.png" className={className} alt="Gemini AI" />
+    <img width={40} height={40} loading="lazy" src="/gemini.png" className={className} alt="Gemini AI" />
   ),
   Codex: ({ className }) => (
     <svg className={className} viewBox="0 0 100 100" fill="none">
@@ -539,30 +536,30 @@ const TechIcons: Record<string, React.FC<{ className?: string }>> = {
     </svg>
   ),
   "Claude AI": ({ className }) => (
-    <img src="/claude.png" className={className} alt="Claude AI" />
+    <img width={40} height={40} loading="lazy" src="/claude.png" className={className} alt="Claude AI" />
   ),
   ChatGpt: ({ className }) => (
-    <img src="/chatgpt.png" className={className} alt="ChatGPT" />
+    <img width={40} height={40} loading="lazy" src="/chatgpt.png" className={className} alt="ChatGPT" />
   ),
   "Google AI Studio": ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="/google ai studio.png"
       className={className}
       alt="Google AI Studio"
     />
   ),
   "Android Studio": ({ className }) => (
-    <img src="/android studio.png" className={className} alt="Android Studio" />
+    <img width={40} height={40} loading="lazy" src="/android studio.png" className={className} alt="Android Studio" />
   ),
   "GitHub Copilot": ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="https://cdn.simpleicons.org/githubcopilot/ffffff"
       className={className}
       alt="GitHub Copilot"
     />
   ),
   "AntiGravity IDE": ({ className }) => (
-    <img
+    <img width={40} height={40} loading="lazy"
       src="/antigravity.png?v=2"
       className={className}
       alt="AntiGravity IDE"

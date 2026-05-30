@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 
 const technologies = [
   {
@@ -21,7 +20,7 @@ const technologies = [
     name: "React",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
   },
-  { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/white" },
+  { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" },
   {
     name: "Node.js",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
@@ -34,7 +33,7 @@ const technologies = [
     name: "Python",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
   },
-  { name: "Flask", icon: "https://cdn.simpleicons.org/flask/white" },
+  { name: "Flask", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg" },
   {
     name: "NumPy",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg",
@@ -71,7 +70,7 @@ const technologies = [
     name: "Git",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
   },
-  { name: "GitHub", icon: "https://cdn.simpleicons.org/github/white" },
+  { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" },
   {
     name: "Flutter",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg",
@@ -95,11 +94,7 @@ const TechnologiesSection = () => {
         <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-background to-transparent z-10"></div>
         <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-background to-transparent z-10"></div>
 
-        <motion.div
-          className="flex gap-6 md:gap-8 w-max px-4"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ ease: "linear", duration: 40, repeat: Infinity }}
-        >
+        <div className="flex gap-6 md:gap-8 w-max px-4 animate-marquee hover:[animation-play-state:paused]">
           {/* Render the array twice for seamless looping */}
           {[...technologies, ...technologies].map((tech, i) => (
             <div
@@ -110,7 +105,8 @@ const TechnologiesSection = () => {
                 <img
                   src={tech.icon}
                   alt={tech.name}
-                  loading="lazy"
+                  width={48}
+                  height={48}
                   className="max-w-full max-h-full object-contain"
                 />
               </div>
@@ -119,7 +115,7 @@ const TechnologiesSection = () => {
               </span>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

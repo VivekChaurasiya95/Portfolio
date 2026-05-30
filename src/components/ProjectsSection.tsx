@@ -24,6 +24,8 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
             src={project.image}
             alt={project.title}
             loading="lazy"
+            width={600}
+            height={400}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
           {/* Subtle overlay gradient */}

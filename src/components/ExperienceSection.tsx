@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, type ElementType } from 'react';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { Briefcase, Calendar, MapPin, Sparkles, Terminal, Code2, GraduationCap, ChevronLeft, ChevronRight, ExternalLink, FileText, Medal, X, Image as ImageIcon } from 'lucide-react';
 import { createPortal } from 'react-dom';
@@ -36,9 +36,11 @@ type ExperienceItem = {
   technologies: string[];
   proofs?: ExperienceProofInput[];
   logo: string[];
-  icon: ({ className }: { className?: string }) => JSX.Element;
+  icon: ElementType;
   color: string;
   glow: string;
+  logoStyle?: string;
+  status?: 'Completed' | 'Active';
 };
 
 const normalizeProof = (proof: ExperienceProofInput, index: number): Required<ExperienceProof> => {
@@ -61,13 +63,54 @@ const normalizeProof = (proof: ExperienceProofInput, index: number): Required<Ex
 
 const experiences = [
   {
+    id: 0,
+    role: 'Google Student Ambassador',
+    company: 'Google',
+    location: 'Remote',
+    duration: 'May 2026 - Present',
+    description: 'Google Student Ambassador (GID: 8155) — representing Gemini and Google on campus, building a community of student leaders and innovators.',
+    detailSummary: 'Serving as the face of Gemini on campus, driving impact, building connections, and taking on challenges to represent the brand.',
+    achievements: [
+      'Official Google Student Ambassador representing Gemini on campus.',
+      'Building connections across a nationwide student leader community.',
+      'Driving impact through Google and Gemini technologies.'
+    ],
+    technologies: ['Gemini', 'Google Cloud', 'Leadership', 'Community Building'],
+    proofs: [
+      {
+        title: 'GSA Announcement',
+        type: 'Recognition',
+        image: '/experience-proofs/gsa-poster.jpg',
+        description: 'Official Google Student Ambassador Announcement with GID: 8155.',
+      },
+      {
+        title: 'Welcome Email',
+        type: 'Offer Letter',
+        image: '/experience-proofs/gsa-email.png',
+        description: 'Official welcome email from The Gemini Program Team.',
+      },
+      {
+        title: '#TeamGemini',
+        type: 'Badge',
+        image: '/experience-proofs/gsa-team.png',
+        description: 'Official Team Gemini and GSA badge.',
+      }
+    ],
+    logo: resolveLogoCandidates('gsa'),
+    logoStyle: 'object-contain object-center p-2',
+    icon: Medal,
+    color: 'from-blue-500/80 to-red-500/80',
+    glow: 'shadow-[0_0_50px_-12px_rgba(66,133,244,0.6)]',
+    status: 'Active',
+  },
+  {
     id: 1,
     role: 'Software Developer Intern',
     company: 'ByteEdu',
     location: 'Remote',
-    duration: 'Feb 2026 - Present',
-    description: 'Contributing to production-ready web features, improving UI quality, and supporting full-stack delivery in a remote engineering setup.',
-    detailSummary: 'Working across frontend and backend responsibilities with focus on clean delivery, implementation quality, and practical feature ownership.',
+    duration: 'Feb 2026 - May 2026',
+    description: 'Contributed to production-ready web features, improved UI quality, and supported full-stack delivery in a remote engineering setup.',
+    detailSummary: 'Worked across frontend and backend responsibilities with focus on clean delivery, implementation quality, and practical feature ownership.',
     achievements: [
       'Built responsive interfaces in React and Tailwind CSS for user-facing modules.',
       'Improved API integration flow and reduced UI-level data handling issues.',
@@ -92,6 +135,7 @@ const experiences = [
     icon: Terminal,
     color: 'from-blue-500/80 to-cyan-400/80',
     glow: 'shadow-[0_0_50px_-12px_rgba(6,182,212,0.6)]',
+    status: 'Completed',
   },
   {
     id: 2,
@@ -129,8 +173,9 @@ const experiences = [
     ],
     logo: resolveLogoCandidates('gssoc'),
     icon: Sparkles,
-    color: 'from-purple-500/80 to-pink-500/80',
-    glow: 'shadow-[0_0_50px_-12px_rgba(168,85,247,0.6)]',
+    color: 'from-orange-500/80 to-yellow-500/80',
+    glow: 'shadow-[0_0_50px_-12px_rgba(249,115,22,0.6)]',
+    status: 'Active',
   },
   {
     id: 3,
@@ -170,6 +215,7 @@ const experiences = [
     icon: Code2,
     color: 'from-emerald-400/80 to-teal-500/80',
     glow: 'shadow-[0_0_50px_-12px_rgba(16,185,129,0.6)]',
+    status: 'Active',
   },
   {
     id: 4,
@@ -203,6 +249,7 @@ const experiences = [
     icon: GraduationCap,
     color: 'from-sky-500/80 to-indigo-500/80',
     glow: 'shadow-[0_0_50px_-12px_rgba(59,130,246,0.55)]',
+    status: 'Active',
   }
 ] satisfies ExperienceItem[];
 
@@ -214,6 +261,8 @@ const ExperienceSection = () => {
   const isInView = useInView(containerRef, { once: false, amount: 0.2 });
 
   const angle = 360 / experiences.length;
+  const radius = Math.max(400, 400 / Math.tan(Math.PI / experiences.length) + 50);
+  const containerZ = 400 - radius;
 
   const nextSlide = () => setActiveIndex((prev) => (prev + 1) % experiences.length);
   const prevSlide = () => setActiveIndex((prev) => (prev === 0 ? experiences.length - 1 : prev - 1));
@@ -266,7 +315,7 @@ const ExperienceSection = () => {
           >
             {/* Subtle Theme-Aligned Glow Background inside Modal */}
             <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-            
+
             {/* Close Button */}
             <button
               onClick={() => setSelectedExperience(null)}
@@ -339,15 +388,17 @@ const ExperienceSection = () => {
                       key={idx}
                       onClick={() => setSelectedProofIndex(idx)}
                       aria-label={`View ${proof.title}`}
-                      className={`relative shrink-0 h-full aspect-[4/3] rounded-xl overflow-hidden transition-all duration-300 border ${
-                        selectedProofIndex === idx
-                          ? 'border-primary shadow-[0_0_15px_rgba(var(--primary),0.3)] scale-100 opacity-100'
-                          : 'border-border/30 opacity-50 hover:opacity-100 hover:scale-95'
-                      }`}
+                      className={`relative shrink-0 h-full aspect-[4/3] rounded-xl overflow-hidden transition-all duration-300 border ${selectedProofIndex === idx
+                        ? 'border-primary shadow-[0_0_15px_rgba(var(--primary),0.3)] scale-100 opacity-100'
+                        : 'border-border/30 opacity-50 hover:opacity-100 hover:scale-95'
+                        }`}
                     >
                       <img
                         src={proof.image}
                         alt={proof.title}
+                        loading="lazy"
+                        width={200}
+                        height={150}
                         className="w-full h-full object-cover"
                         onError={(e) => { (e.currentTarget as HTMLImageElement).src = defaultProofPreview; }}
                       />
@@ -362,7 +413,7 @@ const ExperienceSection = () => {
 
             {/* Right: Content Details */}
             <div className="w-full md:w-1/2 h-[55vh] md:h-full p-6 md:p-10 flex flex-col overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-primary/20 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-transparent z-10">
-              
+
               {/* Header Info */}
               <div className="flex items-center gap-4 mb-6">
                 <div className={`w-16 h-16 shrink-0 rounded-2xl p-0.5 bg-gradient-to-br ${selectedExperience.color} shadow-lg`}>
@@ -371,6 +422,8 @@ const ExperienceSection = () => {
                       src={selectedExperience.logo[0]}
                       alt="logo"
                       loading="lazy"
+                      width={64}
+                      height={64}
                       className="w-full h-full object-contain"
                       onError={(e) => { (e.currentTarget as HTMLImageElement).src = defaultProofPreview; }}
                     />
@@ -388,6 +441,19 @@ const ExperienceSection = () => {
 
               {/* Meta Tags */}
               <div className="flex flex-wrap gap-3 mb-8">
+                {selectedExperience.status && (
+                  <div className={`flex items-center gap-1.5 border rounded-full px-4 py-1.5 text-sm font-semibold tracking-wide ${selectedExperience.status === 'Completed'
+                    ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
+                    : 'bg-blue-500/10 border-blue-500/20 text-blue-400'
+                    }`}>
+                    {selectedExperience.status === 'Completed' ? (
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    ) : (
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                    )}
+                    {selectedExperience.status}
+                  </div>
+                )}
                 <div className="flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 text-sm text-primary">
                   <Calendar className="w-4 h-4" />
                   {selectedExperience.duration}
@@ -412,11 +478,11 @@ const ExperienceSection = () => {
                 </h4>
                 <div className="space-y-4">
                   {selectedExperience.achievements.map((achievement, i) => (
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 + i * 0.1 }}
-                      key={i} 
+                      key={i}
                       className="flex gap-3 bg-card/50 border border-border/50 rounded-2xl p-4 shadow-sm hover:bg-card/80 transition-colors"
                     >
                       <div className={`w-2 h-2 rounded-full mt-1.5 bg-gradient-to-br ${selectedExperience.color} shrink-0`} />
@@ -466,215 +532,226 @@ const ExperienceSection = () => {
 
   return (
     <>
-    <section id="experience" className="py-24 relative overflow-hidden" style={{ position: 'relative' }} ref={containerRef}>
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] opacity-50 mix-blend-screen" />
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-12"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6 backdrop-blur-md">
-            <Briefcase className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary uppercase tracking-wider">Experience</span>
-          </div>
-          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium mb-6">
-            <span className="text-foreground">Professional</span>{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#609fb4] via-[#6b81b5] to-[#b1819b]">Experience</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Interact with the 3D space. Navigate through my professional roles below.
-          </p>
-        </motion.div>
-
-        <div className="flex justify-end mt-4 mb-1 w-full pr-2">
-          <a
-            href={linkedinExperienceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-primary hover:text-white transition-colors font-bold text-sm tracking-widest uppercase"
-          >
-            VIEW ALL EXPERIENCES &rarr;
-          </a>
+      <section id="experience" className="py-24 relative overflow-hidden" style={{ position: 'relative' }} ref={containerRef}>
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] opacity-50 mix-blend-screen" />
         </div>
 
-        <div className="relative h-[600px] md:h-[700px] w-full flex items-center justify-center perspective-[1200px] -mt-3">
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
-            className="w-full max-w-3xl h-[450px] md:h-[500px] relative preserve-3d"
-            animate={{ rotateY: activeIndex * -angle }}
-            transition={{ type: "spring", stiffness: 50, damping: 20, mass: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center mb-12"
           >
-            {experiences.map((exp, index) => {
-              const currentAngle = angle * index;
-              const isActive = index === activeIndex;
-              const Icon = exp.icon;
-
-              return (
-                <div
-                  key={exp.id}
-                  className="absolute inset-0 flex items-center justify-center"
-                  style={{
-                    transform: `rotateY(${currentAngle}deg) translateZ(400px)`,
-                    transformStyle: 'preserve-3d',
-                  }}
-                >
-                  <motion.div
-                    animate={{
-                      opacity: isActive ? 1 : 0.3,
-                      scale: isActive ? 1 : 0.8,
-                      filter: isActive ? 'blur(0px)' : 'blur(4px)'
-                    }}
-                    transition={{ duration: 0.5 }}
-                    className={`w-[90vw] max-w-[800px] h-full glass-card rounded-[2rem] border border-white/10 ${isActive ? exp.glow : ''} p-8 md:p-12 overflow-hidden flex flex-col justify-center relative bg-background/40 backdrop-blur-xl cursor-pointer`}
-                    onClick={() => setActiveIndex(index)}
-                  >
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:30px_30px] opacity-20 pointer-events-none" />
-                    <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${exp.color} rounded-full blur-[80px] opacity-30 mix-blend-screen pointer-events-none`} />
-
-                    <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start h-full">
-                      <div className="w-full md:w-1/3 flex flex-col gap-6 items-center md:items-start text-center md:text-left">
-                        <div className={`w-24 h-24 rounded-[1.8rem] flex items-center justify-center bg-gradient-to-br ${exp.color} p-[1.5px] shadow-[0_0_25px_rgba(56,189,248,0.25)]`}>
-                          <div className="w-full h-full rounded-[1.65rem] bg-background/95 border border-white/10 flex items-center justify-center backdrop-blur-md overflow-hidden">
-                            <img
-                              src={exp.logo[0]}
-                              alt={`${exp.company} logo`}
-                              loading="lazy"
-                              className="w-full h-full object-cover object-center scale-[1.06]"
-                              onError={(e) => {
-                                const target = e.currentTarget;
-                                const currentSrc = target.getAttribute('src') || '';
-                                const nextIndex = exp.logo.findIndex((candidate) => candidate === currentSrc) + 1;
-                                if (nextIndex > 0 && nextIndex < exp.logo.length) {
-                                  target.setAttribute('src', exp.logo[nextIndex]);
-                                  return;
-                                }
-                                target.style.display = 'none';
-                                const fallback = target.nextElementSibling as HTMLElement | null;
-                                if (fallback) fallback.style.display = 'flex';
-                              }}
-                            />
-                            <span className="hidden w-full h-full items-center justify-center">
-                              <Icon className="w-10 h-10 text-white/95" />
-                            </span>
-                          </div>
-                        </div>
-
-                        <div>
-                          <h3
-                            className={`font-semibold text-foreground tracking-tight leading-[1.15] mb-2 [text-wrap:balance] ${
-                              exp.company.length > 20 ? 'text-[1.75rem] md:text-[1.95rem] leading-[1.1]' : 'text-3xl md:text-[2.1rem]'
-                            }`}
-                          >
-                            {exp.company}
-                          </h3>
-                          <div className={`inline-block -ml-1 px-4 py-2 rounded-full bg-gradient-to-r ${exp.color} text-white text-xs font-bold tracking-wider uppercase mb-4 shadow-lg`}>
-                            {Array.isArray(exp.role) ? (
-                              <ul className="list-disc list-inside space-y-1">
-                                {exp.role.map((line) => (
-                                  <li key={line}>{line}</li>
-                                ))}
-                              </ul>
-                            ) : (
-                              <span className="whitespace-pre-line">{exp.role}</span>
-                            )}
-                          </div>
-
-                          <div className="flex flex-col gap-2 text-[0.95rem] text-muted-foreground/95 font-medium items-center md:items-start">
-                            <div className="flex items-center gap-2 bg-background/50 px-3 py-1.5 rounded-lg border border-border/50">
-                              <Calendar className="w-4 h-4 text-primary" />
-                              <span className="tracking-[0.01em]">{exp.duration}</span>
-                            </div>
-                            <div className="flex items-center gap-2 bg-background/50 px-3 py-1.5 rounded-lg border border-border/50">
-                              <MapPin className="w-4 h-4 text-primary" />
-                              <span className="tracking-[0.01em]">{exp.location}</span>
-                            </div>
-                          </div>
-                          <div className="pt-4 w-full flex justify-center md:justify-start">
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                openExperienceDetail(exp);
-                              }}
-                              className="inline-flex items-center gap-2 whitespace-nowrap rounded-lg border border-primary/40 bg-primary/10 px-3.5 py-2 text-[0.9rem] font-semibold text-primary hover:bg-primary/20 hover:text-white transition-colors"
-                            >
-                              <FileText className="w-4 h-4" />
-                              View Experience Details
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="w-full md:w-2/3 flex flex-col gap-6 justify-center h-full">
-                        <p className="text-foreground/90 text-[1.16rem] md:text-[1.22rem] leading-[1.7] font-normal antialiased tracking-[0.005em]">
-                          {exp.description}
-                        </p>
-
-                        <div className="space-y-3">
-                          {exp.achievements.map((achievement, i) => (
-                            <div key={i} className="flex items-start gap-3">
-                              <div className={`w-2 h-2 rounded-full mt-2 bg-gradient-to-br ${exp.color} shadow-[0_0_8px_rgba(255,255,255,0.8)] shrink-0`} />
-                              <span className="text-muted-foreground/95 text-[1.02rem] md:text-[1.07rem] leading-[1.75] font-normal antialiased tracking-[0.005em]">
-                                {achievement}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-
-                        <div className="pt-6 mt-auto flex flex-wrap gap-2">
-                          {exp.technologies.map((tech) => (
-                            <span
-                              key={tech}
-                              className="px-3 py-1.5 text-[0.8rem] font-medium tracking-[0.01em] rounded-md bg-white/5 border border-white/10 text-foreground/90 hover:bg-white/10 transition-colors"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                    </div>
-                  </motion.div>
-                </div>
-              );
-            })}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6 backdrop-blur-md">
+              <Briefcase className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium text-primary uppercase tracking-wider">Experience</span>
+            </div>
+            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium mb-6">
+              <span className="text-foreground">Professional</span>{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#609fb4] via-[#6b81b5] to-[#b1819b]">Experience</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Interact with the 3D space. Navigate through my professional roles below.
+            </p>
           </motion.div>
 
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-8 z-20">
-            <button
-              onClick={prevSlide}
-              aria-label="Previous experience"
-              className="w-14 h-14 rounded-full glass-card flex items-center justify-center hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)] group"
+          <div className="flex justify-end mt-4 mb-1 w-full pr-2">
+            <a
+              href={linkedinExperienceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-primary hover:text-white transition-colors font-bold text-sm tracking-widest uppercase"
             >
-              <ChevronLeft className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
-            </button>
-            <div className="flex gap-3">
-              {experiences.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveIndex(idx)}
-                  aria-label={`Go to experience ${idx + 1}`}
-                  className={`w-3 h-3 rounded-full transition-all duration-500 ${activeIndex === idx ? 'bg-primary scale-125 shadow-[0_0_10px_rgba(var(--primary),0.8)]' : 'bg-white/20 hover:bg-white/40'}`}
-                />
-              ))}
-            </div>
-            <button
-              onClick={nextSlide}
-              aria-label="Next experience"
-              className="w-14 h-14 rounded-full glass-card flex items-center justify-center hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)] group"
-            >
-              <ChevronRight className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
-            </button>
+              VIEW ALL EXPERIENCES &rarr;
+            </a>
           </div>
 
-        </div>
-      </div>
+          <div className="relative h-[600px] md:h-[700px] w-full flex items-center justify-center perspective-[1200px] -mt-3">
+            <motion.div
+              className="w-full max-w-3xl h-[450px] md:h-[500px] relative preserve-3d"
+              animate={{ rotateY: activeIndex * -angle, z: containerZ }}
+              transition={{ type: "spring", stiffness: 50, damping: 20, mass: 1 }}
+            >
+              {experiences.map((exp, index) => {
+                const currentAngle = angle * index;
+                const isActive = index === activeIndex;
+                const Icon = exp.icon;
 
-      <style>{`
+                return (
+                  <div
+                    key={exp.id}
+                    className="absolute inset-0 flex items-center justify-center"
+                    style={{
+                      transform: `rotateY(${currentAngle}deg) translateZ(${radius}px)`,
+                      transformStyle: 'preserve-3d',
+                    }}
+                  >
+                    <motion.div
+                      animate={{
+                        opacity: isActive ? 1 : 0.3,
+                        scale: isActive ? 1 : 0.8,
+                        filter: isActive ? 'blur(0px)' : 'blur(4px)'
+                      }}
+                      transition={{ duration: 0.5 }}
+                      className={`w-[90vw] max-w-[800px] h-full rounded-[2rem] border border-white/10 ${isActive ? exp.glow : ''} p-8 md:p-10 overflow-hidden flex flex-col justify-center relative bg-card/60 backdrop-blur-xl cursor-pointer`}
+                      onClick={() => setActiveIndex(index)}
+                    >
+                      <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${exp.color} rounded-full blur-[80px] opacity-30 mix-blend-screen pointer-events-none`} />
+
+                      <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start h-full">
+                        <div className="w-full md:w-1/3 flex flex-col gap-6 items-center md:items-start text-center md:text-left">
+                          <div className={`w-24 h-24 rounded-[1.8rem] flex items-center justify-center bg-gradient-to-br ${exp.color} p-[1.5px] shadow-[0_0_25px_rgba(56,189,248,0.25)]`}>
+                            <div className="w-full h-full rounded-[1.65rem] bg-background/95 border border-white/10 flex items-center justify-center backdrop-blur-md overflow-hidden">
+                              <img
+                                src={exp.logo[0]}
+                                alt={`${exp.company} logo`}
+                                loading="lazy"
+                                width={96}
+                                height={96}
+                                className={`w-full h-full ${exp.logoStyle || 'object-cover object-center scale-[1.06]'}`}
+                                onError={(e) => {
+                                  const target = e.currentTarget;
+                                  const currentSrc = target.getAttribute('src') || '';
+                                  const nextIndex = exp.logo.findIndex((candidate) => candidate === currentSrc) + 1;
+                                  if (nextIndex > 0 && nextIndex < exp.logo.length) {
+                                    target.setAttribute('src', exp.logo[nextIndex]);
+                                    return;
+                                  }
+                                  target.style.display = 'none';
+                                  const fallback = target.nextElementSibling as HTMLElement | null;
+                                  if (fallback) fallback.style.display = 'flex';
+                                }}
+                              />
+                              <span className="hidden w-full h-full items-center justify-center">
+                                <Icon className="w-10 h-10 text-white/95" />
+                              </span>
+                            </div>
+                          </div>
+
+                          <div>
+                            <h3
+                              className={`font-semibold text-foreground tracking-tight leading-[1.15] mb-2 [text-wrap:balance] ${exp.company.length > 20 ? 'text-[1.75rem] md:text-[1.95rem] leading-[1.1]' : 'text-3xl md:text-[2.1rem]'
+                                }`}
+                            >
+                              {exp.company}
+                            </h3>
+                            <div className={`inline-block -ml-1 px-4 py-2 rounded-full bg-gradient-to-r ${exp.color} text-white text-xs font-bold tracking-wider uppercase mb-4 shadow-lg`}>
+                              {Array.isArray(exp.role) ? (
+                                <ul className="list-disc list-inside space-y-1">
+                                  {exp.role.map((line) => (
+                                    <li key={line}>{line}</li>
+                                  ))}
+                                </ul>
+                              ) : (
+                                <span className="whitespace-pre-line">{exp.role}</span>
+                              )}
+                            </div>
+
+                            <div className="flex flex-col gap-2 text-[0.95rem] text-muted-foreground/95 font-medium items-center md:items-start">
+                              {exp.status && (
+                                <div className={`flex items-center gap-1.5 bg-background/50 px-3 py-1.5 rounded-lg border border-border/50 ${exp.status === 'Completed' ? 'text-emerald-400' : 'text-blue-400'
+                                  }`}>
+                                  {exp.status === 'Completed' ? (
+                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                                  ) : (
+                                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                                  )}
+                                  <span className="tracking-[0.01em] text-sm font-semibold uppercase">{exp.status}</span>
+                                </div>
+                              )}
+                              <div className="flex items-center gap-2 bg-background/50 px-3 py-1.5 rounded-lg border border-border/50">
+                                <Calendar className="w-4 h-4 text-primary" />
+                                <span className="tracking-[0.01em]">{exp.duration}</span>
+                              </div>
+                              <div className="flex items-center gap-2 bg-background/50 px-3 py-1.5 rounded-lg border border-border/50">
+                                <MapPin className="w-4 h-4 text-primary" />
+                                <span className="tracking-[0.01em]">{exp.location}</span>
+                              </div>
+                            </div>
+                            <div className="pt-4 w-full flex justify-center md:justify-start">
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  openExperienceDetail(exp);
+                                }}
+                                className="inline-flex items-center gap-2 whitespace-nowrap rounded-lg border border-primary/40 bg-primary/10 px-3.5 py-2 text-[0.9rem] font-semibold text-primary hover:bg-primary/20 hover:text-white transition-colors"
+                              >
+                                <FileText className="w-4 h-4" />
+                                View Experience Details
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="w-full md:w-2/3 flex flex-col gap-4 justify-center h-full">
+                          <p className="text-foreground/90 text-[1.16rem] md:text-[1.22rem] leading-[1.7] font-normal antialiased tracking-[0.005em]">
+                            {exp.description}
+                          </p>
+
+                          <div className="space-y-3">
+                            {exp.achievements.map((achievement, i) => (
+                              <div key={i} className="flex items-start gap-3">
+                                <div className={`w-2 h-2 rounded-full mt-2 bg-gradient-to-br ${exp.color} shadow-[0_0_8px_rgba(255,255,255,0.8)] shrink-0`} />
+                                <span className="text-muted-foreground/95 text-[1.02rem] md:text-[1.07rem] leading-[1.75] font-normal antialiased tracking-[0.005em]">
+                                  {achievement}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="pt-6 mt-auto flex flex-wrap gap-2">
+                            {exp.technologies.map((tech) => (
+                              <span
+                                key={tech}
+                                className="px-3 py-1.5 text-[0.8rem] font-medium tracking-[0.01em] rounded-md bg-white/5 border border-white/10 text-foreground/90 hover:bg-white/10 transition-colors"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                      </div>
+                    </motion.div>
+                  </div>
+                );
+              })}
+            </motion.div>
+
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-8 z-20">
+              <button
+                onClick={prevSlide}
+                aria-label="Previous experience"
+                className="w-14 h-14 rounded-full glass-card flex items-center justify-center hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)] group"
+              >
+                <ChevronLeft className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
+              </button>
+              <div className="flex gap-3">
+                {experiences.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveIndex(idx)}
+                    aria-label={`Go to experience ${idx + 1}`}
+                    className={`w-3 h-3 rounded-full transition-all duration-500 ${activeIndex === idx ? 'bg-primary scale-125 shadow-[0_0_10px_rgba(var(--primary),0.8)]' : 'bg-white/20 hover:bg-white/40'}`}
+                  />
+                ))}
+              </div>
+              <button
+                onClick={nextSlide}
+                aria-label="Next experience"
+                className="w-14 h-14 rounded-full glass-card flex items-center justify-center hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)] group"
+              >
+                <ChevronRight className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <style>{`
         .preserve-3d {
           transform-style: preserve-3d;
         }
@@ -682,8 +759,8 @@ const ExperienceSection = () => {
           perspective: 1200px;
         }
       `}</style>
-    </section>
-    {typeof document !== 'undefined' ? createPortal(detailModal, document.body) : detailModal}
+      </section>
+      {typeof document !== 'undefined' ? createPortal(detailModal, document.body) : detailModal}
     </>
   );
 };

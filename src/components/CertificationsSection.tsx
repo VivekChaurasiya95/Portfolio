@@ -139,6 +139,8 @@ const CertificationsSection = () => {
                     src={cert.image} 
                     alt={cert.title} 
                     loading="lazy"
+                    width={800}
+                    height={600}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = 'https://via.placeholder.com/800x600?text=Image+Missing';
@@ -217,6 +219,9 @@ const CertificationsSection = () => {
                 <img 
                   src={selectedCert.image} 
                   alt={selectedCert.title} 
+                  loading="lazy"
+                  width={800}
+                  height={600}
                   className="max-w-full max-h-[50vh] md:max-h-[85vh] object-contain rounded-lg shadow-lg"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = 'https://via.placeholder.com/800x600?text=Please+Add+Image+To+Public+Folder';
