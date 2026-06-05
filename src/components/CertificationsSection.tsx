@@ -4,11 +4,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   featuredCertifications,
-  type Certification,
+  type Certificate,
 } from "@/data/certifications";
 
 const CertificationsSection = () => {
-  const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
+  const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
 
   return (
     <>
