@@ -1,68 +1,65 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { Award, Calendar, ExternalLink, ShieldCheck, X } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import {
-  featuredCertifications,
-  type Certification,
-} from "@/data/certifications";
+  Award,
+  ArrowLeft,
+  Calendar,
+  ExternalLink,
+  ShieldCheck,
+  X,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import { allCertifications, type Certificate } from "@/data/certifications";
 
-const CertificationsSection = () => {
-  const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
+const Certificates = () => {
+  const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
 
   return (
-    <>
-      <section
-        id="certifications"
-        className="py-28 relative z-10 w-full overflow-hidden"
-      >
+    <main className="relative z-10 min-h-screen overflow-hidden pb-20 text-foreground">
+      <section className="pt-32 pb-14 relative z-10 w-full overflow-hidden">
         <div className="container mx-auto px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-14"
+            className="mb-10"
           >
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-white transition-colors mb-6"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Home
+            </Link>
+
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/30 mb-5">
               <ShieldCheck className="w-4 h-4 text-secondary" />
               <span className="text-sm font-medium text-secondary uppercase tracking-wider">
-                Verified Learning
+                Full Certificate Gallery
               </span>
             </div>
 
-            <h2 className="section-heading mb-4">
-              <span className="text-foreground">My</span>{" "}
-              <span className="text-gradient">Certifications</span>
-            </h2>
-            <p className="section-subheading max-w-2xl">
-              A curated list of certifications that support my development
-              journey. Click any certificate to view details.
+            <h1 className="section-heading mb-4">
+              <span className="text-foreground">All</span>{" "}
+              <span className="text-gradient">Certificates</span>
+            </h1>
+            <p className="section-subheading max-w-3xl">
+              Every certificate and credential in one place, including Infosys,
+              IBM SkillsBuild, ET AI Hackathon, and hackathon achievement
+              certifications.
             </p>
           </motion.div>
 
-          {/* View All Certificates Link */}
-          <div className="flex justify-end mb-6 w-full pr-2">
-            <Link
-              to="/certificates"
-              className="flex items-center gap-2 text-primary hover:text-white transition-colors font-bold text-sm tracking-widest uppercase"
-            >
-              SEE ALL CERTIFICATES &rarr;
-            </Link>
-          </div>
-
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {featuredCertifications.map((cert, index) => (
+            {allCertifications.map((cert, index) => (
               <motion.article
                 key={cert.title}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.04 }}
                 onClick={() => setSelectedCert(cert)}
                 className="glass-card rounded-2xl border border-border/40 hover:border-primary/50 transition-all overflow-hidden relative group cursor-pointer shadow-lg hover:shadow-xl"
               >
-                {/* Thumbnail Image Header */}
                 <div className="w-full h-48 bg-muted/20 relative overflow-hidden">
                   <img
                     src={cert.image}
@@ -86,9 +83,9 @@ const CertificationsSection = () => {
                     </div>
                   </div>
 
-                  <h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-2">
+                  <h2 className="text-lg font-semibold text-foreground mb-2 line-clamp-2">
                     {cert.title}
-                  </h3>
+                  </h2>
                   <p className="text-sm text-muted-foreground mb-4">
                     {cert.issuer}
                   </p>
@@ -120,7 +117,6 @@ const CertificationsSection = () => {
         </div>
       </section>
 
-      {/* Detail Modal Overlay */}
       <AnimatePresence>
         {selectedCert && (
           <motion.div
@@ -222,8 +218,8 @@ const CertificationsSection = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </main>
   );
 };
 
-export default CertificationsSection;
+export default Certificates;
