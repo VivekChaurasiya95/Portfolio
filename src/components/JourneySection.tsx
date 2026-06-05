@@ -9,8 +9,25 @@ import {
   Sparkles,
 } from "lucide-react";
 
+const resolveLogoCandidates = (baseName: string) => [
+  `/experience-logos/${baseName}.png`,
+  `/experience-logos/${baseName}.jpg`,
+  `/experience-logos/${baseName}.jpeg`,
+  `/experience-logos/${baseName}.webp`,
+  `/experience-logos/${baseName}.svg`,
+];
+
 // Milestones in chronological order (will be displayed reversed - current at top)
 const milestones = [
+  {
+    year: "Jun 2026",
+    title: "Data Science Intern",
+    description: "Data Science Intern at Decodelabs from June 2026 to present.",
+    tags: ["Data Science", "Python", "Machine Learning"],
+    type: "Current",
+    icon: Brain,
+    logo: resolveLogoCandidates("decodelabs"),
+  },
   {
     year: "May 2026",
     title: "Google Student Ambassador",
@@ -19,6 +36,7 @@ const milestones = [
     tags: ["Leadership", "Gemini", "Community", "Campus Engagement"],
     type: "Current",
     icon: Rocket,
+    logo: resolveLogoCandidates("gsa"),
   },
   {
     year: "May 2026",
@@ -28,6 +46,7 @@ const milestones = [
     tags: ["Artificial Intelligence", "Software Engineering", "Internship"],
     type: "Current",
     icon: Briefcase,
+    logo: resolveLogoCandidates("infosys"),
   },
   {
     year: "May 2026",
@@ -37,6 +56,7 @@ const milestones = [
     tags: ["Open Source", "AI", "Agents"],
     type: "Current",
     icon: Sparkles,
+    logo: resolveLogoCandidates("gssoc"),
   },
   {
     year: "Apr 2026",
@@ -46,6 +66,7 @@ const milestones = [
     tags: ["Open Source", "Development"],
     type: "Current",
     icon: Code,
+    logo: resolveLogoCandidates("nsoc"),
   },
   {
     year: "Apr 2026",
@@ -55,6 +76,7 @@ const milestones = [
     tags: ["Leadership", "Professional Skills"],
     type: "Current",
     icon: Brain,
+    logo: resolveLogoCandidates("mckinsey"),
   },
   {
     year: "Feb 2026",
@@ -64,6 +86,7 @@ const milestones = [
     tags: ["Software Engineering", "Internship"],
     type: "Completed",
     icon: Briefcase,
+    logo: resolveLogoCandidates("byteedu"),
   },
   {
     year: "2026",

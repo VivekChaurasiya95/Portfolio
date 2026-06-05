@@ -15,6 +15,16 @@ const credentialUrl = `${SOCIAL_LINKS.linkedin}/details/certifications/`;
 const featuredCertificates: Certificate[] = [
   // Priority items shown first in My Certifications
   {
+    title: "Cloud To Crowd: Media IQ for Developers with Python",
+    issuer: "Cloudinary",
+    period: "11 May 2026",
+    credentialUrl: "https://training.cloudinary.com/certificate/cldacad-ibu6sa7hc1",
+    image: "/certificates/cloudinary.jpg",
+    skills: ["Python", "Media APIs", "Cloudinary"],
+    description:
+      "Successfully completed Cloud To Crowd: Media IQ for Developers with Python Certification by Cloudinary.",
+  },
+  {
     title: "GFG CodeRush Certificate",
     issuer: "GeeksforGeeks",
     period: "2026",
