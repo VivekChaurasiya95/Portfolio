@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { User } from 'lucide-react';
-import profileImage from '@/assets/vivek-profile.jpeg';
+import profileImage from '@/assets/vivek-profile-new.png';
 
 const AboutSection = () => {
   const mouseX = useMotionValue(0);
@@ -76,9 +76,7 @@ const AboutSection = () => {
               and exploring artificial intelligence and data-driven systems to solve real-world problems.
             </p>
 
-            <p className="text-foreground italic">
-              Currently pursuing B.Tech in CS&D (2024–2028) with a CGPA of 8.38/10.
-            </p>
+
 
             {/* Quick facts - Cuboid style */}
             {/* Quick facts - Cuboid style */}
@@ -180,35 +178,17 @@ const AboutSection = () => {
                 transformStyle: "preserve-3d",
               }}
             >
-              {/* Photo frame */}
+              {/* Photo */}
               <motion.div 
-                className="relative w-72 md:w-80 aspect-[3/4] rounded-2xl glass-card p-3 border-2 border-primary/40 bg-gradient-to-br from-primary/10 to-transparent shadow-2xl"
+                className="relative w-72 md:w-80 lg:w-[32rem] xl:w-[36rem] flex items-center justify-center"
                 style={{ transform: "translateZ(30px)" }}
               >
-                <div className="relative w-full h-full rounded-xl overflow-hidden">
-                  <img
-                    src={profileImage}
-                    alt="Vivek Chaurasiya"
-                    loading="lazy"
-                    className="w-full h-full object-cover pointer-events-none"
-                  />
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
-                </div>
-              </motion.div>
-
-              {/* Decorative element */}
-              <motion.div 
-                className="absolute -bottom-4 -left-4 w-full h-full border-2 border-secondary/30 rounded-2xl -z-10" 
-                style={{ transform: "translateZ(-20px)" }}
-              />
-
-              {/* Pronoun badge */}
-              <motion.div 
-                className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full bg-secondary/80 backdrop-blur-sm shadow-xl"
-                style={{ transform: "translateZ(60px) translateX(-50%)", left: "50%" }}
-              >
-                <span className="font-display text-lg italic text-secondary-foreground pointer-events-none">He/Him</span>
+                <img
+                  src={profileImage}
+                  alt="Vivek Chaurasiya"
+                  loading="lazy"
+                  className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] pointer-events-none"
+                />
               </motion.div>
             </motion.div>
           </motion.div>

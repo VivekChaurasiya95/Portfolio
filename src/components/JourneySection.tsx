@@ -21,6 +21,16 @@ const resolveLogoCandidates = (baseName: string) => [
 const milestones = [
   {
     year: "Jun 2026",
+    title: "Infosys Virtual Intern",
+    description:
+      "Shortlisted for the Infosys Springboard Virtual Internship 7.0 focusing on software engineering skills.",
+    tags: ["Artificial Intelligence", "Software Engineering", "Internship"],
+    type: "Current",
+    icon: Briefcase,
+    logo: resolveLogoCandidates("infosys"),
+  },
+  {
+    year: "Jun 2026",
     title: "Data Science Intern",
     description: "Data Science Intern at Decodelabs from June 2026 to present.",
     tags: ["Data Science", "Python", "Machine Learning"],
@@ -37,16 +47,6 @@ const milestones = [
     type: "Current",
     icon: Rocket,
     logo: resolveLogoCandidates("gsa"),
-  },
-  {
-    year: "May 2026",
-    title: "Infosys Virtual Intern",
-    description:
-      "Shortlisted for the Infosys Springboard Virtual Internship 7.0 focusing on software engineering skills.",
-    tags: ["Artificial Intelligence", "Software Engineering", "Internship"],
-    type: "Current",
-    icon: Briefcase,
-    logo: resolveLogoCandidates("infosys"),
   },
   {
     year: "May 2026",
@@ -114,24 +114,6 @@ const milestones = [
     tags: ["DSA", "OOPS", "System Design", "DBMS", "OS"],
     type: "Education",
     icon: GraduationCap,
-  },
-  {
-    year: "2023",
-    title: "Deep Dive into Programming",
-    description:
-      "Strengthened problem-solving skills and started learning core programming languages. Explored fundamentals of software development.",
-    tags: ["Python", "C"],
-    type: "Achievement",
-    icon: Brain,
-  },
-  {
-    year: "2022",
-    title: "The Beginning",
-    description:
-      "Started coding journey with web fundamentals. Built simple static websites and discovered the passion for software development.",
-    tags: ["HTML", "CSS"],
-    type: "Education",
-    icon: Code,
   },
 ];
 
