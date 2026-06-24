@@ -23,37 +23,16 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      const web3FormsKey = import.meta.env.VITE_WEB3FORMS_KEY;
-
-      if (!web3FormsKey) {
-        // Fallback natively to mailto: if no API key is provided
-        const subject = `Portfolio Contact from ${formData.name}`;
-        const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-        window.location.href = `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(
-          subject
-        )}&body=${encodeURIComponent(body)}`;
-
-        setSubmitStatus({
-          type: "success",
-          text: "Opening your email client... Thank you!",
-        });
-        setIsSubmitting(false);
-        setFormData({ name: "", email: "", message: "" });
-        
-        // Hide success message automatically after 5s
-        setTimeout(() => setSubmitStatus(null), 5000);
-        return;
-      }
-
-      // Seamless background submission using Web3Forms
-      const response = await fetch("https://api.web3forms.com/submit", {
+      // Send to custom backend API via Vite Proxy (or direct URL if defined)
+      const apiUrl = API_BASE_URL ? `${API_BASE_URL}/api/contact` : "/api/contact";
+      
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: web3FormsKey,
           name: formData.name,
           email: formData.email,
           message: formData.message,
@@ -62,8 +41,8 @@ const ContactSection = () => {
 
       const data = await response.json();
 
-      if (!data.success) {
-        throw new Error(data.message || "Unable to send your message right now.");
+      if (!data.ok) {
+        throw new Error(data.error || "Unable to send your message right now.");
       }
 
       setSubmitStatus({
@@ -76,6 +55,7 @@ const ContactSection = () => {
       // Hide success message automatically after 5s
       setTimeout(() => setSubmitStatus(null), 5000);
     } catch (error) {
+      console.error("Failed to send message:", error);
       setIsSubmitting(false);
       setSubmitStatus({
         type: "error",
