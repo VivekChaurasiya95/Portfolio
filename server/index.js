@@ -141,12 +141,12 @@ app.post("/api/contact", async (req, res) => {
       from: process.env.MAIL_FROM || process.env.SMTP_USER,
       to: payload.email,
       subject: `Thanks for reaching out, ${payload.name}!`,
-      text: `Hi ${payload.name},\n\nThank you for contacting me! I have received your message and will get back to you very soon.\n\nIn the meantime, feel free to connect with me on LinkedIn: https://www.linkedin.com/in/vivekchaurasiya95/\n\nBest regards,\nVivek Chaurasiya`,
+      text: `Hi ${payload.name},\n\nThank you for contacting me! I have received your message and will get back to you very soon.\n\nIn the meantime, feel free to connect with me on LinkedIn: https://www.linkedin.com/in/vivek-chaurasiya-722037315\n\nBest regards,\nVivek Chaurasiya`,
       html: `
         <div style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
           <h2>Hi ${escapeHtml(payload.name)},</h2>
           <p>Thank you for contacting me through my portfolio! I have received your message and will get back to you very soon.</p>
-          <p>In the meantime, feel free to connect with me on <a href="https://www.linkedin.com/in/vivekchaurasiya95/" style="color: #0077b5; text-decoration: none; font-weight: bold;">LinkedIn</a>.</p>
+          <p>In the meantime, feel free to connect with me on <a href="https://www.linkedin.com/in/vivek-chaurasiya-722037315" style="color: #0077b5; text-decoration: none; font-weight: bold;">LinkedIn</a>.</p>
           <br/>
           <p>Best regards,<br/><strong>Vivek Chaurasiya</strong></p>
         </div>
