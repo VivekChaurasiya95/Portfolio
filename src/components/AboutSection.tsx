@@ -194,10 +194,10 @@ const AboutSection = () => {
             </motion.div>
           </motion.div>
         </div>
-        
-        {/* 3D Animated Marquee */}
-        <Marquee3D />
       </div>
+        
+      {/* 3D Animated Marquee Full Width */}
+      <Marquee3D />
     </section>
   );
 };
