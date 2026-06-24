@@ -8,7 +8,7 @@ const PORT = Number(process.env.PORT || 5000);
 const FRONTEND_ORIGINS = (
   process.env.FRONTEND_ORIGINS ||
   process.env.FRONTEND_ORIGIN ||
-  "http://localhost:8080,http://localhost:5173"
+  "http://localhost:8080,http://localhost:5173,http://localhost:4173"
 )
   .split(",")
   .map((origin) => origin.trim())
