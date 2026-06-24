@@ -99,7 +99,7 @@ const TechnologiesSection = () => {
           {[...technologies, ...technologies].map((tech, i) => (
             <div
               key={`${tech.name}-${i}`}
-              className="flex flex-col items-center justify-center min-w-[100px] md:min-w-[120px] h-[100px] md:h-[120px] rounded-2xl bg-[#111318]/80 backdrop-blur-sm border border-white/5 hover:border-primary/50 hover:shadow-glow hover:-translate-y-2 hover:bg-[#1a1d24] transition-all duration-500 group relative overflow-hidden cursor-pointer"
+              className="flex flex-col items-center justify-center min-w-[100px] md:min-w-[120px] h-[100px] md:h-[120px] rounded-2xl bg-muted/60 dark:bg-[#111318]/80 backdrop-blur-sm border border-border/30 dark:border-white/5 hover:border-primary/50 hover:shadow-glow hover:-translate-y-2 hover:bg-muted dark:hover:bg-[#1a1d24] transition-all duration-500 group relative overflow-hidden cursor-pointer"
             >
               <div className="w-10 h-10 md:w-12 md:h-12 mb-3 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]">
                 <img
@@ -110,7 +110,7 @@ const TechnologiesSection = () => {
                   className="max-w-full max-h-full object-contain"
                 />
               </div>
-              <span className="text-xs md:text-sm font-medium text-white/60 group-hover:text-white/90 transition-colors duration-300">
+              <span className="text-xs md:text-sm font-medium text-foreground/60 group-hover:text-foreground/90 transition-colors duration-300">
                 {tech.name}
               </span>
             </div>

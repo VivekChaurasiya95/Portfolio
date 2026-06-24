@@ -17,7 +17,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
       <div className="absolute -inset-[1px] bg-gradient-to-r from-primary/30 via-secondary/30 to-primary/30 rounded-xl blur-[2px] opacity-60 group-hover:opacity-100 transition duration-500 animate-pulse" />
       
       {/* Inner card content */}
-      <div className="relative flex-1 flex flex-col w-full h-full overflow-hidden rounded-xl border border-primary/20 bg-[#0d0f12] hover:border-primary/50 transition-colors duration-300 shadow-xl z-10">
+      <div className="relative flex-1 flex flex-col w-full h-full overflow-hidden rounded-xl border border-primary/20 bg-card hover:border-primary/50 transition-colors duration-300 shadow-xl z-10">
         {/* Mock Thumbnail / Preview */}
         <div className="relative h-56 md:h-72 w-full overflow-hidden bg-background">
           <img
@@ -28,13 +28,11 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
             height={400}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
-          {/* Subtle overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0d0f12] pb-10 via-transparent to-transparent opacity-90" />
         </div>
 
         {/* Card Content Area */}
         <div className="flex-1 flex flex-col p-6 md:p-8">
-          <h3 className="text-2xl font-bold font-display text-white mb-4">
+          <h3 className="text-2xl font-bold font-display text-foreground mb-4">
             {project.title}
           </h3>
 
@@ -69,7 +67,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
             {project.github && (
               <Link
                 to={`/project/${project.id}`}
-                className="flex-1 flex items-center justify-center gap-2 border border-white/20 hover:bg-white/10 text-white font-medium py-3 rounded-lg transition-all active:scale-95 text-sm uppercase tracking-wider"
+                className="flex-1 flex items-center justify-center gap-2 border border-foreground/20 hover:bg-foreground/10 text-foreground font-medium py-3 rounded-lg transition-all active:scale-95 text-sm uppercase tracking-wider"
               >
                 VIEW DETAILS <ArrowRight size={16} />
               </Link>
@@ -179,7 +177,7 @@ const ProjectsSection = () => {
             href="https://github.com/VivekChaurasiya95"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-primary hover:text-white transition-colors font-bold text-sm tracking-widest uppercase"
+            className="flex items-center gap-2 text-primary hover:text-foreground transition-colors font-bold text-sm tracking-widest uppercase"
           >
             SEE ALL PROJECTS &rarr;
           </a>
@@ -199,14 +197,14 @@ const ProjectsSection = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="relative flex flex-col w-full h-full min-h-[400px] rounded-xl group"
           >
-            <div className="relative flex-1 flex flex-col items-center justify-center text-center p-8 md:p-12 w-full h-full rounded-xl border border-primary/20 bg-[#1c1c1e] hover:border-primary/50 transition-colors duration-300 shadow-xl">
-              <Github size={64} className="text-white/10 mb-6" />
+            <div className="relative flex-1 flex flex-col items-center justify-center text-center p-8 md:p-12 w-full h-full rounded-xl border border-primary/20 bg-card hover:border-primary/50 transition-colors duration-300 shadow-xl">
+              <Github size={64} className="text-foreground/10 mb-6" />
               
-              <h3 className="text-3xl font-bold font-display text-white mb-6">
+              <h3 className="text-3xl font-bold font-display text-foreground mb-6">
                 More Projects
               </h3>
               
-              <p className="text-white/60 text-base leading-relaxed mb-10 max-w-sm">
+              <p className="text-muted-foreground text-base leading-relaxed mb-10 max-w-sm">
                 Explore my comprehensive portfolio featuring diverse projects, open-source contributions, and experimental work spanning multiple technologies.
               </p>
 
@@ -214,7 +212,7 @@ const ProjectsSection = () => {
                 href="https://github.com/VivekChaurasiya95"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 border border-white/10 bg-[#21262d] hover:bg-[#30363d] text-white font-bold py-3.5 px-6 rounded-lg transition-all active:scale-95 text-sm shadow-md"
+                className="inline-flex items-center justify-center gap-3 border border-border bg-muted hover:bg-muted/80 text-foreground font-bold py-3.5 px-6 rounded-lg transition-all active:scale-95 text-sm shadow-md"
               >
                 <GitBranch size={18} />
                 Explore GitHub Portfolio

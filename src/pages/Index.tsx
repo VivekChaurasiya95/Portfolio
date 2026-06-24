@@ -4,6 +4,7 @@ import SocialSidebar from "@/components/SocialSidebar";
 import HeroSection from "@/components/HeroSection";
 import TechnologiesSection from "@/components/TechnologiesSection";
 import { lazy, Suspense, useState, useEffect } from "react";
+import { useTheme } from "next-themes";
 
 const SplineBackground = lazy(() => import("@/components/SplineBackground"));
 const StarField = lazy(() => import("@/components/StarField"));
@@ -18,6 +19,14 @@ const ContactSection = lazy(() => import("@/components/ContactSection"));
 
 const Index = () => {
   const [mounted, setMounted] = useState(false);
+  const { theme, resolvedTheme } = useTheme();
+  const [themeMounted, setThemeMounted] = useState(false);
+
+  useEffect(() => {
+    setThemeMounted(true);
+  }, []);
+
+  const isDark = themeMounted ? (resolvedTheme === "dark") : true;
 
   useEffect(() => {
     // Detect Lighthouse and search engine bots
@@ -42,15 +51,26 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen bg-transparent text-foreground">
-      {/* Background Star Field and Spline Scene tied to the entire page */}
-      <div className="fixed inset-0 z-0 bg-background">
-        {mounted && (
+      {/* Background - Dark: Spline 3D + Stars, Light: clean gradient */}
+      <div className="fixed inset-0 z-0 bg-background transition-colors duration-500">
+        {isDark && mounted && (
           <Suspense fallback={<div className="w-full h-full bg-background" />}>
             <SplineBackground />
             <div className="absolute inset-0 pointer-events-none mix-blend-screen z-10">
               <StarField />
             </div>
           </Suspense>
+        )}
+        {!isDark && (
+          <div className="absolute inset-0 bg-gradient-to-br from-[#f0f4f8] via-[#e8eef5] to-[#dde8f0]"
+            style={{
+              backgroundImage: `
+                radial-gradient(ellipse at 20% 50%, hsla(185, 50%, 80%, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, hsla(220, 50%, 85%, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, hsla(350, 40%, 90%, 0.2) 0%, transparent 50%)
+              `
+            }}
+          />
         )}
       </div>
 

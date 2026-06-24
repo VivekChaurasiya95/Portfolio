@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import githubIcon from "@/assets/icons/github.png";
 import linkedinIcon from "@/assets/icons/linkedin.png";
 import xTwitterIcon from "@/assets/icons/x-twitter.png";
-import leetcodeIcon from "@/assets/icons/leetcode.png";
+import leetcodeIcon from "@/assets/icons/leetcode.svg";
 import instagramIcon from "@/assets/icons/instagram.png";
 import emailIcon from "@/assets/icons/email.png";
 import { EMAIL_ADDRESS, SOCIAL_LINKS } from "@/data/siteLinks";
@@ -36,11 +36,11 @@ const SocialSidebar = () => {
             rel={
               link.href.startsWith("mailto") ? undefined : "noopener noreferrer"
             }
-            className="w-10 h-10 flex items-center justify-center rounded-full overflow-hidden transition-all duration-300"
+            className="w-10 h-10 flex items-center justify-center rounded-full overflow-hidden transition-all duration-300 bg-background/50 border border-border/50 shadow-sm dark:shadow-none hover:shadow-md dark:bg-transparent dark:border-transparent"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 + index * 0.1 }}
-            whileHover={{ scale: 1.35 }}
+            whileHover={{ scale: 1.15 }}
             aria-label={link.label}
           >
             <img
@@ -49,10 +49,9 @@ const SocialSidebar = () => {
               width="32"
               height="32"
               loading="lazy"
-              className={`w-8 h-8 rounded-full object-cover ${link.label === "GitHub" ? "invert brightness-0 invert" : ""}`}
-              style={
-                link.label === "GitHub" ? { filter: "invert(1)" } : undefined
-              }
+              className={`w-8 h-8 rounded-full object-cover transition-transform ${
+                link.label === "GitHub" ? "dark:invert" : ""
+              } ${link.label === "LeetCode" ? "dark:drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]" : ""}`}
             />
           </motion.a>
         ))}

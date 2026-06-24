@@ -387,7 +387,7 @@ const ExperienceSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-md flex items-center justify-center md:p-6"
+          className="fixed inset-0 z-[9999] bg-background/80 backdrop-blur-md flex items-center justify-center md:p-6"
           onClick={() => setSelectedExperience(null)}
         >
           <motion.div
@@ -411,7 +411,7 @@ const ExperienceSection = () => {
             </button>
 
             {/* Left: Image Showcase & Gallery (No Scrollbars) */}
-            <div className="w-full md:w-1/2 h-[45vh] md:h-full relative bg-black/20 border-b md:border-b-0 md:border-r border-border/50 flex flex-col z-10 overflow-hidden">
+            <div className="w-full md:w-1/2 h-[45vh] md:h-full relative bg-muted/20 border-b md:border-b-0 md:border-r border-border/50 flex flex-col z-10 overflow-hidden">
               <div className="flex-1 relative flex items-center justify-center p-4 md:p-8">
                 <AnimatePresence mode="wait">
                   <motion.img
@@ -673,7 +673,7 @@ const ExperienceSection = () => {
             </div>
             <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium mb-6">
               <span className="text-foreground">Professional</span>{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#609fb4] via-[#6b81b5] to-[#b1819b]">
+              <span className="text-gradient">
                 Experience
               </span>
             </h2>
@@ -688,7 +688,7 @@ const ExperienceSection = () => {
               href={linkedinExperienceUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-primary hover:text-white transition-colors font-bold text-sm tracking-widest uppercase"
+              className="flex items-center gap-2 text-primary hover:text-foreground transition-colors font-bold text-sm tracking-widest uppercase"
             >
               VIEW ALL EXPERIENCES &rarr;
             </a>
@@ -771,7 +771,7 @@ const ExperienceSection = () => {
                                 }}
                               />
                               <span className="hidden w-full h-full items-center justify-center">
-                                <Icon className="w-10 h-10 text-white/95" />
+                                <Icon className="w-10 h-10 text-white" />
                               </span>
                             </div>
                           </div>
@@ -841,7 +841,7 @@ const ExperienceSection = () => {
                                   e.stopPropagation();
                                   openExperienceDetail(exp);
                                 }}
-                                className="inline-flex items-center gap-2 whitespace-nowrap rounded-lg border border-primary/40 bg-primary/10 px-3.5 py-2 text-[0.9rem] font-semibold text-primary hover:bg-primary/20 hover:text-white transition-colors"
+                                className="inline-flex items-center gap-2 whitespace-nowrap rounded-lg border border-primary/40 bg-primary/10 px-3.5 py-2 text-[0.9rem] font-semibold text-primary hover:bg-primary/20 hover:text-foreground transition-colors"
                               >
                                 <FileText className="w-4 h-4" />
                                 View Experience Details
@@ -900,7 +900,7 @@ const ExperienceSection = () => {
                     key={idx}
                     onClick={() => setActiveIndex(idx)}
                     aria-label={`Go to experience ${idx + 1}`}
-                    className={`w-3 h-3 rounded-full transition-all duration-500 ${activeIndex === idx ? "bg-primary scale-125 shadow-[0_0_10px_rgba(var(--primary),0.8)]" : "bg-white/20 hover:bg-white/40"}`}
+                    className={`w-3 h-3 rounded-full transition-all duration-500 ${activeIndex === idx ? "bg-primary scale-125 shadow-[0_0_10px_rgba(var(--primary),0.8)]" : "bg-foreground/20 dark:bg-white/20 hover:bg-foreground/40 dark:hover:bg-white/40"}`}
                   />
                 ))}
               </div>

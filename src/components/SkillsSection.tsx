@@ -663,18 +663,22 @@ const SkillBadge = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9, y: 10 }}
+      initial={{ opacity: 0, scale: 0.8, y: 15 }}
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-30px" }}
       transition={{
-        duration: 0.3,
-        delay: catIndex * 0.1 + index * 0.05,
+        duration: 0.4,
+        delay: catIndex * 0.08 + index * 0.04,
+        type: "spring",
+        stiffness: 200,
+        damping: 20,
       }}
       whileHover={{
-        scale: 1.05,
-        transition: { duration: 0.2 },
+        scale: 1.08,
+        y: -3,
+        transition: { duration: 0.18, type: "spring", stiffness: 400 },
       }}
-      className="flex items-center gap-2.5 px-[18px] py-[9.5px] rounded-xl bg-[#111318] border border-white/5 hover:border-white/10 hover:bg-[#1a1d24] transition-all cursor-default"
+      className="flex items-center gap-2.5 px-[18px] py-[9.5px] rounded-xl bg-muted/60 dark:bg-[#111318] border border-border/30 dark:border-white/5 hover:border-primary/40 dark:hover:border-white/10 hover:bg-primary/5 dark:hover:bg-[#1a1d24] hover:shadow-[0_4px_20px_hsl(var(--primary)/0.15)] transition-all cursor-default"
     >
       {/* Icon container */}
       <div
@@ -735,20 +739,43 @@ const SkillsSection = () => {
           </p>
         </motion.div>
 
-        {/* Skills Grid - Fixed to 2 columns specifically */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        {/* Skills Grid */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.12 } },
+          }}
+        >
           {skillCategories.map((category, catIndex) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: catIndex * 0.1 }}
-              className="relative p-6 sm:p-8 rounded-[2rem] bg-[#0a0a0a] border border-white/5 transition-all duration-500 hover:border-white/10"
+              variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
+              }}
+              whileHover={{
+                boxShadow: "0 8px 40px hsl(var(--primary)/0.12)",
+                borderColor: "hsl(var(--primary)/0.3)",
+                transition: { duration: 0.3 },
+              }}
+              className="relative p-6 sm:p-8 rounded-[2rem] bg-card/80 dark:bg-[#0a0a0a] border border-border/30 dark:border-white/5 transition-colors duration-500 group"
             >
-              {/* Category header - Exactly like Image Reference */}
+              {/* Animated gradient glow on hover */}
+              <motion.div
+                className="absolute -inset-[1px] rounded-[2rem] bg-gradient-to-br from-primary/20 via-secondary/10 to-primary/0 opacity-0 group-hover:opacity-100 -z-10 blur-sm"
+                transition={{ duration: 0.4 }}
+              />
+
+              {/* Category header */}
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-6 h-[2px] bg-[#B57B85] rounded-full" />
+                <motion.div
+                  className="w-6 h-[2px] bg-[#B57B85] rounded-full"
+                  whileHover={{ scaleX: 1.5 }}
+                />
                 <h3 className="text-xl font-bold tracking-wide text-[#B57B85] font-['Space_Grotesk']">
                   {category.title}
                 </h3>
@@ -767,61 +794,7 @@ const SkillsSection = () => {
               </div>
             </motion.div>
           ))}
-        </div>
-
-        {/* Constellation visualization - subtle background element */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-          <svg
-            className="w-full h-full"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-          >
-            {/* Subtle connecting lines */}
-            <line
-              x1="20"
-              y1="30"
-              x2="50"
-              y2="50"
-              stroke="hsl(var(--primary))"
-              strokeWidth="0.1"
-              opacity="0.3"
-            />
-            <line
-              x1="50"
-              y1="50"
-              x2="80"
-              y2="35"
-              stroke="hsl(var(--primary))"
-              strokeWidth="0.1"
-              opacity="0.3"
-            />
-            <line
-              x1="50"
-              y1="50"
-              x2="70"
-              y2="70"
-              stroke="hsl(var(--secondary))"
-              strokeWidth="0.1"
-              opacity="0.3"
-            />
-            <line
-              x1="30"
-              y1="70"
-              x2="50"
-              y2="50"
-              stroke="hsl(var(--secondary))"
-              strokeWidth="0.1"
-              opacity="0.3"
-            />
-
-            {/* Node points */}
-            <circle cx="20" cy="30" r="0.5" fill="hsl(var(--primary))" />
-            <circle cx="50" cy="50" r="0.8" fill="hsl(var(--primary))" />
-            <circle cx="80" cy="35" r="0.5" fill="hsl(var(--primary))" />
-            <circle cx="70" cy="70" r="0.5" fill="hsl(var(--secondary))" />
-            <circle cx="30" cy="70" r="0.5" fill="hsl(var(--secondary))" />
-          </svg>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

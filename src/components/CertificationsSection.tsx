@@ -45,7 +45,7 @@ const CertificationsSection = () => {
           <div className="flex justify-end mb-6 w-full pr-2">
             <Link
               to="/certificates"
-              className="flex items-center gap-2 text-primary hover:text-white transition-colors font-bold text-sm tracking-widest uppercase"
+              className="flex items-center gap-2 text-primary hover:text-foreground transition-colors font-bold text-sm tracking-widest uppercase"
             >
               SEE ALL CERTIFICATES &rarr;
             </Link>
@@ -76,7 +76,6 @@ const CertificationsSection = () => {
                         "https://via.placeholder.com/800x600?text=Image+Missing";
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
                 </div>
 
                 <div className="p-6 relative -mt-10">

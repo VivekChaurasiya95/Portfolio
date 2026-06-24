@@ -5,6 +5,61 @@
 
 @layer base {
   :root {
+    /* Atmospheric Light Theme - bright and elegant */
+    --background: 210 40% 98%;
+    --foreground: 220 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 15%;
+
+    /* Soft teal accent */
+    --primary: 185 60% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 355 60% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 20% 92%;
+    --muted-foreground: 220 15% 45%;
+
+    --accent: 185 40% 90%;
+    --accent-foreground: 185 60% 30%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 30% 85%;
+    --input: 214 30% 85%;
+    --ring: 185 60% 40%;
+
+    --radius: 0.5rem;
+
+    --hero-gradient: linear-gradient(135deg, hsl(185 70% 35%) 0%, hsl(220 45% 55%) 35%, hsl(355 55% 45%) 100%);
+    --space-glow: 0 0 80px 20px hsla(185, 60%, 40%, 0.1);
+    --star-color: 210 20% 70%;
+    --nebula-gradient: radial-gradient(ellipse at 30% 20%, hsla(185, 50%, 60%, 0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, hsla(350, 40%, 60%, 0.1) 0%, transparent 50%);
+
+    --font-display: "Cormorant Garamond", Georgia, serif;
+    --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+
+    --shadow-subtle: 0 4px 20px -4px hsla(220, 25%, 0%, 0.05);
+    --shadow-card: 0 8px 32px -8px hsla(220, 25%, 0%, 0.1);
+    --shadow-glow: 0 0 40px -10px hsla(185, 60%, 40%, 0.2);
+
+    --sidebar-background: 210 40% 98%;
+    --sidebar-foreground: 220 25% 15%;
+    --sidebar-primary: 185 60% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 20% 90%;
+    --sidebar-accent-foreground: 220 25% 15%;
+    --sidebar-border: 214 30% 85%;
+    --sidebar-ring: 185 60% 40%;
+  }
+
+  .dark {
     /* Deep space dark theme - cinematic and professional */
     --background: 220 25% 6%;
     --foreground: 210 20% 90%;
@@ -15,11 +70,9 @@
     --popover: 220 25% 8%;
     --popover-foreground: 210 20% 90%;
 
-    /* Soft teal accent - atmospheric, not neon */
     --primary: 185 50% 45%;
     --primary-foreground: 218 27% 6%;
 
-    /* Muted rose for secondary elements */
     --secondary: 350 25% 55%;
     --secondary-foreground: 210 20% 95%;
 
@@ -38,7 +91,6 @@
 
     --radius: 0.5rem;
 
-    /* Custom semantic tokens */
     --hero-gradient: linear-gradient(
       135deg,
       hsl(185 50% 45%) 0%,
@@ -47,23 +99,11 @@
     );
     --space-glow: 0 0 80px 20px hsla(185, 50%, 45%, 0.08);
     --star-color: 210 20% 85%;
-    --nebula-gradient:
-      radial-gradient(
-        ellipse at 30% 20%,
-        hsla(185, 40%, 30%, 0.15) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        ellipse at 70% 80%,
-        hsla(350, 30%, 30%, 0.1) 0%,
-        transparent 50%
-      );
+    --nebula-gradient: radial-gradient(ellipse at 30% 20%, hsla(185, 40%, 30%, 0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, hsla(350, 30%, 30%, 0.1) 0%, transparent 50%);
 
-    /* Typography - Elegant Cursive + Modern Fonts */
     --font-display: "Cormorant Garamond", Georgia, serif;
     --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
 
-    /* Shadows */
     --shadow-subtle: 0 4px 20px -4px hsla(220, 25%, 0%, 0.4);
     --shadow-card: 0 8px 32px -8px hsla(220, 25%, 0%, 0.5);
     --shadow-glow: 0 0 40px -10px hsla(185, 50%, 45%, 0.3);

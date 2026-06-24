@@ -24,7 +24,7 @@ const ProjectDetail = () => {
   if (!project) {
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center text-center p-6">
-        <h1 className="text-4xl font-display font-bold text-white mb-4">Project Not Found</h1>
+        <h1 className="text-4xl font-display font-bold text-foreground mb-4">Project Not Found</h1>
         <p className="text-muted-foreground mb-8">The project you're looking for doesn't exist.</p>
         <Link to="/" className="btn-primary inline-flex items-center gap-2">
           <ArrowLeft size={18} /> Back to Portfolio
@@ -43,9 +43,9 @@ const ProjectDetail = () => {
       >
         <button 
           onClick={() => navigate('/')}
-          className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors group"
+          className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:bg-accent transition-colors group"
         >
-          <LayoutGrid className="text-muted-foreground group-hover:text-white transition-colors" size={20} />
+          <LayoutGrid className="text-muted-foreground group-hover:text-foreground transition-colors" size={20} />
         </button>
       </motion.div>
 
@@ -58,7 +58,7 @@ const ProjectDetail = () => {
           className="lg:col-span-7 flex flex-col gap-4"
         >
           {/* Main Image */}
-          <div className="w-full rounded-xl overflow-hidden border border-white/10 bg-[#121418] shadow-2xl flex items-center justify-center">
+          <div className="w-full rounded-xl overflow-hidden border border-border bg-card shadow-2xl flex items-center justify-center">
             <img 
               src={activeImage || project.image} 
               alt={project.title} 
@@ -71,7 +71,7 @@ const ProjectDetail = () => {
             <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
               <button 
                 onClick={() => setActiveImage(project.image)}
-                className={`flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden border-2 transition-all ${activeImage === project.image ? 'border-primary/50 shadow-[0_0_15px_rgba(var(--primary),0.2)]' : 'border-transparent hover:border-white/20'}`}
+                className={`flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden border-2 transition-all ${activeImage === project.image ? 'border-primary/50 shadow-[0_0_15px_rgba(var(--primary),0.2)]' : 'border-transparent hover:border-border'}`}
               >
                  <img src={project.image} alt="main thumbnail" className="w-full h-full object-cover" />
               </button>
@@ -80,7 +80,7 @@ const ProjectDetail = () => {
                 <button 
                   key={idx}
                   onClick={() => setActiveImage(img)}
-                  className={`flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden border-2 transition-all ${activeImage === img ? 'border-primary/50 shadow-[0_0_15px_rgba(var(--primary),0.2)]' : 'border-transparent hover:border-white/20'}`}
+                  className={`flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden border-2 transition-all ${activeImage === img ? 'border-primary/50 shadow-[0_0_15px_rgba(var(--primary),0.2)]' : 'border-transparent hover:border-border'}`}
                 >
                    <img src={img} alt={`thumbnail ${idx}`} className="w-full h-full object-cover" />
                 </button>
@@ -91,7 +91,7 @@ const ProjectDetail = () => {
               <div className="w-24 h-24 rounded-lg overflow-hidden border-2 border-primary/50 shadow-[0_0_15px_rgba(var(--primary),0.2)]">
                  <img src={project.image} alt="thumbnail 1" className="w-full h-full object-cover" />
               </div>
-              <div className="w-24 h-24 rounded-lg overflow-hidden border border-white/10 bg-[#1a1d24] opacity-70 flex items-center justify-center">
+              <div className="w-24 h-24 rounded-lg overflow-hidden border border-border bg-muted opacity-70 flex items-center justify-center">
                  <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider text-center px-2">More soon</span>
               </div>
             </div>
@@ -114,7 +114,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6 leading-tight">
             {project.title}
           </h1>
 
@@ -123,7 +123,7 @@ const ProjectDetail = () => {
             {project.tech.map((tech) => (
               <span 
                 key={tech} 
-                className="px-4 py-1.5 rounded-full border border-blue-500/30 text-blue-400 text-xs font-bold tracking-widest uppercase bg-blue-500/10"
+                className="px-4 py-1.5 rounded-full border border-primary/30 text-primary text-xs font-bold tracking-widest uppercase bg-primary/10"
               >
                 {tech}
               </span>
@@ -131,7 +131,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* Description */}
-          <div className="text-white/80 text-lg font-medium leading-[1.8] tracking-wide mb-8 space-y-6">
+          <div className="text-muted-foreground text-lg font-medium leading-[1.8] tracking-wide mb-8 space-y-6">
             <p>{project.problem}</p>
             <p>{project.solution}</p>
             <p>{project.architecture}</p>
@@ -139,8 +139,8 @@ const ProjectDetail = () => {
 
           {/* Impact */}
           <div className="mb-10 p-0">
-            <p className="text-white/90 text-md leading-relaxed">
-              <span className="font-bold inline-flex items-center gap-1.5"><Rocket className="text-red-400" size={18} /> Impact:</span> {project.impact}
+            <p className="text-foreground/90 text-md leading-relaxed">
+              <span className="font-bold inline-flex items-center gap-1.5"><Rocket className="text-secondary" size={18} /> Impact:</span> {project.impact}
             </p>
           </div>
 

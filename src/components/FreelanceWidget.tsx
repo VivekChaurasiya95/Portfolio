@@ -15,7 +15,7 @@ const FreelanceWidget = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="relative w-full h-auto min-h-[14rem] md:min-h-[16rem] p-6 rounded-2xl border border-primary/20 bg-[#0a0a0a]/80 backdrop-blur-xl overflow-hidden group shadow-[0_0_30px_rgba(var(--primary),0.05)] flex flex-col items-center md:items-end text-center md:text-right"
+        className="relative w-full h-auto min-h-[14rem] md:min-h-[16rem] p-6 rounded-2xl border border-primary/20 bg-card/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl overflow-hidden group shadow-[0_0_30px_rgba(var(--primary),0.05)] flex flex-col items-center md:items-end text-center md:text-right"
       >
         {/* HUD Grid Background */}
         <div 
@@ -73,7 +73,7 @@ const FreelanceWidget = () => {
         <div className="relative z-10 w-full flex flex-col items-center md:items-end">
           {/* Available Pill */}
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0a0a0a]/80 border border-primary/40 backdrop-blur-md mb-4 shadow-[0_0_15px_rgba(var(--primary),0.1)]"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-card/80 dark:bg-[#0a0a0a]/80 border border-primary/40 backdrop-blur-md mb-4 shadow-[0_0_15px_rgba(var(--primary),0.1)]"
             animate={{
               boxShadow: [
                 "0 0 10px hsl(var(--primary)/0.1)",
@@ -89,7 +89,7 @@ const FreelanceWidget = () => {
             </span>
           </motion.div>
 
-          <h3 className="text-xl md:text-2xl font-bold text-white mb-2 font-display tracking-wide drop-shadow-md">
+          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2 font-display tracking-wide drop-shadow-md">
             Freelance Services
           </h3>
           

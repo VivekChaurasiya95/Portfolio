@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { ThemeToggle } from "./ThemeToggle";
+import { SOCIAL_LINKS } from "@/data/siteLinks";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -153,15 +155,25 @@ const Navigation = () => {
             </div>
           </nav>
 
-          {/* Status badge */}
-          <div className="group flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 backdrop-blur-sm transition-all duration-300 hover:bg-primary/20 hover:border-primary/50 hover:shadow-[0_0_15px_hsl(var(--primary)/0.4)] cursor-pointer">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-            </span>
-            <span className="text-xs font-semibold text-gradient tracking-wide">
-              Open to work
-            </span>
+          <div className="flex items-center gap-4">
+            {/* Theme Toggle */}
+            <ThemeToggle />
+
+            {/* Status badge */}
+            <a 
+              href={SOCIAL_LINKS.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 backdrop-blur-sm transition-all duration-300 hover:bg-primary/20 hover:border-primary/50 hover:shadow-[0_0_15px_hsl(var(--primary)/0.4)] cursor-pointer hidden sm:flex"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+              </span>
+              <span className="text-xs font-semibold text-gradient tracking-wide">
+                Open to work
+              </span>
+            </a>
           </div>
         </div>
       </div>

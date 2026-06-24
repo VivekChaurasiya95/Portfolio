@@ -13,7 +13,7 @@ const StatusWidget = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="relative w-full h-48 md:h-56 rounded-2xl border border-primary/20 bg-[#0a0a0a]/80 backdrop-blur-xl overflow-hidden group shadow-[0_0_30px_hsl(var(--primary)/0.05)]"
+        className="relative w-full h-48 md:h-56 rounded-2xl border border-primary/20 bg-card/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl overflow-hidden group shadow-[0_0_30px_hsl(var(--primary)/0.05)]"
       >
         {/* HUD Grid Background */}
         <div 
@@ -105,7 +105,7 @@ const StatusWidget = () => {
 
         {/* Location Info */}
         <div className="absolute bottom-6 left-6 z-20 max-w-[200px] md:max-w-[240px]">
-          <h3 className="text-white text-lg md:text-xl font-bold font-display tracking-wide mb-1 drop-shadow-md leading-tight">
+          <h3 className="text-foreground text-lg md:text-xl font-bold font-display tracking-wide mb-1 drop-shadow-md leading-tight">
             Pragati Vihar
           </h3>
           <p className="text-muted-foreground font-mono text-[10px] md:text-xs tracking-wider opacity-90 leading-relaxed">

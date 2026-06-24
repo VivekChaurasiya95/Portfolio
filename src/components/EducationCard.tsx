@@ -108,7 +108,7 @@ const EducationCard = () => {
                 <p className="text-xs font-bold tracking-[0.2em] text-primary mb-2 uppercase">
                   {content[activeSlide].type}
                 </p>
-                <h3 className="text-2xl md:text-3xl font-display font-medium text-white mb-2 leading-tight">
+                <h3 className="text-2xl md:text-3xl font-display font-medium text-foreground mb-2 leading-tight">
                   {content[activeSlide].title}
                 </h3>
                 <div className="flex items-center gap-1.5 text-muted-foreground text-sm">
@@ -122,14 +122,14 @@ const EducationCard = () => {
             <div className="flex gap-2 self-start shrink-0">
               <button 
                 onClick={handlePrev}
-                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/5 transition-all"
+                className="w-10 h-10 rounded-full border border-foreground/10 flex items-center justify-center text-foreground/50 hover:text-foreground hover:bg-foreground/5 transition-all"
                 aria-label="Previous slide"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button 
                 onClick={handleNext}
-                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/5 transition-all"
+                className="w-10 h-10 rounded-full border border-foreground/10 flex items-center justify-center text-foreground/50 hover:text-foreground hover:bg-foreground/5 transition-all"
                 aria-label="Next slide"
               >
                 <ChevronRight className="w-5 h-5" />
@@ -150,7 +150,7 @@ const EducationCard = () => {
                     {detail.label}
                   </p>
                 </div>
-                <p className={`text-xl font-bold tracking-tight ${detail.valueClass || 'text-white'}`}>
+                <p className={`text-xl font-bold tracking-tight ${detail.valueClass || 'text-foreground'}`}>
                   {detail.value}
                 </p>
               </div>
@@ -166,13 +166,13 @@ const EducationCard = () => {
             key={index}
             onClick={() => setActiveSlide(index)}
             className={`h-1.5 rounded-full transition-all duration-300 ${
-              index === activeSlide ? 'w-8 bg-primary' : 'w-1.5 bg-white/20 hover:bg-white/40'
+              index === activeSlide ? 'w-8 bg-primary' : 'w-1.5 bg-foreground/20 dark:bg-white/20 hover:bg-foreground/40 dark:hover:bg-white/40'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
         {/* Decorative inactive dot to match standard design patterns */}
-        <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+        <div className="w-1.5 h-1.5 rounded-full bg-foreground/20 dark:bg-white/20" />
       </div>
     </div>
   );
