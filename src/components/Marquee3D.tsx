@@ -43,7 +43,7 @@ const Marquee3D = () => {
 
   return (
     <div 
-      className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden mt-12 py-16 flex items-center justify-center bg-transparent cursor-pointer"
+      className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden mt-4 py-8 flex items-center justify-center bg-transparent cursor-pointer"
       style={{ perspective: "1000px" }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}

@@ -32,7 +32,7 @@ const AboutSection = () => {
   };
 
   return (
-    <section id="about" className="py-32 relative">
+    <section id="about" className="pt-32 pb-10 relative">
       <div className="container mx-auto px-6 lg:px-20">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Text content */}
