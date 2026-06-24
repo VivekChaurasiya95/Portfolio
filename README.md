@@ -8,7 +8,7 @@
 
 <br/><br/>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=800&color=06B6D4&center=true&vCenter=true&multiline=false&width=600&lines=Welcome+to+my+Portfolio+%F0%9F%8C%9F;React+%7C+TypeScript+%7C+Vite+%7C+3D+Animations;AI+Enthusiast+%26+Open+Source+Contributor;Let's+build+something+incredible+%F0%9F%9A%80)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=800&color=06B6D4&center=true&vCenter=true&multiline=false&width=600&lines=Welcome+to+my+Portfolio+;React+%7C+TypeScript+%7C+Vite+%7C+3D+Animations;AI+Enthusiast+%26+Open+Source+Contributor;Let's+build+something+incredible+)](https://git.io/typing-svg)
 
 <br/>
 
@@ -33,9 +33,9 @@
 
 <div align="center">
 
-## 🔗 Quick Links
+## Quick Links
 
-[![Live Portfolio](https://img.shields.io/badge/🌐_Live_Portfolio-View_Now-06b6d4?style=for-the-badge)](https://github.com/VivekChaurasiya95/Portfolio)
+[![Live Portfolio](https://img.shields.io/badge/Live_Portfolio-View_Now-06b6d4?style=for-the-badge)](https://github.com/VivekChaurasiya95/Portfolio)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vivek-chaurasiya-722037315)
 [![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/VivekChaurasiya95)
 [![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:vivekchaurasiya943@gmail.com)
@@ -46,50 +46,50 @@
 
 <div align="center">
 
-## ✨ Feature Highlights
+## Feature Highlights
 
 </div>
 
 <table align="center">
   <tr>
     <td align="center" width="200">
-      <h3>🌙 Dark / Light Mode</h3>
+      <h3>Dark / Light Mode</h3>
       Fully theme-aware design with smooth CSS variable transitions
     </td>
     <td align="center" width="200">
-      <h3>🎭 Framer Motion</h3>
+      <h3>Framer Motion</h3>
       Spring physics, stagger reveals & scroll-triggered animations throughout
     </td>
     <td align="center" width="200">
-      <h3>🤖 3D Spline Scene</h3>
+      <h3>3D Spline Scene</h3>
       Interactive 3D robot model embedded via Spline in the footer
     </td>
   </tr>
   <tr>
     <td align="center" width="200">
-      <h3>🌀 3D Marquee</h3>
+      <h3>3D Marquee</h3>
       Left-tilted infinite 3D rotating skills marquee with mouse tracking
     </td>
     <td align="center" width="200">
-      <h3>📜 Project Cards</h3>
+      <h3>Project Cards</h3>
       Full-screen cards with image previews, tech pills & live/GitHub links
     </td>
     <td align="center" width="200">
-      <h3>🏅 Certifications</h3>
+      <h3>Certifications</h3>
       Responsive grid with click-to-expand modals & credential verification
     </td>
   </tr>
   <tr>
     <td align="center" width="200">
-      <h3>💼 Experience Timeline</h3>
+      <h3>Experience Timeline</h3>
       Animated horizontal scroll for professional experience & education
     </td>
     <td align="center" width="200">
-      <h3>📬 Contact Form</h3>
+      <h3>Contact Form</h3>
       Fully functional email backend with <strong>auto-reply</strong> sent to users
     </td>
     <td align="center" width="200">
-      <h3>⚡ Optimised Build</h3>
+      <h3>Optimised Build</h3>
       ~46% image compression via vite-plugin-image-optimizer
     </td>
   </tr>
@@ -97,7 +97,7 @@
 
 ---
 
-## 🚀 Tech Stack
+## Tech Stack
 
 <div align="center">
 
@@ -124,7 +124,7 @@
 
 </div>
 
-### 📦 Core Libraries
+### Core Libraries
 
 | Category | Libraries / Tools |
 |:---|:---|
@@ -143,50 +143,50 @@
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 portfolio/
-├── 📂 public/                   # Static assets (images, resume, certificates)
-│   ├── 📂 certificates/         # Certificate images
-│   ├── 📂 experience-logos/     # Company logos
-│   ├── 📂 experience-proofs/    # Proof documents
-│   └── 📄 favicon.png           # VC Logo
-├── 📂 server/                   # Express.js backend (custom email API)
-│   └── 📄 index.js              # SMTP endpoint + auto-reply logic
-├── 📂 src/
-│   ├── 📂 assets/
-│   │   ├── 📂 icons/            # Social media icons (png)
-│   │   └── 🖼️ vivek-profile-new.png
-│   ├── 📂 components/           # All React components
-│   │   ├── 📄 Navigation.tsx    # Navbar with scroll spy
-│   │   ├── 📄 HeroSection.tsx   # Animated hero + typing effect
-│   │   ├── 📄 AboutSection.tsx  # About me section
-│   │   ├── 📄 Marquee3D.tsx     # 3D tilted skills marquee
-│   │   ├── 📄 ExperienceSection.tsx
-│   │   ├── 📄 ProjectsSection.tsx
-│   │   ├── 📄 SkillsSection.tsx
-│   │   ├── 📄 CertificationsSection.tsx
-│   │   ├── 📄 ContactSection.tsx
-│   │   ├── 📄 Footer.tsx
-│   │   ├── 📄 SocialSidebar.tsx
-│   │   └── 📄 ThemeToggle.tsx
-│   ├── 📂 data/                 # Static content & configuration
-│   │   ├── 📄 siteLinks.ts      # All social/email links — edit here
-│   │   ├── 📄 projects.ts       # Projects data
-│   │   └── 📄 certifications.ts
-│   ├── 📄 index.css             # Global styles, CSS variables
-│   └── 📄 App.tsx               # Root app with routing
-├── 📄 .env                      # ⚠️ Private — NOT committed to Git
-├── 📄 .env.example              # Environment variable template
-├── 📄 vite.config.ts
-├── 📄 tailwind.config.ts
-└── 📄 package.json
+├──  public/                   # Static assets (images, resume, certificates)
+│   ├──  certificates/         # Certificate images
+│   ├──  experience-logos/     # Company logos
+│   ├──  experience-proofs/    # Proof documents
+│   └──  favicon.png           # VC Logo
+├──  server/                   # Express.js backend (custom email API)
+│   └──  index.js              # SMTP endpoint + auto-reply logic
+├──  src/
+│   ├──  assets/
+│   │   ├──  icons/            # Social media icons (png)
+│   │   └──  vivek-profile-new.png
+│   ├──  components/           # All React components
+│   │   ├──  Navigation.tsx    # Navbar with scroll spy
+│   │   ├──  HeroSection.tsx   # Animated hero + typing effect
+│   │   ├──  AboutSection.tsx  # About me section
+│   │   ├──  Marquee3D.tsx     # 3D tilted skills marquee
+│   │   ├──  ExperienceSection.tsx
+│   │   ├──  ProjectsSection.tsx
+│   │   ├──  SkillsSection.tsx
+│   │   ├──  CertificationsSection.tsx
+│   │   ├──  ContactSection.tsx
+│   │   ├──  Footer.tsx
+│   │   ├──  SocialSidebar.tsx
+│   │   └──  ThemeToggle.tsx
+│   ├──  data/                 # Static content & configuration
+│   │   ├──  siteLinks.ts      # All social/email links — edit here
+│   │   ├──  projects.ts       # Projects data
+│   │   └──  certifications.ts
+│   ├──  index.css             # Global styles, CSS variables
+│   └──  App.tsx               # Root app with routing
+├──  .env                      #  Private — NOT committed to Git
+├──  .env.example              # Environment variable template
+├──  vite.config.ts
+├──  tailwind.config.ts
+└──  package.json
 ```
 
 ---
 
-## ⚙️ Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -230,7 +230,7 @@ CONTACT_TARGET_EMAIL=your_gmail@gmail.com
 MAIL_FROM=your_gmail@gmail.com
 ```
 
-> ⚠️ **Gmail users** must generate a **16-digit App Password** from:  
+>  **Gmail users** must generate a **16-digit App Password** from:  
 > Google Account → Security → 2-Step Verification → **App Passwords**
 
 **4. Start the development server** (Frontend only)
@@ -246,13 +246,13 @@ npm run dev:full
 
 ---
 
-## 📜 Available Scripts
+## Available Scripts
 
 | Command | Description |
 |:---|:---|
 | `npm run dev` | Start the Vite dev server (frontend only) |
 | `npm run dev:server` | Start the Express email server only |
-| `npm run dev:full` | 🚀 Start both frontend + backend concurrently |
+| `npm run dev:full` |  Start both frontend + backend concurrently |
 | `npm run build` | Production build with image optimisation |
 | `npm run preview` | Preview the production build locally |
 | `npm run preview:full` | Preview build + backend concurrently |
@@ -262,29 +262,29 @@ npm run dev:full
 
 ---
 
-## 📬 Contact Form — How it Works
+## Contact Form — How it Works
 
 ```mermaid
 sequenceDiagram
-    participant User as 🧑 Website Visitor
-    participant Frontend as ⚛️ React Frontend
-    participant Backend as 🖥️ Express Backend
-    participant SMTP as 📧 Gmail SMTP
-    participant You as 🎯 Vivek's Inbox
+    participant User as  Website Visitor
+    participant Frontend as  React Frontend
+    participant Backend as  Express Backend
+    participant SMTP as  Gmail SMTP
+    participant You as  Vivek's Inbox
 
     User->>Frontend: Fills & submits contact form
     Frontend->>Backend: POST /api/contact { name, email, message }
     Backend->>SMTP: Send notification email
-    SMTP->>You: 📩 "New Portfolio Message from [Name]"
+    SMTP->>You:  "New Portfolio Message from [Name]"
     Backend->>SMTP: Send auto-reply to user
-    SMTP->>User: 📩 "Thanks for contacting! Here's my LinkedIn..."
+    SMTP->>User:  "Thanks for contacting! Here's my LinkedIn..."
     Backend->>Frontend: { ok: true }
-    Frontend->>User: ✅ Success message shown
+    Frontend->>User:  Success message shown
 ```
 
 ---
 
-## 🎨 Customisation
+## Customisation
 
 All content is data-driven for easy updates:
 
@@ -301,7 +301,7 @@ All content is data-driven for easy updates:
 
 ---
 
-## 🤝 Connect With Me
+## Connect With Me
 
 <div align="center">
 
@@ -318,7 +318,7 @@ All content is data-driven for easy updates:
 
 <div align="center">
 
-### 📊 GitHub Stats
+### GitHub Stats
 
 ![Vivek's GitHub Stats](https://github-readme-stats.vercel.app/api?username=VivekChaurasiya95&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=06b6d4&icon_color=0891b2&text_color=c9d1d9)
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=VivekChaurasiya95&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=06b6d4&text_color=c9d1d9)
@@ -331,7 +331,7 @@ All content is data-driven for easy updates:
 
 <div align="center">
 
-### 🏆 GitHub Trophies
+### GitHub Trophies
 
 [![trophy](https://github-profile-trophy.vercel.app/?username=VivekChaurasiya95&theme=tokyonight&no-frame=true&margin-w=10&column=7)](https://github.com/ryo-ma/github-profile-trophy)
 
@@ -341,9 +341,9 @@ All content is data-driven for easy updates:
 
 <div align="center">
 
-⭐ **If you found this project helpful or inspiring, please give it a star!**
+ **If you found this project helpful or inspiring, please give it a star!**
 
-*It keeps me motivated to build more cool things.* 🚀
+*It keeps me motivated to build more cool things.* 
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:06b6d4,50:0891b2,100:0c4a6e&height=130&section=footer" width="100%" />
 
