@@ -1,64 +1,134 @@
 <div align="center">
 
-# 🌌 Vivek Chaurasiya — Personal Portfolio
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0c4a6e,50:0891b2,100:06b6d4&height=200&section=header&text=Vivek%20Chaurasiya&fontSize=48&fontColor=ffffff&fontAlign=50&fontAlignY=38&desc=Full%20Stack%20Developer%20%7C%20AI%20Enthusiast%20%7C%20Open%20Source%20Contributor&descAlign=50&descAlignY=60&animation=fadeIn" width="100%" />
 
-**A sleek, fully responsive, and highly interactive personal portfolio built with cutting-edge web technologies.**
+<br/>
+
+<img src="public/favicon.png" width="90" height="90" alt="VC Logo" />
+
+<br/><br/>
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=800&color=06B6D4&center=true&vCenter=true&multiline=false&width=600&lines=Welcome+to+my+Portfolio+%F0%9F%8C%9F;React+%7C+TypeScript+%7C+Vite+%7C+3D+Animations;AI+Enthusiast+%26+Open+Source+Contributor;Let's+build+something+incredible+%F0%9F%9A%80)](https://git.io/typing-svg)
+
+<br/>
 
 [![React](https://img.shields.io/badge/React_18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=threedotjs&logoColor=white)](https://threejs.org/)
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0e7490&height=150&section=header&text=Welcome%20to%20My%20Portfolio&fontSize=28&fontColor=ffffff&fontAlign=50&fontAlignY=42" width="100%" />
+<br/>
 
-🔗 **Live Demo:** [vivek-portfolio.vercel.app](https://github.com/VivekChaurasiya95/Portfolio)  
-📧 **Contact:** vivekchaurasiya943@gmail.com  
-💼 **LinkedIn:** [vivek-chaurasiya](https://www.linkedin.com/in/vivek-chaurasiya-722037315)
+[![GitHub Stars](https://img.shields.io/github/stars/VivekChaurasiya95/Portfolio?style=for-the-badge&logo=github&color=0891b2&labelColor=0c4a6e)](https://github.com/VivekChaurasiya95/Portfolio/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/VivekChaurasiya95/Portfolio?style=for-the-badge&logo=github&color=06b6d4&labelColor=0c4a6e)](https://github.com/VivekChaurasiya95/Portfolio/network)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/VivekChaurasiya95/Portfolio?style=for-the-badge&logo=github&color=22d3ee&labelColor=0c4a6e)](https://github.com/VivekChaurasiya95/Portfolio/commits/main)
 
 </div>
 
 ---
 
-## ✨ Features
+<div align="center">
 
-| Feature | Description |
-|---|---|
-| 🎨 **Dark / Light Mode** | Fully theme-aware design using `next-themes` with smooth transitions |
-| 🌊 **Framer Motion Animations** | Spring physics, stagger animations, scroll-triggered reveals throughout |
-| 🤖 **3D Spline Scene** | Interactive 3D robot model embedded in the footer via Spline |
-| 📱 **Fully Responsive** | Pixel-perfect layouts from mobile to ultrawide displays |
-| 🧭 **Smooth Navigation** | Navbar with active section detection, scroll spy, and LinkedIn-linked "Open to Work" badge |
-| 📜 **Projects Showcase** | Full-screen project cards with image previews, tech stack pills, and live/GitHub links |
-| 🏅 **Certifications Gallery** | Responsive grid with click-to-expand detail modals and credential verification links |
-| 💼 **Experience Timeline** | Animated horizontal scroller for professional experience and education |
-| 🛠️ **Skills Section** | Categorised tech stack grid with official devicon logos and hover glow animations |
-| 📬 **Contact Form** | Functional email form powered by Web3Forms API with success/error toasts |
-| 🔗 **Social Sidebar** | Fixed social links sidebar (Desktop) with contextual icons |
-| ⬆️ **Back to Top Button** | Smooth-scroll back-to-top button in the footer |
-| 🗺️ **Footer Navigation** | Professional footer with nav shortcuts and social links columns |
-| ⚡ **Optimised Build** | ~46% image compression via `vite-plugin-image-optimizer`, production-ready |
+## 🔗 Quick Links
+
+[![Live Portfolio](https://img.shields.io/badge/🌐_Live_Portfolio-View_Now-06b6d4?style=for-the-badge)](https://github.com/VivekChaurasiya95/Portfolio)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vivek-chaurasiya-722037315)
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/VivekChaurasiya95)
+[![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:vivekchaurasiya943@gmail.com)
+
+</div>
+
+---
+
+<div align="center">
+
+## ✨ Feature Highlights
+
+</div>
+
+<table align="center">
+  <tr>
+    <td align="center" width="200">
+      <h3>🌙 Dark / Light Mode</h3>
+      Fully theme-aware design with smooth CSS variable transitions
+    </td>
+    <td align="center" width="200">
+      <h3>🎭 Framer Motion</h3>
+      Spring physics, stagger reveals & scroll-triggered animations throughout
+    </td>
+    <td align="center" width="200">
+      <h3>🤖 3D Spline Scene</h3>
+      Interactive 3D robot model embedded via Spline in the footer
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="200">
+      <h3>🌀 3D Marquee</h3>
+      Left-tilted infinite 3D rotating skills marquee with mouse tracking
+    </td>
+    <td align="center" width="200">
+      <h3>📜 Project Cards</h3>
+      Full-screen cards with image previews, tech pills & live/GitHub links
+    </td>
+    <td align="center" width="200">
+      <h3>🏅 Certifications</h3>
+      Responsive grid with click-to-expand modals & credential verification
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="200">
+      <h3>💼 Experience Timeline</h3>
+      Animated horizontal scroll for professional experience & education
+    </td>
+    <td align="center" width="200">
+      <h3>📬 Contact Form</h3>
+      Fully functional email backend with <strong>auto-reply</strong> sent to users
+    </td>
+    <td align="center" width="200">
+      <h3>⚡ Optimised Build</h3>
+      ~46% image compression via vite-plugin-image-optimizer
+    </td>
+  </tr>
+</table>
 
 ---
 
 ## 🚀 Tech Stack
 
-<p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" title="HTML5" width="40" height="40" style="margin: 6px;"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" title="CSS3" width="40" height="40" style="margin: 6px;"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" title="TypeScript" width="40" height="40" style="margin: 6px;"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" title="React" width="40" height="40" style="margin: 6px;"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" title="Vite" width="40" height="40" style="margin: 6px;"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" title="Tailwind CSS" width="40" height="40" style="margin: 6px;"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" title="Node.js" width="40" height="40" style="margin: 6px;"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" title="Express.js" width="40" height="40" style="margin: 6px;"/>
+<div align="center">
+
+### Frontend
+
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" title="HTML5" width="48" height="48" style="margin: 8px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" title="CSS3" width="48" height="48" style="margin: 8px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" title="TypeScript" width="48" height="48" style="margin: 8px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" title="React 18" width="48" height="48" style="margin: 8px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" title="Vite" width="48" height="48" style="margin: 8px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" title="Tailwind CSS" width="48" height="48" style="margin: 8px;" />
 </p>
 
-### Core Libraries
+### Backend & Tooling
+
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" title="Node.js" width="48" height="48" style="margin: 8px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" title="Express.js" width="48" height="48" style="margin: 8px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" title="Git" width="48" height="48" style="margin: 8px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" title="GitHub" width="48" height="48" style="margin: 8px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" title="VS Code" width="48" height="48" style="margin: 8px;" />
+</p>
+
+</div>
+
+### 📦 Core Libraries
 
 | Category | Libraries / Tools |
-|---|---|
-| **Framework** | React 18, TypeScript, Vite 5 |
+|:---|:---|
+| **Framework** | React 18, TypeScript 5, Vite 5 |
 | **Styling** | Tailwind CSS, `tailwindcss-animate`, CSS Variables |
 | **Animations** | Framer Motion 11 |
 | **3D / Graphics** | Spline (`@splinetool/react-spline`), Three.js, React Three Fiber |
@@ -66,7 +136,7 @@
 | **Routing** | React Router DOM v6 |
 | **Forms & Validation** | React Hook Form, Zod |
 | **Theming** | next-themes |
-| **Email** | Web3Forms API, Nodemailer (server), Express.js |
+| **Email** | Nodemailer + Express.js custom SMTP backend |
 | **State / Data** | TanStack Query |
 | **Testing** | Vitest, Testing Library |
 | **Build Optimisation** | vite-plugin-image-optimizer, Sharp |
@@ -77,41 +147,41 @@
 
 ```
 portfolio/
-├── public/                  # Static assets (images, resume, certificates)
-│   ├── certificates/        # Certificate images
-│   ├── experience-logos/    # Company logos
-│   └── experience-proofs/   # Proof documents
-├── server/                  # Express.js backend (email API)
-│   └── index.js
-├── src/
-│   ├── assets/
-│   │   └── icons/           # Social media icons (png)
-│   ├── components/          # All React components
-│   │   ├── Navigation.tsx
-│   │   ├── HeroSection.tsx
-│   │   ├── AboutSection.tsx
-│   │   ├── ExperienceSection.tsx
-│   │   ├── ProjectsSection.tsx
-│   │   ├── SkillsSection.tsx
-│   │   ├── CertificationsSection.tsx
-│   │   ├── JourneySection.tsx
-│   │   ├── ContactSection.tsx
-│   │   ├── Footer.tsx
-│   │   ├── SocialSidebar.tsx
-│   │   ├── StatusWidget.tsx
-│   │   ├── FreelanceWidget.tsx
-│   │   └── ThemeToggle.tsx
-│   ├── data/                # Static content & configuration
-│   │   ├── siteLinks.ts     # All social/email links — edit here
-│   │   ├── projects.ts      # Projects data
-│   │   └── certifications.ts
-│   ├── pages/               # Page-level components (React Router)
-│   ├── index.css            # Global styles, CSS variables (light & dark themes)
-│   └── App.tsx              # Root app with routing
-├── .env.example             # Environment variable template
-├── vite.config.ts
-├── tailwind.config.ts
-└── package.json
+├── 📂 public/                   # Static assets (images, resume, certificates)
+│   ├── 📂 certificates/         # Certificate images
+│   ├── 📂 experience-logos/     # Company logos
+│   ├── 📂 experience-proofs/    # Proof documents
+│   └── 📄 favicon.png           # VC Logo
+├── 📂 server/                   # Express.js backend (custom email API)
+│   └── 📄 index.js              # SMTP endpoint + auto-reply logic
+├── 📂 src/
+│   ├── 📂 assets/
+│   │   ├── 📂 icons/            # Social media icons (png)
+│   │   └── 🖼️ vivek-profile-new.png
+│   ├── 📂 components/           # All React components
+│   │   ├── 📄 Navigation.tsx    # Navbar with scroll spy
+│   │   ├── 📄 HeroSection.tsx   # Animated hero + typing effect
+│   │   ├── 📄 AboutSection.tsx  # About me section
+│   │   ├── 📄 Marquee3D.tsx     # 3D tilted skills marquee
+│   │   ├── 📄 ExperienceSection.tsx
+│   │   ├── 📄 ProjectsSection.tsx
+│   │   ├── 📄 SkillsSection.tsx
+│   │   ├── 📄 CertificationsSection.tsx
+│   │   ├── 📄 ContactSection.tsx
+│   │   ├── 📄 Footer.tsx
+│   │   ├── 📄 SocialSidebar.tsx
+│   │   └── 📄 ThemeToggle.tsx
+│   ├── 📂 data/                 # Static content & configuration
+│   │   ├── 📄 siteLinks.ts      # All social/email links — edit here
+│   │   ├── 📄 projects.ts       # Projects data
+│   │   └── 📄 certifications.ts
+│   ├── 📄 index.css             # Global styles, CSS variables
+│   └── 📄 App.tsx               # Root app with routing
+├── 📄 .env                      # ⚠️ Private — NOT committed to Git
+├── 📄 .env.example              # Environment variable template
+├── 📄 vite.config.ts
+├── 📄 tailwind.config.ts
+└── 📄 package.json
 ```
 
 ---
@@ -120,62 +190,97 @@ portfolio/
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) v18+ and `npm` (or `bun`)
+- [Node.js](https://nodejs.org/) v18+ and `npm`
 
 ### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/VivekChaurasiya95/Portfolio.git
-   cd Portfolio
-   ```
+**1. Clone the repository**
+```bash
+git clone https://github.com/VivekChaurasiya95/Portfolio.git
+cd Portfolio
+```
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+**2. Install dependencies**
+```bash
+npm install
+```
 
-3. **Set up Environment Variables**
+**3. Set up Environment Variables**
 
-   Copy the example file and fill in your keys:
-   ```bash
-   cp .env.example .env
-   ```
+Copy the example file and fill in your credentials:
+```bash
+cp .env.example .env
+```
 
-   ```env
-   # Web3Forms API key for the contact form (get yours free at web3forms.com)
-   VITE_WEB3FORMS_KEY=your_access_key
+Open `.env` and fill in your SMTP details:
+```env
+# Backend Server
+PORT=5000
+FRONTEND_ORIGINS=http://localhost:8080,http://localhost:5173,http://localhost:4173
 
-   # (Optional) Nodemailer config for the Express email server
-   EMAIL_USER=your_email@gmail.com
-   EMAIL_PASS=your_app_password
-   ```
+# SMTP Settings (Gmail recommended)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=your_gmail@gmail.com
+SMTP_PASS=your_16_digit_app_password
 
-4. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:5173](http://localhost:5173) in your browser.
+# Email Routing
+CONTACT_TARGET_EMAIL=your_gmail@gmail.com
+MAIL_FROM=your_gmail@gmail.com
+```
 
-5. **(Optional) Run the full stack** (frontend + email server concurrently)
-   ```bash
-   npm run dev:full
-   ```
+> ⚠️ **Gmail users** must generate a **16-digit App Password** from:  
+> Google Account → Security → 2-Step Verification → **App Passwords**
+
+**4. Start the development server** (Frontend only)
+```bash
+npm run dev
+```
+Open [http://localhost:8080](http://localhost:8080) in your browser.
+
+**5. Start the full stack** (Frontend + Email Backend together — recommended)
+```bash
+npm run dev:full
+```
 
 ---
 
 ## 📜 Available Scripts
 
 | Command | Description |
-|---|---|
-| `npm run dev` | Start the Vite dev server |
+|:---|:---|
+| `npm run dev` | Start the Vite dev server (frontend only) |
 | `npm run dev:server` | Start the Express email server only |
-| `npm run dev:full` | Start both frontend and backend concurrently |
+| `npm run dev:full` | 🚀 Start both frontend + backend concurrently |
 | `npm run build` | Production build with image optimisation |
 | `npm run preview` | Preview the production build locally |
+| `npm run preview:full` | Preview build + backend concurrently |
 | `npm run lint` | Run ESLint |
 | `npm run test` | Run Vitest unit tests |
 | `npm run test:watch` | Run Vitest in watch mode |
+
+---
+
+## 📬 Contact Form — How it Works
+
+```mermaid
+sequenceDiagram
+    participant User as 🧑 Website Visitor
+    participant Frontend as ⚛️ React Frontend
+    participant Backend as 🖥️ Express Backend
+    participant SMTP as 📧 Gmail SMTP
+    participant You as 🎯 Vivek's Inbox
+
+    User->>Frontend: Fills & submits contact form
+    Frontend->>Backend: POST /api/contact { name, email, message }
+    Backend->>SMTP: Send notification email
+    SMTP->>You: 📩 "New Portfolio Message from [Name]"
+    Backend->>SMTP: Send auto-reply to user
+    SMTP->>User: 📩 "Thanks for contacting! Here's my LinkedIn..."
+    Backend->>Frontend: { ok: true }
+    Frontend->>User: ✅ Success message shown
+```
 
 ---
 
@@ -184,7 +289,7 @@ portfolio/
 All content is data-driven for easy updates:
 
 | What to Change | Where to Edit |
-|---|---|
+|:---|:---|
 | Your name, email, social links | `src/data/siteLinks.ts` |
 | Projects | `src/data/projects.ts` |
 | Certifications | `src/data/certifications.ts` |
@@ -192,26 +297,54 @@ All content is data-driven for easy updates:
 | Experience & education | `src/components/ExperienceSection.tsx` |
 | Colours / theme tokens | `src/index.css` (CSS variables) |
 | Resume file | Replace `public/Vivek_Chaurasiya_Resume.pdf` |
+| Auto-reply email content | `server/index.js` → second `sendMail()` call |
 
 ---
 
-## 📬 Contact
+## 🤝 Connect With Me
 
-Feel free to reach out via any of the channels below:
+<div align="center">
 
-- 📧 **Email:** [vivekchaurasiya943@gmail.com](mailto:vivekchaurasiya943@gmail.com)
-- 💼 **LinkedIn:** [vivek-chaurasiya-722037315](https://www.linkedin.com/in/vivek-chaurasiya-722037315)
-- 🐦 **X (Twitter):** [@Vivek9589](https://x.com/Vivek9589)
-- 🏆 **LeetCode:** [Vivek-Chaurasiya](https://leetcode.com/u/Vivek-Chaurasiya/)
-- 📸 **Instagram:** [@v.i.v.e.k_chaurasiya](https://www.instagram.com/v.i.v.e.k_chaurasiya/)
-- 💻 **GitHub:** [VivekChaurasiya95](https://github.com/VivekChaurasiya95)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Vivek%20Chaurasiya-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vivek-chaurasiya-722037315)
+[![GitHub](https://img.shields.io/badge/GitHub-VivekChaurasiya95-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/VivekChaurasiya95)
+[![Email](https://img.shields.io/badge/Email-vivekchaurasiya943%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:vivekchaurasiya943@gmail.com)
+[![X (Twitter)](https://img.shields.io/badge/X_(Twitter)-@Vivek9589-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/Vivek9589)
+[![LeetCode](https://img.shields.io/badge/LeetCode-Vivek--Chaurasiya-FFA116?style=for-the-badge&logo=leetcode&logoColor=white)](https://leetcode.com/u/Vivek-Chaurasiya/)
+[![Instagram](https://img.shields.io/badge/Instagram-@v.i.v.e.k__chaurasiya-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/v.i.v.e.k_chaurasiya/)
+
+</div>
 
 ---
 
 <div align="center">
 
-⭐ **If you found this project helpful or inspiring, consider giving it a star!**
+### 📊 GitHub Stats
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0e7490&height=100&section=footer" width="100%" />
+![Vivek's GitHub Stats](https://github-readme-stats.vercel.app/api?username=VivekChaurasiya95&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=06b6d4&icon_color=0891b2&text_color=c9d1d9)
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=VivekChaurasiya95&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=06b6d4&text_color=c9d1d9)
+
+![GitHub Streak](https://streak-stats.demolab.com/?user=VivekChaurasiya95&theme=tokyonight&hide_border=true&background=0d1117&stroke=06b6d4&ring=0891b2&fire=06b6d4&currStreakLabel=06b6d4)
+
+</div>
+
+---
+
+<div align="center">
+
+### 🏆 GitHub Trophies
+
+[![trophy](https://github-profile-trophy.vercel.app/?username=VivekChaurasiya95&theme=tokyonight&no-frame=true&margin-w=10&column=7)](https://github.com/ryo-ma/github-profile-trophy)
+
+</div>
+
+---
+
+<div align="center">
+
+⭐ **If you found this project helpful or inspiring, please give it a star!**
+
+*It keeps me motivated to build more cool things.* 🚀
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:06b6d4,50:0891b2,100:0c4a6e&height=130&section=footer" width="100%" />
 
 </div>
