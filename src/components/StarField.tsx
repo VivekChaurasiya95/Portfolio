@@ -99,6 +99,24 @@ const StarField = memo(() => {
           } as React.CSSProperties}
         />
       ))}
+      
+      {/* Additional bright comets */}
+      <div 
+        className="comet hidden md:block"
+        style={{ top: '10%', left: '5%', animationDelay: '0s' }}
+      />
+      <div 
+        className="comet hidden md:block"
+        style={{ top: '25%', left: '15%', animationDelay: '3s' }}
+      />
+      <div 
+        className="comet hidden md:block"
+        style={{ top: '5%', left: '40%', animationDelay: '6s' }}
+      />
+      <div 
+        className="comet hidden md:block"
+        style={{ top: '35%', left: '25%', animationDelay: '9s' }}
+      />
     </div>
   );
 });
