@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { User } from 'lucide-react';
 import profileImage from '@/assets/vivek-profile-new.png';
+import Marquee3D from './Marquee3D';
 
 const AboutSection = () => {
   const mouseX = useMotionValue(0);
@@ -46,10 +47,10 @@ const AboutSection = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/30 mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-6 bg-gradient-to-r from-secondary/20 to-primary/20 border-secondary/30 shadow-[0_0_15px_rgba(var(--secondary),0.1)]"
             >
-              <User className="w-4 h-4 text-secondary" />
-              <span className="text-sm font-medium text-secondary uppercase tracking-wider">About Me</span>
+              <User className="w-4 h-4 text-foreground/80" />
+              <span className="text-sm font-medium text-foreground/90 uppercase tracking-wider">About Me</span>
             </motion.div>
             
             <h2 className="section-heading mb-8">
@@ -193,6 +194,9 @@ const AboutSection = () => {
             </motion.div>
           </motion.div>
         </div>
+        
+        {/* 3D Animated Marquee */}
+        <Marquee3D />
       </div>
     </section>
   );
