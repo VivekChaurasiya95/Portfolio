@@ -189,10 +189,6 @@ const AboutSection = () => {
                   alt="Vivek Chaurasiya"
                   loading="lazy"
                   className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] pointer-events-none"
-                  style={{
-                    maskImage: "linear-gradient(to bottom, black 75%, transparent 100%)",
-                    WebkitMaskImage: "linear-gradient(to bottom, black 75%, transparent 100%)"
-                  }}
                 />
               </motion.div>
             </motion.div>

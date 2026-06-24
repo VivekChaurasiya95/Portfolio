@@ -40,45 +40,6 @@ export const projects = [
     ],
   },
   {
-    id: "hser",
-    title: "HSER – Human Skill Extinction Radar",
-    category: "Full-Stack",
-    color: "from-cyan-500 to-blue-600",
-    accentColor: "cyan",
-    problem:
-      "No tool existed to predict which software/IT skills are at risk of extinction due to AI and automation.",
-    solution:
-      "Built a predictive intelligence platform with a risk analysis engine calculating Extinction Risk %, Replacement Force, and Skill Half-Life.",
-    impact:
-      "Interactive web dashboard deployed on Vercel enabling users to explore, compare, and analyze extinction risk across multiple software skills.",
-    tech: ["Python", "React.js", "FastAPI", "Data Analysis"],
-    architecture:
-      "Full-stack application with Python backend (FastAPI) serving risk analysis engine. React.js frontend with interactive data visualizations.",
-    challenges:
-      "Designing a meaningful risk calculation model using skill attributes like automation level and tool growth rate.",
-    codeHighlights: [
-      "Risk Analysis Engine",
-      "Interactive Dashboard",
-      "Skill Comparison Tool",
-    ],
-    story:
-      "Inspired by the rapid pace of AI replacing traditional skills, I wanted to quantify which skills are most at risk.",
-    funFact:
-      "The extinction risk formula went through 12 iterations before producing meaningful results!",
-    lessonsLearned:
-      "Data-driven insights are only as good as the model behind them.",
-    github: "https://github.com/VivekChaurasiya95",
-    demo: "https://hser-project.vercel.app/",
-    stats: { skills: "50+", metrics: "3 Key", status: "Live" },
-    image: "/hser-1.png",
-    gallery: [
-      "/hser-2.png",
-      "/hser-3.png",
-      "/hser-4.png",
-      "/hser-5.png"
-    ],
-  },
-  {
     id: "dime",
     title: "DIME – Data-Driven Idea Exploration & Market Evaluation",
     category: "Full-Stack",
@@ -115,6 +76,45 @@ export const projects = [
       "/dime-3.png",
       "/dime-4.png",
       "/dime-5.png"
+    ],
+  },
+  {
+    id: "hser",
+    title: "HSER – Human Skill Extinction Radar",
+    category: "Full-Stack",
+    color: "from-cyan-500 to-blue-600",
+    accentColor: "cyan",
+    problem:
+      "No tool existed to predict which software/IT skills are at risk of extinction due to AI and automation.",
+    solution:
+      "Built a predictive intelligence platform with a risk analysis engine calculating Extinction Risk %, Replacement Force, and Skill Half-Life.",
+    impact:
+      "Interactive web dashboard deployed on Vercel enabling users to explore, compare, and analyze extinction risk across multiple software skills.",
+    tech: ["Python", "React.js", "FastAPI", "Data Analysis"],
+    architecture:
+      "Full-stack application with Python backend (FastAPI) serving risk analysis engine. React.js frontend with interactive data visualizations.",
+    challenges:
+      "Designing a meaningful risk calculation model using skill attributes like automation level and tool growth rate.",
+    codeHighlights: [
+      "Risk Analysis Engine",
+      "Interactive Dashboard",
+      "Skill Comparison Tool",
+    ],
+    story:
+      "Inspired by the rapid pace of AI replacing traditional skills, I wanted to quantify which skills are most at risk.",
+    funFact:
+      "The extinction risk formula went through 12 iterations before producing meaningful results!",
+    lessonsLearned:
+      "Data-driven insights are only as good as the model behind them.",
+    github: "https://github.com/VivekChaurasiya95",
+    demo: "https://hser-project.vercel.app/",
+    stats: { skills: "50+", metrics: "3 Key", status: "Live" },
+    image: "/hser-1.png",
+    gallery: [
+      "/hser-2.png",
+      "/hser-3.png",
+      "/hser-4.png",
+      "/hser-5.png"
     ],
   },
   {

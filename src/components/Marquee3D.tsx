@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const qualities = [
   "Mentorship",
@@ -14,45 +14,16 @@ const Marquee3D = () => {
   // Duplicate array 4 times to ensure seamless infinite scroll at 50% translation
   const items = [...qualities, ...qualities, ...qualities, ...qualities];
 
-  // Mouse interaction values
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 20, stiffness: 100 };
-  const springX = useSpring(mouseX, springConfig);
-  const springY = useSpring(mouseY, springConfig);
-
-  // Tilted on left side: base rotateY is 25deg (left is further away, right is closer)
-  // Mouse movement adds dynamic 3D interaction
-  const rotateY = useTransform(springX, [-0.5, 0.5], [15, 35]);
-  const rotateX = useTransform(springY, [-0.5, 0.5], [10, -10]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const xPos = e.clientX - rect.left;
-    const yPos = e.clientY - rect.top;
-    
-    mouseX.set(xPos / rect.width - 0.5);
-    mouseY.set(yPos / rect.height - 0.5);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
-
   return (
     <div 
-      className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden mt-4 py-12 flex items-center justify-center cursor-pointer backdrop-blur-md bg-background/40"
+      className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden mt-4 py-12 flex items-center justify-center backdrop-blur-md bg-background/40"
       style={{ perspective: "1000px" }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
     >
       <motion.div 
         className="w-full flex items-center justify-center"
         style={{ 
-          rotateX, 
-          rotateY,
+          rotateX: 0, 
+          rotateY: 25,
           rotateZ: -1, // slight angle for dynamic feel
           maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)', 
           WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
