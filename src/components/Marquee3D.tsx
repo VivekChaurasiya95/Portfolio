@@ -60,7 +60,7 @@ const Marquee3D = () => {
         }}
       >
         <motion.div
-          className="flex gap-12 lg:gap-20 whitespace-nowrap items-center"
+          className="flex whitespace-nowrap items-center w-max"
           animate={{ x: ["0%", "-50%"] }}
           transition={{
             repeat: Infinity,
@@ -71,7 +71,7 @@ const Marquee3D = () => {
           {items.map((item, index) => (
             <span 
               key={index} 
-              className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-secondary/30 tracking-wider select-none hover:text-secondary/60 transition-colors duration-300"
+              className="pr-12 lg:pr-20 text-4xl md:text-5xl lg:text-7xl font-display font-bold text-secondary/30 tracking-wider select-none hover:text-secondary/60 transition-colors duration-300"
               style={{ 
                 transform: "translateZ(0)",
                 textShadow: "0 0 20px rgba(157,42,44,0.15)"
