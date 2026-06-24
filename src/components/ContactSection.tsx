@@ -39,10 +39,15 @@ const ContactSection = () => {
         }),
       });
 
-      const data = await response.json();
+      let data;
+      try {
+        data = await response.json();
+      } catch (e) {
+        throw new Error("Backend server is not reachable. Please make sure the backend is running.");
+      }
 
-      if (!data.ok) {
-        throw new Error(data.error || "Unable to send your message right now.");
+      if (!response.ok || !data?.ok) {
+        throw new Error(data?.error || "Unable to send your message right now.");
       }
 
       setSubmitStatus({
