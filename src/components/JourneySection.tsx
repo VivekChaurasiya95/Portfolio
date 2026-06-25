@@ -59,12 +59,12 @@ const milestones = [
     logo: resolveLogoCandidates("gssoc"),
   },
   {
-    year: "Apr 2026",
+    year: "Apr - Jun 2026",
     title: "Nexus Spring of Code",
     description:
       "Active contributor in the Nexus Spring of Code open source program.",
     tags: ["Open Source", "Development"],
-    type: "Current",
+    type: "Completed",
     icon: Code,
     logo: resolveLogoCandidates("nsoc"),
   },
@@ -111,7 +111,7 @@ const milestones = [
     title: "B.Tech Begins at MITS-DU",
     description:
       "Started B.Tech in Computer Science and Design at Madhav Institute of Technology and Science (Deemed University), Gwalior.",
-    tags: ["DSA", "OOPS", "System Design", "DBMS", "OS"],
+    tags: ["C", "C++", "Python", "javaScript", "OOPs"],
     type: "Education",
     icon: GraduationCap,
   },

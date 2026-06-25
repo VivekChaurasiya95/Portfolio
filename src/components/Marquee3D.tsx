@@ -16,7 +16,7 @@ const Marquee3D = () => {
 
   return (
     <div 
-      className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden mt-4 py-12 flex items-center justify-center backdrop-blur-md bg-background/40"
+      className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden mt-4 py-6 flex items-center justify-center backdrop-blur-md bg-background/40"
       style={{ perspective: "1000px" }}
     >
       <motion.div 
@@ -42,7 +42,7 @@ const Marquee3D = () => {
           {items.map((item, index) => (
             <span 
               key={index} 
-              className="pr-12 lg:pr-20 text-4xl md:text-5xl lg:text-7xl font-display font-bold text-secondary/30 tracking-wider select-none hover:text-secondary/60 transition-colors duration-300"
+              className="pr-12 lg:pr-20 text-3xl md:text-4xl lg:text-6xl font-display font-bold text-secondary/30 tracking-wider select-none hover:text-secondary/60 transition-colors duration-300"
               style={{ 
                 transform: "translateZ(0)",
                 textShadow: "0 0 20px rgba(157,42,44,0.15)"

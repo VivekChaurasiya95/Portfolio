@@ -167,6 +167,37 @@ const experiences = [
     status: "Active",
   },
   {
+    id: 6,
+    role: "Campus Mantri",
+    company: "GeeksforGeeks",
+    location: "MITS Gwalior",
+    duration: "June 2026 - Present",
+    description:
+      "Appointed as the Campus Mantri (Official Representative) for GeeksforGeeks at Madhav Institute of Technology and Science.",
+    detailSummary:
+      "Serving as the primary point of contact between GeeksforGeeks and the student community. Organizing events, promoting initiatives, and acting as a brand ambassador.",
+    achievements: [
+      "Appointed as the Official Representative of GeeksforGeeks for the campus.",
+      "Promoting GeeksforGeeks initiatives and organizing campus-level technical events.",
+      "Acting as a brand ambassador to increase student engagement with educational resources.",
+    ],
+    technologies: ["Leadership", "Community Building", "Event Management", "Brand Ambassador"],
+    proofs: [
+      {
+        title: "Appointment Letter",
+        type: "Offer Letter",
+        image: "/experience-proofs/gfg-mantri.png",
+        description: "Official appointment letter as Campus Mantri.",
+      },
+    ],
+    logo: resolveLogoCandidates("gfg"),
+    logoStyle: "object-contain object-center p-1",
+    icon: Briefcase,
+    color: "from-green-500/80 to-emerald-600/80",
+    glow: "shadow-[0_0_50px_-12px_rgba(34,197,94,0.6)]",
+    status: "Active",
+  },
+  {
     id: 2,
     role: "Software Developer Intern",
     company: "ByteEdu",
@@ -251,7 +282,7 @@ const experiences = [
     role: "Contributor",
     company: "Nexus Spring of Code",
     location: "Remote",
-    duration: "Apr 2026 - Present",
+    duration: "Apr 2026 - Jun 2026",
     description:
       "Active contributor in a community coding program, delivering feature enhancements and practical fixes in collaborative repositories.",
     detailSummary:
@@ -279,7 +310,7 @@ const experiences = [
       {
         title: "Completion Certificate",
         type: "Completion Certificate",
-        image: "/experience-proofs/nsoc-certificate.png",
+        image: "/experience-proofs/nsoc-participation-certificate.png",
         description:
           "Certificate of successful completion of the open-source program.",
       },
@@ -288,7 +319,7 @@ const experiences = [
     icon: Code2,
     color: "from-emerald-400/80 to-teal-500/80",
     glow: "shadow-[0_0_50px_-12px_rgba(16,185,129,0.6)]",
-    status: "Active",
+    status: "Completed",
   },
   {
     id: 5,
@@ -516,7 +547,7 @@ const ExperienceSection = () => {
             </div>
 
             {/* Right: Content Details */}
-            <div className="w-full md:w-1/2 h-[55vh] md:h-full p-6 md:p-10 flex flex-col overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-primary/20 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-transparent z-10">
+            <div className="w-full md:w-1/2 h-[55vh] md:h-full p-6 md:p-10 flex flex-col overflow-y-auto z-10">
               {/* Header Info */}
               <div className="flex items-center gap-4 mb-6">
                 <div

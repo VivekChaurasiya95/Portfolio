@@ -25,8 +25,8 @@ const IsometricButton = ({ children, href, variant = 'primary', onClick }: Isome
           relative z-10 px-8 py-4 font-medium text-sm tracking-wide
           border-2 transition-all duration-300
           ${isPrimary 
-            ? 'bg-primary/20 border-primary text-primary hover:bg-primary/30' 
-            : 'bg-secondary/20 border-secondary text-secondary hover:bg-secondary/30'
+            ? 'bg-primary/15 border-primary/60 text-primary hover:bg-primary/25 hover:border-primary' 
+            : 'bg-secondary/15 border-secondary/60 text-secondary hover:bg-secondary/25 hover:border-secondary'
           }
         `}
       >

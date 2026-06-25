@@ -14,7 +14,7 @@ const CertificationsSection = () => {
     <>
       <section
         id="certifications"
-        className="py-28 relative z-10 w-full overflow-hidden"
+        className="pt-16 pb-28 relative z-10 w-full overflow-hidden"
       >
         <div className="container mx-auto px-6 lg:px-20">
           <motion.div

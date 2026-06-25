@@ -293,26 +293,12 @@ const TechIcons: Record<string, React.FC<{ className?: string }>> = {
       alt="Seaborn"
     />
   ),
-  "Scikit-Learn": ({ className }) => (
-    <img width={40} height={40} loading="lazy"
-      src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg"
-      className={className}
-      alt="Scikit-Learn"
-    />
-  ),
   "Google Colab": ({ className }) => (
     <img width={40} height={40} loading="lazy"
       src="https://cdn.simpleicons.org/googlecolab/F9AB00"
       className={className}
       alt="Google Colab"
     />
-  ),
-  "Power BI": ({ className }) => (
-    <svg className={className} viewBox="0 0 100 100" fill="none">
-      <rect x="25" y="45" width="14" height="45" rx="3" fill="#FFE24B" />
-      <rect x="43" y="25" width="14" height="65" rx="3" fill="#F2C811" />
-      <rect x="61" y="10" width="14" height="80" rx="3" fill="#D39000" />
-    </svg>
   ),
   "Data Structures": ({ className }) => (
     <svg className={className} viewBox="0 0 100 100" fill="none">
@@ -615,9 +601,7 @@ const skillCategories = [
       "Pandas",
       "MatplotLib",
       "Seaborn",
-      "Scikit-Learn",
       "Google Colab",
-      "Power BI",
     ],
   },
   {

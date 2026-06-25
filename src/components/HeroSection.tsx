@@ -1,15 +1,85 @@
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Github } from "lucide-react";
 import IsometricButton from "./IsometricButton";
 import { RESUME_URL, SOCIAL_LINKS } from "@/data/siteLinks";
+import { lazy, Suspense, useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+
+const SplineBackground = lazy(() => import("@/components/SplineBackground"));
 
 const HeroSection = () => {
+  const [showSpline, setShowSpline] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+
+  useEffect(() => {
+    const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|chrome-lighthouse/i.test(
+      navigator.userAgent,
+    );
+
+    if (isBot) return;
+
+    const timerId = window.setTimeout(() => {
+      setShowSpline(true);
+    }, 250);
+
+    return () => window.clearTimeout(timerId);
+  }, []);
+
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-20"
+      className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden"
     >
+      {/* Background — dark mode: Spline 3D + stars | light mode: gradient orbs */}
+      {isDark ? (
+        showSpline && (
+          <Suspense fallback={<div className="absolute inset-0 bg-background" />}>
+            <div className="absolute inset-0 z-0">
+              <SplineBackground />
+            </div>
+          </Suspense>
+        )
+      ) : (
+        /* Light mode background — beautiful gradient orbs, no Spline */
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          {/* Base soft gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-sky-50 via-white to-teal-50/60" />
+          {/* Large soft primary teal orb – right side */}
+          <div
+            className="absolute rounded-full blur-[130px] opacity-25"
+            style={{
+              width: "60vw",
+              height: "60vw",
+              top: "-15%",
+              right: "-10%",
+              background: "radial-gradient(circle, hsl(185 60% 55%), transparent 70%)",
+            }}
+          />
+          {/* Secondary rose/mauve orb – bottom left */}
+          <div
+            className="absolute rounded-full blur-[100px] opacity-20"
+            style={{
+              width: "45vw",
+              height: "45vw",
+              bottom: "-5%",
+              left: "-8%",
+              background: "radial-gradient(circle, hsl(350 45% 70%), transparent 70%)",
+            }}
+          />
+          {/* Subtle dot-grid texture */}
+          <div
+            className="absolute inset-0 opacity-[0.045]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, hsl(220 25% 15%) 1px, transparent 1px)",
+              backgroundSize: "28px 28px",
+            }}
+          />
+        </div>
+      )}
+
       <div className="container mx-auto px-6 lg:px-20 pointer-events-none relative z-10">
         <div className="max-w-5xl pointer-events-auto">
           {/* Overline */}
@@ -121,7 +191,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator - Mouse icon */}
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
