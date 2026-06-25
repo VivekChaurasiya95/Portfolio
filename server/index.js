@@ -81,9 +81,16 @@ const createTransport = () => {
     host: SMTP_HOST,
     port: Number(SMTP_PORT),
     secure: SMTP_SECURE === "true",
+    requireTLS: true,
     auth: {
       user: SMTP_USER,
       pass: SMTP_PASS,
+    },
+    connectionTimeout: 60000,
+    greetingTimeout: 60000,
+    socketTimeout: 60000,
+    tls: {
+      rejectUnauthorized: false,
     },
   });
 };
@@ -110,6 +117,8 @@ app.post("/api/contact", async (req, res) => {
     }
 
     const transport = createTransport();
+    await transport.verify();
+    console.log("SMTP connection verified successfully.");
     const targetEmail =
       process.env.CONTACT_TARGET_EMAIL || process.env.SMTP_USER;
 
@@ -155,7 +164,13 @@ app.post("/api/contact", async (req, res) => {
 
     return res.json({ ok: true, message: "Message sent successfully." });
   } catch (error) {
-    console.error("Contact API error:", error);
+    console.error("========== CONTACT API ERROR ==========");
+    console.error(error);
+    console.error("Message:", error.message);
+    console.error("Code:", error.code);
+    console.error("Response:", error.response);
+    console.error("Response Code:", error.responseCode);
+    console.error("=======================================");
     return res
       .status(500)
       .json({ ok: false, error: "Failed to send message. Please try again." });
