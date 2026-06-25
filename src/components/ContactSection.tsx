@@ -4,7 +4,7 @@ import { Send, MapPin, Mail, Clock } from "lucide-react";
 import { EMAIL_ADDRESS } from "@/data/siteLinks";
 
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") || "";
+  import.meta.env.VITE_API_URL?.replace(/\/$/, "") || "";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({

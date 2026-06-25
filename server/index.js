@@ -185,6 +185,6 @@ app.use((err, _req, res, _next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Contact API running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
   console.log(`Allowed frontend origins: ${FRONTEND_ORIGINS.join(", ")}`);
 });
