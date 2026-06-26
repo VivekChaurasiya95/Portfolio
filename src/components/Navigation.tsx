@@ -82,18 +82,10 @@ const Navigation = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? "py-2" : "py-4"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-3"
     >
       <div className="container mx-auto px-6">
-        <div
-          className={`flex items-center justify-between rounded-2xl px-6 py-3 transition-all duration-500 ${
-            isScrolled
-              ? "bg-card/70 backdrop-blur-xl border border-border/40 shadow-lg"
-              : "bg-transparent"
-          }`}
-        >
+        <div className="flex items-center justify-between rounded-2xl px-6 py-3 transition-all duration-500 bg-card/70 backdrop-blur-xl border border-border/40 shadow-lg">
           {/* Logo */}
           <a
             href="#home"

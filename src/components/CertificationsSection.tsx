@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Award, Calendar, ExternalLink, ShieldCheck, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   featuredCertifications,
@@ -9,6 +9,17 @@ import {
 
 const CertificationsSection = () => {
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
+
+  useEffect(() => {
+    if (selectedCert) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedCert]);
 
   return (
     <>

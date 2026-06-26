@@ -55,6 +55,10 @@ const Index = () => {
         )}
       </AnimatePresence>
 
+      {/* Navigation and Sidebar moved outside of motion.div so their position:fixed works properly */}
+      <Navigation />
+      <SocialSidebar />
+
       {/* Fade in main content when preloader is done */}
       <motion.div
         initial={{ opacity: showPreloader ? 0 : 1, y: showPreloader ? 28 : 0, filter: showPreloader ? "blur(18px)" : "blur(0px)" }}
@@ -77,12 +81,6 @@ const Index = () => {
             />
           )}
         </div>
-
-        {/* Navigation */}
-        <Navigation />
-
-        {/* Left social sidebar */}
-        <SocialSidebar />
 
         {/* Main content */}
         <main className="relative z-10 w-full overflow-hidden pointer-events-none">

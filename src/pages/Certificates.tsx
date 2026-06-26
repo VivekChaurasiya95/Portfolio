@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Award,
@@ -13,24 +13,60 @@ import { allCertifications, type Certificate } from "@/data/certifications";
 
 const Certificates = () => {
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (selectedCert) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedCert]);
 
   return (
-    <main className="relative z-10 min-h-screen overflow-hidden pb-20 text-foreground">
+    <main className="relative z-10 min-h-screen overflow-hidden pb-20 text-foreground bg-background">
+      {/* Fixed Navbar */}
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-3"
+      >
+        <div className="container mx-auto px-6 lg:px-20">
+          <div className="flex items-center justify-between rounded-2xl px-6 py-3 transition-all duration-500 bg-card/70 backdrop-blur-xl border border-border/40 shadow-lg">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-foreground transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Home
+            </Link>
+          </div>
+        </div>
+      </motion.header>
+
       <section className="pt-32 pb-14 relative z-10 w-full overflow-hidden">
         <div className="container mx-auto px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-10"
+            className="mb-10 mt-8"
           >
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-white transition-colors mb-6"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Home
-            </Link>
 
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/30 mb-5">
               <ShieldCheck className="w-4 h-4 text-secondary" />
@@ -73,7 +109,6 @@ const Certificates = () => {
                         "https://via.placeholder.com/800x600?text=Image+Missing";
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
                 </div>
 
                 <div className="p-6 relative -mt-10">

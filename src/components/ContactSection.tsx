@@ -58,27 +58,45 @@ const checkEmailJSConfig = (): string | null => {
 };
 
 /**
+ * Generates the unified template variables for EmailJS.
+ * This ensures both the main contact email and the auto-reply
+ * receive the exact same data structure.
+ * We include both new (name, email) and legacy (to_email, from_name) 
+ * variables to ensure backward compatibility with EmailJS dashboard settings.
+ */
+const getTemplateParams = (data: FormData) => ({
+  // Unified standard variables
+  name: data.name.trim(),
+  email: data.email.trim(),
+  message: data.message.trim(),
+  time: new Date().toLocaleString(),
+  
+  // Legacy variables (prevents the issue where auto-reply goes to the owner
+  // if the dashboard is still expecting {{to_email}} instead of {{email}})
+  from_name: data.name.trim(),
+  from_email: data.email.trim(),
+  to_name: data.name.trim(),
+  to_email: data.email.trim(),
+});
+
+/**
  * Send the main notification email to the portfolio owner.
- * Template variables expected: {{from_name}}, {{from_email}}, {{message}}
+ * Template variables expected: {{name}}, {{email}}, {{message}}, {{time}}
  */
 const sendContactEmail = (data: FormData): Promise<void> =>
   emailjs
     .send(
       EMAILJS_SERVICE_ID,
       EMAILJS_TEMPLATE_ID,
-      {
-        from_name: data.name.trim(),
-        from_email: data.email.trim(),
-        message: data.message.trim(),
-      },
+      getTemplateParams(data),
       { publicKey: EMAILJS_PUBLIC_KEY }
     )
     .then(() => undefined);
 
 /**
  * Send the auto-reply email to the visitor.
- * Template variables expected: {{to_name}}, {{to_email}}
- * (Email is sent TO the visitor — configure "To Email" as {{to_email}} in
+ * Template variables expected: {{name}}, {{email}}, {{message}}, {{time}}
+ * (Email is sent TO the visitor — configure "To Email" as {{email}} or {{to_email}} in
  *  your EmailJS template settings.)
  */
 const sendAutoReply = (data: FormData): Promise<void> => {
@@ -90,10 +108,7 @@ const sendAutoReply = (data: FormData): Promise<void> => {
     .send(
       EMAILJS_SERVICE_ID,
       EMAILJS_AUTOREPLY_TEMPLATE_ID,
-      {
-        to_name: data.name.trim(),
-        to_email: data.email.trim(),
-      },
+      getTemplateParams(data),
       { publicKey: EMAILJS_PUBLIC_KEY }
     )
     .then(() => undefined);
