@@ -136,7 +136,7 @@
 | **Routing** | React Router DOM v6 |
 | **Forms & Validation** | React Hook Form, Zod |
 | **Theming** | next-themes |
-| **Email** | Nodemailer + Express.js custom SMTP backend |
+| **Email** | EmailJS (Serverless frontend email sending) |
 | **State / Data** | TanStack Query |
 | **Testing** | Vitest, Testing Library |
 | **Build Optimisation** | vite-plugin-image-optimizer, Sharp |
@@ -152,8 +152,7 @@ portfolio/
 │   ├──  experience-logos/     # Company logos
 │   ├──  experience-proofs/    # Proof documents
 │   └──  favicon.png           # VC Logo
-├──  server/                   # Express.js backend (custom email API)
-│   └──  index.js              # SMTP endpoint + auto-reply logic
+
 ├──  src/
 │   ├──  assets/
 │   │   ├──  icons/            # Social media icons (png)
@@ -212,37 +211,26 @@ Copy the example file and fill in your credentials:
 cp .env.example .env
 ```
 
-Open `.env` and fill in your SMTP details:
+Open `.env` and fill in your EmailJS details:
 ```env
-# Backend Server
-PORT=5000
-FRONTEND_ORIGINS=http://localhost:8080,http://localhost:5173,http://localhost:4173
-
-# SMTP Settings (Gmail recommended)
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=465
-SMTP_SECURE=true
-SMTP_USER=your_gmail@gmail.com
-SMTP_PASS=your_16_digit_app_password
-
-# Email Routing
-CONTACT_TARGET_EMAIL=your_gmail@gmail.com
-MAIL_FROM=your_gmail@gmail.com
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID=your_autoreply_template_id
 ```
 
->  **Gmail users** must generate a **16-digit App Password** from:  
-> Google Account → Security → 2-Step Verification → **App Passwords**
+> **EmailJS Setup Guide:**
+> 1. Create an account at https://www.emailjs.com/
+> 2. Add an Email Service to get the Service ID
+> 3. Create an Email Template for notifications to get the Template ID
+> 4. Create an Auto-Reply Template to get its Template ID
+> 5. Get your Public Key from Account -> API Keys
 
-**4. Start the development server** (Frontend only)
+**4. Start the development server**
 ```bash
 npm run dev
 ```
 Open [http://localhost:8080](http://localhost:8080) in your browser.
-
-**5. Start the full stack** (Frontend + Email Backend together — recommended)
-```bash
-npm run dev:full
-```
 
 ---
 
@@ -250,12 +238,9 @@ npm run dev:full
 
 | Command | Description |
 |:---|:---|
-| `npm run dev` | Start the Vite dev server (frontend only) |
-| `npm run dev:server` | Start the Express email server only |
-| `npm run dev:full` |  Start both frontend + backend concurrently |
+| `npm run dev` | Start the Vite dev server |
 | `npm run build` | Production build with image optimisation |
 | `npm run preview` | Preview the production build locally |
-| `npm run preview:full` | Preview build + backend concurrently |
 | `npm run lint` | Run ESLint |
 | `npm run test` | Run Vitest unit tests |
 | `npm run test:watch` | Run Vitest in watch mode |
@@ -266,20 +251,17 @@ npm run dev:full
 
 ```mermaid
 sequenceDiagram
-    participant User as  Website Visitor
-    participant Frontend as  React Frontend
-    participant Backend as  Express Backend
-    participant SMTP as  Gmail SMTP
-    participant You as  Vivek's Inbox
+    participant User as Website Visitor
+    participant Frontend as React Frontend (EmailJS)
+    participant EmailJS as EmailJS Service
+    participant You as Vivek's Inbox
 
     User->>Frontend: Fills & submits contact form
-    Frontend->>Backend: POST /api/contact { name, email, message }
-    Backend->>SMTP: Send notification email
-    SMTP->>You:  "New Portfolio Message from [Name]"
-    Backend->>SMTP: Send auto-reply to user
-    SMTP->>User:  "Thanks for contacting! Here's my LinkedIn..."
-    Backend->>Frontend: { ok: true }
-    Frontend->>User:  Success message shown
+    Frontend->>EmailJS: emailjs.send() (Notification)
+    EmailJS->>You: "New Portfolio Message from [Name]"
+    Frontend->>EmailJS: emailjs.send() (Auto-reply)
+    EmailJS->>User: "Thanks for contacting! Here's my LinkedIn..."
+    Frontend->>User: Success message shown
 ```
 
 ---
@@ -297,7 +279,7 @@ All content is data-driven for easy updates:
 | Experience & education | `src/components/ExperienceSection.tsx` |
 | Colours / theme tokens | `src/index.css` (CSS variables) |
 | Resume file | Replace `public/Vivek_Chaurasiya_Resume.pdf` |
-| Auto-reply email content | `server/index.js` → second `sendMail()` call |
+| Auto-reply email content | EmailJS Auto-Reply Template Dashboard |
 
 ---
 
