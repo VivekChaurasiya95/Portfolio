@@ -13,18 +13,33 @@ export default {
   		}
   	},
   	extend: {
+  		screens: {
+  			xs: '480px'
+  		},
   		fontFamily: {
+  			script: ['"Quick Kiss"', 'cursive', 'sans-serif'],
+  			quickkiss: ['"Quick Kiss"', 'cursive', 'sans-serif'],
   			display: [
-  				'Playfair Display',
-  				'Georgia',
-  				'serif'
+  				'General Sans',
+  				'Satoshi',
+  				'Plus Jakarta Sans',
+  				'Space Grotesk',
+  				'-apple-system',
+  				'BlinkMacSystemFont',
+  				'sans-serif'
   			],
   			body: [
-  				'Inter',
-  				'system-ui',
+  				'Plus Jakarta Sans',
+  				'General Sans',
+  				'Satoshi',
+  				'-apple-system',
+  				'BlinkMacSystemFont',
   				'sans-serif'
   			],
   			sans: [
+  				'Plus Jakarta Sans',
+  				'General Sans',
+  				'Satoshi',
   				'ui-sans-serif',
   				'system-ui',
   				'sans-serif',
@@ -34,6 +49,8 @@ export default {
   				'Noto Color Emoji'
   			],
   			serif: [
+  				'Cormorant Garamond',
+  				'Playfair Display',
   				'ui-serif',
   				'Georgia',
   				'Cambria',
@@ -41,7 +58,15 @@ export default {
   				'Times',
   				'serif'
   			],
-  			mono: [
+  			meridian: [
+				'"Source Serif 4"',
+				'Georgia',
+				'Cambria',
+				'"Times New Roman"',
+				'Times',
+				'serif'
+			],
+			mono: [
   				'ui-monospace',
   				'SFMono-Regular',
   				'Menlo',

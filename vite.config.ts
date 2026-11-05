@@ -9,6 +9,9 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    headers: {
+      "Content-Security-Policy": "default-src 'self' https: http: data: blob: 'unsafe-inline' 'unsafe-eval'; script-src 'self' https: http: 'unsafe-inline' 'unsafe-eval' blob:; style-src 'self' https: http: 'unsafe-inline'; font-src 'self' https: http: data:; img-src 'self' https: http: data: blob:; connect-src 'self' https: http: wss: ws: blob: data:; worker-src 'self' blob:; frame-src 'self' https:;",
+    },
     hmr: {
       overlay: false,
     },
@@ -31,5 +34,20 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  build: {
+    target: "esnext",
+    cssMinify: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom", "react-router-dom"],
+          framer: ["framer-motion"],
+          three: ["three", "@react-three/fiber", "@react-three/drei"],
+          spline: ["@splinetool/react-spline", "@splinetool/runtime"],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1200,
   },
 }));
