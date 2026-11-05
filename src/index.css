@@ -183,7 +183,7 @@
   h5,
   h6 {
     font-family: var(--font-meridian);
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -0.02em;
   }
 
@@ -452,11 +452,11 @@
 
   .section-heading {
     @apply font-meridian;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.08;
     text-align: left;
-    font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+    font-size: clamp(1.9rem, 4vw, 3rem);
   }
 
   .section-subheading {
@@ -535,6 +535,11 @@
 
   .animation-delay-3000 {
     animation-delay: 3s;
+  }
+
+  /* Experience subsection headings match the teal, compact heading treatment */
+  #experience h4 {
+    @apply text-primary text-base font-medium;
   }
 }
 @layer utilities {
