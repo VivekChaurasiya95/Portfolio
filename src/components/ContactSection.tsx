@@ -218,21 +218,8 @@ const ContactSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            {/* Section label */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30 mb-4 sm:mb-6 backdrop-blur-md"
-            >
-              <Mail className="w-4 h-4 text-primary" />
-              <span className="text-xs sm:text-sm font-mono font-medium text-primary uppercase tracking-wider">
-                Get In Touch
-              </span>
-            </motion.div>
-
             <h2 className="section-heading mb-4 sm:mb-6">
-              <span className="text-foreground">Let's</span>{" "}
+              <span className="text-primary">Let's</span>{" "}
               <span className="text-secondary">Connect</span>
             </h2>
 

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Code2 } from "lucide-react";
+
 
 // Official tech logo SVG components
 const TechIcons: Record<string, React.FC<{ className?: string }>> = {
@@ -634,6 +634,20 @@ const skillCategories = [
   },
 ];
 
+// Artwork that needs a contrasting tile per color mode to stay visible
+const LIGHT_TILE_SKILLS = new Set([
+  "Next.Js",
+  "Three.js",
+  "Express.Js",
+  "Flask",
+  "Github",
+  "Vercel",
+  "Seaborn",
+  "Design Pattern",
+  "Operating System",
+]);
+const DARK_TILE_SKILLS = new Set(["GitHub Copilot"]);
+
 const SkillBadge = ({
   skill,
   index,
@@ -666,7 +680,13 @@ const SkillBadge = ({
     >
       {/* Icon container */}
       <div
-        className="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 shrink-0"
+        className={`flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 shrink-0 ${
+          LIGHT_TILE_SKILLS.has(skill)
+            ? "dark:bg-white dark:rounded-md dark:p-[3px]"
+            : DARK_TILE_SKILLS.has(skill)
+              ? "bg-slate-900 rounded-md p-[3px] dark:bg-transparent dark:p-0"
+              : ""
+        }`}
         style={{ width: 20, height: 20, minWidth: 20, minHeight: 20 }}
       >
         {IconComponent ? (
@@ -696,21 +716,21 @@ const SkillsSection = () => {
           transition={{ duration: 0.6 }}
           className="text-left mb-8 sm:mb-14"
         >
-          {/* Section label */}
+
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30 mb-4 sm:mb-6 backdrop-blur-md"
+            className="hidden"
           >
-            <Code2 className="w-4 h-4 text-primary" />
+
             <span className="text-xs sm:text-sm font-mono font-medium text-primary uppercase tracking-wider">
               My Skills
             </span>
           </motion.div>
 
           <h2 className="section-heading mb-4 sm:mb-6">
-            <span className="text-foreground">My Tech</span>{" "}
+            <span className="text-primary">My Tech</span>{" "}
             <span className="text-secondary">Stack</span>
           </h2>
         </motion.div>
@@ -749,10 +769,10 @@ const SkillsSection = () => {
               {/* Category header */}
               <div className="flex items-center gap-3 mb-5 sm:mb-6">
                 <motion.div
-                  className="w-5 sm:w-6 h-[2px] bg-[#B57B85] rounded-full"
+                  className="w-5 sm:w-6 h-[2px] bg-primary rounded-full"
                   whileHover={{ scaleX: 1.5 }}
                 />
-                <h3 className="text-lg sm:text-xl font-bold tracking-wide text-[#B57B85] font-['Space_Grotesk']">
+                <h3 className="text-base sm:text-lg font-semibold tracking-wide text-primary font-sans">
                   {category.title}
                 </h3>
               </div>

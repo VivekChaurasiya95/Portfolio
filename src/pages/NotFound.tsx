@@ -27,11 +27,11 @@ const NotFound = () => {
           <Compass className="w-8 h-8 sm:w-10 sm:h-10 animate-pulse" />
         </div>
 
-        <h1 className="text-5xl sm:text-6xl font-meridian font-extrabold text-foreground mb-3 tracking-tight">
+        <h1 className="text-4xl sm:text-5xl font-meridian font-bold text-primary mb-3 tracking-tight">
           404
         </h1>
 
-        <h2 className="text-lg sm:text-xl font-bold text-foreground mb-2">
+        <h2 className="text-base sm:text-lg font-semibold text-primary mb-2">
           Lost in Cyberspace
         </h2>
 

@@ -1,37 +1,9 @@
-import React from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { User } from 'lucide-react';
+import { motion } from 'framer-motion';
 import profileImage from '@/assets/vivek-profile-new.png';
 
 const AboutSection = () => {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 25, stiffness: 120 };
-  const springX = useSpring(mouseX, springConfig);
-  const springY = useSpring(mouseY, springConfig);
-
-  const rotateX = useTransform(springY, [-0.5, 0.5], [8, -8]);
-  const rotateY = useTransform(springX, [-0.5, 0.5], [-8, 8]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const xPos = e.clientX - rect.left;
-    const yPos = e.clientY - rect.top;
-
-    mouseX.set(xPos / width - 0.5);
-    mouseY.set(yPos / height - 0.5);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
-
   return (
-    <section id="about" className="pt-20 sm:pt-28 md:pt-32 pb-10 relative">
+    <section id="about" className="pt-12 sm:pt-14 md:pt-16 pb-10 relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-20">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Text content */}
@@ -41,19 +13,8 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            {/* Section label */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30 mb-4 sm:mb-6 backdrop-blur-md"
-            >
-              <User className="w-4 h-4 text-primary" />
-              <span className="text-xs sm:text-sm font-mono font-medium text-primary uppercase tracking-wider">About Me</span>
-            </motion.div>
-
             <h2 className="section-heading mb-6 sm:mb-8 flex flex-col leading-[0.88] sm:leading-[0.90]">
-              <span className="text-foreground">Who is behind the</span>
+              <span className="text-primary">Who is behind the</span>
               <span className="text-secondary mt-0.5 sm:mt-1">terminal ?</span>
             </h2>
 
@@ -154,71 +115,24 @@ const AboutSection = () => {
             </div>
           </motion.div>
 
-          {/* Photo with edge glow and floating animation */}
+          {/* Photo */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative flex justify-center lg:justify-end mt-4 lg:mt-0"
-            style={{ perspective: "1000px" }}
           >
-            {/* Ambient Backlight Aura */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <motion.div
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.3, 0.55, 0.3],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] rounded-full bg-gradient-to-tr from-primary/30 via-secondary/20 to-primary/40 blur-[80px]"
+            <div className="relative w-full max-w-[240px] xs:max-w-[280px] sm:max-w-xs md:max-w-md lg:max-w-[32rem] xl:max-w-[36rem] flex items-center justify-center mx-auto">
+              <img
+                src={profileImage}
+                alt="Vivek Chaurasiya"
+                loading="lazy"
+                width={600}
+                height={700}
+                className="w-full h-auto object-contain pointer-events-none"
               />
             </div>
-
-            <motion.div
-              className="relative cursor-pointer max-w-full"
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-              animate={{
-                y: [-6, 6, -6],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              style={{
-                rotateX,
-                rotateY,
-                transformStyle: "preserve-3d",
-              }}
-            >
-              {/* Photo container with responsive max-width to prevent overflow */}
-              <motion.div
-                className="relative w-full max-w-[240px] xs:max-w-[280px] sm:max-w-xs md:max-w-md lg:max-w-[32rem] xl:max-w-[36rem] flex items-center justify-center mx-auto"
-                style={{
-                  transform: "translateZ(30px)",
-                  maskImage: "linear-gradient(to bottom, black 85%, transparent 100%)",
-                  WebkitMaskImage: "linear-gradient(to bottom, black 85%, transparent 100%)",
-                }}
-              >
-                <img
-                  src={profileImage}
-                  alt="Vivek Chaurasiya"
-                  loading="lazy"
-                  width={600}
-                  height={700}
-                  className="w-full h-auto object-contain pointer-events-none transition-all duration-500"
-                  style={{
-                    filter: "drop-shadow(0 0 14px hsl(var(--primary) / 0.45)) drop-shadow(0 0 32px hsl(var(--primary) / 0.25)) drop-shadow(0 20px 45px rgba(0,0,0,0.65))",
-                  }}
-                />
-              </motion.div>
-            </motion.div>
           </motion.div>
         </div>
       </div>

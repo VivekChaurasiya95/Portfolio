@@ -108,7 +108,7 @@ const EducationCard = () => {
                 <p className="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-primary mb-1.5 sm:mb-2 uppercase">
                   {content[activeSlide].type}
                 </p>
-                <h3 className="text-lg sm:text-2xl md:text-3xl font-meridian font-medium text-foreground mb-1.5 sm:mb-2 leading-tight">
+                <h3 className="text-base sm:text-xl md:text-2xl font-meridian font-medium text-primary mb-1.5 sm:mb-2 leading-tight">
                   {content[activeSlide].title}
                 </h3>
                 <div className="flex items-center gap-1.5 text-muted-foreground text-xs sm:text-sm">

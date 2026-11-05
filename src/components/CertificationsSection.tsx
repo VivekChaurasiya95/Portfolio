@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Award, Calendar, ExternalLink, ShieldCheck, X } from "lucide-react";
+import { Award, Calendar, ExternalLink, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -30,7 +30,7 @@ const CertificationsSection = () => {
     <>
       <section
         id="certifications"
-        className="pt-12 sm:pt-16 pb-20 sm:pb-28 relative z-10 w-full overflow-hidden"
+        className="pt-10 sm:pt-12 pb-12 sm:pb-16 relative z-10 w-full overflow-hidden"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-20">
           <motion.div
@@ -38,17 +38,17 @@ const CertificationsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-10 sm:mb-14"
+            className="mb-6 sm:mb-8"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30 mb-4 sm:mb-5 backdrop-blur-md">
-              <ShieldCheck className="w-4 h-4 text-primary" />
+            <div className="hidden">
+
               <span className="text-xs sm:text-sm font-mono font-medium text-primary uppercase tracking-wider">
                 Verified Learning
               </span>
             </div>
 
             <h2 className="section-heading mb-4">
-              <span className="text-foreground">My</span>{" "}
+              <span className="text-primary">My</span>{" "}
               <span className="text-secondary">Certifications</span>
             </h2>
             <p className="section-subheading max-w-2xl">
@@ -58,7 +58,7 @@ const CertificationsSection = () => {
           </motion.div>
 
           {/* View All Certificates Link */}
-          <div className="flex justify-end mb-6 w-full">
+          <div className="flex justify-end mb-4 w-full">
             <Link
               to="/certificates"
               className="inline-flex items-center gap-2 min-h-[44px] text-primary hover:text-foreground transition-colors font-bold text-xs sm:text-sm tracking-widest uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg px-2"
@@ -67,7 +67,7 @@ const CertificationsSection = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5">
             {featuredCertifications.map((cert, index) => (
               <motion.article
                 key={cert.title}
@@ -88,14 +88,14 @@ const CertificationsSection = () => {
                 }}
               >
                 {/* Thumbnail Image Header */}
-                <div className="w-full h-44 sm:h-48 bg-muted/20 relative overflow-hidden">
+                <div className="w-full bg-muted/20 relative overflow-hidden">
                   <img
                     src={cert.image}
                     alt={cert.title}
                     loading="lazy"
                     width={800}
                     height={600}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-auto block"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src =
                         "https://via.placeholder.com/800x600?text=Image+Missing";
@@ -103,22 +103,22 @@ const CertificationsSection = () => {
                   />
                 </div>
 
-                <div className="p-5 sm:p-6 relative -mt-8 sm:-mt-10">
-                  <div className="flex items-start justify-between gap-4 mb-3 sm:mb-4">
-                    <div className="p-2.5 rounded-xl bg-background/80 backdrop-blur-md border border-border shadow-sm">
-                      <Award className="w-5 h-5 text-primary" />
+                <div className="p-4 sm:p-5 relative -mt-7 sm:-mt-8">
+                  <div className="flex items-start justify-between gap-3 mb-2.5">
+                    <div className="p-2 rounded-lg bg-background/80 backdrop-blur-md border border-border shadow-sm">
+                      <Award className="w-4 h-4 text-primary" />
                     </div>
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2 line-clamp-2">
+                  <h3 className="text-sm sm:text-base font-semibold text-primary mb-1.5 line-clamp-2">
                     {cert.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
+                  <p className="text-xs text-muted-foreground mb-2.5">
                     {cert.issuer}
                   </p>
 
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground mb-4 sm:mb-5">
-                    <Calendar className="w-3.5 h-3.5 shrink-0" />
+                  <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground mb-3">
+                    <Calendar className="w-3 h-3 shrink-0" />
                     <span>{cert.period}</span>
                   </div>
 
@@ -126,13 +126,13 @@ const CertificationsSection = () => {
                     {cert.skills.slice(0, 2).map((skill) => (
                       <span
                         key={skill}
-                        className="px-2.5 py-1 rounded-md text-xs bg-muted/30 text-muted-foreground border border-border/40"
+                        className="px-2 py-0.5 rounded-md text-[11px] bg-muted/30 text-muted-foreground border border-border/40"
                       >
                         {skill}
                       </span>
                     ))}
                     {cert.skills.length > 2 && (
-                      <span className="px-2.5 py-1 rounded-md text-xs bg-muted/30 text-muted-foreground border border-border/40">
+                      <span className="px-2 py-0.5 rounded-md text-[11px] bg-muted/30 text-muted-foreground border border-border/40">
                         +{cert.skills.length - 2}
                       </span>
                     )}
@@ -204,7 +204,7 @@ const CertificationsSection = () => {
 
                 <h3
                   id="cert-modal-title"
-                  className="text-lg sm:text-2xl md:text-3xl font-bold text-foreground mb-3 sm:mb-4 leading-tight"
+                  className="text-base sm:text-xl md:text-2xl font-semibold text-primary mb-3 sm:mb-4 leading-tight"
                 >
                   {selectedCert.title}
                 </h3>
@@ -222,7 +222,7 @@ const CertificationsSection = () => {
                 </div>
 
                 <div className="mb-6 sm:mb-8">
-                  <h4 className="text-xs font-semibold text-muted-foreground mb-2.5 uppercase tracking-wider">
+                  <h4 className="text-xs font-medium text-muted-foreground mb-2.5 uppercase tracking-wider">
                     Skills & Attributes
                   </h4>
                   <div className="flex flex-wrap gap-1.5 sm:gap-2">

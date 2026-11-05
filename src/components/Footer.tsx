@@ -143,7 +143,7 @@ const Footer = () => {
                 )}
               </div>
             </div>
-            <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-[0.3em] mb-4 sm:mb-6 font-sans relative z-20">
+            <h3 className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-[0.3em] mb-4 sm:mb-6 font-sans relative z-20">
               Connect
             </h3>
             <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 max-w-full">
@@ -208,7 +208,7 @@ const Footer = () => {
                 className="w-5 h-5 sm:w-6 sm:h-6 rounded-sm object-cover"
               />
               <span className="text-muted-foreground font-normal">Developed by</span>
-              <span className="font-bold text-white">
+              <span className="font-bold text-foreground">
                 Vivek Chaurasiya
               </span>
             </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, type ElementType } from "react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import {
-  Briefcase,
+
   Calendar,
   MapPin,
   Sparkles,
@@ -580,7 +580,7 @@ const ExperienceSection = () => {
 
                 {/* Proof Title Overlay */}
                 <div className="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-8 md:right-8 bg-background/80 backdrop-blur-xl border border-border/50 rounded-2xl p-4 transform translate-y-2 opacity-0 group-hover/modal:translate-y-0 group-hover/modal:opacity-100 transition-all duration-500 shadow-xl z-30">
-                  <h4 className="text-foreground font-semibold flex items-center gap-2">
+                  <h4 className="text-primary font-semibold flex items-center gap-2">
                     <ImageIcon className="w-4 h-4 text-primary" />
                     {selectedProofs[selectedProofIndex]?.title ||
                       "Document Preview"}
@@ -653,7 +653,7 @@ const ExperienceSection = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-3xl font-meridian font-bold text-foreground mb-1 tracking-tight">
+                  <h3 className="text-2xl font-meridian font-semibold text-primary mb-1 tracking-tight">
                     {selectedExperience.company}
                   </h3>
                   <p className="text-primary font-medium tracking-wide">
@@ -670,8 +670,8 @@ const ExperienceSection = () => {
                   <div
                     className={`flex items-center gap-1.5 border rounded-full px-4 py-1.5 text-sm font-semibold tracking-wide ${
                       selectedExperience.status === "Completed"
-                        ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"
-                        : "bg-blue-500/10 border-blue-500/20 text-blue-400"
+                        ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400"
+                        : "bg-blue-500/10 border-blue-500/20 text-blue-600 dark:text-blue-400"
                     }`}
                   >
                     {selectedExperience.status === "Completed" ? (
@@ -781,14 +781,14 @@ const ExperienceSection = () => {
             className="text-left mb-8 sm:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4"
           >
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30 mb-4 sm:mb-6 backdrop-blur-md">
-                <Briefcase className="w-4 h-4 text-primary" />
+              <div className="hidden">
+
                 <span className="text-xs sm:text-sm font-mono font-medium text-primary uppercase tracking-wider">
                   Experience
                 </span>
               </div>
               <h2 className="section-heading">
-                <span className="text-foreground">Professional</span>{" "}
+                <span className="text-primary">Professional</span>{" "}
                 <span className="text-secondary">
                   Experience
                 </span>
@@ -885,23 +885,23 @@ const ExperienceSection = () => {
                                 }}
                               />
                               <span className="hidden w-full h-full items-center justify-center">
-                                <Icon className="w-10 h-10 text-white" />
+                                <Icon className="w-10 h-10 text-foreground" />
                               </span>
                             </div>
                           </div>
 
                           <div>
                             <h3
-                              className={`font-semibold text-foreground tracking-tight leading-[1.15] mb-1.5 [text-wrap:balance] ${
+                              className={`font-medium text-primary tracking-tight leading-[1.15] mb-1.5 [text-wrap:balance] ${
                                 exp.company.length > 20
-                                  ? "text-[1.5rem] md:text-[1.7rem] leading-[1.1]"
-                                  : "text-2xl md:text-[1.8rem]"
+                                  ? "text-xl md:text-[1.5rem] leading-[1.1]"
+                                  : "text-xl md:text-2xl"
                               }`}
                             >
                               {exp.company}
                             </h3>
                             <div
-                              className={`inline-block -ml-0.5 px-3 py-1 rounded-full bg-gradient-to-r ${exp.color} text-white text-[0.72rem] font-bold tracking-wider uppercase mb-2.5 shadow-md`}
+                              className={`inline-block -ml-0.5 px-3 py-1 rounded-full bg-gradient-to-r ${exp.color} text-white text-[0.72rem] font-bold tracking-wider uppercase mb-2.5 shadow-md [text-shadow:0_1px_6px_rgba(0,0,0,0.55)]`}
                             >
                               {Array.isArray(exp.role) ? (
                                 <ul className="list-disc list-inside space-y-0.5">
@@ -921,8 +921,8 @@ const ExperienceSection = () => {
                                 <div
                                   className={`flex items-center gap-1.5 bg-background/50 px-2.5 py-1 rounded-md border border-border/50 ${
                                     exp.status === "Completed"
-                                      ? "text-emerald-400"
-                                      : "text-blue-400"
+                                      ? "text-emerald-600 dark:text-emerald-400"
+                                      : "text-blue-600 dark:text-blue-400"
                                   }`}
                                 >
                                   {exp.status === "Completed" ? (
@@ -1064,7 +1064,7 @@ const ExperienceSection = () => {
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  <h3 className="font-bold text-foreground text-lg leading-tight truncate">
+                  <h3 className="font-semibold text-primary text-base leading-tight truncate">
                     {experiences[activeIndex].company}
                   </h3>
                   <p className="text-primary font-medium text-xs mt-0.5 line-clamp-1">
@@ -1081,8 +1081,8 @@ const ExperienceSection = () => {
                   <div
                     className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider ${
                       experiences[activeIndex].status === "Completed"
-                        ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-                        : "bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                        ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"
+                        : "bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20"
                     }`}
                   >
                     <span className={`w-1.5 h-1.5 rounded-full ${experiences[activeIndex].status === "Completed" ? "bg-emerald-400" : "bg-blue-400 animate-pulse"}`} />

@@ -272,8 +272,7 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({ onComplete }) =
             />
             <div className="relative h-px w-32 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
             <h1
-              className="relative mt-8 text-[clamp(2.5rem,8.2vw,7.5rem)] font-black uppercase leading-[0.9] text-white tracking-[-0.05em]"
-              style={{ fontFamily: 'var(--font-display)' }}
+              className="relative mt-8 font-meridian text-[clamp(2.5rem,8.2vw,7.5rem)] font-bold uppercase leading-[0.9] text-white tracking-[-0.02em]"
             >
               VIVEK CHAURASIYA
             </h1>

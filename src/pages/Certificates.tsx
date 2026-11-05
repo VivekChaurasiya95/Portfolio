@@ -5,7 +5,7 @@ import {
   ArrowLeft,
   Calendar,
   ExternalLink,
-  ShieldCheck,
+
   X,
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -64,15 +64,15 @@ const Certificates = () => {
             transition={{ duration: 0.6 }}
             className="mb-8 sm:mb-10 mt-4 sm:mt-8"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30 mb-4 sm:mb-5 backdrop-blur-md">
-              <ShieldCheck className="w-4 h-4 text-primary" />
+            <div className="hidden">
+
               <span className="text-xs sm:text-sm font-medium text-primary uppercase tracking-wider">
                 Full Certificate Gallery
               </span>
             </div>
 
             <h1 className="section-heading mb-4">
-              <span className="text-foreground">All</span>{" "}
+              <span className="text-primary">All</span>{" "}
               <span className="text-secondary">Certificates</span>
             </h1>
             <p className="section-subheading max-w-3xl text-sm sm:text-base">
@@ -101,14 +101,14 @@ const Certificates = () => {
                   }
                 }}
               >
-                <div className="w-full h-44 sm:h-48 bg-muted/20 relative overflow-hidden">
+                <div className="w-full bg-muted/20 relative overflow-hidden">
                   <img
                     src={cert.image}
                     alt={cert.title}
                     loading="lazy"
                     width={800}
                     height={600}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-auto block"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src =
                         "https://via.placeholder.com/800x600?text=Image+Missing";
@@ -123,7 +123,7 @@ const Certificates = () => {
                     </div>
                   </div>
 
-                  <h2 className="text-base sm:text-lg font-semibold text-foreground mb-2 line-clamp-2">
+                  <h2 className="text-base sm:text-lg font-semibold text-primary mb-2 line-clamp-2">
                     {cert.title}
                   </h2>
                   <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
@@ -216,7 +216,7 @@ const Certificates = () => {
 
                 <h3
                   id="cert-page-modal-title"
-                  className="text-lg sm:text-2xl md:text-3xl font-bold text-foreground mb-3 sm:mb-4 leading-tight"
+                  className="text-base sm:text-xl md:text-2xl font-semibold text-primary mb-3 sm:mb-4 leading-tight"
                 >
                   {selectedCert.title}
                 </h3>
@@ -234,7 +234,7 @@ const Certificates = () => {
                 </div>
 
                 <div className="mb-6 sm:mb-8">
-                  <h4 className="text-xs font-semibold text-muted-foreground mb-2.5 uppercase tracking-wider">
+                  <h4 className="text-xs font-medium text-muted-foreground mb-2.5 uppercase tracking-wider">
                     Skills & Attributes
                   </h4>
                   <div className="flex flex-wrap gap-1.5 sm:gap-2">

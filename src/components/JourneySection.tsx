@@ -4,7 +4,6 @@ import {
   Sparkles,
   Pause,
   Play,
-  Compass,
 } from "lucide-react";
 
 interface Milestone {
@@ -32,7 +31,7 @@ const milestones: Milestone[] = [
     highlight: "Core foundations in algorithms, data structures & systems design.",
     icon: GraduationCap,
     iconBg: "bg-blue-500/15 border-blue-500/30",
-    iconColor: "text-blue-400",
+    iconColor: "text-blue-600 dark:text-blue-400",
   },
   {
     id: "02",
@@ -43,7 +42,7 @@ const milestones: Milestone[] = [
     highlight: "Architected HSER radar & Student Saarthi AI scholarship portal.",
     icon: Sparkles,
     iconBg: "bg-purple-500/15 border-purple-500/30",
-    iconColor: "text-purple-400",
+    iconColor: "text-purple-600 dark:text-purple-400",
   },
   {
     id: "03",
@@ -299,14 +298,8 @@ const JourneySection: React.FC = () => {
         {/* Consistent Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30 mb-4 sm:mb-5 backdrop-blur-md">
-              <Compass className="w-4 h-4 text-primary" />
-              <span className="text-xs sm:text-sm font-mono font-medium text-primary uppercase tracking-wider">
-                Development Journey
-              </span>
-            </div>
             <h2 className="section-heading">
-              <span className="text-foreground">Development</span>{" "}
+              <span className="text-primary">Development</span>{" "}
               <span className="text-secondary">Timeline</span>
             </h2>
           </div>
@@ -430,7 +423,7 @@ const JourneySection: React.FC = () => {
                     <span
                       className={`text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border ${
                         isLast
-                          ? "bg-emerald-500/15 border-emerald-500/30 text-emerald-400 font-semibold"
+                          ? "bg-emerald-500/15 border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-semibold"
                           : "bg-muted/30 border border-border/30 text-muted-foreground"
                       }`}
                     >
@@ -460,7 +453,7 @@ const JourneySection: React.FC = () => {
                     </div>
 
                     <div className="min-w-0 flex-1">
-                      <h3 className="text-sm sm:text-base font-semibold tracking-tight text-foreground leading-snug truncate">
+                      <h3 className="text-sm sm:text-base font-medium tracking-tight text-primary leading-snug truncate">
                         {item.role}
                       </h3>
                       <div className="text-xs text-muted-foreground/75 font-medium truncate mt-0.5">

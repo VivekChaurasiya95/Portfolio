@@ -6,7 +6,7 @@ const FreelanceWidget = () => {
   return (
     <div className="flex flex-col gap-3 w-full max-w-sm mr-auto md:ml-auto md:mr-0">
       {/* Title */}
-      <h4 className="text-primary font-bold text-xs md:text-sm tracking-[0.2em] uppercase font-sans text-left">
+      <h4 className="text-primary font-semibold text-xs md:text-sm tracking-[0.2em] uppercase font-sans text-left">
         Availability
       </h4>
 
@@ -89,7 +89,7 @@ const FreelanceWidget = () => {
             </span>
           </motion.div>
 
-          <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-sans tracking-tight drop-shadow-md">
+          <h3 className="text-lg sm:text-xl font-semibold text-primary mb-2 font-sans tracking-tight drop-shadow-md">
             Freelance Services
           </h3>
           
@@ -100,7 +100,7 @@ const FreelanceWidget = () => {
 
           <motion.a
             href={`mailto:${EMAIL_ADDRESS}`}
-            className="inline-flex items-center justify-center min-h-[44px] gap-2.5 px-6 py-2.5 rounded-xl bg-gradient-to-r from-primary to-secondary text-slate-950 font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] font-sans"
+            className="inline-flex items-center justify-center min-h-[44px] gap-2.5 px-6 py-2.5 rounded-xl bg-secondary text-secondary-foreground font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--secondary)/0.4)] font-sans"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.97 }}
           >
