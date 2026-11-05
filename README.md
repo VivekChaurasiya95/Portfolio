@@ -67,8 +67,8 @@
   </tr>
   <tr>
     <td align="center" width="200">
-      <h3>3D Marquee</h3>
-      Left-tilted infinite 3D rotating skills marquee with mouse tracking
+      <h3>Modern UI / UX</h3>
+      Glassmorphism, clean typography & responsive mobile-first layouts
     </td>
     <td align="center" width="200">
       <h3>Project Cards</h3>
@@ -161,7 +161,6 @@ portfolio/
 │   │   ├──  Navigation.tsx    # Navbar with scroll spy
 │   │   ├──  HeroSection.tsx   # Animated hero + typing effect
 │   │   ├──  AboutSection.tsx  # About me section
-│   │   ├──  Marquee3D.tsx     # 3D tilted skills marquee
 │   │   ├──  ExperienceSection.tsx
 │   │   ├──  ProjectsSection.tsx
 │   │   ├──  SkillsSection.tsx
