@@ -378,7 +378,7 @@ const ContactSection = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full min-h-[44px] btn-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full min-h-[44px] flex items-center justify-center gap-2 rounded-lg bg-primary/10 backdrop-blur-xl border border-primary/30 text-primary font-sans font-medium transition-all hover:bg-primary/20 hover:border-primary/50 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>

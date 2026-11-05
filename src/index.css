@@ -24,14 +24,14 @@
     --popover-foreground: 220 25% 15%;
 
     /* Soft teal accent */
-    --primary: 185 60% 40%;
+    --primary: 185 62% 36%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 350 25% 55%;
+    --secondary: 350 28% 47%;
     --secondary-foreground: 210 20% 95%;
 
     --muted: 210 20% 92%;
-    --muted-foreground: 220 15% 45%;
+    --muted-foreground: 220 16% 35%;
 
     --accent: 185 40% 90%;
     --accent-foreground: 185 60% 30%;
@@ -39,9 +39,9 @@
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 30% 85%;
-    --input: 214 30% 85%;
-    --ring: 185 60% 40%;
+    --border: 214 25% 80%;
+    --input: 214 25% 80%;
+    --ring: 185 62% 36%;
 
     --radius: 0.5rem;
 
@@ -554,5 +554,18 @@
 
   .animate-marquee {
     animation: marquee 40s linear infinite;
+  }
+
+  @keyframes marquee-reverse {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-marquee-reverse {
+    animation: marquee-reverse 40s linear infinite;
   }
 }

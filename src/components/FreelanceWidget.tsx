@@ -100,7 +100,7 @@ const FreelanceWidget = () => {
 
           <motion.a
             href={`mailto:${EMAIL_ADDRESS}`}
-            className="inline-flex items-center justify-center min-h-[44px] gap-2.5 px-6 py-2.5 rounded-xl bg-secondary text-secondary-foreground font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--secondary)/0.4)] font-sans"
+            className="inline-flex items-center justify-center min-h-[44px] gap-2.5 px-6 py-2.5 rounded-xl bg-primary/10 backdrop-blur-xl border border-primary/30 text-primary font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 hover:bg-primary/20 hover:border-primary/50 hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)] font-sans"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.97 }}
           >

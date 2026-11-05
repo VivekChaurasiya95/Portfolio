@@ -29,6 +29,34 @@ const technologies: Technology[] = [
   { name: "Flutter", category: "MOBILE", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" },
 ];
 
+const firstRow = technologies.slice(0, Math.ceil(technologies.length / 2));
+const secondRow = technologies.slice(Math.ceil(technologies.length / 2));
+
+const TechPill = ({ tech }: { tech: Technology }) => (
+  <div className="flex items-center gap-2 sm:gap-2.5 pl-2.5 sm:pl-3 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full bg-card/70 dark:bg-white/[0.06] backdrop-blur-xl border border-border/40 dark:border-white/10 shadow-lg hover:border-primary/40 hover:shadow-glow transition-all duration-300 shrink-0 cursor-pointer">
+    <span
+      className={`flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 p-0.5 shrink-0 ${
+        tech.lightTile ? "dark:bg-white dark:rounded-md" : ""
+      }`}
+    >
+      <img
+        src={tech.icon}
+        alt={tech.name}
+        width={28}
+        height={28}
+        loading="lazy"
+        className="max-w-full max-h-full object-contain"
+      />
+    </span>
+    <span className="text-xs sm:text-sm font-bold font-sans text-foreground whitespace-nowrap tracking-tight">
+      {tech.name}
+    </span>
+    <span className="text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-muted-foreground bg-muted/60 dark:bg-white/10 rounded-full px-1.5 sm:px-2 py-1 whitespace-nowrap">
+      {tech.category}
+    </span>
+  </div>
+);
+
 const TechnologiesSection = () => {
   return (
     <section className="pt-10 sm:pt-16 pb-6 sm:pb-8 relative overflow-hidden bg-transparent border-y border-border/20 dark:border-white/5">
@@ -41,40 +69,25 @@ const TechnologiesSection = () => {
       </div>
 
       {/* Marquee Container */}
-      <div className="relative w-full overflow-hidden flex items-center">
+      <div className="relative w-full overflow-hidden">
         {/* Gradient Fades for Smooth Edges */}
         <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-20 md:w-48 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-20 md:w-48 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-        <div className="flex gap-3 sm:gap-4 w-max px-4 animate-marquee hover:[animation-play-state:paused]">
-          {/* Render the array twice for seamless looping */}
-          {[...technologies, ...technologies].map((tech, i) => (
-            <div
-              key={`${tech.name}-${i}`}
-              className="flex items-center gap-2 sm:gap-2.5 pl-2.5 sm:pl-3 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full bg-card/70 dark:bg-white/[0.06] backdrop-blur-xl border border-border/40 dark:border-white/10 shadow-lg hover:border-primary/40 hover:shadow-glow transition-all duration-300 shrink-0 cursor-pointer"
-            >
-              <span
-                className={`flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 p-0.5 shrink-0 ${
-                  tech.lightTile ? "dark:bg-white dark:rounded-md" : ""
-                }`}
-              >
-                <img
-                  src={tech.icon}
-                  alt={tech.name}
-                  width={28}
-                  height={28}
-                  loading="lazy"
-                  className="max-w-full max-h-full object-contain"
-                />
-              </span>
-              <span className="text-xs sm:text-sm font-bold font-sans text-foreground whitespace-nowrap tracking-tight">
-                {tech.name}
-              </span>
-              <span className="text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-muted-foreground bg-muted/60 dark:bg-white/10 rounded-full px-1.5 sm:px-2 py-1 whitespace-nowrap">
-                {tech.category}
-              </span>
-            </div>
-          ))}
+        <div className="flex flex-col gap-3 sm:gap-4">
+          {/* Row 1: scrolls left */}
+          <div className="flex gap-3 sm:gap-4 w-max px-4 animate-marquee hover:[animation-play-state:paused]">
+            {[...firstRow, ...firstRow].map((tech, i) => (
+              <TechPill key={`row1-${tech.name}-${i}`} tech={tech} />
+            ))}
+          </div>
+
+          {/* Row 2: scrolls right */}
+          <div className="flex gap-3 sm:gap-4 w-max px-4 animate-marquee-reverse hover:[animation-play-state:paused]">
+            {[...secondRow, ...secondRow].map((tech, i) => (
+              <TechPill key={`row2-${tech.name}-${i}`} tech={tech} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
