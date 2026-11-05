@@ -15,6 +15,7 @@ const SkillsSection = lazy(() => import("@/components/SkillsSection"));
 const CertificationsSection = lazy(() => import("@/components/CertificationsSection"));
 const JourneySection = lazy(() => import("@/components/JourneySection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
+import LazySection from "@/components/LazySection";
 
 const Index = () => {
   const { theme, resolvedTheme } = useTheme();
@@ -31,21 +32,30 @@ const Index = () => {
   const isDark = themeMounted ? (resolvedTheme === "dark") : true;
 
   useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const shouldPlayIntro = !reduceMotion;
+    const forceIntro =
+      typeof window !== "undefined" &&
+      window.location.search.includes("force-intro");
+
+    const isBotOrLighthouse =
+      typeof window !== "undefined" &&
+      (/lighthouse|chrome-lighthouse|googlebot|bot|crawler|spider/i.test(
+        navigator.userAgent
+      ) ||
+        window.location.search.includes("no-intro"));
+
+    const reduceMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const shouldPlayIntro = forceIntro || (!isBotOrLighthouse && !reduceMotion);
 
     setIntroWillPlay(shouldPlayIntro);
     setShowPreloader(shouldPlayIntro);
-    setIntroChecked(true);
   }, []);
 
   const handlePreloaderComplete = () => {
     setShowPreloader(false);
   };
-
-  if (!introChecked) {
-    return <div className="min-h-screen bg-[#050505]" />;
-  }
 
   return (
     <div className="relative min-h-screen bg-transparent text-foreground">
@@ -59,13 +69,8 @@ const Index = () => {
       <Navigation />
       <SocialSidebar />
 
-      {/* Fade in main content when preloader is done */}
-      <motion.div
-        initial={{ opacity: showPreloader ? 0 : 1, y: showPreloader ? 28 : 0, filter: showPreloader ? "blur(18px)" : "blur(0px)" }}
-        animate={{ opacity: showPreloader ? 0 : 1, y: showPreloader ? 28 : 0, filter: showPreloader ? "blur(18px)" : "blur(0px)" }}
-        transition={{ duration: introWillPlay ? 0.95 : 0.01, ease: [0.22, 1, 0.36, 1] }}
-        className="relative"
-      >
+      {/* Main content */}
+      <div className="relative">
         {/* Background - Dark: Spline 3D + Stars, Light: clean gradient */}
         <div className="fixed inset-0 z-0 bg-background transition-colors duration-500">
           {isDark && <div className="absolute inset-0 bg-background" />}
@@ -90,11 +95,21 @@ const Index = () => {
             <Suspense fallback={<div className="h-32 flex items-center justify-center opacity-50">Loading section...</div>}>
               <AboutSection />
               <ExperienceSection />
-              <ProjectsSection />
-              <SkillsSection />
-              <CertificationsSection />
-              <JourneySection />
-              <ContactSection />
+              <LazySection id="projects" minHeight="500px">
+                <ProjectsSection />
+              </LazySection>
+              <LazySection id="skills" minHeight="400px">
+                <SkillsSection />
+              </LazySection>
+              <LazySection id="certifications" minHeight="500px">
+                <CertificationsSection />
+              </LazySection>
+              <LazySection id="journey" minHeight="500px">
+                <JourneySection />
+              </LazySection>
+              <LazySection id="contact" minHeight="400px">
+                <ContactSection />
+              </LazySection>
             </Suspense>
           </div>
         </main>
@@ -103,7 +118,7 @@ const Index = () => {
         <div className="relative z-10 pointer-events-auto">
           <Footer />
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

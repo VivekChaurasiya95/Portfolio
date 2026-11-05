@@ -1,450 +1,494 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import React, { useRef, useState, useEffect } from "react";
 import {
-  Rocket,
   GraduationCap,
-  Code,
-  Brain,
-  Briefcase,
   Sparkles,
+  Pause,
+  Play,
+  Compass,
 } from "lucide-react";
 
-const resolveLogoCandidates = (baseName: string) => [
-  `/experience-logos/${baseName}.png`,
-  `/experience-logos/${baseName}.jpg`,
-  `/experience-logos/${baseName}.jpeg`,
-  `/experience-logos/${baseName}.webp`,
-  `/experience-logos/${baseName}.svg`,
-];
+interface Milestone {
+  id: string;
+  year: string;
+  role: string;
+  org: string;
+  badge: string;
+  highlight: string;
+  icon?: React.ComponentType<{ className?: string }>;
+  logo?: string;
+  logoBg?: string;
+  logoClass?: string;
+  iconBg?: string;
+  iconColor?: string;
+}
 
-// Milestones in chronological order (will be displayed reversed - current at top)
-const milestones = [
+const milestones: Milestone[] = [
   {
-    year: "Jun 2026",
-    title: "Infosys Virtual Intern",
-    description:
-      "Shortlisted for the Infosys Springboard Virtual Internship 7.0 focusing on software engineering skills.",
-    tags: ["Artificial Intelligence", "Software Engineering", "Internship"],
-    type: "Current",
-    icon: Briefcase,
-    logo: resolveLogoCandidates("infosys"),
-  },
-  {
-    year: "Jun 2026",
-    title: "Data Science Intern",
-    description: "Data Science Intern at Decodelabs from June 2026 to present.",
-    tags: ["Data Science", "Python", "Machine Learning"],
-    type: "Current",
-    icon: Brain,
-    logo: resolveLogoCandidates("decodelabs"),
-  },
-  {
-    year: "May 2026",
-    title: "Google Student Ambassador",
-    description:
-      "Representing Gemini and Google on campus, building a community of student leaders and innovators.",
-    tags: ["Leadership", "Gemini", "Community", "Campus Engagement"],
-    type: "Current",
-    icon: Rocket,
-    logo: resolveLogoCandidates("gsa"),
-  },
-  {
-    year: "May 2026",
-    title: "GirlScript Summer of Code",
-    description:
-      "Selected as an Open Source and AI/Agents Contributor for GSSoC starting mid-May.",
-    tags: ["Open Source", "AI", "Agents"],
-    type: "Current",
-    icon: Sparkles,
-    logo: resolveLogoCandidates("gssoc"),
-  },
-  {
-    year: "Apr - Jun 2026",
-    title: "Nexus Spring of Code",
-    description:
-      "Active contributor in the Nexus Spring of Code open source program.",
-    tags: ["Open Source", "Development"],
-    type: "Completed",
-    icon: Code,
-    logo: resolveLogoCandidates("nsoc"),
-  },
-  {
-    year: "Apr 2026",
-    title: "McKinsey Forward Program",
-    description:
-      "Enrolled in the McKinsey Forward Program to develop advanced business, leadership, and professional skills.",
-    tags: ["Leadership", "Professional Skills"],
-    type: "Current",
-    icon: Brain,
-    logo: resolveLogoCandidates("mckinsey"),
-  },
-  {
-    year: "Feb 2026",
-    title: "Software Developer Intern",
-    description:
-      "Worked at ByteEdu as a Software Developer Intern (Feb - May 2026).",
-    tags: ["Software Engineering", "Internship"],
-    type: "Completed",
-    icon: Briefcase,
-    logo: resolveLogoCandidates("byteedu"),
-  },
-  {
-    year: "2026",
-    title: "Data Science & Web Development",
-    description:
-      "Expanding into data science with Python libraries and advancing JavaScript skills for modern web applications.",
-    tags: ["JavaScript", "NumPy", "Pandas", "Matplotlib", "Seaborn"],
-    type: "Continuing",
-    icon: Sparkles,
-  },
-  {
-    year: "2025",
-    title: "Full-Stack & AI Projects",
-    description:
-      "Built HSER – Human Skill Extinction Radar and Student Saarthi – AI Based Scholarship Portal. Earned certifications from IBM, Google Cloud, and Udemy.",
-    tags: ["React", "FastAPI", "Flask", "OpenAI"],
-    type: "Current",
-    icon: Sparkles,
-  },
-  {
+    id: "01",
     year: "2024",
-    title: "B.Tech Begins at MITS-DU",
-    description:
-      "Started B.Tech in Computer Science and Design at Madhav Institute of Technology and Science (Deemed University), Gwalior.",
-    tags: ["C", "C++", "Python", "javaScript", "OOPs"],
-    type: "Education",
+    role: "B.Tech in Computer Science",
+    org: "MITS-DU",
+    badge: "Education",
+    highlight: "Core foundations in algorithms, data structures & systems design.",
     icon: GraduationCap,
+    iconBg: "bg-blue-500/15 border-blue-500/30",
+    iconColor: "text-blue-400",
+  },
+  {
+    id: "02",
+    year: "2025",
+    role: "Full-Stack & AI Systems",
+    org: "Independent Projects",
+    badge: "Projects",
+    highlight: "Architected HSER radar & Student Saarthi AI scholarship portal.",
+    icon: Sparkles,
+    iconBg: "bg-purple-500/15 border-purple-500/30",
+    iconColor: "text-purple-400",
+  },
+  {
+    id: "03",
+    year: "Feb 2026",
+    role: "Software Developer Intern",
+    org: "ByteEdu",
+    badge: "Internship",
+    highlight: "Engineered scalable web features & optimized API latency.",
+    logo: "/experience-logos/byteedu.png",
+    logoBg: "bg-white border-white/30",
+  },
+  {
+    id: "04",
+    year: "Apr 2026",
+    role: "McKinsey Forward",
+    org: "McKinsey & Company",
+    badge: "Fellowship",
+    highlight: "Executive leadership, digital resilience & strategic thinking.",
+    logo: "/experience-logos/mckinsey.png",
+    logoBg: "bg-[#00102a] border-sky-500/30",
+  },
+  {
+    id: "05",
+    year: "Apr 2026",
+    role: "Open Source Contributor",
+    org: "Nexus Spring of Code",
+    badge: "Open Source",
+    highlight: "Resolved architectural issues & enhanced open source docs.",
+    logo: "/experience-logos/nsoc.png",
+    logoBg: "bg-black border-orange-500/30",
+  },
+  {
+    id: "06",
+    year: "May 2026",
+    role: "AI Agents Contributor",
+    org: "GirlScript Summer of Code",
+    badge: "Open Source",
+    highlight: "Architected autonomous AI workflows & agent tooling.",
+    logo: "/experience-logos/gssoc.png",
+    logoBg: "bg-[#181818] border-orange-500/30",
+  },
+  {
+    id: "07",
+    year: "May 2026",
+    role: "Google Student Ambassador",
+    org: "Google & Gemini Campus",
+    badge: "Leadership",
+    highlight: "Leading campus developer community & Gemini AI workshops.",
+    logo: "/experience-logos/gsa-symbol.png",
+    logoBg: "bg-white border-white/30",
+  },
+  {
+    id: "08",
+    year: "Jun 2026",
+    role: "Data Science Intern",
+    org: "Decode Labs",
+    badge: "Internship",
+    highlight: "Developing predictive ML models & automated data pipelines.",
+    logo: "/experience-logos/decodelabs.png",
+    logoBg: "bg-[#090e1c] border-cyan-500/30",
+  },
+  {
+    id: "09",
+    year: "Jun 2026",
+    role: "Infosys Virtual Intern",
+    org: "Infosys Springboard 7.0",
+    badge: "Internship",
+    highlight: "Enterprise software engineering, cloud systems & applied AI.",
+    logo: "/experience-logos/infosys.png",
+    logoBg: "bg-white border-white/30",
+  },
+  {
+    id: "10",
+    year: "Jun 2026",
+    role: "Campus Mantri",
+    org: "GeeksforGeeks",
+    badge: "Ambassador",
+    highlight: "Official campus lead organizing hackathons & technical contests.",
+    logo: "/experience-logos/gfg.png",
+    logoBg: "bg-white border-white/30",
+  },
+  {
+    id: "11",
+    year: "Jul 2026",
+    role: "ML Engineering Intern",
+    org: "FlyRank AI",
+    badge: "Internship",
+    highlight: "Neural ranking models, intelligent search & deep learning pipelines.",
+    logo: "/experience-logos/flyrankai.png",
+    logoBg: "bg-black border-emerald-500/30",
   },
 ];
 
-// Professional spacecraft component
-const Spacecraft = ({ progress }: { progress: MotionValue<number> }) => {
-  const yPercent = useTransform(progress, [0, 1], [0, 100]);
+// Non-looping list: begins with B.Tech and ends with FlyRank AI
+const JourneySection: React.FC = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isAtEnd, setIsAtEnd] = useState(false);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const scrollLeftRef = useRef(0);
+  const isResettingRef = useRef(false);
 
-  return (
-    <motion.div
-      className="absolute left-1/2 -translate-x-1/2 z-20 pointer-events-none"
-      style={{
-        top: useTransform(yPercent, (v) => `calc(${v}% - 28px)`),
-      }}
-    >
-      {/* Outer glow */}
-      <motion.div
-        className="absolute -inset-8 rounded-full bg-primary/20 blur-2xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      />
+  // Check bounds on scroll
+  const updateScrollBounds = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    setCanScrollLeft(el.scrollLeft > 8);
+    setCanScrollRight(el.scrollLeft < maxScroll - 8);
+    if (!isResettingRef.current) {
+      if (el.scrollLeft >= maxScroll - 3) {
+        setIsAtEnd(true);
+        setIsPaused(true);
+      } else {
+        setIsAtEnd(false);
+      }
+    }
+  };
 
-      {/* Main spacecraft */}
-      <motion.div
-        className="relative"
-        animate={{
-          y: [0, -4, 0, 4, 0],
-        }}
-        transition={{
-          duration: 2.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        {/* Spacecraft body - sleek diamond shape */}
-        <div className="relative w-12 h-12 flex items-center justify-center">
-          {/* Diamond shape container */}
-          <div className="absolute inset-0 rotate-45 rounded-lg bg-gradient-to-br from-primary via-primary/80 to-secondary shadow-lg border border-primary/50" />
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
 
-          {/* Inner glow */}
-          <div className="absolute inset-1 rotate-45 rounded-md bg-gradient-to-br from-primary/60 to-transparent" />
+    // Ensure it starts at the beginning (B.Tech in Computer Science)
+    el.scrollLeft = 0;
+    updateScrollBounds();
 
-          {/* Center icon */}
-          <Rocket className="w-5 h-5 text-primary-foreground relative z-10" />
+    const handleScroll = () => {
+      updateScrollBounds();
+    };
 
-          {/* Trailing particles - going downward */}
-          <motion.div
-            className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-1"
-            animate={{
-              scaleY: [1, 1.5, 1],
-              opacity: [0.6, 0.9, 0.6],
-            }}
-            transition={{
-              duration: 0.3,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <div className="w-1 h-8 bg-gradient-to-b from-primary/80 to-transparent rounded-full" />
-          </motion.div>
-        </div>
+    el.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", updateScrollBounds);
+    return () => {
+      el.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updateScrollBounds);
+    };
+  }, []);
 
-        {/* Energy particles */}
-        {[...Array(4)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute left-1/2 -translate-x-1/2"
-            style={{ bottom: -20 - i * 8 }}
-            animate={{
-              opacity: [0, 0.6, 0],
-              scale: [0.5, 1, 0.3],
-              y: [0, 15],
-            }}
-            transition={{
-              duration: 0.6,
-              repeat: Infinity,
-              delay: i * 0.15,
-              ease: "easeOut",
-            }}
-          >
-            <div className="w-1.5 h-1.5 rounded-full bg-primary/60" />
-          </motion.div>
-        ))}
-      </motion.div>
-    </motion.div>
-  );
-};
+  // Smooth forward auto-motion that stops after FlyRank AI
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
 
-const JourneySection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
+    let animId: number;
+    const speed = 0.7; // smooth pixels per frame
 
-  // Progress for spacecraft - constrained to timeline area
-  const spacecraftProgress = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
+    const step = () => {
+      if (
+        !isPaused &&
+        !isHovered &&
+        !isDraggingRef.current &&
+        !isResettingRef.current &&
+        el
+      ) {
+        const maxScroll = el.scrollWidth - el.clientWidth;
+        if (el.scrollLeft >= maxScroll - 2) {
+          el.scrollLeft = maxScroll;
+          setIsAtEnd(true);
+          setIsPaused(true);
+          setCanScrollRight(false);
+          setCanScrollLeft(true);
+          return;
+        }
+        el.scrollLeft += speed;
+      }
+      animId = requestAnimationFrame(step);
+    };
+
+    if (!isPaused && !isAtEnd) {
+      animId = requestAnimationFrame(step);
+    }
+
+    return () => {
+      if (animId) cancelAnimationFrame(animId);
+    };
+  }, [isPaused, isHovered, isAtEnd]);
+
+  // Restart smoothly from B.Tech
+  const handleRestart = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    isResettingRef.current = true;
+    setIsAtEnd(false);
+    setIsPaused(true);
+
+    el.scrollTo({ left: 0, behavior: "smooth" });
+
+    // Track scroll back to milestone 01 (B.Tech)
+    const checkArrival = () => {
+      if (!el) {
+        isResettingRef.current = false;
+        return;
+      }
+      if (el.scrollLeft <= 5) {
+        el.scrollLeft = 0;
+        isResettingRef.current = false;
+        updateScrollBounds();
+        setIsPaused(false);
+      } else {
+        requestAnimationFrame(checkArrival);
+      }
+    };
+    requestAnimationFrame(checkArrival);
+  };
+
+  // Step scroll left or right
+  const handleStepScroll = (direction: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = 300;
+    el.scrollBy({
+      left: direction === "left" ? -cardWidth : cardWidth,
+      behavior: "smooth",
+    });
+  };
+
+  // Mouse Drag Support
+  const handleMouseDown = (e: React.MouseEvent) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    isDraggingRef.current = true;
+    startXRef.current = e.pageX - el.offsetLeft;
+    scrollLeftRef.current = el.scrollLeft;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDraggingRef.current) return;
+    e.preventDefault();
+    const el = scrollRef.current;
+    if (!el) return;
+    const x = e.pageX - el.offsetLeft;
+    const walk = (x - startXRef.current) * 1.5;
+    el.scrollLeft = scrollLeftRef.current - walk;
+    updateScrollBounds();
+  };
+
+  const handleMouseUpOrLeave = () => {
+    isDraggingRef.current = false;
+    updateScrollBounds();
+  };
 
   return (
     <section
       id="journey"
-      className="py-32 relative overflow-hidden"
-      style={{ position: "relative" }}
-      ref={containerRef}
+      className="py-12 sm:py-16 md:py-20 relative overflow-hidden bg-background/40"
     >
-      <div className="container mx-auto px-6 lg:px-20">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-24"
-        >
-          {/* Section label */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 border border-primary/30 mb-6"
-          >
-            <Rocket className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-primary uppercase tracking-widest">
-              My Journey
-            </span>
-          </motion.div>
-
-          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
-            <span className="text-foreground">Development</span>{" "}
-            <span className="text-gradient">Timeline</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A chronological voyage through my coding odyssey —{" "}
-            <span className="text-primary font-medium">
-              B.Tech Computer Science & Design (2024-2028)
-            </span>
-          </p>
-        </motion.div>
-
-        {/* Timeline */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Enhanced central line with strong glow */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1.5 h-full">
-            {/* Base line */}
-            <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary to-primary/60 rounded-full" />
-            {/* Glow layer 1 */}
-            <div className="absolute -inset-1 bg-gradient-to-b from-primary/50 via-primary/70 to-primary/40 rounded-full blur-sm" />
-            {/* Glow layer 2 */}
-            <div className="absolute -inset-2 bg-gradient-to-b from-primary/30 via-primary/50 to-primary/20 rounded-full blur-md" />
-            {/* Intense glow layer */}
-            <div className="absolute -inset-4 bg-gradient-to-b from-primary/20 via-primary/30 to-transparent rounded-full blur-xl" />
-
-            {/* Animated pulse effect */}
-            <motion.div
-              className="absolute -inset-6 bg-gradient-to-b from-primary/30 via-primary/40 to-primary/20 rounded-full blur-2xl"
-              animate={{
-                opacity: [0.4, 0.7, 0.4],
-                scale: [1, 1.15, 1],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-20">
+        {/* Consistent Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30 mb-4 sm:mb-5 backdrop-blur-md">
+              <Compass className="w-4 h-4 text-primary" />
+              <span className="text-xs sm:text-sm font-mono font-medium text-primary uppercase tracking-wider">
+                Development Journey
+              </span>
+            </div>
+            <h2 className="section-heading">
+              <span className="text-foreground">Development</span>{" "}
+              <span className="text-secondary">Timeline</span>
+            </h2>
           </div>
 
-          {/* Spacecraft that follows scroll */}
-          <Spacecraft progress={spacecraftProgress} />
+          {/* Minimal Controls: Left/Right arrows + Auto Motion or Restart */}
+          <div className="flex items-center gap-2 self-start sm:self-end">
+            <button
+              onClick={() => handleStepScroll("left")}
+              disabled={!canScrollLeft}
+              className="p-2 rounded-full border border-border/50 bg-card/40 hover:bg-card/80 text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:pointer-events-none transition-all duration-200 cursor-pointer"
+              aria-label="Scroll to previous milestone"
+              title="Previous milestone"
+            >
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m15 18-6-6 6-6"/>
+              </svg>
+            </button>
 
-          {/* Milestones */}
-          {milestones.map((milestone, index) => {
-            const Icon = milestone.icon;
-            return (
-              <motion.div
-                key={`${milestone.year}-${index}`}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`relative flex items-center mb-20 last:mb-0 ${
-                  index % 2 === 0 ? "flex-row" : "flex-row-reverse"
-                }`}
+            <button
+              onClick={() => handleStepScroll("right")}
+              disabled={!canScrollRight}
+              className="p-2 rounded-full border border-border/50 bg-card/40 hover:bg-card/80 text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:pointer-events-none transition-all duration-200 cursor-pointer"
+              aria-label="Scroll to next milestone"
+              title="Next milestone"
+            >
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+            </button>
+
+            {isAtEnd ? (
+              <button
+                onClick={handleRestart}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-primary/40 bg-primary/10 hover:bg-primary/20 text-xs font-mono text-primary transition-all duration-200 cursor-pointer"
+                title="Restart timeline from B.Tech"
               >
-                {/* Content card */}
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                  <path d="M3 3v5h5"/>
+                </svg>
+                <span>Restart</span>
+              </button>
+            ) : (
+              <button
+                onClick={() => setIsPaused((prev) => !prev)}
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border/50 bg-card/40 hover:bg-card/80 text-xs font-mono text-muted-foreground hover:text-foreground transition-all duration-200 cursor-pointer"
+                title={isPaused ? "Resume auto motion" : "Pause auto motion"}
+              >
+                {isPaused ? (
+                  <>
+                    <Play className="w-3.5 h-3.5 text-primary" />
+                    <span>Play</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Moving</span>
+                    <Pause className="w-3.5 h-3.5 text-muted-foreground/60 ml-0.5" />
+                  </>
+                )}
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Linear Motion Track with Dynamic Edge Gradient Masks */}
+        <div
+          className="relative"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => {
+            setIsHovered(false);
+            handleMouseUpOrLeave();
+          }}
+        >
+          {/* Subtle Edge Fade Masks: only visible when there is scrolled overflow */}
+          <div
+            className={`pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-background via-background/80 to-transparent z-10 transition-opacity duration-300 ${
+              canScrollLeft ? "opacity-100" : "opacity-0"
+            }`}
+          />
+          <div
+            className={`pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-background via-background/80 to-transparent z-10 transition-opacity duration-300 ${
+              canScrollRight ? "opacity-100" : "opacity-0"
+            }`}
+          />
+
+          {/* Horizontally Scrollable Track */}
+          <div
+            ref={scrollRef}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUpOrLeave}
+            className="flex gap-4 overflow-x-auto py-2 scrollbar-none cursor-grab active:cursor-grabbing select-none"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              WebkitOverflowScrolling: "touch",
+            }}
+          >
+            {milestones.map((item, index) => {
+              const Icon = item.icon;
+              const isFirst = index === 0;
+              const isLast = index === milestones.length - 1;
+
+              return (
                 <div
-                  className={`w-5/12 ${index % 2 === 0 ? "text-right pr-16" : "text-left pl-16"}`}
-                >
-                  <motion.div
-                    whileHover={{
-                      scale: 1.02,
-                      boxShadow: "0 20px 60px -20px hsl(var(--primary) / 0.4)",
-                    }}
-                    className="glass-card rounded-xl p-6 inline-block border-primary/30 hover:border-primary/50 transition-all duration-300"
-                  >
-                    {/* Year badge - cuboid style */}
-                    <div
-                      className={`flex items-center gap-2 mb-3 ${index % 2 === 0 ? "justify-end" : "justify-start"}`}
-                    >
-                      <div className="relative">
-                        <div className="absolute inset-0 bg-primary/30 rounded-lg transform translate-x-1 translate-y-1" />
-                        <motion.span
-                          className="relative block px-4 py-1 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-bold text-2xl rounded-lg shadow-lg"
-                          whileHover={{ scale: 1.05 }}
-                        >
-                          {milestone.year}
-                        </motion.span>
-                      </div>
-                    </div>
-
-                    {/* Type badge */}
-                    <span
-                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs uppercase tracking-wider font-semibold ${
-                        milestone.type === "Education"
-                          ? "bg-secondary/20 text-secondary border border-secondary/30"
-                          : milestone.type === "Current" ||
-                              milestone.type === "Continuing"
-                            ? "bg-primary/20 text-primary border border-primary/30"
-                            : "bg-accent/50 text-accent-foreground border border-accent-foreground/20"
-                      }`}
-                    >
-                      <Icon className="w-3 h-3" />
-                      {milestone.type}
-                    </span>
-
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-foreground mt-3 mb-3 tracking-tight">
-                      {milestone.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                      {milestone.description}
-                    </p>
-
-                    {/* Tags */}
-                    <div
-                      className={`flex flex-wrap gap-2 ${index % 2 === 0 ? "justify-end" : "justify-start"}`}
-                    >
-                      {milestone.tags.map((tag) => (
-                        <motion.span
-                          key={tag}
-                          className="skill-badge text-xs font-medium"
-                          whileHover={{
-                            scale: 1.05,
-                            borderColor: "hsl(var(--primary))",
-                          }}
-                        >
-                          {tag}
-                        </motion.span>
-                      ))}
-                    </div>
-                  </motion.div>
-                </div>
-
-                {/* Connecting Line with animation */}
-                <motion.div
-                  initial={{ scaleX: 0, opacity: 0 }}
-                  whileInView={{ scaleX: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.6,
-                    delay: index * 0.1 + 0.3,
-                    ease: "easeOut",
-                  }}
-                  className={`absolute top-1/2 -translate-y-1/2 h-[2px] z-0 ${
-                    index % 2 === 0
-                      ? "right-1/2 origin-right bg-gradient-to-l from-primary via-primary/50 to-transparent w-[calc(8.333333%+4rem)]"
-                      : "left-1/2 origin-left bg-gradient-to-r from-primary via-primary/50 to-transparent w-[calc(8.333333%+4rem)]"
+                  key={item.id}
+                  className={`shrink-0 w-[270px] sm:w-[300px] rounded-xl p-4 sm:p-5 bg-card/35 backdrop-blur-sm border transition-all duration-300 flex flex-col justify-between group ${
+                    isLast
+                      ? "border-emerald-500/40 bg-emerald-500/[0.04] hover:border-emerald-500/60"
+                      : isFirst
+                      ? "border-primary/40 bg-primary/[0.03] hover:border-primary/60"
+                      : "border-border/40 hover:border-primary/40 hover:bg-card/60"
                   }`}
                 >
-                  <div className="absolute inset-0 bg-primary blur-[2px] animate-pulse opacity-60" />
-                  {/* Glowing dot moving along the line */}
-                  <motion.div
-                    className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_2px_hsl(var(--primary))]"
-                    animate={
-                      index % 2 === 0
-                        ? { left: ["100%", "0%"] }
-                        : { left: ["0%", "100%"] }
-                    }
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "linear",
-                      delay: index * 0.1,
-                    }}
-                  />
-                </motion.div>
+                  {/* Top Bar: Year & Minimal Badge */}
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span className="font-mono text-xs font-semibold text-primary/90">
+                      {item.year}
+                    </span>
+                    <span
+                      className={`text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border ${
+                        isLast
+                          ? "bg-emerald-500/15 border-emerald-500/30 text-emerald-400 font-semibold"
+                          : "bg-muted/30 border border-border/30 text-muted-foreground"
+                      }`}
+                    >
+                      {isLast ? "Latest Milestone" : item.badge}
+                    </span>
+                  </div>
 
-                {/* Center connector node with enhanced glow */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
-                    className="relative"
-                  >
-                    {/* Outer glow rings */}
-                    <div className="absolute -inset-6 rounded-full bg-primary/20 blur-xl animate-pulse" />
-                    <div className="absolute -inset-4 rounded-full bg-primary/30 blur-lg" />
-                    <div className="absolute -inset-2 rounded-full bg-primary/40 blur-md" />
+                  {/* Identity Row: Full Colorful Logo / Icon + Role + Org */}
+                  <div className="flex items-start gap-3 mb-3">
+                    <div
+                      className={`w-11 h-11 rounded-xl p-1.5 flex items-center justify-center shrink-0 shadow-sm border transition-transform duration-300 group-hover:scale-105 ${
+                        item.logoBg || item.iconBg || "bg-white/[0.08] border-white/10"
+                      }`}
+                    >
+                      {item.logo ? (
+                        <img
+                          src={item.logo}
+                          alt={item.org}
+                          className={`w-full h-full object-contain ${item.logoClass || ""}`}
+                          onError={(e) => {
+                            (e.currentTarget as HTMLElement).style.display = "none";
+                          }}
+                        />
+                      ) : Icon ? (
+                        <Icon className={`w-5 h-5 ${item.iconColor || "text-primary"}`} />
+                      ) : null}
+                    </div>
 
-                    {/* Main connector - cuboid style */}
-                    <div className="relative">
-                      <div className="absolute inset-0 bg-primary/50 rounded-lg transform translate-x-0.5 translate-y-0.5" />
-                      <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-primary via-primary to-secondary border-2 border-background shadow-lg shadow-primary/60 flex items-center justify-center">
-                        <Icon className="w-3 h-3 text-primary-foreground" />
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-sm sm:text-base font-semibold tracking-tight text-foreground leading-snug truncate">
+                        {item.role}
+                      </h3>
+                      <div className="text-xs text-muted-foreground/75 font-medium truncate mt-0.5">
+                        {item.org}
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
+
+                  {/* Minimal 1-Line Highlight */}
+                  <p className="text-xs text-muted-foreground/80 leading-relaxed line-clamp-2 pt-2 border-t border-border/20">
+                    {item.highlight}
+                  </p>
                 </div>
+              );
+            })}
+          </div>
+        </div>
 
-                {/* Empty space for the other side */}
-                <div className="w-5/12" />
-              </motion.div>
-            );
-          })}
-
-          {/* Timeline end marker */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="absolute left-1/2 -translate-x-1/2 bottom-0"
-          >
-            <div className="w-4 h-4 rounded-full bg-primary/50 blur-sm" />
-            <div className="absolute inset-0 w-4 h-4 rounded-full bg-muted-foreground/50" />
-          </motion.div>
+        {/* Minimal Footer Status Bar */}
+        <div className="flex items-center justify-between text-[11px] font-mono text-muted-foreground/60 mt-4 px-1">
+          <span>
+            {isAtEnd
+              ? "Completed • Stopped at FlyRank AI (Latest)"
+              : "Hover to pause • Drag or use arrows to navigate"}
+          </span>
+          <span className="hidden sm:inline">
+            11 Milestones • B.Tech (2024) → FlyRank AI (2026)
+          </span>
         </div>
       </div>
     </section>

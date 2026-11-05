@@ -36,7 +36,7 @@ const SocialSidebar = () => {
             rel={
               link.href.startsWith("mailto") ? undefined : "noopener noreferrer"
             }
-            className="w-10 h-10 flex items-center justify-center rounded-full overflow-hidden transition-all duration-300 bg-background/50 border border-border/50 shadow-sm dark:shadow-none hover:shadow-md dark:bg-transparent dark:border-transparent"
+            className="w-12 h-12 min-w-[48px] min-h-[48px] flex items-center justify-center rounded-full overflow-hidden transition-all duration-300 bg-background/50 border border-border/50 shadow-sm dark:shadow-none hover:shadow-md dark:bg-transparent dark:border-transparent"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 + index * 0.1 }}

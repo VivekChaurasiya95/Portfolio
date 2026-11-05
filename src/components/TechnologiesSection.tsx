@@ -79,10 +79,10 @@ const technologies = [
 
 const TechnologiesSection = () => {
   return (
-    <section className="py-16 relative overflow-hidden bg-transparent border-y border-white/5">
-      <div className="container mx-auto px-6 lg:px-20 relative z-10 mb-10">
-        <div className="flex flex-col items-center justify-center">
-          <h2 className="text-2xl md:text-3xl font-light tracking-wider text-secondary capitalize text-center font-serif italic">
+    <section className="py-10 sm:py-16 relative overflow-hidden bg-transparent border-y border-border/20 dark:border-white/5">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-20 relative z-10 mb-6 sm:mb-10">
+        <div className="flex flex-col items-center justify-center text-center">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-light tracking-wider text-secondary capitalize text-center font-meridian italic">
             Technologies I Work With
           </h2>
         </div>
@@ -91,17 +91,17 @@ const TechnologiesSection = () => {
       {/* Marquee Container */}
       <div className="relative w-full overflow-hidden flex items-center">
         {/* Gradient Fades for Smooth Edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-background to-transparent z-10"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-background to-transparent z-10"></div>
+        <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-20 md:w-48 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-20 md:w-48 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-        <div className="flex gap-6 md:gap-8 w-max px-4 animate-marquee hover:[animation-play-state:paused]">
+        <div className="flex gap-4 sm:gap-6 md:gap-8 w-max px-4 animate-marquee hover:[animation-play-state:paused]">
           {/* Render the array twice for seamless looping */}
           {[...technologies, ...technologies].map((tech, i) => (
             <div
               key={`${tech.name}-${i}`}
-              className="flex flex-col items-center justify-center min-w-[100px] md:min-w-[120px] h-[100px] md:h-[120px] rounded-2xl bg-muted/60 dark:bg-[#111318]/80 backdrop-blur-sm border border-border/30 dark:border-white/5 hover:border-primary/50 hover:shadow-glow hover:-translate-y-2 hover:bg-muted dark:hover:bg-[#1a1d24] transition-all duration-500 group relative overflow-hidden cursor-pointer"
+              className="flex flex-col items-center justify-center min-w-[85px] xs:min-w-[95px] md:min-w-[120px] h-[85px] xs:h-[95px] md:h-[120px] p-2 rounded-xl sm:rounded-2xl bg-muted/60 dark:bg-[#111318]/80 backdrop-blur-sm border border-border/30 dark:border-white/5 hover:border-primary/50 hover:shadow-glow hover:-translate-y-1 sm:hover:-translate-y-2 hover:bg-muted dark:hover:bg-[#1a1d24] transition-all duration-300 group relative overflow-hidden cursor-pointer shrink-0"
             >
-              <div className="w-10 h-10 md:w-12 md:h-12 mb-3 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mb-1.5 sm:mb-2.5 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]">
                 <img
                   src={tech.icon}
                   alt={tech.name}
@@ -110,7 +110,7 @@ const TechnologiesSection = () => {
                   className="max-w-full max-h-full object-contain"
                 />
               </div>
-              <span className="text-xs md:text-sm font-medium text-foreground/60 group-hover:text-foreground/90 transition-colors duration-300">
+              <span className="text-[11px] sm:text-xs md:text-sm font-medium text-foreground/70 group-hover:text-foreground transition-colors duration-300 text-center truncate max-w-full px-1">
                 {tech.name}
               </span>
             </div>

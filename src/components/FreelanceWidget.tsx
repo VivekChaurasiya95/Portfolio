@@ -4,9 +4,9 @@ import { EMAIL_ADDRESS } from "@/data/siteLinks";
 
 const FreelanceWidget = () => {
   return (
-    <div className="flex flex-col gap-3 w-full max-w-sm ml-auto">
+    <div className="flex flex-col gap-3 w-full max-w-sm mr-auto md:ml-auto md:mr-0">
       {/* Title */}
-      <h4 className="text-primary font-bold text-xs md:text-sm tracking-[0.2em] uppercase font-display pr-2 md:text-right text-center">
+      <h4 className="text-primary font-bold text-xs md:text-sm tracking-[0.2em] uppercase font-sans text-left">
         Availability
       </h4>
 
@@ -15,7 +15,7 @@ const FreelanceWidget = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="relative w-full h-auto min-h-[14rem] md:min-h-[16rem] p-6 rounded-2xl border border-primary/20 bg-card/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl overflow-hidden group shadow-[0_0_30px_rgba(var(--primary),0.05)] flex flex-col items-center md:items-end text-center md:text-right"
+        className="relative w-full h-auto min-h-[14rem] md:min-h-[16rem] p-5 sm:p-6 rounded-2xl border border-primary/20 bg-card/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl overflow-hidden group shadow-[0_0_30px_rgba(var(--primary),0.05)] flex flex-col items-center md:items-end text-center md:text-right"
       >
         {/* HUD Grid Background */}
         <div 
@@ -73,7 +73,7 @@ const FreelanceWidget = () => {
         <div className="relative z-10 w-full flex flex-col items-center md:items-end">
           {/* Available Pill */}
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-card/80 dark:bg-[#0a0a0a]/80 border border-primary/40 backdrop-blur-md mb-4 shadow-[0_0_15px_rgba(var(--primary),0.1)]"
+            className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-card/80 dark:bg-[#0a0a0a]/80 border border-primary/40 backdrop-blur-md mb-4 shadow-[0_0_15px_rgba(var(--primary),0.1)]"
             animate={{
               boxShadow: [
                 "0 0 10px hsl(var(--primary)/0.1)",
@@ -84,23 +84,23 @@ const FreelanceWidget = () => {
             transition={{ duration: 2, repeat: Infinity }}
           >
             <Sparkles className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs font-semibold text-primary uppercase tracking-[0.2em] font-display pt-0.5">
+            <span className="text-xs font-bold text-primary uppercase tracking-[0.2em] font-sans pt-0.5">
               Available for Work
             </span>
           </motion.div>
 
-          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2 font-display tracking-wide drop-shadow-md">
+          <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-sans tracking-tight drop-shadow-md">
             Freelance Services
           </h3>
           
-          <p className="text-muted-foreground text-xs md:text-sm mb-6 max-w-[260px] font-body leading-relaxed drop-shadow-sm">
+          <p className="text-muted-foreground text-xs md:text-sm mb-5 sm:mb-6 max-w-[260px] font-sans leading-relaxed drop-shadow-sm">
             Open for freelance projects in web development, ML solutions, and
             full-stack applications.
           </p>
 
           <motion.a
             href={`mailto:${EMAIL_ADDRESS}`}
-            className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-xl bg-gradient-to-r from-primary to-secondary text-primary-foreground font-bold text-sm tracking-wider uppercase transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] font-display"
+            className="inline-flex items-center justify-center min-h-[44px] gap-2.5 px-6 py-2.5 rounded-xl bg-gradient-to-r from-primary to-secondary text-slate-950 font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] font-sans"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.97 }}
           >

@@ -207,10 +207,10 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="py-32 relative z-10 bg-background/95 backdrop-blur-sm"
+      className="py-16 sm:py-24 md:py-32 relative z-10 bg-background/95 backdrop-blur-sm"
     >
-      <div className="container mx-auto px-6 lg:px-20">
-        <div className="grid lg:grid-cols-2 gap-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16">
           {/* Left side - Info */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -223,43 +223,43 @@ const ContactSection = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6"
+              className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30 mb-4 sm:mb-6 backdrop-blur-md"
             >
               <Mail className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary uppercase tracking-wider">
+              <span className="text-xs sm:text-sm font-mono font-medium text-primary uppercase tracking-wider">
                 Get In Touch
               </span>
             </motion.div>
 
-            <h2 className="section-heading mb-6">
+            <h2 className="section-heading mb-4 sm:mb-6">
               <span className="text-foreground">Let's</span>{" "}
-              <span className="text-gradient">Connect</span>
+              <span className="text-secondary">Connect</span>
             </h2>
 
-            <p className="section-subheading mb-10 max-w-md">
+            <p className="section-subheading mb-8 sm:mb-10 max-w-md">
               Have a project in mind or just want to say hello? I'd love to hear
               from you.
             </p>
 
             {/* Contact info cards */}
-            <div className="space-y-4">
+            <div className="space-y-3.5 sm:space-y-4">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="glass-card rounded-xl p-5 flex items-center gap-4"
+                className="glass-card rounded-xl p-4 sm:p-5 flex items-center gap-3.5 sm:gap-4 overflow-hidden"
               >
-                <div className="p-3 rounded-lg bg-primary/10">
-                  <Mail className="w-5 h-5 text-primary" />
+                <div className="p-2.5 sm:p-3 rounded-lg bg-primary/10 shrink-0">
+                  <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                 </div>
-                <div>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                <div className="min-w-0">
+                  <p className="text-[11px] sm:text-xs text-muted-foreground uppercase tracking-wider">
                     Email
                   </p>
                   <a
                     href={`mailto:${EMAIL_ADDRESS}`}
-                    className="text-foreground hover:text-primary transition-colors"
+                    className="text-foreground hover:text-primary transition-colors text-xs sm:text-sm md:text-base break-all"
                   >
                     {EMAIL_ADDRESS}
                   </a>
@@ -271,16 +271,16 @@ const ContactSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="glass-card rounded-xl p-5 flex items-center gap-4"
+                className="glass-card rounded-xl p-4 sm:p-5 flex items-center gap-3.5 sm:gap-4"
               >
-                <div className="p-3 rounded-lg bg-secondary/10">
-                  <MapPin className="w-5 h-5 text-secondary" />
+                <div className="p-2.5 sm:p-3 rounded-lg bg-secondary/10 shrink-0">
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                  <p className="text-[11px] sm:text-xs text-muted-foreground uppercase tracking-wider">
                     Location
                   </p>
-                  <p className="text-foreground">
+                  <p className="text-foreground text-xs sm:text-sm md:text-base">
                     Gwalior, Madhya Pradesh, India
                   </p>
                 </div>
@@ -291,16 +291,18 @@ const ContactSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="glass-card rounded-xl p-5 flex items-center gap-4"
+                className="glass-card rounded-xl p-4 sm:p-5 flex items-center gap-3.5 sm:gap-4"
               >
-                <div className="p-3 rounded-lg bg-accent">
-                  <Clock className="w-5 h-5 text-accent-foreground" />
+                <div className="p-2.5 sm:p-3 rounded-lg bg-accent shrink-0">
+                  <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-accent-foreground" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                  <p className="text-[11px] sm:text-xs text-muted-foreground uppercase tracking-wider">
                     Response Time
                   </p>
-                  <p className="text-foreground">Usually within 24 hours</p>
+                  <p className="text-foreground text-xs sm:text-sm md:text-base">
+                    Usually within 24 hours
+                  </p>
                 </div>
               </motion.div>
             </div>
@@ -316,15 +318,15 @@ const ContactSection = () => {
             <form
               ref={formRef}
               onSubmit={handleSubmit}
-              className="glass-card rounded-2xl p-8"
+              className="glass-card rounded-2xl p-5 sm:p-8"
               noValidate
             >
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {/* Name field */}
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm text-muted-foreground mb-2"
+                    className="block text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2"
                   >
                     Name
                   </label>
@@ -337,7 +339,7 @@ const ContactSection = () => {
                     required
                     disabled={isSubmitting}
                     maxLength={120}
-                    className="w-full px-4 py-3 bg-transparent border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-transparent border border-border rounded-lg text-foreground placeholder:text-muted-foreground text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                     placeholder="Your name"
                   />
                 </div>
@@ -346,7 +348,7 @@ const ContactSection = () => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm text-muted-foreground mb-2"
+                    className="block text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2"
                   >
                     Email
                   </label>
@@ -358,7 +360,7 @@ const ContactSection = () => {
                     onChange={handleChange}
                     required
                     disabled={isSubmitting}
-                    className="w-full px-4 py-3 bg-transparent border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-transparent border border-border rounded-lg text-foreground placeholder:text-muted-foreground text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -367,7 +369,7 @@ const ContactSection = () => {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm text-muted-foreground mb-2"
+                    className="block text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2"
                   >
                     Message
                   </label>
@@ -378,9 +380,9 @@ const ContactSection = () => {
                     onChange={handleChange}
                     required
                     disabled={isSubmitting}
-                    rows={5}
+                    rows={4}
                     maxLength={4000}
-                    className="w-full px-4 py-3 bg-transparent border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-transparent border border-border rounded-lg text-foreground placeholder:text-muted-foreground text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none disabled:opacity-60 disabled:cursor-not-allowed"
                     placeholder="Tell me about your project or just say hello..."
                   />
                 </div>
@@ -389,7 +391,7 @@ const ContactSection = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full min-h-[44px] btn-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>
@@ -409,7 +411,7 @@ const ContactSection = () => {
                   <motion.p
                     initial={{ opacity: 0, y: -4 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className={`text-sm ${
+                    className={`text-xs sm:text-sm ${
                       submitStatus.type === "success"
                         ? "text-green-400"
                         : "text-red-400"

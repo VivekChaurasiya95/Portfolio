@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 
 const StatusWidget = () => {
   return (
-    <div className="flex flex-col gap-3 w-full max-w-sm">
+    <div className="flex flex-col gap-3 w-full max-w-sm mr-auto md:mx-0">
       {/* Title */}
-      <h4 className="text-primary font-bold text-xs md:text-sm tracking-[0.2em] uppercase font-display pl-2">
+      <h4 className="text-primary font-bold text-xs md:text-sm tracking-[0.2em] uppercase font-sans text-left">
         Current Status
       </h4>
 
@@ -105,7 +105,7 @@ const StatusWidget = () => {
 
         {/* Location Info */}
         <div className="absolute bottom-6 left-6 z-20 max-w-[200px] md:max-w-[240px]">
-          <h3 className="text-foreground text-lg md:text-xl font-bold font-display tracking-wide mb-1 drop-shadow-md leading-tight">
+          <h3 className="text-white text-lg md:text-xl font-bold font-sans tracking-tight mb-1 drop-shadow-md leading-tight">
             Pragati Vihar
           </h3>
           <p className="text-muted-foreground font-mono text-[10px] md:text-xs tracking-wider opacity-90 leading-relaxed">

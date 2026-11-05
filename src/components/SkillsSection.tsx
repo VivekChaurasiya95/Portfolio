@@ -662,12 +662,12 @@ const SkillBadge = ({
         y: -3,
         transition: { duration: 0.18, type: "spring", stiffness: 400 },
       }}
-      className="flex items-center gap-2.5 px-[18px] py-[9.5px] rounded-xl bg-muted/60 dark:bg-[#111318] border border-border/30 dark:border-white/5 hover:border-primary/40 dark:hover:border-white/10 hover:bg-primary/5 dark:hover:bg-[#1a1d24] hover:shadow-[0_4px_20px_hsl(var(--primary)/0.15)] transition-all cursor-default"
+      className="flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-muted/60 dark:bg-[#111318] border border-border/30 dark:border-white/5 hover:border-primary/40 dark:hover:border-white/10 hover:bg-primary/5 dark:hover:bg-[#1a1d24] hover:shadow-[0_4px_20px_hsl(var(--primary)/0.15)] transition-all cursor-default"
     >
       {/* Icon container */}
       <div
-        className="flex items-center justify-center w-5 h-5 shrink-0"
-        style={{ width: 22, height: 22, minWidth: 22, minHeight: 22 }}
+        className="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 shrink-0"
+        style={{ width: 20, height: 20, minWidth: 20, minHeight: 20 }}
       >
         {IconComponent ? (
           <IconComponent className="w-full h-full object-contain drop-shadow-sm" />
@@ -677,7 +677,7 @@ const SkillBadge = ({
       </div>
 
       {/* Skill name */}
-      <span className="text-[14px] sm:text-[15px] font-semibold tracking-wide text-foreground/90 font-['Space_Grotesk'] leading-none pt-0.5">
+      <span className="text-xs sm:text-sm font-semibold tracking-wide text-foreground/90 font-['Space_Grotesk'] leading-none pt-0.5">
         {skill}
       </span>
     </motion.div>
@@ -686,46 +686,38 @@ const SkillBadge = ({
 
 const SkillsSection = () => {
   return (
-    <section id="skills" className="py-32 relative">
-      <div className="container mx-auto px-6 lg:px-20">
+    <section id="skills" className="py-16 sm:py-24 md:py-32 relative">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-20">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-left mb-8 sm:mb-14"
         >
           {/* Section label */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6"
+            className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30 mb-4 sm:mb-6 backdrop-blur-md"
           >
             <Code2 className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary uppercase tracking-wider">
+            <span className="text-xs sm:text-sm font-mono font-medium text-primary uppercase tracking-wider">
               My Skills
             </span>
           </motion.div>
 
-          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium mb-6">
+          <h2 className="section-heading mb-4 sm:mb-6">
             <span className="text-foreground">My Tech</span>{" "}
-            <span className="text-gradient">Stack</span>
+            <span className="text-secondary">Stack</span>
           </h2>
-          <p className="section-subheading text-[1.06rem] md:text-[1.13rem] max-w-[46rem] mx-auto">
-            A curated collection of technologies I've mastered.
-            <br />
-            <span className="text-primary font-medium">
-              Each skill represents countless hours of practice and real-world
-              application.
-            </span>
-          </p>
         </motion.div>
 
         {/* Skills Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
@@ -746,27 +738,27 @@ const SkillsSection = () => {
                 borderColor: "hsl(var(--primary)/0.3)",
                 transition: { duration: 0.3 },
               }}
-              className="relative p-6 sm:p-8 rounded-[2rem] bg-card/80 dark:bg-[#0a0a0a] border border-border/30 dark:border-white/5 transition-colors duration-500 group"
+              className="relative p-5 sm:p-7 md:p-8 rounded-2xl md:rounded-[2rem] bg-card/80 dark:bg-[#0a0a0a] border border-border/30 dark:border-white/5 transition-colors duration-500 group"
             >
               {/* Animated gradient glow on hover */}
               <motion.div
-                className="absolute -inset-[1px] rounded-[2rem] bg-gradient-to-br from-primary/20 via-secondary/10 to-primary/0 opacity-0 group-hover:opacity-100 -z-10 blur-sm"
+                className="absolute -inset-[1px] rounded-2xl md:rounded-[2rem] bg-gradient-to-br from-primary/20 via-secondary/10 to-primary/0 opacity-0 group-hover:opacity-100 -z-10 blur-sm"
                 transition={{ duration: 0.4 }}
               />
 
               {/* Category header */}
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-5 sm:mb-6">
                 <motion.div
-                  className="w-6 h-[2px] bg-[#B57B85] rounded-full"
+                  className="w-5 sm:w-6 h-[2px] bg-[#B57B85] rounded-full"
                   whileHover={{ scaleX: 1.5 }}
                 />
-                <h3 className="text-xl font-bold tracking-wide text-[#B57B85] font-['Space_Grotesk']">
+                <h3 className="text-lg sm:text-xl font-bold tracking-wide text-[#B57B85] font-['Space_Grotesk']">
                   {category.title}
                 </h3>
               </div>
 
               {/* Skills Inner Grid (Flex wrap for pills) */}
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 {category.skills.map((skill, skillIndex) => (
                   <SkillBadge
                     key={skill}

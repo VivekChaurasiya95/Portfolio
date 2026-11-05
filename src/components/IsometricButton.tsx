@@ -22,8 +22,8 @@ const IsometricButton = ({ children, href, variant = 'primary', onClick }: Isome
       {/* Main button face */}
       <div 
         className={`
-          relative z-10 px-8 py-4 font-medium text-sm tracking-wide
-          border-2 transition-all duration-300
+          relative z-10 px-5 py-3 sm:px-8 sm:py-4 font-sans font-medium text-xs sm:text-sm tracking-wide
+          border-2 transition-all duration-300 min-h-[44px] flex items-center justify-center
           ${isPrimary 
             ? 'bg-primary/15 border-primary/60 text-primary hover:bg-primary/25 hover:border-primary' 
             : 'bg-secondary/15 border-secondary/60 text-secondary hover:bg-secondary/25 hover:border-secondary'

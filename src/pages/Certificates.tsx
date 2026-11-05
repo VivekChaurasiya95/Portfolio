@@ -10,31 +10,25 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { allCertifications, type Certificate } from "@/data/certifications";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Certificates = () => {
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   useEffect(() => {
     if (selectedCert) {
       document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setSelectedCert(null);
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
     } else {
       document.body.style.overflow = "";
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
   }, [selectedCert]);
 
   return (
@@ -46,47 +40,49 @@ const Certificates = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-3"
       >
-        <div className="container mx-auto px-6 lg:px-20">
-          <div className="flex items-center justify-between rounded-2xl px-6 py-3 transition-all duration-500 bg-card/70 backdrop-blur-xl border border-border/40 shadow-lg">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-20">
+          <div className="flex items-center justify-between rounded-2xl px-4 sm:px-6 py-2.5 sm:py-3 transition-all duration-500 bg-card/70 backdrop-blur-xl border border-border/40 shadow-lg">
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-2 min-h-[44px] text-xs sm:text-sm font-semibold text-primary hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg px-2"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to Home
             </Link>
+            <div className="flex items-center">
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </motion.header>
 
-      <section className="pt-32 pb-14 relative z-10 w-full overflow-hidden">
-        <div className="container mx-auto px-6 lg:px-20">
+      <section className="pt-24 sm:pt-32 pb-14 relative z-10 w-full overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-10 mt-8"
+            className="mb-8 sm:mb-10 mt-4 sm:mt-8"
           >
-
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/30 mb-5">
-              <ShieldCheck className="w-4 h-4 text-secondary" />
-              <span className="text-sm font-medium text-secondary uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30 mb-4 sm:mb-5 backdrop-blur-md">
+              <ShieldCheck className="w-4 h-4 text-primary" />
+              <span className="text-xs sm:text-sm font-medium text-primary uppercase tracking-wider">
                 Full Certificate Gallery
               </span>
             </div>
 
             <h1 className="section-heading mb-4">
               <span className="text-foreground">All</span>{" "}
-              <span className="text-gradient">Certificates</span>
+              <span className="text-secondary">Certificates</span>
             </h1>
-            <p className="section-subheading max-w-3xl">
+            <p className="section-subheading max-w-3xl text-sm sm:text-base">
               Every certificate and credential in one place, including Infosys,
               IBM SkillsBuild, ET AI Hackathon, and hackathon achievement
               certifications.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
             {allCertifications.map((cert, index) => (
               <motion.article
                 key={cert.title}
@@ -94,9 +90,18 @@ const Certificates = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.04 }}
                 onClick={() => setSelectedCert(cert)}
-                className="glass-card rounded-2xl border border-border/40 hover:border-primary/50 transition-all overflow-hidden relative group cursor-pointer shadow-lg hover:shadow-xl"
+                className="glass-card rounded-2xl border border-border/40 hover:border-primary/50 transition-all overflow-hidden relative group cursor-pointer shadow-lg hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                tabIndex={0}
+                role="button"
+                aria-label={`View certificate: ${cert.title}`}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setSelectedCert(cert);
+                  }
+                }}
               >
-                <div className="w-full h-48 bg-muted/20 relative overflow-hidden">
+                <div className="w-full h-44 sm:h-48 bg-muted/20 relative overflow-hidden">
                   <img
                     src={cert.image}
                     alt={cert.title}
@@ -111,26 +116,26 @@ const Certificates = () => {
                   />
                 </div>
 
-                <div className="p-6 relative -mt-10">
-                  <div className="flex items-start justify-between gap-4 mb-4">
+                <div className="p-5 sm:p-6 relative -mt-8 sm:-mt-10">
+                  <div className="flex items-start justify-between gap-4 mb-3 sm:mb-4">
                     <div className="p-2.5 rounded-xl bg-background/80 backdrop-blur-md border border-border shadow-sm">
                       <Award className="w-5 h-5 text-primary" />
                     </div>
                   </div>
 
-                  <h2 className="text-lg font-semibold text-foreground mb-2 line-clamp-2">
+                  <h2 className="text-base sm:text-lg font-semibold text-foreground mb-2 line-clamp-2">
                     {cert.title}
                   </h2>
-                  <p className="text-sm text-muted-foreground mb-4">
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
                     {cert.issuer}
                   </p>
 
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground mb-5">
-                    <Calendar className="w-3.5 h-3.5" />
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground mb-4 sm:mb-5">
+                    <Calendar className="w-3.5 h-3.5 shrink-0" />
                     <span>{cert.period}</span>
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {cert.skills.slice(0, 2).map((skill) => (
                       <span
                         key={skill}
@@ -159,31 +164,34 @@ const Certificates = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedCert(null)}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-background/80 backdrop-blur-md"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 bg-background/80 backdrop-blur-md"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cert-page-modal-title"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto glass-card rounded-2xl border border-border/50 shadow-2xl flex flex-col md:flex-row"
+              className="relative w-full max-w-5xl max-h-[90dvh] overflow-y-auto glass-card rounded-2xl border border-border/50 shadow-2xl flex flex-col md:flex-row"
             >
               <button
                 onClick={() => setSelectedCert(null)}
                 aria-label="Close modal"
-                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-background/50 hover:bg-background text-foreground backdrop-blur-md transition-colors border border-border"
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-background/60 hover:bg-background text-foreground backdrop-blur-md transition-colors border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="w-full md:w-3/5 bg-foreground/5 flex items-center justify-center p-4 min-h-[300px]">
+              <div className="w-full md:w-3/5 bg-foreground/5 flex items-center justify-center p-3 sm:p-5 min-h-[220px] sm:min-h-[300px]">
                 <img
                   src={selectedCert.image}
                   alt={selectedCert.title}
                   loading="lazy"
                   width={800}
                   height={600}
-                  className="max-w-full max-h-[50vh] md:max-h-[85vh] object-contain rounded-lg shadow-lg"
+                  className="max-w-full max-h-[38vh] sm:max-h-[50vh] md:max-h-[80vh] object-contain rounded-lg shadow-lg"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src =
                       "https://via.placeholder.com/800x600?text=Please+Add+Image+To+Public+Folder";
@@ -191,46 +199,49 @@ const Certificates = () => {
                 />
               </div>
 
-              <div className="w-full md:w-2/5 p-6 md:p-8 flex flex-col">
-                <div className="inline-flex items-center gap-3 mb-6">
-                  <div className="p-3 rounded-xl bg-primary/10 border border-primary/20">
-                    <Award className="w-6 h-6 text-primary" />
+              <div className="w-full md:w-2/5 p-5 sm:p-6 md:p-8 flex flex-col">
+                <div className="inline-flex items-center gap-3 mb-4 sm:mb-6">
+                  <div className="p-2.5 sm:p-3 rounded-xl bg-primary/10 border border-primary/20 shrink-0">
+                    <Award className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider">
                       Issuer
                     </p>
-                    <span className="text-sm font-semibold text-primary">
+                    <span className="text-xs sm:text-sm font-semibold text-primary">
                       {selectedCert.issuer}
                     </span>
                   </div>
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight">
+                <h3
+                  id="cert-page-modal-title"
+                  className="text-lg sm:text-2xl md:text-3xl font-bold text-foreground mb-3 sm:mb-4 leading-tight"
+                >
                   {selectedCert.title}
                 </h3>
 
-                <div className="prose prose-sm dark:prose-invert mb-6 text-muted-foreground leading-relaxed">
+                <div className="prose prose-sm dark:prose-invert mb-4 sm:mb-6 text-muted-foreground text-xs sm:text-sm leading-relaxed">
                   <p>{selectedCert.description}</p>
                 </div>
 
-                <div className="flex items-center gap-2 text-sm text-foreground mb-8 pb-6 border-b border-border/50">
-                  <Calendar className="w-4 h-4 text-muted-foreground" />
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-foreground mb-5 sm:mb-8 pb-4 sm:pb-6 border-b border-border/50">
+                  <Calendar className="w-4 h-4 text-muted-foreground shrink-0" />
                   <span>
                     Issued:{" "}
                     <span className="font-medium">{selectedCert.period}</span>
                   </span>
                 </div>
 
-                <div className="mb-8">
-                  <h4 className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider">
+                <div className="mb-6 sm:mb-8">
+                  <h4 className="text-xs font-semibold text-muted-foreground mb-2.5 uppercase tracking-wider">
                     Skills & Attributes
                   </h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {selectedCert.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1.5 rounded-lg text-xs font-medium bg-secondary/10 text-secondary border border-secondary/20"
+                        className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg text-xs font-medium bg-secondary/10 text-secondary border border-secondary/20"
                       >
                         {skill}
                       </span>
@@ -238,12 +249,12 @@ const Certificates = () => {
                   </div>
                 </div>
 
-                <div className="mt-auto pt-6">
+                <div className="mt-auto pt-4 sm:pt-6">
                   <a
                     href={selectedCert.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-full items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary text-primary-foreground font-medium hover:opacity-90 hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-primary/25"
+                    className="inline-flex w-full items-center justify-center gap-2 min-h-[44px] px-6 py-3 rounded-xl bg-primary text-primary-foreground font-medium hover:opacity-90 hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-primary/25"
                   >
                     Verify Credential <ExternalLink className="w-4 h-4" />
                   </a>

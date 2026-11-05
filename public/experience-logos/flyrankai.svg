@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background container -->
+  <rect width="200" height="200" rx="44" fill="url(#bgGrad)" />
+  <rect width="196" height="196" x="2" y="2" rx="42" fill="none" stroke="url(#primaryGrad)" stroke-width="2" stroke-opacity="0.3" />
+
+  <!-- Dynamic AI Wings / Rank / F emblem -->
+  <g transform="translate(100, 100)" filter="url(#glow)">
+    <!-- Back wing / ranking bars -->
+    <path d="M -45,15 L -10,-25 L 35,-25 L 5,15 Z" fill="url(#accentGrad)" opacity="0.85" />
+    <path d="M -25,35 L 5,0 L 50,0 L 20,35 Z" fill="url(#primaryGrad)" opacity="0.9" />
+    <path d="M -5,55 L 20,25 L 65,25 L 40,55 Z" fill="url(#primaryGrad)" />
+    
+    <!-- Central upward rocket / AI chevron -->
+    <path d="M -45,-45 L 0,-65 L 45,-45 L 0,-15 Z" fill="url(#primaryGrad)" />
+
+    <!-- Neural connection dots -->
+    <circle cx="0" cy="-65" r="4.5" fill="#ffffff" />
+    <circle cx="-45" cy="-45" r="3.5" fill="#38bdf8" />
+    <circle cx="45" cy="-45" r="3.5" fill="#c084fc" />
+    <circle cx="65" cy="25" r="3.5" fill="#818cf8" />
+  </g>
+
+  <!-- FlyRank text badge -->
+  <text x="100" y="172" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="16" letter-spacing="2.5" fill="#f8fafc">FLYRANK AI</text>
+</svg>
