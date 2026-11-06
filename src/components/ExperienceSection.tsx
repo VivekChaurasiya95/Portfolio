@@ -2,6 +2,7 @@ import { useEffect, useState, useRef, type ElementType } from "react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import {
 
+  Briefcase,
   Calendar,
   MapPin,
   Sparkles,
