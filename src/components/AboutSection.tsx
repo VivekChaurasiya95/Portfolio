@@ -35,7 +35,7 @@ const AboutSection = () => {
             </p>
 
             {/* Quick facts - 3D Rectangle style */}
-            <div className="mt-6 sm:mt-8 grid grid-cols-3 gap-2.5 sm:gap-3.5 lg:gap-4">
+            <div className="mt-6 sm:mt-8 grid grid-cols-1 xs:grid-cols-3 gap-2.5 sm:gap-3.5 lg:gap-4">
               <motion.div
                 className="relative group cursor-pointer"
                 whileHover="hover"
@@ -58,7 +58,7 @@ const AboutSection = () => {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <span className="text-base sm:text-xl lg:text-2xl font-meridian font-bold text-primary leading-none whitespace-nowrap">B.Tech</span>
-                  <p className="text-[10px] sm:text-[11px] lg:text-xs text-muted-foreground mt-1 transition-colors group-hover:text-foreground leading-tight truncate">Computer Science & Design</p>
+                  <p className="text-[10px] sm:text-[11px] lg:text-xs text-muted-foreground mt-1 transition-colors group-hover:text-foreground leading-tight">Computer Science & Design</p>
                 </motion.div>
               </motion.div>
               <motion.div
@@ -83,7 +83,7 @@ const AboutSection = () => {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <span className="text-base sm:text-xl lg:text-2xl font-meridian font-bold text-secondary tracking-normal transition-colors leading-none whitespace-nowrap" style={{ fontVariantNumeric: 'tabular-nums' }}>2024-2028</span>
-                  <p className="text-[10px] sm:text-[11px] lg:text-xs text-muted-foreground mt-1 transition-colors group-hover:text-foreground leading-tight whitespace-nowrap">Expected Graduation</p>
+                  <p className="text-[10px] sm:text-[11px] lg:text-xs text-muted-foreground mt-1 transition-colors group-hover:text-foreground leading-tight">Expected Graduation</p>
                 </motion.div>
               </motion.div>
               <motion.div
@@ -108,7 +108,7 @@ const AboutSection = () => {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <span className="text-base sm:text-xl lg:text-2xl font-meridian font-bold text-foreground tracking-normal transition-colors leading-none whitespace-nowrap" style={{ fontVariantNumeric: 'tabular-nums' }}>8.38</span>
-                  <p className="text-[10px] sm:text-[11px] lg:text-xs text-muted-foreground mt-1 transition-colors group-hover:text-foreground leading-tight whitespace-nowrap">Current CGPA</p>
+                  <p className="text-[10px] sm:text-[11px] lg:text-xs text-muted-foreground mt-1 transition-colors group-hover:text-foreground leading-tight">Current CGPA</p>
                 </motion.div>
               </motion.div>
             </div>
