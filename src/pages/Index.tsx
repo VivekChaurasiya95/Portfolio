@@ -16,6 +16,7 @@ const CertificationsSection = lazy(() => import("@/components/CertificationsSect
 const JourneySection = lazy(() => import("@/components/JourneySection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
 import LazySection from "@/components/LazySection";
+import SectionErrorBoundary from "@/components/SectionErrorBoundary";
 
 const Index = () => {
   const { theme, resolvedTheme } = useTheme();
@@ -93,22 +94,36 @@ const Index = () => {
           <div className="pointer-events-auto">
             <TechnologiesSection />
             <Suspense fallback={<div className="h-32 flex items-center justify-center opacity-50">Loading section...</div>}>
-              <AboutSection />
-              <ExperienceSection />
+              <SectionErrorBoundary sectionName="About">
+                <AboutSection />
+              </SectionErrorBoundary>
+              <SectionErrorBoundary sectionName="Experience">
+                <ExperienceSection />
+              </SectionErrorBoundary>
               <LazySection id="projects" minHeight="500px">
-                <ProjectsSection />
+                <SectionErrorBoundary sectionName="Projects">
+                  <ProjectsSection />
+                </SectionErrorBoundary>
               </LazySection>
               <LazySection id="skills" minHeight="400px">
-                <SkillsSection />
+                <SectionErrorBoundary sectionName="Skills">
+                  <SkillsSection />
+                </SectionErrorBoundary>
               </LazySection>
               <LazySection id="certifications" minHeight="500px">
-                <CertificationsSection />
+                <SectionErrorBoundary sectionName="Certifications">
+                  <CertificationsSection />
+                </SectionErrorBoundary>
               </LazySection>
               <LazySection id="journey" minHeight="500px">
-                <JourneySection />
+                <SectionErrorBoundary sectionName="Journey">
+                  <JourneySection />
+                </SectionErrorBoundary>
               </LazySection>
               <LazySection id="contact" minHeight="400px">
-                <ContactSection />
+                <SectionErrorBoundary sectionName="Contact">
+                  <ContactSection />
+                </SectionErrorBoundary>
               </LazySection>
             </Suspense>
           </div>
