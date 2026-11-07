@@ -11,7 +11,7 @@ const renderHero = () =>
   );
 
 describe("HeroSection", () => {
-  it("renders the portrait visual instead of the Spline background", () => {
+  it("renders the portrait visual", () => {
     renderHero();
     const portrait = screen.getByAltText("Vivek Chaurasiya");
     expect(portrait).toBeInTheDocument();

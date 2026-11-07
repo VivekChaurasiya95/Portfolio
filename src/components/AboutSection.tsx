@@ -1,13 +1,10 @@
-import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
-
-const SplineBackground = lazy(() => import("./SplineBackground"));
 
 const AboutSection = () => {
   return (
     <section id="about" className="pt-12 sm:pt-14 md:pt-16 pb-10 relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-20">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div className="max-w-3xl">
           {/* Text content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -117,24 +114,6 @@ const AboutSection = () => {
             </div>
           </motion.div>
 
-          {/* Spline 3D visual */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative flex justify-center lg:justify-end mt-4 lg:mt-0"
-          >
-            <div className="relative w-full max-w-[240px] xs:max-w-[280px] sm:max-w-xs md:max-w-md lg:max-w-[32rem] xl:max-w-[36rem] aspect-square flex items-center justify-center mx-auto">
-              <Suspense
-                fallback={
-                  <div className="absolute inset-0 rounded-[2rem] bg-primary/5 border border-primary/10 animate-pulse" />
-                }
-              >
-                <SplineBackground />
-              </Suspense>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

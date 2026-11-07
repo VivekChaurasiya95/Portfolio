@@ -20,12 +20,12 @@ describe("SafeSpline", () => {
     try {
       const onLoad = vi.fn();
       const { container } = render(
-        <SafeSpline scene="/scene.splinecode" onLoad={onLoad} />,
+        <SafeSpline scene="/test-scene.splinecode" onLoad={onLoad} />,
       );
 
       expect(screen.getByTestId("mock-spline")).toHaveAttribute(
         "data-scene",
-        "/scene.splinecode",
+        "/test-scene.splinecode",
       );
       expect(container.firstChild).toHaveClass("spline-preload");
 

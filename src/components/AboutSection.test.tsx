@@ -1,10 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-vi.mock("./SplineBackground", () => ({
-  default: () => <div data-testid="mock-spline-background" />,
-}));
-
 class MockIntersectionObserver {
   observe(): void {}
   unobserve(): void {}
@@ -16,12 +12,9 @@ vi.stubGlobal("IntersectionObserver", MockIntersectionObserver);
 import AboutSection from "./AboutSection";
 
 describe("AboutSection", () => {
-  it("renders the Spline visual instead of the portrait", async () => {
-    render(<AboutSection />);
-    expect(
-      await screen.findByTestId("mock-spline-background"),
-    ).toBeInTheDocument();
-    expect(screen.queryByAltText("Vivek Chaurasiya")).not.toBeInTheDocument();
+  it("renders no 3D canvas", () => {
+    const { container } = render(<AboutSection />);
+    expect(container.querySelector("canvas")).not.toBeInTheDocument();
   });
 
   it("keeps the about heading and copy", () => {
