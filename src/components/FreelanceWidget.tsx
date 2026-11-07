@@ -71,23 +71,13 @@ const FreelanceWidget = () => {
 
         {/* Content (Foreground) */}
         <div className="relative z-10 w-full flex flex-col items-center md:items-end">
-          {/* Available Pill */}
-          <motion.div
-            className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-card/80 dark:bg-[#0a0a0a]/80 border border-primary/40 backdrop-blur-md mb-4 shadow-[0_0_15px_rgba(var(--primary),0.1)]"
-            animate={{
-              boxShadow: [
-                "0 0 10px hsl(var(--primary)/0.1)",
-                "0 0 20px hsl(var(--primary)/0.3)",
-                "0 0 10px hsl(var(--primary)/0.1)",
-              ],
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
+          {/* Available Pill (glow pulse is pure CSS: framer-motion can't interpolate hsl(var(--primary)) colors) */}
+          <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-card/80 dark:bg-[#0a0a0a]/80 border border-primary/40 backdrop-blur-md mb-4 animate-available-pill-glow">
             <Sparkles className="w-3.5 h-3.5 text-primary" />
             <span className="text-xs font-bold text-primary uppercase tracking-[0.2em] font-sans pt-0.5">
               Available for Work
             </span>
-          </motion.div>
+          </div>
 
           <h3 className="text-lg sm:text-xl font-semibold text-primary mb-2 font-sans tracking-tight drop-shadow-md">
             Freelance Services

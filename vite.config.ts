@@ -23,9 +23,9 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     ViteImageOptimizer({
-      png: { quality: 100 },
-      jpeg: { quality: 100 },
-      jpg: { quality: 100 },
+      png: { quality: 85 },
+      jpeg: { quality: 82, mozjpeg: true },
+      jpg: { quality: 82, mozjpeg: true },
       webp: { lossless: true },
       avif: { lossless: true },
     })

@@ -754,11 +754,11 @@ const SkillsSection = () => {
                 visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
               }}
               whileHover={{
-                boxShadow: "0 8px 40px hsl(var(--primary)/0.12)",
-                borderColor: "hsl(var(--primary)/0.3)",
-                transition: { duration: 0.3 },
+
+
+
               }}
-              className="relative p-5 sm:p-7 md:p-8 rounded-2xl md:rounded-[2rem] bg-card/80 dark:bg-[#0a0a0a] border border-border/30 dark:border-white/5 transition-colors duration-500 group"
+              className="relative p-5 sm:p-7 md:p-8 rounded-2xl md:rounded-[2rem] bg-card/80 dark:bg-[#0a0a0a] border border-border/30 dark:border-white/5 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12)] group"
             >
               {/* Animated gradient glow on hover */}
               <motion.div

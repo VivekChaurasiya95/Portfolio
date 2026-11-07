@@ -164,6 +164,11 @@
   a[href*="spline"],
   [class*="watermark"],
   [class*="spline-watermark"],
+  [id*="watermark" i],
+  [class*="spline-logo"],
+  [class*="spline-badge"],
+  [data-watermark],
+  div:has(> a[href*="spline.design"]),
   spline-viewer::part(watermark),
   spline-viewer::part(logo) {
     display: none !important;
@@ -174,6 +179,41 @@
     height: 0 !important;
     position: absolute !important;
     z-index: -9999 !important;
+  }
+
+  /* Keep Spline canvases laid out (but invisible) while their scene loads.
+     react-spline hides the canvas with display:none until load; if the WebGL
+     renderer measures the canvas while hidden it snapshots a 0x0 drawing
+     buffer and renders into it forever ("Framebuffer is incomplete:
+     Attachment has zero size"). SafeSpline drops this class on load. */
+  .spline-preload canvas {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    visibility: hidden !important;
+  }
+
+  /* Pulsing glow for the "Available for Work" pill. Done in CSS (not
+     framer-motion) because framer cannot interpolate hsl(var(--primary))
+     colors and spams "not an animatable color" warnings. */
+  @keyframes available-pill-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 10px hsl(var(--primary) / 0.1);
+    }
+    50% {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    }
+  }
+
+  .animate-available-pill-glow {
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.1);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-available-pill-glow {
+      animation: available-pill-glow 2s ease-in-out infinite;
+    }
   }
 
   h1,

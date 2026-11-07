@@ -1,5 +1,7 @@
+import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
-import profileImage from '@/assets/vivek-profile-new.png';
+
+const SplineBackground = lazy(() => import("./SplineBackground"));
 
 const AboutSection = () => {
   return (
@@ -115,7 +117,7 @@ const AboutSection = () => {
             </div>
           </motion.div>
 
-          {/* Photo */}
+          {/* Spline 3D visual */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -123,15 +125,14 @@ const AboutSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative flex justify-center lg:justify-end mt-4 lg:mt-0"
           >
-            <div className="relative w-full max-w-[240px] xs:max-w-[280px] sm:max-w-xs md:max-w-md lg:max-w-[32rem] xl:max-w-[36rem] flex items-center justify-center mx-auto">
-              <img
-                src={profileImage}
-                alt="Vivek Chaurasiya"
-                loading="lazy"
-                width={600}
-                height={700}
-                className="w-full h-auto object-contain pointer-events-none"
-              />
+            <div className="relative w-full max-w-[240px] xs:max-w-[280px] sm:max-w-xs md:max-w-md lg:max-w-[32rem] xl:max-w-[36rem] aspect-square flex items-center justify-center mx-auto">
+              <Suspense
+                fallback={
+                  <div className="absolute inset-0 rounded-[2rem] bg-primary/5 border border-primary/10 animate-pulse" />
+                }
+              >
+                <SplineBackground />
+              </Suspense>
             </div>
           </motion.div>
         </div>

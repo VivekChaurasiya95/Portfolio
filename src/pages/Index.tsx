@@ -72,7 +72,7 @@ const Index = () => {
 
       {/* Main content */}
       <div className="relative">
-        {/* Background - Dark: Spline 3D + Stars, Light: clean gradient */}
+        {/* Background - Dark: clean solid, Light: clean gradient */}
         <div className="fixed inset-0 z-0 bg-background transition-colors duration-500">
           {isDark && <div className="absolute inset-0 bg-background" />}
           {!isDark && (

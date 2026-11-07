@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Briefcase, ArrowUpRight, Sparkles, ChevronUp } from "lucide-react";
-import Spline from "@splinetool/react-spline";
+import SafeSpline from "./SafeSpline";
 import StatusWidget from "./StatusWidget";
 import FreelanceWidget from "./FreelanceWidget";
 
@@ -126,7 +126,7 @@ const Footer = () => {
               {/* Spline canvas positioned so bottom watermark is pushed below overflow-hidden boundary */}
               <div className="absolute inset-x-0 top-0 bottom-[-75px] scale-[1.0] md:scale-[1.05] flex items-center justify-center">
                 {splineInView ? (
-                  <Spline
+                  <SafeSpline
                     scene="https://prod.spline.design/GgRpDTredFwgbV5A/scene.splinecode"
                     className="w-full h-full pointer-events-none md:pointer-events-auto"
                     onLoad={() => {

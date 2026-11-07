@@ -1,57 +1,39 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Github } from "lucide-react";
 import IsometricButton from "./IsometricButton";
 import { RESUME_URL, SOCIAL_LINKS } from "@/data/siteLinks";
-import { lazy, Suspense, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-
-const SplineBackground = lazy(() => import("@/components/SplineBackground"));
+import profileImage from "@/assets/vivek-profile-new.png";
 
 const HeroSection = () => {
-  const [showSpline, setShowSpline] = useState(false);
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
 
-  useEffect(() => {
-    const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|chrome-lighthouse/i.test(
-      navigator.userAgent,
-    );
-
-    if (isBot) return;
-
-    // On mobile devices, use lightweight CSS starfield/ambient lighting for fluid 60fps performance
-    if (typeof window !== "undefined" && window.innerWidth < 768) {
-      return;
-    }
-
-    const timerId = window.setTimeout(() => {
-      if ("requestIdleCallback" in window) {
-        (window as Window & { requestIdleCallback: (cb: () => void) => number }).requestIdleCallback(() => setShowSpline(true));
-      } else {
-        setShowSpline(true);
-      }
-    }, 1500);
-
-    return () => window.clearTimeout(timerId);
-  }, []);
+  // Subtle pointer parallax for the portrait (springs keep the motion smooth).
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const springX = useSpring(pointerX, { stiffness: 50, damping: 20 });
+  const springY = useSpring(pointerY, { stiffness: 50, damping: 20 });
+  const portraitX = useTransform(springX, [-0.5, 0.5], [-14, 14]);
+  const portraitY = useTransform(springY, [-0.5, 0.5], [-10, 10]);
 
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden"
+      className="relative min-h-screen flex flex-col md:flex-row items-center justify-center pt-20 pb-16 md:pb-0 overflow-hidden"
+      onMouseMove={(e) => {
+        pointerX.set(e.clientX / window.innerWidth - 0.5);
+        pointerY.set(e.clientY / window.innerHeight - 0.5);
+      }}
+      onMouseLeave={() => {
+        pointerX.set(0);
+        pointerY.set(0);
+      }}
     >
-      {/* Background — dark mode: Spline 3D + stars | light mode: gradient orbs */}
-      {isDark ? (
-        showSpline && (
-          <Suspense fallback={<div className="absolute inset-0 bg-background" />}>
-            <div className="absolute inset-0 z-0">
-              <SplineBackground />
-            </div>
-          </Suspense>
-        )
-      ) : (
-        /* Light mode background — beautiful gradient orbs, no Spline */
+      {/* Background — light mode: gradient orbs (dark mode: clean background) */}
+      {!isDark && (
+        /* Light mode background — beautiful gradient orbs */
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           {/* Base soft gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-sky-50 via-white to-teal-50/60" />
@@ -227,6 +209,30 @@ const HeroSection = () => {
             </IsometricButton>
           </motion.div>
         </div>
+      </div>
+
+      {/* Portrait visual — right side on desktop, stacked below text on mobile */}
+      <div className="relative z-0 mt-8 sm:mt-10 md:mt-0 w-full md:w-[42%] lg:w-[40%] flex items-center justify-center md:absolute md:inset-y-0 md:right-0 pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
+          className="relative flex items-center justify-center md:h-full"
+        >
+          <motion.div style={{ x: portraitX, y: portraitY }} className="relative">
+            {/* Soft backdrop glow to seat the portrait */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] aspect-square bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+            <img
+              src={profileImage}
+              alt="Vivek Chaurasiya"
+              loading="eager"
+              width={600}
+              height={700}
+              draggable={false}
+              className="relative w-64 sm:w-72 md:w-full md:max-w-[360px] lg:max-w-[440px] xl:max-w-[500px] h-auto object-contain pointer-events-none select-none [mask-image:linear-gradient(to_bottom,black_88%,transparent_100%)]"
+            />
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
