@@ -107,9 +107,13 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({ onComplete }) =
       }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
     >
-      {/* Background ambient lighting */}
-      <div
+      {/* Background ambient lighting (line/code phases only — the identity
+          screen stays a clean solid so no color wash tints the name) */}
+      <motion.div
         className="absolute inset-0 pointer-events-none"
+        initial={false}
+        animate={{ opacity: phase === "line" || phase === "code" ? 1 : 0 }}
+        transition={{ duration: 0.6 }}
         style={{
           background:
             "radial-gradient(circle at 25% 42%, hsla(185,50%,45%,0.16), transparent 45%), radial-gradient(circle at 75% 58%, hsla(350,30%,50%,0.14), transparent 42%), linear-gradient(180deg, #040508 0%, #070911 100%)",
@@ -264,12 +268,7 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({ onComplete }) =
             }}
             transition={{ duration: phase === "exit" ? 0.55 : 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="absolute -inset-x-6 -inset-y-10 rounded-2xl border border-white/10 bg-white/[0.035] shadow-[0_32px_150px_rgba(6,182,212,0.18)] backdrop-blur-xl" />
-            <motion.div
-              className="absolute -inset-x-12 top-1/2 h-28 -translate-y-1/2 bg-gradient-to-r from-transparent via-cyan-400/18 to-transparent blur-2xl"
-              animate={{ opacity: [0.3, 0.85, 0.35], scaleX: [0.8, 1.1, 0.9] }}
-              transition={{ duration: 1.8, ease: "easeInOut", repeat: Infinity }}
-            />
+            <div className="absolute -inset-x-6 -inset-y-10 rounded-2xl border border-white/10 bg-white/[0.035] shadow-[0_32px_150px_rgba(0,0,0,0.7)] backdrop-blur-xl" />
             <div className="relative h-px w-32 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
             <h1
               className="relative mt-8 font-meridian text-[clamp(2.5rem,8.2vw,7.5rem)] font-bold uppercase leading-[0.9] text-white tracking-[-0.02em]"

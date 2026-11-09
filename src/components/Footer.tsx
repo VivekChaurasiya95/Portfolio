@@ -99,7 +99,7 @@ const Footer = () => {
   return (
     <footer ref={footerRef} className="relative z-10 py-12 sm:py-16 border-t border-border/30 bg-gradient-to-t from-background to-card/20 backdrop-blur-sm overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 mb-8 sm:mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12 mb-8 sm:mb-12">
           {/* Left - Branding */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -120,7 +120,7 @@ const Footer = () => {
           >
             {/* Robot 3D Viewport - well framed so head is never cut off */}
             <div
-              className="w-[280px] h-[300px] xs:w-[320px] xs:h-[340px] md:w-[360px] md:h-[360px] max-w-full z-10 mb-6 sm:mb-8 relative overflow-hidden transition-all duration-500 rounded-2xl"
+              className="w-full max-w-[280px] xs:max-w-[320px] md:max-w-[360px] h-[300px] xs:h-[340px] md:h-[360px] z-10 mb-6 sm:mb-8 relative overflow-hidden transition-all duration-500 rounded-2xl"
               style={{ filter: isDark ? "hue-rotate(-100deg) saturate(1.2)" : "hue-rotate(-100deg) saturate(1.2) brightness(2.5) contrast(0.8)" }}
             >
               {/* Spline canvas positioned so bottom watermark is pushed below overflow-hidden boundary */}

@@ -3,12 +3,11 @@ import { ArrowRight } from "lucide-react";
 import { Github } from "lucide-react";
 import IsometricButton from "./IsometricButton";
 import { RESUME_URL, SOCIAL_LINKS } from "@/data/siteLinks";
-import { useTheme } from "next-themes";
+
 import profileImage from "@/assets/vivek-profile-new.png";
 
 const HeroSection = () => {
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
+
 
   // Subtle pointer parallax for the portrait (springs keep the motion smooth).
   const pointerX = useMotionValue(0);
@@ -31,45 +30,7 @@ const HeroSection = () => {
         pointerY.set(0);
       }}
     >
-      {/* Background — light mode: gradient orbs (dark mode: clean background) */}
-      {!isDark && (
-        /* Light mode background — beautiful gradient orbs */
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          {/* Base soft gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-sky-50 via-white to-teal-50/60" />
-          {/* Large soft primary teal orb – right side */}
-          <div
-            className="absolute rounded-full blur-[130px] opacity-25"
-            style={{
-              width: "60vw",
-              height: "60vw",
-              top: "-15%",
-              right: "-10%",
-              background: "radial-gradient(circle, hsl(185 60% 55%), transparent 70%)",
-            }}
-          />
-          {/* Secondary rose/mauve orb – bottom left */}
-          <div
-            className="absolute rounded-full blur-[100px] opacity-20"
-            style={{
-              width: "45vw",
-              height: "45vw",
-              bottom: "-5%",
-              left: "-8%",
-              background: "radial-gradient(circle, hsl(350 45% 70%), transparent 70%)",
-            }}
-          />
-          {/* Subtle dot-grid texture */}
-          <div
-            className="absolute inset-0 opacity-[0.045]"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle, hsl(220 25% 15%) 1px, transparent 1px)",
-              backgroundSize: "28px 28px",
-            }}
-          />
-        </div>
-      )}
+
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-20 pointer-events-none relative z-10">
         <div className="max-w-5xl pointer-events-auto">
@@ -212,7 +173,7 @@ const HeroSection = () => {
       </div>
 
       {/* Portrait visual — right side on desktop, stacked below text on mobile */}
-      <div className="relative z-0 mt-8 sm:mt-10 md:mt-0 w-full md:w-[42%] lg:w-[40%] flex items-center justify-center md:absolute md:inset-y-0 md:right-0 pointer-events-none">
+      <div className="relative z-0 mt-8 sm:mt-10 md:mt-0 w-full md:w-[46%] lg:w-[46%] flex items-center justify-center md:absolute md:inset-y-0 md:right-0 pointer-events-none">
         <motion.div
           initial={{ opacity: 0, y: 40, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -220,8 +181,7 @@ const HeroSection = () => {
           className="relative flex items-center justify-center md:h-full"
         >
           <motion.div style={{ x: portraitX, y: portraitY }} className="relative">
-            {/* Soft backdrop glow to seat the portrait */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] aspect-square bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+
             <img
               src={profileImage}
               alt="Vivek Chaurasiya"
@@ -229,7 +189,7 @@ const HeroSection = () => {
               width={600}
               height={700}
               draggable={false}
-              className="relative w-64 sm:w-72 md:w-full md:max-w-[360px] lg:max-w-[440px] xl:max-w-[500px] h-auto object-contain pointer-events-none select-none [mask-image:linear-gradient(to_bottom,black_88%,transparent_100%)]"
+              className="relative w-full max-w-[20rem] sm:w-96 sm:max-w-none md:w-full md:max-w-[500px] lg:max-w-[600px] xl:max-w-[680px] h-auto object-contain pointer-events-none select-none"
             />
           </motion.div>
         </motion.div>
