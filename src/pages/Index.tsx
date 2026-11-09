@@ -4,7 +4,7 @@ import SocialSidebar from "@/components/SocialSidebar";
 import HeroSection from "@/components/HeroSection";
 import TechnologiesSection from "@/components/TechnologiesSection";
 import { lazy, Suspense, useState, useEffect } from "react";
-import { useTheme } from "next-themes";
+
 import CinematicPreloader from "@/components/preloader/CinematicPreloader";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -19,18 +19,11 @@ import LazySection from "@/components/LazySection";
 import SectionErrorBoundary from "@/components/SectionErrorBoundary";
 
 const Index = () => {
-  const { theme, resolvedTheme } = useTheme();
-  const [themeMounted, setThemeMounted] = useState(false);
 
   const [showPreloader, setShowPreloader] = useState(true);
   const [introChecked, setIntroChecked] = useState(false);
   const [introWillPlay, setIntroWillPlay] = useState(false);
 
-  useEffect(() => {
-    setThemeMounted(true);
-  }, []);
-
-  const isDark = themeMounted ? (resolvedTheme === "dark") : true;
 
   useEffect(() => {
     const forceIntro =
@@ -72,21 +65,8 @@ const Index = () => {
 
       {/* Main content */}
       <div className="relative">
-        {/* Background - Dark: clean solid, Light: clean gradient */}
-        <div className="fixed inset-0 z-0 bg-background transition-colors duration-500">
-          {isDark && <div className="absolute inset-0 bg-background" />}
-          {!isDark && (
-            <div className="absolute inset-0 bg-gradient-to-br from-[#f0f4f8] via-[#e8eef5] to-[#dde8f0]"
-              style={{
-                backgroundImage: `
-                  radial-gradient(ellipse at 20% 50%, hsla(185, 50%, 80%, 0.3) 0%, transparent 50%),
-                  radial-gradient(ellipse at 80% 20%, hsla(220, 50%, 85%, 0.3) 0%, transparent 50%),
-                  radial-gradient(ellipse at 60% 80%, hsla(350, 40%, 90%, 0.2) 0%, transparent 50%)
-                `
-              }}
-            />
-          )}
-        </div>
+        {/* Page backdrop */}
+        <div className="fixed inset-0 z-0 bg-background transition-colors duration-500" />
 
         {/* Main content */}
         <main className="relative z-10 w-full overflow-hidden pointer-events-none">
