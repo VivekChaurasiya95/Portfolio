@@ -64,7 +64,7 @@ const Navigation = () => {
     };
 
     const handleResize = () => {
-      if (window.innerWidth >= 768 && mobileMenuOpen) {
+      if (window.innerWidth >= 1024 && mobileMenuOpen) {
         setMobileMenuOpen(false);
       }
     };
@@ -129,16 +129,16 @@ const Navigation = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-2 sm:py-3"
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-1.5 sm:py-2"
       ref={menuRef}
     >
       <div className="container mx-auto px-3 sm:px-6">
-        <div className="flex items-center justify-between rounded-2xl px-3.5 sm:px-6 py-2.5 sm:py-3 transition-all duration-500 bg-card/75 dark:bg-[#08080a]/80 backdrop-blur-xl border border-border/40 shadow-lg">
+        <div className="flex items-center justify-between rounded-2xl px-2.5 xs:px-3.5 sm:px-6 py-2 sm:py-2.5 transition-all duration-500 bg-card/75 dark:bg-[#08080a]/80 backdrop-blur-xl border border-border/40 shadow-lg">
           {/* Logo */}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, "#home")}
-            className="flex items-center gap-2.5 sm:gap-3 text-foreground font-body text-xl tracking-tight group"
+            className="flex items-center gap-2 xs:gap-2.5 sm:gap-3 text-foreground font-body text-xl tracking-tight group"
           >
             <div className="relative shrink-0">
               <div className="absolute inset-0 bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -147,10 +147,10 @@ const Navigation = () => {
                 alt="VC Logo"
                 width={40}
                 height={40}
-                className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 object-contain relative z-10 transition-transform duration-300 group-hover:scale-110"
+                className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 object-contain relative z-10 transition-transform duration-300 group-hover:scale-110"
               />
             </div>
-            <span className="font-extrabold text-xl sm:text-2xl tracking-tighter">
+            <span className="font-extrabold text-lg sm:text-xl tracking-tighter">
               vivek
               <span className="text-primary transition-colors duration-300 group-hover:text-cyan-400">
                 .
@@ -162,7 +162,7 @@ const Navigation = () => {
           </a>
 
           {/* Desktop Navigation pills */}
-          <nav className="hidden md:flex items-center" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center" aria-label="Main Navigation">
             <div className="flex items-center gap-0.5 p-1 rounded-xl bg-muted/40 dark:bg-white/5 backdrop-blur-sm border border-border/20">
               {navItems.map((item) => {
                 const isActive = activeSection === item.href.substring(1);
@@ -207,8 +207,8 @@ const Navigation = () => {
               className="group items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/30 backdrop-blur-sm transition-all duration-300 hover:bg-primary/20 hover:border-primary/50 hover:shadow-[0_0_15px_hsl(var(--primary)/0.4)] cursor-pointer hidden lg:flex"
             >
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
               </span>
               <span className="text-xs font-semibold text-primary tracking-wide">
                 Open to work
@@ -225,7 +225,7 @@ const Navigation = () => {
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation-menu"
               aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-              className="relative md:hidden flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 min-w-[44px] min-h-[44px] rounded-full bg-primary/10 border border-primary/30 backdrop-blur-sm transition-all duration-300 hover:bg-primary/20 hover:border-primary/50 text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="relative lg:hidden flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 min-w-[44px] min-h-[44px] rounded-full bg-primary/10 border border-primary/30 backdrop-blur-sm transition-all duration-300 hover:bg-primary/20 hover:border-primary/50 text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               {mobileMenuOpen ? (
                 <X className="w-5 h-5 text-primary transition-transform duration-200 rotate-90" />
@@ -245,7 +245,7 @@ const Navigation = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -15, scale: 0.98 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="md:hidden mt-2 rounded-2xl bg-card/95 dark:bg-[#0a0c10]/95 backdrop-blur-2xl border border-border/50 shadow-2xl p-4 overflow-hidden"
+              className="lg:hidden mt-2 rounded-2xl bg-card/95 dark:bg-[#0a0c10]/95 backdrop-blur-2xl border border-border/50 shadow-2xl p-4 overflow-hidden"
             >
               <nav className="flex flex-col gap-1 max-h-[60vh] overflow-y-auto py-1">
                 {navItems.map((item) => {
@@ -280,8 +280,8 @@ const Navigation = () => {
                   className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-xs font-semibold text-primary"
                 >
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                   </span>
                   <span>Open to work</span>
                 </a>

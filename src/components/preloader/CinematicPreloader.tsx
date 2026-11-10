@@ -153,7 +153,7 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({ onComplete }) =
       <button
         type="button"
         onClick={finish}
-        className="group absolute right-5 top-5 z-50 flex items-center gap-2 rounded-full border border-white/15 bg-black/60 px-4 py-2 font-mono text-xs uppercase tracking-widest text-white/70 backdrop-blur-xl transition-all duration-300 hover:border-cyan-400 hover:text-white sm:right-8 sm:top-8 cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
+        className="group absolute right-5 top-5 z-50 flex items-center gap-2 min-h-[44px] rounded-full border border-white/15 bg-black/60 px-4 py-2 font-mono text-xs uppercase tracking-widest text-white/70 backdrop-blur-xl transition-all duration-300 hover:border-cyan-400 hover:text-white sm:right-8 sm:top-8 cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
         aria-label="Skip Intro Animation"
       >
         <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
@@ -271,7 +271,7 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({ onComplete }) =
             <div className="absolute -inset-x-6 -inset-y-10 rounded-2xl border border-white/10 bg-white/[0.035] shadow-[0_32px_150px_rgba(0,0,0,0.7)] backdrop-blur-xl" />
             <div className="relative h-px w-32 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
             <h1
-              className="relative mt-8 font-meridian text-[clamp(2.5rem,8.2vw,7.5rem)] font-bold uppercase leading-[0.9] text-white tracking-[-0.02em]"
+              className="relative mt-8 font-meridian text-balance text-[clamp(2.5rem,8.2vw,7.5rem)] font-bold uppercase leading-[0.9] text-white tracking-[-0.02em]"
             >
               VIVEK CHAURASIYA
             </h1>

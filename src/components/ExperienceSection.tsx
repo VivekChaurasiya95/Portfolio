@@ -521,7 +521,7 @@ const ExperienceSection = () => {
             <button
               onClick={() => setSelectedExperience(null)}
               aria-label="Close modal"
-              className="absolute right-3 top-3 sm:right-4 sm:top-4 md:right-6 md:top-6 z-50 rounded-full bg-background/90 p-2 sm:p-2.5 text-muted-foreground hover:text-foreground hover:bg-background transition-all backdrop-blur-md border border-border/50 shadow-lg"
+              className="absolute right-3 top-3 sm:right-4 sm:top-4 md:right-6 md:top-6 z-50 rounded-full bg-background/90 p-2 sm:p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-background transition-all backdrop-blur-md border border-border/50 shadow-lg"
             >
               <X className="w-5 h-5" />
             </button>
@@ -560,7 +560,7 @@ const ExperienceSection = () => {
                         );
                       }}
                       aria-label="Previous image"
-                      className="absolute left-2 md:left-6 z-20 p-2 rounded-full bg-background/60 backdrop-blur-md text-foreground hover:bg-primary hover:text-primary-foreground transition-colors border border-border/50 shadow-lg"
+                      className="absolute left-2 md:left-6 z-20 p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-background/60 backdrop-blur-md text-foreground hover:bg-primary hover:text-primary-foreground transition-colors border border-border/50 shadow-lg"
                     >
                       <ChevronLeft className="w-6 h-6" />
                     </button>
@@ -572,7 +572,7 @@ const ExperienceSection = () => {
                         );
                       }}
                       aria-label="Next image"
-                      className="absolute right-2 md:right-6 z-20 p-2 rounded-full bg-background/60 backdrop-blur-md text-foreground hover:bg-primary hover:text-primary-foreground transition-colors border border-border/50 shadow-lg"
+                      className="absolute right-2 md:right-6 z-20 p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-background/60 backdrop-blur-md text-foreground hover:bg-primary hover:text-primary-foreground transition-colors border border-border/50 shadow-lg"
                     >
                       <ChevronRight className="w-6 h-6" />
                     </button>
@@ -580,7 +580,7 @@ const ExperienceSection = () => {
                 )}
 
                 {/* Proof Title Overlay */}
-                <div className="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-8 md:right-8 bg-background/80 backdrop-blur-xl border border-border/50 rounded-2xl p-4 transform translate-y-2 opacity-0 group-hover/modal:translate-y-0 group-hover/modal:opacity-100 transition-all duration-500 shadow-xl z-30">
+                <div className="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-8 md:right-8 bg-background/80 backdrop-blur-xl border border-border/50 rounded-2xl p-4 transform translate-y-2 opacity-0 group-hover/modal:translate-y-0 group-hover/modal:opacity-100 transition-all duration-500 shadow-xl z-30 hidden md:block">
                   <h4 className="text-primary font-semibold flex items-center gap-2">
                     <ImageIcon className="w-4 h-4 text-primary" />
                     {selectedProofs[selectedProofIndex]?.title ||
@@ -664,6 +664,24 @@ const ExperienceSection = () => {
                   </p>
                 </div>
               </div>
+
+              {/* Mobile-only: caption for the proof shown above (the hover overlay is unreachable on touch screens) */}
+              {selectedProofs.length > 0 && (
+                <div className="md:hidden mb-5 rounded-xl border border-border/50 bg-muted/20 p-3">
+                  <p className="text-[11px] uppercase tracking-wider text-muted-foreground mb-1">
+                    Now viewing
+                  </p>
+                  <p className="text-sm font-semibold text-primary flex items-center gap-2">
+                    <ImageIcon className="w-4 h-4 text-primary shrink-0" />
+                    {selectedProofs[selectedProofIndex]?.title ||
+                      "Document Preview"}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                    {selectedProofs[selectedProofIndex]?.description ||
+                      "Supporting document for this experience."}
+                  </p>
+                </div>
+              )}
 
               {/* Meta Tags */}
               <div className="flex flex-wrap gap-3 mb-8">
@@ -788,9 +806,9 @@ const ExperienceSection = () => {
                   Experience
                 </span>
               </div>
-              <h2 className="section-heading">
-                <span className="text-primary">Professional</span>{" "}
-                <span className="text-secondary">
+              <h2 className="fx-head">
+                <span className="fx-word text-primary">Professional</span>
+                <span className="fx-word text-secondary">
                   Experience
                 </span>
               </h2>
@@ -1065,10 +1083,10 @@ const ExperienceSection = () => {
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  <h3 className="font-semibold text-primary text-base leading-tight truncate">
+                  <h3 className="font-semibold text-primary text-base leading-tight">
                     {experiences[activeIndex].company}
                   </h3>
-                  <p className="text-primary font-medium text-xs mt-0.5 line-clamp-1">
+                  <p className="text-primary font-medium text-xs mt-0.5">
                     {Array.isArray(experiences[activeIndex].role)
                       ? experiences[activeIndex].role.join(" • ")
                       : experiences[activeIndex].role}
@@ -1158,7 +1176,7 @@ const ExperienceSection = () => {
                     key={idx}
                     onClick={() => goToSlide(idx)}
                     aria-label={`Go to experience ${idx + 1}`}
-                    className={`h-2 rounded-full transition-all duration-300 ${
+                    className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-2 after:content-[''] ${
                       activeIndex === idx
                         ? "w-6 bg-primary"
                         : "w-2 bg-foreground/20 dark:bg-white/20"

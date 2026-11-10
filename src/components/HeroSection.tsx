@@ -53,7 +53,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-serif text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-[5.75rem] font-medium leading-[1.08] sm:leading-[1.04] tracking-[-0.01em] mb-6 sm:mb-10 text-left"
+            className="font-serif text-balance text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-[5.75rem] font-medium leading-[1.08] sm:leading-[1.04] tracking-[-0.01em] mb-6 sm:mb-10 text-left"
           >
             <span className="block font-serif italic font-normal text-foreground">
               I Build

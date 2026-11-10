@@ -319,6 +319,17 @@ const JourneySection: React.FC = () => {
     updateScrollBounds();
   };
 
+  // Touch drag: native scrolling moves the track, so just flag the gesture
+  // to pause auto-motion while the finger is down (touch has no hover).
+  const handleTouchStart = () => {
+    isDraggingRef.current = true;
+  };
+
+  const handleTouchEndOrCancel = () => {
+    isDraggingRef.current = false;
+    updateScrollBounds();
+  };
+
   return (
     <section
       id="journey"
@@ -340,7 +351,7 @@ const JourneySection: React.FC = () => {
             <button
               onClick={() => handleStepScroll("left")}
               disabled={!canScrollLeft}
-              className="p-2 rounded-full border border-border/50 bg-card/40 hover:bg-card/80 text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:pointer-events-none transition-all duration-200 cursor-pointer"
+              className="w-10 h-10 flex items-center justify-center rounded-full border border-border/50 bg-card/40 hover:bg-card/80 text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:pointer-events-none transition-all duration-200 cursor-pointer"
               aria-label="Scroll to previous milestone"
               title="Previous milestone"
             >
@@ -352,7 +363,7 @@ const JourneySection: React.FC = () => {
             <button
               onClick={() => handleStepScroll("right")}
               disabled={!canScrollRight}
-              className="p-2 rounded-full border border-border/50 bg-card/40 hover:bg-card/80 text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:pointer-events-none transition-all duration-200 cursor-pointer"
+              className="w-10 h-10 flex items-center justify-center rounded-full border border-border/50 bg-card/40 hover:bg-card/80 text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:pointer-events-none transition-all duration-200 cursor-pointer"
               aria-label="Scroll to next milestone"
               title="Next milestone"
             >
@@ -364,7 +375,7 @@ const JourneySection: React.FC = () => {
             {isAtEnd ? (
               <button
                 onClick={handleRestart}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-primary/40 bg-primary/10 hover:bg-primary/20 text-xs font-mono text-primary transition-all duration-200 cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 min-h-[36px] rounded-full border border-primary/40 bg-primary/10 hover:bg-primary/20 text-xs font-mono text-primary transition-all duration-200 cursor-pointer"
                 title="Restart timeline from B.Tech"
               >
                 <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -376,7 +387,7 @@ const JourneySection: React.FC = () => {
             ) : (
               <button
                 onClick={() => setIsPaused((prev) => !prev)}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border/50 bg-card/40 hover:bg-card/80 text-xs font-mono text-muted-foreground hover:text-foreground transition-all duration-200 cursor-pointer"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 min-h-[36px] rounded-full border border-border/50 bg-card/40 hover:bg-card/80 text-xs font-mono text-muted-foreground hover:text-foreground transition-all duration-200 cursor-pointer"
                 title={isPaused ? "Resume auto motion" : "Pause auto motion"}
               >
                 {isPaused ? (
@@ -424,6 +435,9 @@ const JourneySection: React.FC = () => {
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUpOrLeave}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEndOrCancel}
+            onTouchCancel={handleTouchEndOrCancel}
             className="flex gap-4 overflow-x-auto py-2 scrollbar-none cursor-grab active:cursor-grabbing select-none"
             style={{
               scrollbarWidth: "none",

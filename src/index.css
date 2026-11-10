@@ -499,6 +499,80 @@
     font-size: clamp(1.9rem, 4vw, 3rem);
   }
 
+  /* Featured-style interactive heading (CSS mirror of ProjectsSection):
+     hovering a word reveals corner brackets on it and blurs its sibling. */
+  .fx-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    column-gap: 0;
+    row-gap: 0.25rem;
+    cursor: default;
+  }
+  @media (min-width: 768px) {
+    .fx-head {
+      column-gap: 0;
+    }
+  }
+  .fx-word {
+    position: relative;
+    padding: 0 0.5rem;
+    @apply font-meridian;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    transition: opacity 0.5s ease-out, filter 0.5s ease-out;
+  }
+  .fx-word:first-child {
+    padding-left: 0;
+  }
+  /* Hover-only effects stay on hover-capable devices so taps on touch
+     screens never leave a heading word stuck blurred with brackets. */
+  @media (hover: hover) {
+    .fx-head:has(.fx-word:hover) .fx-word:not(:hover) {
+      opacity: 0.4;
+      filter: blur(4px);
+    }
+  }
+  .fx-word::before,
+  .fx-word::after {
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
+    pointer-events: none;
+  }
+  .fx-word::before {
+    top: 0;
+    left: 0;
+    border-top: 2px solid hsl(var(--primary));
+    border-left: 2px solid hsl(var(--primary));
+  }
+  .fx-word::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid hsl(var(--primary));
+    border-right: 2px solid hsl(var(--primary));
+  }
+  @media (hover: hover) {
+    .fx-word:hover::before,
+    .fx-word:hover::after {
+      opacity: 1;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fx-word,
+    .fx-word::before,
+    .fx-word::after {
+      transition: none;
+    }
+  }
+
   .section-subheading {
     font-family: var(--font-body);
     text-align: left;
