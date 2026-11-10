@@ -139,8 +139,10 @@ const milestones: Milestone[] = [
 // Non-looping list: begins with B.Tech and ends with FlyRank AI
 const JourneySection: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [isPaused, setIsPaused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isInView, setIsInView] = useState(false);
   const [isAtEnd, setIsAtEnd] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -186,7 +188,35 @@ const JourneySection: React.FC = () => {
     };
   }, []);
 
-  // Smooth forward auto-motion that stops after FlyRank AI
+  // Restart auto-motion from the beginning every time the section scrolls into view
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const el = scrollRef.current;
+          if (el) {
+            el.scrollLeft = 0;
+          }
+          setIsAtEnd(false);
+          setCanScrollLeft(false);
+          setCanScrollRight(true);
+          setIsPaused(false);
+          setIsInView(true);
+        } else {
+          setIsInView(false);
+        }
+      },
+      { threshold: 0.25 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  // Smooth forward auto-motion while the section is in view; stops after FlyRank AI
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
@@ -216,14 +246,14 @@ const JourneySection: React.FC = () => {
       animId = requestAnimationFrame(step);
     };
 
-    if (!isPaused && !isAtEnd) {
+    if (!isPaused && !isAtEnd && isInView) {
       animId = requestAnimationFrame(step);
     }
 
     return () => {
       if (animId) cancelAnimationFrame(animId);
     };
-  }, [isPaused, isHovered, isAtEnd]);
+  }, [isPaused, isHovered, isAtEnd, isInView]);
 
   // Restart smoothly from B.Tech
   const handleRestart = () => {
@@ -292,15 +322,16 @@ const JourneySection: React.FC = () => {
   return (
     <section
       id="journey"
+      ref={sectionRef}
       className="py-12 sm:py-16 md:py-20 relative overflow-hidden bg-background/40"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-20">
         {/* Consistent Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
           <div>
-            <h2 className="section-heading">
-              <span className="text-primary">Development</span>{" "}
-              <span className="text-secondary">Timeline</span>
+            <h2 className="fx-head">
+              <span className="fx-word text-primary">Development</span>
+              <span className="fx-word text-secondary">Timeline</span>
             </h2>
           </div>
 
@@ -389,6 +420,7 @@ const JourneySection: React.FC = () => {
           {/* Horizontally Scrollable Track */}
           <div
             ref={scrollRef}
+            data-testid="journey-track"
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUpOrLeave}
@@ -407,7 +439,7 @@ const JourneySection: React.FC = () => {
               return (
                 <div
                   key={item.id}
-                  className={`shrink-0 w-[270px] sm:w-[300px] rounded-xl p-4 sm:p-5 bg-card/35 backdrop-blur-sm border transition-all duration-300 flex flex-col justify-between group ${
+                  className={`shrink-0 w-[240px] xs:w-[270px] sm:w-[300px] rounded-xl p-4 sm:p-5 bg-card/35 backdrop-blur-sm border transition-all duration-300 flex flex-col justify-between group ${
                     isLast
                       ? "border-emerald-500/40 bg-emerald-500/[0.04] hover:border-emerald-500/60"
                       : isFirst
@@ -453,10 +485,10 @@ const JourneySection: React.FC = () => {
                     </div>
 
                     <div className="min-w-0 flex-1">
-                      <h3 className="text-sm sm:text-base font-medium tracking-tight text-primary leading-snug truncate">
+                      <h3 className="text-sm sm:text-base font-medium tracking-tight text-primary leading-snug">
                         {item.role}
                       </h3>
-                      <div className="text-xs text-muted-foreground/75 font-medium truncate mt-0.5">
+                      <div className="text-xs text-muted-foreground/75 font-medium mt-0.5">
                         {item.org}
                       </div>
                     </div>
@@ -477,7 +509,7 @@ const JourneySection: React.FC = () => {
           <span>
             {isAtEnd
               ? "Completed • Stopped at FlyRank AI (Latest)"
-              : "Hover to pause • Drag or use arrows to navigate"}
+              : "Swipe, drag, or use arrows to navigate"}
           </span>
           <span className="hidden sm:inline">
             11 Milestones • B.Tech (2024) → FlyRank AI (2026)

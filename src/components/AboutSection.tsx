@@ -4,6 +4,18 @@ const AboutSection = () => {
   return (
     <section id="about" className="pt-12 sm:pt-14 md:pt-16 pb-10 relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-20">
+                <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="hidden"
+        >
+          <h2 className="fx-head">
+            <span className="fx-word text-primary">Who is behind the</span>{" "}
+            <span className="fx-word text-secondary">terminal ?</span>
+          </h2>
+        </motion.div>
         <div className="max-w-3xl">
           {/* Text content */}
           <motion.div
@@ -12,12 +24,18 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="section-heading mb-6 sm:mb-8 flex flex-col leading-[0.88] sm:leading-[0.90]">
+            
+              
+              
+            
+
+            <p className="text-muted-foreground text-sm sm:text-base mb-5 sm:mb-6 leading-relaxed">
+                                      </p>
+            <h2 className="section-heading mb-6 sm:mb-8 flex flex-col leading-[0.88] sm:leading-[0.90] -mt-5 sm:-mt-6">
               <span className="text-primary">Who is behind the</span>
               <span className="text-secondary mt-0.5 sm:mt-1">terminal ?</span>
             </h2>
-
-            <p className="text-muted-foreground text-sm sm:text-base mb-5 sm:mb-6 leading-relaxed">
+                          <p className="text-muted-foreground text-sm sm:text-base mb-5 sm:mb-6 leading-relaxed">
               Hi, I'm <span className="text-foreground font-medium">Vivek Chaurasiya</span> — a Computer
               Science and Design undergraduate at Madhav Institute of Technology and Science (MITS-DU), Gwalior.
             </p>

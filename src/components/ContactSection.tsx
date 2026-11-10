@@ -210,6 +210,18 @@ const ContactSection = () => {
       className="py-16 sm:py-24 md:py-32 relative z-10 bg-background/95 backdrop-blur-sm"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-20">
+                <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 sm:mb-10"
+        >
+          <h2 className="fx-head">
+            <span className="fx-word text-primary">Let's</span>
+            <span className="fx-word text-secondary">Connect</span>
+          </h2>
+        </motion.div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16">
           {/* Left side - Info */}
           <motion.div
@@ -218,10 +230,10 @@ const ContactSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="section-heading mb-4 sm:mb-6">
-              <span className="text-primary">Let's</span>{" "}
-              <span className="text-secondary">Connect</span>
-            </h2>
+            
+              
+              
+            
 
             <p className="section-subheading mb-8 sm:mb-10 max-w-md">
               Have a project in mind or just want to say hello? I'd love to hear

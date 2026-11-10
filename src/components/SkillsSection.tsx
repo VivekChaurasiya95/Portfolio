@@ -714,7 +714,7 @@ const SkillsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col items-center justify-center mb-8 sm:mb-10 gap-6"
+          className="text-left mb-8 sm:mb-14"
         >
 
           <motion.div

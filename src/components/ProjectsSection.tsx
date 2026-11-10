@@ -48,7 +48,7 @@ const ProjectsSection = () => {
           className="flex flex-col items-center justify-center mb-8 sm:mb-10 gap-6"
         >
           <div
-            className="flex items-center gap-3 md:gap-6 justify-center cursor-default"
+            className="flex flex-wrap items-center gap-x-3 gap-y-1 md:gap-6 justify-center cursor-default"
             onMouseLeave={() => setHoveredWord(null)}
           >
             {/* Featured */}
@@ -133,7 +133,7 @@ const ProjectsSection = () => {
               .trim();
             const demoUrl =
               project.demo !== "#" ? project.demo : project.github || "#";
-            const featured = idx === 0;
+            const featured = false;
 
             return (
               <motion.article

@@ -4,7 +4,7 @@ import { EMAIL_ADDRESS } from "@/data/siteLinks";
 
 const FreelanceWidget = () => {
   return (
-    <div className="flex flex-col gap-3 w-full max-w-sm mr-auto md:ml-auto md:mr-0">
+    <div className="flex flex-col gap-3 w-full max-w-sm mr-auto lg:ml-auto lg:mr-0">
       {/* Title */}
       <h4 className="text-primary font-semibold text-xs md:text-sm tracking-[0.2em] uppercase font-sans text-left">
         Availability
@@ -15,7 +15,7 @@ const FreelanceWidget = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="relative w-full h-auto min-h-[14rem] md:min-h-[16rem] p-5 sm:p-6 rounded-2xl border border-primary/20 bg-card/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl overflow-hidden group shadow-[0_0_30px_rgba(var(--primary),0.05)] flex flex-col items-center md:items-end text-center md:text-right"
+        className="relative w-full h-auto min-h-[14rem] md:min-h-[16rem] p-5 sm:p-6 rounded-2xl border border-primary/20 bg-card/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl overflow-hidden group shadow-[0_0_30px_rgba(var(--primary),0.05)] flex flex-col items-center lg:items-end text-center lg:text-right"
       >
         {/* HUD Grid Background */}
         <div 
