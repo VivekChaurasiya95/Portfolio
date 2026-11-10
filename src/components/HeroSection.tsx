@@ -10,7 +10,7 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col md:flex-row items-center justify-center pt-20 pb-16 md:pb-0 overflow-hidden"
+      className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center pt-20 pb-16 lg:pb-0 overflow-hidden"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-20 pointer-events-none relative z-10">
         <div className="max-w-5xl pointer-events-auto">
@@ -152,13 +152,13 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Portrait visual — right side on desktop, stacked below text on mobile */}
-      <div className="relative z-0 mt-8 sm:mt-10 md:mt-0 w-full md:w-[50%] lg:w-[50%] flex items-center justify-center md:absolute md:inset-y-0 md:right-0 pointer-events-none">
+      {/* Portrait visual — right side on desktop, stacked below text on mobile and tablets */}
+      <div className="relative z-0 mt-8 sm:mt-10 lg:mt-0 w-full lg:w-[50%] flex items-center justify-center lg:absolute lg:inset-y-0 lg:right-0 pointer-events-none">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
-          className="relative flex items-center justify-center md:h-full"
+          className="relative flex items-center justify-center lg:h-full"
         >
           <div className="relative">
             <img
@@ -168,7 +168,7 @@ const HeroSection = () => {
               width={600}
               height={700}
               draggable={false}
-              className="relative w-full max-w-[22rem] sm:w-[26rem] sm:max-w-none md:w-full md:max-w-[560px] lg:max-w-[660px] xl:max-w-[740px] h-auto object-contain pointer-events-none select-none"
+              className="relative w-full max-w-[22rem] sm:w-[26rem] sm:max-w-none lg:w-full lg:max-w-[660px] xl:max-w-[740px] h-auto object-contain pointer-events-none select-none"
             />
           </div>
         </motion.div>

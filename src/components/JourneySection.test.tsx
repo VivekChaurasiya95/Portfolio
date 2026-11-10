@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { render, screen, act } from "@testing-library/react";
+import { render, screen, act, fireEvent } from "@testing-library/react";
 import JourneySection from "./JourneySection";
 
 // Controllable requestAnimationFrame queue (jsdom has no visual frames).
@@ -122,5 +122,21 @@ describe("JourneySection auto-motion", () => {
     ).not.toBeInTheDocument();
     stepFrames(10);
     expect(track.scrollLeft).toBeGreaterThan(0);
+  });
+
+  it("pauses auto-motion while a touch drag is active", () => {
+    const track = renderJourney();
+    setInView(true);
+    stepFrames(10);
+    const moving = track.scrollLeft;
+    expect(moving).toBeGreaterThan(0);
+
+    fireEvent.touchStart(track);
+    stepFrames(10);
+    expect(track.scrollLeft).toBe(moving);
+
+    fireEvent.touchEnd(track);
+    stepFrames(10);
+    expect(track.scrollLeft).toBeGreaterThan(moving);
   });
 });

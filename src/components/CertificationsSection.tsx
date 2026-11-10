@@ -227,7 +227,9 @@ const CertificationsSection = () => {
   }, [layout]);
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
+    // Stacked layout below lg: portrait tablets can't fit the side-by-side
+    // reel — the half-width column brutally truncates the vh-scaled titles.
+    const mq = window.matchMedia("(max-width: 1023px)");
     const update = () => setIsMobile(mq.matches);
     update();
     mq.addEventListener("change", update);
@@ -875,7 +877,7 @@ const CertificationsSection = () => {
           <span className="fx-word text-primary">My</span>
           <span className="fx-word text-secondary">Certifications</span>
         </h2>
-        <p className="mt-2 text-xs text-muted-foreground md:hidden">
+        <p className="mt-2 text-xs text-muted-foreground lg:hidden">
           Swipe to browse · Tap to open
         </p>
       </div>
@@ -895,6 +897,7 @@ const CertificationsSection = () => {
 
       {/* Title wrapper */}
       <div
+        data-testid="reel-titles"
         className={`absolute left-0 z-[1] overflow-hidden ${isMobile ? "w-full" : "w-1/2"}`}
         style={{
           top: `${layout.titleTopVh}dvh`,
@@ -943,7 +946,7 @@ const CertificationsSection = () => {
                     }}
                     data-reel-subtitle
                     style={{ opacity: 0 }}
-                    className="hidden shrink-0 text-xs text-muted-foreground sm:inline"
+                    className="hidden shrink-0 text-xs text-muted-foreground lg:inline"
                   >
                     {item.issuer} · {item.skills[0]} · {yearOf(item.period)}
                   </span>
@@ -956,6 +959,7 @@ const CertificationsSection = () => {
 
       {/* Image wrapper */}
       <div
+        data-testid="reel-images"
         className={`absolute overflow-hidden ${
           isMobile ? "left-0 w-full" : "right-0 w-1/2"
         }`}

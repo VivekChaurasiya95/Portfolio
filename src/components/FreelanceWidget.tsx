@@ -4,7 +4,7 @@ import { EMAIL_ADDRESS } from "@/data/siteLinks";
 
 const FreelanceWidget = () => {
   return (
-    <div className="flex flex-col gap-3 w-full max-w-sm mr-auto lg:ml-auto lg:mr-0">
+    <div className="flex flex-col gap-3 w-full max-w-sm md:max-w-md lg:max-w-sm mr-auto lg:ml-auto lg:mr-0">
       {/* Title */}
       <h4 className="text-primary font-semibold text-xs md:text-sm tracking-[0.2em] uppercase font-sans text-left">
         Availability

@@ -32,6 +32,71 @@ describe("folio certifications data", () => {
 });
 
 describe("CertificationsSection", () => {
+  const mockMatchMedia = (matches: (query: string) => boolean) => {
+    const original = window.matchMedia;
+    window.matchMedia = ((query: string) => ({
+      matches: matches(query),
+      media: query,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    })) as unknown as typeof window.matchMedia;
+    return () => {
+      window.matchMedia = original;
+    };
+  };
+
+  it("uses the stacked layout on tablet widths (at or below lg)", () => {
+    const restore = mockMatchMedia(
+      (query) => query === "(max-width: 1023px)",
+    );
+    try {
+      const { container, unmount } = render(<CertificationsSection />);
+      try {
+        expect(
+          container
+            .querySelector('[data-testid="reel-titles"]')
+            ?.getAttribute("class") ?? "",
+        ).toContain("w-full");
+        expect(
+          container
+            .querySelector('[data-testid="reel-images"]')
+            ?.getAttribute("class") ?? "",
+        ).toContain("w-full");
+      } finally {
+        unmount();
+      }
+    } finally {
+      restore();
+    }
+  });
+
+  it("uses the side-by-side layout on desktop widths", () => {
+    const restore = mockMatchMedia(() => false);
+    try {
+      const { container, unmount } = render(<CertificationsSection />);
+      try {
+        expect(
+          container
+            .querySelector('[data-testid="reel-titles"]')
+            ?.getAttribute("class") ?? "",
+        ).toContain("w-1/2");
+        expect(
+          container
+            .querySelector('[data-testid="reel-images"]')
+            ?.getAttribute("class") ?? "",
+        ).toContain("w-1/2");
+      } finally {
+        unmount();
+      }
+    } finally {
+      restore();
+    }
+  });
+
   it("renders the counter with the item total", () => {
     render(<CertificationsSection />);
     expect(screen.getByText("01")).toBeInTheDocument();
