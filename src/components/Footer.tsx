@@ -97,9 +97,9 @@ const Footer = () => {
   };
 
   return (
-    <footer ref={footerRef} className="relative z-10 py-12 sm:py-16 border-t border-border/30 bg-gradient-to-t from-background to-card/20 backdrop-blur-sm overflow-hidden">
+    <footer ref={footerRef} className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-t border-border/30 bg-gradient-to-t from-background to-card/20 backdrop-blur-sm overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12 mb-8 sm:mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12 mb-6 sm:mb-8">
           {/* Left - Branding */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -187,7 +187,7 @@ const Footer = () => {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent mb-6 sm:mb-8" />
+        <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent mb-4 sm:mb-5" />
 
         {/* Bottom Bar */}
         <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-4 sm:gap-6">

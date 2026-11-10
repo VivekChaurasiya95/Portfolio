@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const StatusWidget = () => {
   return (
-    <div className="flex flex-col gap-3 w-full max-w-sm mr-auto md:mx-0">
+    <div className="flex flex-col gap-3 w-full max-w-sm mr-auto lg:mx-0">
       {/* Title */}
       <h4 className="text-primary font-semibold text-xs md:text-sm tracking-[0.2em] uppercase font-sans text-left">
         Current Status
@@ -44,7 +44,7 @@ const StatusWidget = () => {
           ))}
         </div>
         
-        <div className="absolute bottom-4 right-8 grid grid-cols-4 gap-2 opacity-30">
+        <div className="absolute bottom-4 right-8 hidden xs:grid grid-cols-4 gap-2 opacity-30">
           {[...Array(8)].map((_, i) => (
             <motion.div 
               key={i} 

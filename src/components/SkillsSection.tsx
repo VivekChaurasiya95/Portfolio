@@ -714,7 +714,7 @@ const SkillsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-left mb-8 sm:mb-14"
+          className="flex flex-col items-center justify-center mb-8 sm:mb-10 gap-6"
         >
 
           <motion.div
@@ -729,9 +729,9 @@ const SkillsSection = () => {
             </span>
           </motion.div>
 
-          <h2 className="section-heading mb-4 sm:mb-6">
-            <span className="text-primary">My Tech</span>{" "}
-            <span className="text-secondary">Stack</span>
+          <h2 className="fx-head">
+            <span className="fx-word text-primary">My Tech</span>
+            <span className="fx-word text-secondary">Stack</span>
           </h2>
         </motion.div>
 
@@ -758,12 +758,12 @@ const SkillsSection = () => {
 
 
               }}
-              className="relative p-5 sm:p-7 md:p-8 rounded-2xl md:rounded-[2rem] bg-card/80 dark:bg-[#0a0a0a] border border-border/30 dark:border-white/5 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12)] group"
+              className="relative p-5 sm:p-7 md:p-8 rounded-2xl md:rounded-[2rem] bg-card/80 dark:bg-[#0a0a0a] border border-border/30 dark:border-white/5 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12)]"
             >
-              {/* Animated gradient glow on hover */}
+              
               <motion.div
-                className="absolute -inset-[1px] rounded-2xl md:rounded-[2rem] bg-gradient-to-br from-primary/20 via-secondary/10 to-primary/0 opacity-0 group-hover:opacity-100 -z-10 blur-sm"
-                transition={{ duration: 0.4 }}
+                className="hidden"
+                aria-hidden="true"
               />
 
               {/* Category header */}

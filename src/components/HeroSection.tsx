@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Github } from "lucide-react";
 import IsometricButton from "./IsometricButton";
@@ -7,31 +7,11 @@ import { RESUME_URL, SOCIAL_LINKS } from "@/data/siteLinks";
 import profileImage from "@/assets/vivek-profile-new.png";
 
 const HeroSection = () => {
-
-
-  // Subtle pointer parallax for the portrait (springs keep the motion smooth).
-  const pointerX = useMotionValue(0);
-  const pointerY = useMotionValue(0);
-  const springX = useSpring(pointerX, { stiffness: 50, damping: 20 });
-  const springY = useSpring(pointerY, { stiffness: 50, damping: 20 });
-  const portraitX = useTransform(springX, [-0.5, 0.5], [-14, 14]);
-  const portraitY = useTransform(springY, [-0.5, 0.5], [-10, 10]);
-
   return (
     <section
       id="home"
       className="relative min-h-screen flex flex-col md:flex-row items-center justify-center pt-20 pb-16 md:pb-0 overflow-hidden"
-      onMouseMove={(e) => {
-        pointerX.set(e.clientX / window.innerWidth - 0.5);
-        pointerY.set(e.clientY / window.innerHeight - 0.5);
-      }}
-      onMouseLeave={() => {
-        pointerX.set(0);
-        pointerY.set(0);
-      }}
     >
-
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-20 pointer-events-none relative z-10">
         <div className="max-w-5xl pointer-events-auto">
           {/* Overline */}
@@ -173,15 +153,14 @@ const HeroSection = () => {
       </div>
 
       {/* Portrait visual — right side on desktop, stacked below text on mobile */}
-      <div className="relative z-0 mt-8 sm:mt-10 md:mt-0 w-full md:w-[46%] lg:w-[46%] flex items-center justify-center md:absolute md:inset-y-0 md:right-0 pointer-events-none">
+      <div className="relative z-0 mt-8 sm:mt-10 md:mt-0 w-full md:w-[50%] lg:w-[50%] flex items-center justify-center md:absolute md:inset-y-0 md:right-0 pointer-events-none">
         <motion.div
-          initial={{ opacity: 0, y: 40, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
           className="relative flex items-center justify-center md:h-full"
         >
-          <motion.div style={{ x: portraitX, y: portraitY }} className="relative">
-
+          <div className="relative">
             <img
               src={profileImage}
               alt="Vivek Chaurasiya"
@@ -189,9 +168,9 @@ const HeroSection = () => {
               width={600}
               height={700}
               draggable={false}
-              className="relative w-full max-w-[20rem] sm:w-96 sm:max-w-none md:w-full md:max-w-[500px] lg:max-w-[600px] xl:max-w-[680px] h-auto object-contain pointer-events-none select-none"
+              className="relative w-full max-w-[22rem] sm:w-[26rem] sm:max-w-none md:w-full md:max-w-[560px] lg:max-w-[660px] xl:max-w-[740px] h-auto object-contain pointer-events-none select-none"
             />
-          </motion.div>
+          </div>
         </motion.div>
       </div>
 
