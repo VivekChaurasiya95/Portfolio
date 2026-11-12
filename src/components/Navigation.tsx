@@ -161,40 +161,26 @@ const Navigation = () => {
             </span>
           </a>
 
-          {/* Desktop Navigation pills */}
-          <nav className="hidden lg:flex items-center" aria-label="Main Navigation">
-            <div className="flex items-center gap-0.5 p-1 rounded-xl bg-muted/40 dark:bg-white/5 backdrop-blur-sm border border-border/20">
-              {navItems.map((item) => {
-                const isActive = activeSection === item.href.substring(1);
-                return (
-                  <motion.a
-                    key={item.label}
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`relative px-3.5 lg:px-4 py-1.5 text-xs lg:text-sm font-sans font-medium rounded-lg transition-all duration-300 ${
-                      isActive
-                        ? "text-primary drop-shadow-[0_0_8px_hsl(var(--primary)/0.8)]"
-                        : "text-muted-foreground hover:text-primary hover:drop-shadow-[0_0_6px_hsl(var(--primary)/0.5)]"
-                    }`}
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="active-pill"
-                        className="absolute inset-0 rounded-lg bg-primary/10 border border-primary/40 shadow-[0_0_15px_hsl(var(--primary)/0.3)]"
-                        transition={{
-                          type: "tween",
-                          ease: "circOut",
-                          duration: 0.35,
-                        }}
-                      />
-                    )}
-                    <span className="relative z-10">{item.label}</span>
-                  </motion.a>
-                );
-              })}
-            </div>
+          {/* Desktop Navigation — plain text links */}
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-7" aria-label="Main Navigation">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.substring(1);
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`text-sm font-sans font-medium tracking-wide ${
+                    isActive
+                      ? "text-foreground font-semibold"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
 
           {/* Right items */}

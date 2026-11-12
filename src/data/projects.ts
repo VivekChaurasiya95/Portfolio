@@ -8,7 +8,7 @@ export const projects = [
     problem:
       "Competitive programmers had no esports-style arena for real-time head-to-head algorithmic duels with fair skill-based matchmaking and cheat-resistant live battles.",
     solution:
-      "Built a production-grade distributed platform for 1v1 ELO-ranked coding duels with Redis-powered matchmaking, synchronized live battle rooms, sandboxed multi-language code execution, a curated practice lab, and gamified rewards vaults.",
+      "A production-grade distributed platform for 1v1 ELO-ranked coding duels — Redis-powered matchmaking, synchronized live battle rooms, sandboxed multi-language judging, a curated practice lab, and gamified rewards vaults.",
     impact:
       "Live in production serving real duels with sub-second judging, adaptive AI sparring via AlgoBot, custom tournament lobbies for up to 100 players, and anti-cheat match integrity with tab-switch and focus monitoring.",
     tech: ["React 19", "TypeScript", "Node.js", "WebSocket", "Redis", "PostgreSQL", "Prisma", "BullMQ", "Docker"],

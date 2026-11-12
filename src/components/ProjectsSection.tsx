@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Github, Globe } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Github, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
 import { projects } from "../data/projects";
 
@@ -39,6 +39,10 @@ const getMeta = (id: string, demo: string) =>
 
 const ProjectsSection = () => {
   const [hoveredWord, setHoveredWord] = useState<'featured' | 'projects' | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  // HSER stays out of the default view; "View All Projects" reveals everything.
+  const visibleProjects = showAll ? projects : projects.filter((project) => project.id !== "hser");
 
   return (
     <section id="projects" className="py-16 sm:py-24 relative overflow-hidden">
@@ -129,7 +133,7 @@ const ProjectsSection = () => {
 
         {/* Project card grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-          {projects.map((project, idx) => {
+          {visibleProjects.map((project, idx) => {
             const meta = getMeta(project.id, project.demo);
             const shortTitle = project.title
               .split("–")[0]
@@ -142,6 +146,7 @@ const ProjectsSection = () => {
             return (
               <motion.article
                 key={project.id}
+                layout
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -213,13 +218,26 @@ const ProjectsSection = () => {
           })}
         </div>
 
+        {/* View all projects toggle */}
+        <div className="flex justify-center mt-8 sm:mt-10">
+          <button
+            type="button"
+            onClick={() => setShowAll((prev) => !prev)}
+            aria-expanded={showAll}
+            className="inline-flex items-center gap-2 min-h-[44px] px-4 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
+          >
+            {showAll ? "Show Less" : "View All Projects"}
+            <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showAll ? "rotate-180" : ""}`} />
+          </button>
+        </div>
+
         {/* View all on GitHub */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex justify-center mt-10 sm:mt-12"
+          className="flex justify-center mt-4 sm:mt-5"
         >
           <a
             href="https://github.com/VivekChaurasiya95"
