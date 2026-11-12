@@ -18,9 +18,34 @@ const ContactSection = lazy(() => import("@/components/ContactSection"));
 import LazySection from "@/components/LazySection";
 import SectionErrorBoundary from "@/components/SectionErrorBoundary";
 
+const INTRO_PLAYED_KEY = "portfolio-intro-played";
+
+const hasPlayedIntroThisTab = (): boolean => {
+  try {
+    return (
+      typeof window !== "undefined" &&
+      window.sessionStorage.getItem(INTRO_PLAYED_KEY) === "1"
+    );
+  } catch {
+    return false;
+  }
+};
+
+const markIntroPlayed = (): void => {
+  try {
+    window.sessionStorage.setItem(INTRO_PLAYED_KEY, "1");
+  } catch {
+    // Storage unavailable (e.g. private mode) — intro just plays again.
+  }
+};
+
 const Index = () => {
 
-  const [showPreloader, setShowPreloader] = useState(true);
+  const [showPreloader, setShowPreloader] = useState(() => {
+    if (typeof window === "undefined") return false;
+    if (window.location.search.includes("force-intro")) return true;
+    return !hasPlayedIntroThisTab();
+  });
   const [introChecked, setIntroChecked] = useState(false);
   const [introWillPlay, setIntroWillPlay] = useState(false);
 
@@ -41,13 +66,21 @@ const Index = () => {
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const shouldPlayIntro = forceIntro || (!isBotOrLighthouse && !reduceMotion);
+    // Play once per tab: sessionStorage survives refreshes but not new tabs.
+    const shouldPlayIntro =
+      forceIntro ||
+      (!hasPlayedIntroThisTab() && !isBotOrLighthouse && !reduceMotion);
+
+    if (shouldPlayIntro) {
+      markIntroPlayed();
+    }
 
     setIntroWillPlay(shouldPlayIntro);
     setShowPreloader(shouldPlayIntro);
   }, []);
 
   const handlePreloaderComplete = () => {
+    markIntroPlayed();
     setShowPreloader(false);
   };
 

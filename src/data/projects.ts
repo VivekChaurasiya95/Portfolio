@@ -1,5 +1,46 @@
 export const projects = [
   {
+    id: "algofight",
+    title: "AlgoFight – Real-Time Competitive Coding Arena",
+    category: "Full-Stack",
+    color: "from-rose-500 to-red-600",
+    accentColor: "rose",
+    problem:
+      "Competitive programmers had no esports-style arena for real-time head-to-head algorithmic duels with fair skill-based matchmaking and cheat-resistant live battles.",
+    solution:
+      "Built a production-grade distributed platform for 1v1 ELO-ranked coding duels with Redis-powered matchmaking, synchronized live battle rooms, sandboxed multi-language code execution, a curated practice lab, and gamified rewards vaults.",
+    impact:
+      "Live in production serving real duels with sub-second judging, adaptive AI sparring via AlgoBot, custom tournament lobbies for up to 100 players, and anti-cheat match integrity with tab-switch and focus monitoring.",
+    tech: ["React 19", "TypeScript", "Node.js", "WebSocket", "Redis", "PostgreSQL", "Prisma", "BullMQ", "Docker"],
+    architecture:
+      "Distributed monorepo: React 19 frontend with Monaco editor and cyberpunk battle HUD, Node.js + TypeScript backend with WebSocket gateways, Redis Sorted-Set matchmaking pool with atomic Lua pairing and Pub/Sub fan-out, BullMQ judging queue over Piston sandboxes, and PostgreSQL via Prisma for ratings, ladders, and vaults.",
+    challenges:
+      "Eliminating race conditions in cross-instance matchmaking, keeping duel timers and editor state synchronized over WebSockets, and enforcing hard resource quotas on untrusted code in isolated sandboxes.",
+    codeHighlights: [
+      "Redis SBMM Matchmaking Engine",
+      "Atomic Lua Room Pairing",
+      "Live Battle Arena + Monaco Editor",
+      "Piston Sandbox Judging Pipeline",
+      "Anti-Cheat Integrity Monitor",
+    ],
+    story:
+      "AlgoFight started as a vision to make DSA practice feel like esports — live opponents, ticking clocks, roaring ranks — instead of lonely grinding on static problem lists.",
+    funFact:
+      "Impatient duelists can skip the queue entirely and instantly spar against AlgoBot, a 1200-ELO adaptive AI opponent!",
+    lessonsLearned:
+      "Real-time fairness is a systems problem: atomic pairing, synchronized clocks, and strict sandboxing matter as much as the problems themselves.",
+    github: "https://github.com/VivekChaurasiya95/AlgoFight",
+    demo: "https://algo.mitsgwalior.in",
+    stats: { duels: "1v1 ELO", judge: "Sub-Second", languages: "5" },
+    image: "/algofight-1.jpeg",
+    gallery: [
+      "/algofight-2.jpeg",
+      "/algofight-3.jpeg",
+      "/algofight-4.jpeg",
+      "/algofight-5.jpeg"
+    ],
+  },
+  {
     id: "skillflare",
     title: "MITS SkillFlare – Student Talent Marketplace",
     category: "Full-Stack",

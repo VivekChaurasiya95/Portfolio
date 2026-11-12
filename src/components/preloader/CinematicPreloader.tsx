@@ -99,7 +99,7 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({ onComplete }) =
 
   return (
     <motion.div
-      className="fixed inset-0 z-[999999] flex items-center justify-center overflow-hidden bg-[#040508] text-white select-none"
+      className="fixed inset-0 z-[999999] flex items-center justify-center overflow-hidden bg-[#040508] font-sans text-white select-none"
       initial={{ opacity: 1 }}
       animate={{
         opacity: phase === "exit" ? 0 : 1,
@@ -153,12 +153,12 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({ onComplete }) =
       <button
         type="button"
         onClick={finish}
-        className="group absolute right-5 top-5 z-50 flex items-center gap-2 min-h-[44px] rounded-full border border-white/15 bg-black/60 px-4 py-2 font-mono text-xs uppercase tracking-widest text-white/70 backdrop-blur-xl transition-all duration-300 hover:border-cyan-400 hover:text-white sm:right-8 sm:top-8 cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
+        className="group absolute right-5 top-5 z-50 flex items-center gap-2 min-h-[44px] rounded-full border border-white/15 bg-black/60 px-4 py-2 font-sans text-xs uppercase tracking-widest text-white/70 backdrop-blur-xl transition-all duration-300 hover:border-cyan-400 hover:text-white sm:right-8 sm:top-8 cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
         aria-label="Skip Intro Animation"
       >
         <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
         <span>Skip Intro</span>
-        <kbd className="text-[10px] bg-white/10 px-1.5 py-0.5 rounded text-cyan-300 font-mono">
+        <kbd className="text-[10px] bg-white/10 px-1.5 py-0.5 rounded text-cyan-300 font-sans">
           ESC
         </kbd>
       </button>
@@ -215,7 +215,7 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({ onComplete }) =
         {phase === "code" && (
           <motion.div
             key="code"
-            className="relative w-[min(88vw,740px)] px-6 py-9 text-left font-mono text-[clamp(1rem,3.2vw,1.75rem)] leading-[1.85] tracking-[-0.01em] sm:px-10"
+            className="relative w-[min(88vw,740px)] px-6 py-9 text-left font-sans text-[clamp(1rem,3.2vw,1.75rem)] leading-[1.85] tracking-[-0.01em] sm:px-10"
             initial={{ opacity: 0, y: 16, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98, y: -12 }}
@@ -236,7 +236,7 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({ onComplete }) =
             />
             <div className="relative z-10">
               {typedLines.map((line, index) => (
-                <div key={CODE_LINES[index]} className="min-h-[1.85em] whitespace-pre-wrap text-white/90 font-mono">
+                <div key={CODE_LINES[index]} className="min-h-[1.85em] whitespace-pre-wrap text-white/90 font-sans">
                   {line.startsWith("const") ? (
                     <>
                       <span className="text-cyan-400 font-semibold">const</span>
@@ -271,11 +271,11 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({ onComplete }) =
             <div className="absolute -inset-x-6 -inset-y-10 rounded-2xl border border-white/10 bg-white/[0.035] shadow-[0_32px_150px_rgba(0,0,0,0.7)] backdrop-blur-xl" />
             <div className="relative h-px w-32 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
             <h1
-              className="relative mt-8 font-meridian text-balance text-[clamp(2.5rem,8.2vw,7.5rem)] font-bold uppercase leading-[0.9] text-white tracking-[-0.02em]"
+              className="relative mt-8 font-meridian text-balance text-[clamp(2.5rem,8.2vw,7.5rem)] font-semibold uppercase leading-[1.08] text-white tracking-[-0.02em]"
             >
               VIVEK CHAURASIYA
             </h1>
-            <div className="relative mt-7 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[0.72rem] sm:text-xs font-semibold uppercase tracking-[0.22em] text-white/70 font-mono">
+            <div className="relative mt-7 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[0.72rem] sm:text-xs font-sans font-semibold uppercase tracking-[0.22em] text-white/70">
               {ROLES.map((role, index) => (
                 <React.Fragment key={role}>
                   <span className={index === 0 ? "text-cyan-300" : index === 1 ? "text-rose-300" : "text-white/80"}>

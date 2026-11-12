@@ -6,6 +6,10 @@ import { projects } from "../data/projects";
 
 // Card metadata for the project showcase: live domain + uppercase tagline
 const projectMeta: Record<string, { domain: string; tagline: string }> = {
+  algofight: {
+    domain: "algo.mitsgwalior.in",
+    tagline: "REAL-TIME COMPETITIVE CODING ARENA & ELO DUELS",
+  },
   skillflare: {
     domain: "skillflare-delta.vercel.app",
     tagline: "YOUR AI-POWERED STUDENT TALENT MARKETPLACE",
