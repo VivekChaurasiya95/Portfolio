@@ -258,6 +258,14 @@
   }
 }
 
+/* View Transitions API: circular theme reveal (see ThemeToggle).
+   Disable the default crossfade so only the reveal clip animates. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 @layer components {
   .text-gradient {
     background: var(--hero-gradient);
