@@ -186,7 +186,7 @@ export const projects = [
     lessonsLearned:
       "A good recommendation system needs both AI intelligence and human-curated data.",
     github: "https://github.com/VivekChaurasiya95",
-    demo: "#",
+    demo: "https://student-saarthi.antideploy.app",
     stats: { filters: "5+", features: "AI-Powered", alerts: "Email/SMS" },
     image: "/student-saarthi-1.png",
     gallery: [

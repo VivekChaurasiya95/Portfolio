@@ -23,7 +23,7 @@ const projectMeta: Record<string, { domain: string; tagline: string }> = {
     tagline: "HUMAN SKILL EXTINCTION & AUTOMATION VELOCITY RADAR",
   },
   "student-saarthi": {
-    domain: "student-saarthi.ai",
+    domain: "student-saarthi.antideploy.app",
     tagline: "INTELLIGENT MULTI-CRITERIA SCHOLARSHIP PORTAL",
   },
 };
