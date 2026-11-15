@@ -190,10 +190,16 @@ const ProjectsSection = () => {
                     </div>
 
                     {/* URL Address Bar */}
-                    <div className="flex-1 max-w-[240px] sm:max-w-xs mx-auto flex items-center justify-center gap-1.5 px-3 py-1 rounded-md bg-[#08090d] border border-white/[0.08] text-[11px] font-mono text-muted-foreground truncate">
-                      <Globe className="w-3 h-3 shrink-0 text-primary/70" />
+                    <a
+                      href={demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={`Visit ${meta.domain}`}
+                      className="flex-1 max-w-[240px] sm:max-w-xs mx-auto flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md bg-[#08090d] border border-white/10 hover:border-primary/50 text-[11px] sm:text-xs font-mono font-medium text-slate-200 hover:text-white transition-all duration-200 truncate group/url cursor-pointer shadow-inner"
+                    >
+                      <Globe className="w-3.5 h-3.5 shrink-0 text-teal-400 group-hover/url:text-teal-300 transition-colors" />
                       <span className="truncate">{meta.domain}</span>
-                    </div>
+                    </a>
 
                     {/* Spacer to balance traffic lights */}
                     <div className="w-[42px] shrink-0" />
