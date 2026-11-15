@@ -866,68 +866,70 @@ const ExperienceSection = () => {
                         className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${exp.color} rounded-full blur-[80px] opacity-30 mix-blend-screen pointer-events-none`}
                       />
 
-                      <div className="relative z-10 flex flex-col md:flex-row gap-5 md:gap-6 items-start h-full">
-                        <div className="w-full md:w-[34%] flex flex-col gap-3.5 items-center md:items-start text-center md:text-left shrink-0">
-                          <div
-                            className={`w-20 h-20 md:w-22 md:h-22 rounded-2xl flex items-center justify-center bg-gradient-to-br ${exp.color} p-[1.5px] shadow-[0_0_25px_rgba(56,189,248,0.25)]`}
-                          >
-                            <div className="w-full h-full rounded-[0.95rem] bg-background/95 border border-white/10 flex items-center justify-center backdrop-blur-md overflow-hidden">
-                              <img
-                                src={exp.logo[0]}
-                                alt={`${exp.company} logo`}
-                                loading="lazy"
-                                width={88}
-                                height={88}
-                                className={`w-full h-full ${exp.logoStyle || "object-cover object-center scale-[1.06]"}`}
-                                onError={(e) => {
-                                  const target = e.currentTarget;
-                                  const currentSrc =
-                                    target.getAttribute("src") || "";
-                                  const nextIndex =
-                                    exp.logo.findIndex(
-                                      (candidate) => candidate === currentSrc,
-                                    ) + 1;
-                                  if (
-                                    nextIndex > 0 &&
-                                    nextIndex < exp.logo.length
-                                  ) {
-                                    target.setAttribute(
-                                      "src",
-                                      exp.logo[nextIndex],
-                                    );
-                                    return;
-                                  }
-                                  target.style.display = "none";
-                                  const fallback =
-                                    target.nextElementSibling as HTMLElement | null;
-                                  if (fallback) fallback.style.display = "flex";
-                                }}
-                              />
-                              <span className="hidden w-full h-full items-center justify-center">
-                                <Icon className="w-10 h-10 text-foreground" />
-                              </span>
+                      <div className="relative z-10 flex flex-col md:flex-row items-stretch h-full">
+                        {/* Left Panel */}
+                        <div className="w-full md:w-[35%] flex flex-col justify-between items-center md:items-start text-center md:text-left shrink-0 md:pr-6 md:border-r md:border-white/10 pb-5 md:pb-0 border-b md:border-b-0 border-white/10">
+                          {/* Top Info */}
+                          <div className="w-full flex flex-col items-center md:items-start">
+                            {/* Logo */}
+                            <div
+                              className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center bg-gradient-to-br ${exp.color} p-[1.5px] shadow-[0_0_25px_rgba(56,189,248,0.25)] mb-3`}
+                            >
+                              <div className="w-full h-full rounded-[0.95rem] bg-background/95 border border-white/10 flex items-center justify-center backdrop-blur-md overflow-hidden">
+                                <img
+                                  src={exp.logo[0]}
+                                  alt={`${exp.company} logo`}
+                                  loading="lazy"
+                                  width={80}
+                                  height={80}
+                                  className={`w-full h-full ${exp.logoStyle || "object-cover object-center scale-[1.06]"}`}
+                                  onError={(e) => {
+                                    const target = e.currentTarget;
+                                    const currentSrc =
+                                      target.getAttribute("src") || "";
+                                    const nextIndex =
+                                      exp.logo.findIndex(
+                                        (candidate) => candidate === currentSrc,
+                                      ) + 1;
+                                    if (
+                                      nextIndex > 0 &&
+                                      nextIndex < exp.logo.length
+                                    ) {
+                                      target.setAttribute(
+                                        "src",
+                                        exp.logo[nextIndex],
+                                      );
+                                      return;
+                                    }
+                                    target.style.display = "none";
+                                    const fallback =
+                                      target.nextElementSibling as HTMLElement | null;
+                                    if (fallback) fallback.style.display = "flex";
+                                  }}
+                                />
+                                <span className="hidden w-full h-full items-center justify-center">
+                                  <Icon className="w-10 h-10 text-foreground" />
+                                </span>
+                              </div>
                             </div>
-                          </div>
 
-                          <div>
+                            {/* Company Name */}
                             <h3
-                              className={`font-medium text-primary tracking-tight leading-[1.15] mb-1.5 [text-wrap:balance] ${
+                              className={`font-semibold text-primary tracking-tight leading-[1.15] mb-2 [text-wrap:balance] ${
                                 exp.company.length > 20
-                                  ? "text-xl md:text-[1.5rem] leading-[1.1]"
+                                  ? "text-lg md:text-xl"
                                   : "text-xl md:text-2xl"
                               }`}
                             >
                               {exp.company}
                             </h3>
+
+                            {/* Role Badge */}
                             <div
-                              className={`inline-block -ml-0.5 px-3 py-1 rounded-full bg-gradient-to-r ${exp.color} text-white text-[0.72rem] font-bold tracking-wider uppercase mb-2.5 shadow-md [text-shadow:0_1px_6px_rgba(0,0,0,0.55)]`}
+                              className={`inline-block px-3 py-1 rounded-full bg-gradient-to-r ${exp.color} text-white text-[0.7rem] font-bold tracking-wider uppercase mb-3 shadow-md [text-shadow:0_1px_6px_rgba(0,0,0,0.55)]`}
                             >
                               {Array.isArray(exp.role) ? (
-                                <ul className="list-disc list-inside space-y-0.5">
-                                  {exp.role.map((line) => (
-                                    <li key={line}>{line}</li>
-                                  ))}
-                                </ul>
+                                <span>{exp.role.join(" • ")}</span>
                               ) : (
                                 <span className="whitespace-pre-line">
                                   {exp.role}
@@ -935,81 +937,102 @@ const ExperienceSection = () => {
                               )}
                             </div>
 
-                            <div className="flex flex-col gap-1.5 text-[0.82rem] text-muted-foreground/95 font-medium items-center md:items-start">
-                              {exp.status && (
-                                <div
-                                  className={`flex items-center gap-1.5 bg-background/50 px-2.5 py-1 rounded-md border border-border/50 ${
-                                    exp.status === "Completed"
-                                      ? "text-emerald-600 dark:text-emerald-400"
-                                      : "text-blue-600 dark:text-blue-400"
-                                  }`}
-                                >
-                                  {exp.status === "Completed" ? (
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                                  ) : (
-                                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                                  )}
-                                  <span className="tracking-[0.01em] text-xs font-semibold uppercase">
-                                    {exp.status}
+                            {/* Metadata Badges: Status + Location + Duration */}
+                            <div className="w-full flex flex-col gap-1.5 items-center md:items-start text-[0.78rem]">
+                              <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5">
+                                {exp.status && (
+                                  <div
+                                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border ${
+                                      exp.status === "Completed"
+                                        ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                                        : "bg-blue-500/10 text-blue-400 border-blue-500/20"
+                                    }`}
+                                  >
+                                    <span
+                                      className={`w-1.5 h-1.5 rounded-full ${
+                                        exp.status === "Completed"
+                                          ? "bg-emerald-400"
+                                          : "bg-blue-400 animate-pulse"
+                                      }`}
+                                    />
+                                    <span className="tracking-[0.02em] text-[10.5px] font-semibold uppercase">
+                                      {exp.status}
+                                    </span>
+                                  </div>
+                                )}
+                                <div className="inline-flex items-center gap-1.5 bg-white/[0.04] px-2.5 py-1 rounded-md border border-white/[0.08] text-slate-300">
+                                  <MapPin className="w-3 h-3 text-teal-400 shrink-0" />
+                                  <span className="tracking-[0.01em] text-[11px] font-medium">
+                                    {exp.location}
                                   </span>
                                 </div>
-                              )}
-                              <div className="flex items-center gap-2 bg-background/50 px-2.5 py-1 rounded-md border border-border/50">
-                                <Calendar className="w-3.5 h-3.5 text-primary" />
-                                <span className="tracking-[0.01em]">
+                              </div>
+
+                              <div className="inline-flex items-center gap-2 bg-white/[0.04] px-2.5 py-1 rounded-md border border-white/[0.08] text-slate-300">
+                                <Calendar className="w-3.5 h-3.5 text-teal-400 shrink-0" />
+                                <span className="tracking-[0.01em] text-[11px] font-medium">
                                   {exp.duration}
                                 </span>
                               </div>
-                              <div className="flex items-center gap-2 bg-background/50 px-2.5 py-1 rounded-md border border-border/50">
-                                <MapPin className="w-3.5 h-3.5 text-primary" />
-                                <span className="tracking-[0.01em]">
-                                  {exp.location}
-                                </span>
-                              </div>
                             </div>
-                            <div className="pt-2.5 w-full flex justify-center md:justify-start">
-                              <button
-                                type="button"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  openExperienceDetail(exp);
-                                }}
-                                className="inline-flex items-center gap-2 whitespace-nowrap rounded-lg border border-primary/40 bg-primary/10 px-3 py-1.5 text-[0.82rem] font-semibold text-primary hover:bg-primary/20 hover:text-foreground transition-colors"
-                              >
-                                <FileText className="w-3.5 h-3.5" />
-                                View Experience Details
-                              </button>
-                            </div>
+                          </div>
+
+                          {/* Action Button pinned to bottom of left panel */}
+                          <div className="pt-4 w-full flex justify-center md:justify-start">
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openExperienceDetail(exp);
+                              }}
+                              className="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-primary/40 bg-primary/10 hover:bg-primary/20 px-3.5 py-2 text-xs font-semibold text-primary hover:text-white transition-all duration-200 shadow-sm group/btn cursor-pointer"
+                            >
+                              <FileText className="w-3.5 h-3.5 transition-transform group-hover/btn:scale-110" />
+                              <span>View Experience Details</span>
+                            </button>
                           </div>
                         </div>
 
-                        <div className="w-full md:w-[66%] flex flex-col gap-3 justify-center h-full">
-                          <p className="text-foreground/90 text-[0.96rem] md:text-[1.02rem] leading-[1.6] font-normal antialiased tracking-[0.005em]">
-                            {exp.description}
-                          </p>
+                        {/* Right Panel */}
+                        <div className="w-full md:w-[65%] flex flex-col justify-between h-full md:pl-6 pt-5 md:pt-0">
+                          {/* Content Top */}
+                          <div className="flex flex-col gap-3">
+                            <p className="text-foreground/90 text-[0.92rem] md:text-[0.98rem] leading-[1.6] font-normal antialiased tracking-[0.005em]">
+                              {exp.description}
+                            </p>
 
-                          <div className="space-y-2">
-                            {exp.achievements.map((achievement, i) => (
-                              <div key={i} className="flex items-start gap-2.5">
-                                <div
-                                  className={`w-1.5 h-1.5 rounded-full mt-2 bg-gradient-to-br ${exp.color} shadow-[0_0_8px_rgba(255,255,255,0.8)] shrink-0`}
-                                />
-                                <span className="text-muted-foreground/95 text-[0.86rem] md:text-[0.91rem] leading-[1.5] font-normal antialiased tracking-[0.005em]">
-                                  {achievement}
-                                </span>
-                              </div>
-                            ))}
+                            <div className="space-y-2">
+                              {exp.achievements.map((achievement, i) => (
+                                <div key={i} className="flex items-start gap-2.5">
+                                  <div
+                                    className={`w-1.5 h-1.5 rounded-full mt-2 bg-gradient-to-br ${exp.color} shadow-[0_0_8px_rgba(255,255,255,0.8)] shrink-0`}
+                                  />
+                                  <span className="text-muted-foreground/95 text-[0.84rem] md:text-[0.88rem] leading-[1.5] font-normal antialiased tracking-[0.005em]">
+                                    {achievement}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
                           </div>
 
-                          <div className="pt-2.5 mt-auto flex flex-wrap gap-1.5">
-                            {exp.technologies.map((tech) => (
-                              <span
-                                key={tech}
-                                className="px-2.5 py-1 text-[0.74rem] font-medium tracking-[0.01em] rounded-md bg-white/5 border border-white/10 text-foreground/90 hover:bg-white/10 transition-colors"
-                              >
-                                {tech}
+                          {/* Restructured Bottom Technologies / Skills Box */}
+                          <div className="pt-3.5 mt-auto border-t border-white/10 flex flex-col gap-2">
+                            <div className="flex items-center gap-1.5">
+                              <Code2 className="w-3 h-3 text-teal-400" />
+                              <span className="text-[10px] font-mono uppercase tracking-wider font-semibold text-muted-foreground/80">
+                                Skills & Technologies
                               </span>
-                            ))}
+                            </div>
+                            <div className="flex flex-wrap gap-1.5">
+                              {exp.technologies.map((tech) => (
+                                <span
+                                  key={tech}
+                                  className="px-2.5 py-0.5 text-[10.5px] font-mono font-medium tracking-wide rounded-md bg-white/[0.04] border border-white/[0.08] text-slate-300 hover:text-white hover:border-primary/40 hover:bg-white/[0.08] transition-all duration-200"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1138,15 +1161,23 @@ const ExperienceSection = () => {
               </div>
 
               {/* Technologies */}
-              <div className="relative z-10 flex flex-wrap gap-1.5 mb-5">
-                {experiences[activeIndex].technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-0.5 text-[11px] font-medium rounded-md bg-white/5 border border-white/10 text-foreground/80"
-                  >
-                    {tech}
+              <div className="relative z-10 pt-3 border-t border-white/10 flex flex-col gap-2 mb-5">
+                <div className="flex items-center gap-1.5">
+                  <Code2 className="w-3 h-3 text-teal-400" />
+                  <span className="text-[10px] font-mono uppercase tracking-wider font-semibold text-muted-foreground/80">
+                    Skills & Technologies
                   </span>
-                ))}
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {experiences[activeIndex].technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2 py-0.5 text-[10.5px] font-mono font-medium rounded-md bg-white/[0.04] border border-white/[0.08] text-slate-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               {/* View Details Button */}
