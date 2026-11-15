@@ -120,6 +120,44 @@ export const projects = [
     ],
   },
   {
+    id: "student-saarthi",
+    title: "Student Saarthi – AI Scholarship Portal",
+    category: "Full-Stack",
+    color: "from-violet-500 to-purple-600",
+    accentColor: "violet",
+    problem:
+      "Students struggle to find relevant scholarships matching their profile across multiple criteria.",
+    solution:
+      "Developed a web portal with AI-based scholarship recommendations using OpenAI API, with filters for GPA, degree, income, category, and skills.",
+    impact:
+      "Integrated admin dashboard, external scholarship redirection, and notification system with Email/SMS alerts and Google Calendar tracking.",
+    tech: ["React.js", "HTML", "CSS", "JavaScript", "Python (Flask)", "MySQL"],
+    architecture:
+      "Flask backend with MySQL database. React.js frontend with OpenAI API integration for intelligent recommendations.",
+    challenges:
+      "Integrating AI recommendations with multiple filter criteria while maintaining fast response times.",
+    codeHighlights: [
+      "AI Recommendation System",
+      "Admin Dashboard",
+      "Notification System",
+    ],
+    story:
+      "Many students miss out on scholarships simply because they don't know about them. This portal bridges that gap.",
+    funFact: "The first prototype was built during a 36-hour hackathon sprint!",
+    lessonsLearned:
+      "A good recommendation system needs both AI intelligence and human-curated data.",
+    github: "https://github.com/VivekChaurasiya95",
+    demo: "https://student-saarthi.antideploy.app",
+    stats: { filters: "5+", features: "AI-Powered", alerts: "Email/SMS" },
+    image: "/student-saarthi-1.png",
+    gallery: [
+      "/student-saarthi-2.png",
+      "/student-saarthi-3.png",
+      "/student-saarthi-4.png",
+      "/student-saarthi-5.png"
+    ],
+  },
+  {
     id: "hser",
     title: "HSER – Human Skill Extinction Radar",
     category: "Full-Stack",
@@ -156,44 +194,6 @@ export const projects = [
       "/hser-3.png",
       "/hser-4.png",
       "/hser-5.png"
-    ],
-  },
-  {
-    id: "student-saarthi",
-    title: "Student Saarthi – AI Scholarship Portal",
-    category: "Full-Stack",
-    color: "from-violet-500 to-purple-600",
-    accentColor: "violet",
-    problem:
-      "Students struggle to find relevant scholarships matching their profile across multiple criteria.",
-    solution:
-      "Developed a web portal with AI-based scholarship recommendations using OpenAI API, with filters for GPA, degree, income, category, and skills.",
-    impact:
-      "Integrated admin dashboard, external scholarship redirection, and notification system with Email/SMS alerts and Google Calendar tracking.",
-    tech: ["React.js", "HTML", "CSS", "JavaScript", "Python (Flask)", "MySQL"],
-    architecture:
-      "Flask backend with MySQL database. React.js frontend with OpenAI API integration for intelligent recommendations.",
-    challenges:
-      "Integrating AI recommendations with multiple filter criteria while maintaining fast response times.",
-    codeHighlights: [
-      "AI Recommendation System",
-      "Admin Dashboard",
-      "Notification System",
-    ],
-    story:
-      "Many students miss out on scholarships simply because they don't know about them. This portal bridges that gap.",
-    funFact: "The first prototype was built during a 36-hour hackathon sprint!",
-    lessonsLearned:
-      "A good recommendation system needs both AI intelligence and human-curated data.",
-    github: "https://github.com/VivekChaurasiya95",
-    demo: "https://student-saarthi.antideploy.app",
-    stats: { filters: "5+", features: "AI-Powered", alerts: "Email/SMS" },
-    image: "/student-saarthi-1.png",
-    gallery: [
-      "/student-saarthi-2.png",
-      "/student-saarthi-3.png",
-      "/student-saarthi-4.png",
-      "/student-saarthi-5.png"
     ],
   }
 ];

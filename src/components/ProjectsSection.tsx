@@ -18,13 +18,13 @@ const projectMeta: Record<string, { domain: string; tagline: string }> = {
     domain: "dime-rishabh.vercel.app",
     tagline: "DATA-DRIVEN STARTUP IDEA VALIDATION & MARKET EVALUATION",
   },
-  hser: {
-    domain: "hser-project.vercel.app",
-    tagline: "HUMAN SKILL EXTINCTION & AUTOMATION VELOCITY RADAR",
-  },
   "student-saarthi": {
     domain: "student-saarthi.antideploy.app",
     tagline: "INTELLIGENT MULTI-CRITERIA SCHOLARSHIP PORTAL",
+  },
+  hser: {
+    domain: "hser-project.vercel.app",
+    tagline: "HUMAN SKILL EXTINCTION & AUTOMATION VELOCITY RADAR",
   },
 };
 
