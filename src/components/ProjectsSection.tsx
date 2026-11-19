@@ -22,6 +22,10 @@ const projectMeta: Record<string, { domain: string; tagline: string }> = {
     domain: "student-saarthi.antideploy.app",
     tagline: "INTELLIGENT MULTI-CRITERIA SCHOLARSHIP PORTAL",
   },
+  sitelabs: {
+    domain: "vivek-sitelabs.vercel.app",
+    tagline: "AUTONOMOUS SYSTEMS & ENGINEERING SHOWCASE HUB",
+  },
   hser: {
     domain: "hser-project.vercel.app",
     tagline: "HUMAN SKILL EXTINCTION & AUTOMATION VELOCITY RADAR",
