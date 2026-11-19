@@ -158,6 +158,46 @@ export const projects = [
     ],
   },
   {
+    id: "sitelabs",
+    title: "Vivek's SiteLabs – Engineering Project Showcase Hub",
+    category: "Full-Stack",
+    color: "from-amber-500 to-yellow-600",
+    accentColor: "amber",
+    problem:
+      "Engineers and recruiters needed a high-performance, distraction-free architectural hub to inspect, benchmark, and clone all 29 production open-source repositories without heavyweight framework overhead.",
+    solution:
+      "Engineered an authentic Graphite-specification showcase running on a custom Vanilla ES6+ motion engine, live coffee steam SVG shaders, mechanical odometer metrics, interactive CLI sandbox, and Vercel Edge delivery.",
+    impact:
+      "Catalogs 29 repositories across Autonomous AI, Distributed Systems, and Full-Stack with zero runtime dependencies, instant dual theme switching, live coordinate HUD telemetry, and sub-second global edge response.",
+    tech: ["HTML5", "CSS3", "JavaScript (ES6+)", "SVG Shaders", "Vercel Edge", "Shell"],
+    architecture:
+      "Zero-dependency static client architecture: Semantic HTML5 with JSON-LD @graph schemas, modular 13-engine ES6+ motion & CLI runtime in app.js, precision Graphite CSS token system, and procedural SVG turbulence shaders deployed on Vercel's global edge network.",
+    challenges:
+      "Building 13 interactive modules — including a monospaced terminal sandbox, 10-slot mechanical odometer, and crosshair blueprint HUD — using pure vanilla JavaScript with zero third-party dependencies.",
+    codeHighlights: [
+      "13-Module Vanilla ES6+ Motion Engine",
+      "Live Developer Terminal CLI Sandbox",
+      "Procedural SVG Coffee Steam Shader",
+      "10-Slot Mechanical Rolling Odometer",
+      "Graphite Blueprint Crosshair HUD",
+    ],
+    story:
+      "SiteLabs was created to move away from generic template portfolios and build an editorial, blueprint-grade architectural showcase that treats software projects with the rigor of engineering schematics.",
+    funFact:
+      "SiteLabs achieves 100/100 Lighthouse performance and accessibility scores with exactly 0 npm packages or external framework runtimes!",
+    lessonsLearned:
+      "Modern browsers have incredible native capabilities: with clean mathematical models and modern CSS, you can build mesmerizing interactive experiences without thousands of dependencies.",
+    github: "https://github.com/VivekChaurasiya95/Vivek-SiteLabs",
+    demo: "https://vivek-sitelabs.vercel.app",
+    stats: { repos: "29 Repos", stack: "Zero-Deps", performance: "100/100" },
+    image: "/sitelabs-1.png",
+    gallery: [
+      "/sitelabs-2.png",
+      "/sitelabs-3.png",
+      "/sitelabs-4.png"
+    ],
+  },
+  {
     id: "hser",
     title: "HSER – Human Skill Extinction Radar",
     category: "Full-Stack",
