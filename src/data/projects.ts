@@ -193,8 +193,7 @@ export const projects = [
     image: "/sitelabs-1.png",
     gallery: [
       "/sitelabs-2.png",
-      "/sitelabs-3.png",
-      "/sitelabs-4.png"
+      "/sitelabs-3.png"
     ],
   },
   {
